@@ -867,11 +867,11 @@
 
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
-                        const { Filesystem, Directory } = window.Capacitor.Plugins;
+                        const { Filesystem } = window.Capacitor.Plugins;
                         await Filesystem.writeFile({
                             path: fileName,
                             data: dataStr,
-                            directory: Directory.Documents,
+                            directory: 'DOCUMENTS',
                             encoding: 'utf8'
                         });
                         showToast(`✅ تم التصدير! الملف محفوظ في مجلد المستندات (Documents) باسم: ${fileName}`);
