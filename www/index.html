@@ -348,9 +348,17 @@
         }
 
         .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: clamp(8px, 1.5vw, 12px); margin-top: 8px; }
-        .result-item { background: var(--gold-light); border-radius: var(--radius-sm); padding: clamp(10px, 2vw, 14px) clamp(8px, 1.5vw, 12px); text-align: center; border: 1.5px solid #e8d9b8; }
+        .result-item { background: var(--gold-light); border-radius: var(--radius-sm); padding: clamp(10px, 2vw, 14px) clamp(8px, 1.5vw, 12px); text-align: center; border: 1.5px solid #e8d9b8; transition: all 0.3s ease; }
         .result-label { font-size: var(--font-sm); color: var(--text-light); }
         .result-value { font-size: var(--font-xl); font-weight: 700; color: var(--terracotta-dark); direction: ltr; }
+
+        /* تأثير الوميض الأحمر الساطع */
+        @keyframes pulseRedGlow {
+            0% { background-color: #fff0f0; border-color: var(--red); box-shadow: 0 0 5px rgba(212, 76, 61, 0.3); }
+            50% { background-color: #ffe6e6; border-color: var(--red); box-shadow: 0 0 16px rgba(212, 76, 61, 0.7); }
+            100% { background-color: #fff0f0; border-color: var(--red); box-shadow: 0 0 5px rgba(212, 76, 61, 0.3); }
+        }
+        .pulse-red { animation: pulseRedGlow 1.2s infinite; }
 
         .search-bar { position: relative; width: 100%; margin-bottom: 10px; }
         .search-bar input { padding-right: 44px; }
@@ -549,11 +557,13 @@
                     <hr class="divider">
                     <p style="font-weight:700;">📏 المقاسات (cm)</p>
                     <div class="form-group"><label>الكتاف كامليين</label><input type="number" id="cl-shoulders" value="0" required></div>
+                    <div class="form-group"><label>التركيز</label><input type="number" id="cl-armhole" value="0" required></div>
                     <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" id="cl-chest" value="0" required></div>
                     <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" id="cl-waist" value="0" required></div>
                     <div class="form-group"><label>دورة الحوض</label><input type="number" id="cl-hips" value="0" required></div>
                     <div class="form-group"><label>الطول الإجمالي</label><input type="number" id="cl-dressLength" value="0" required></div>
                     <div class="form-group"><label>طول الكم</label><input type="number" id="cl-sleeveLength" value="0" required></div>
+                    <div class="form-group"><label>فم الكمام</label><input type="number" id="cl-sleeveMouth" value="0" required></div>
                     <div class="form-group">
                         <label>نوع الكم</label>
                         <select id="cl-sleeveType" required>
@@ -581,11 +591,13 @@
                 <div class="card-header"><span class="icon">📐</span> حاسبة الفصالة الذكية</div>
                 <form id="calculator-form" autocomplete="off">
                     <div class="form-group"><label>الكتاف كامليين <span class="unit">(cm)</span></label><input type="number" id="calc-shoulders" placeholder="مثال: 42" step="0.1" min="20" max="80" value="0" required></div>
+                    <div class="form-group"><label>التركيز <span class="unit">(cm)</span></label><input type="number" id="calc-armhole" placeholder="مثال: 26" step="0.1" value="0" required></div>
                     <div class="form-group"><label>دورة الصدر كاملة <span class="unit">(cm)</span></label><input type="number" id="calc-chest" placeholder="مثال: 96" step="0.1" min="50" max="180" value="0" required></div>
                     <div class="form-group"><label>دورة الحزام كاملة <span class="unit">(cm)</span></label><input type="number" id="calc-waist" placeholder="مثال: 78" step="0.1" min="40" max="160" value="0" required></div>
                     <div class="form-group"><label>دورة الحوض / الأوراك <span class="unit">(cm)</span></label><input type="number" id="calc-hips" placeholder="مثال: 104" step="0.1" min="50" max="180" value="0" required></div>
                     <div class="form-group"><label>الطول الإجمالي للبيسة <span class="unit">(cm)</span></label><input type="number" id="calc-dressLength" placeholder="مثال: 140" step="0.1" min="40" max="250" value="0" required></div>
                     <div class="form-group"><label>طول الكم <span class="unit">(cm)</span></label><input type="number" id="calc-sleeveLength" placeholder="مثال: 58" step="0.1" min="10" max="100" value="0" required></div>
+                    <div class="form-group"><label>فم الكمام <span class="unit">(cm)</span></label><input type="number" id="calc-sleeveMouth" placeholder="مثال: 16" step="0.1" value="0" required></div>
                     <div class="form-group"><label>نوع قصة الثوب والاتساع</label><select id="calc-fitType" required><option value="">-- اختاري --</option><option value="regular">عادي / مريح (+3 cm)</option><option value="fitted">مضبوط / ضيّق (+1.5 cm)</option><option value="loose">فضفاض / واسع (+5 cm)</option><option value="custom">مخصص</option></select></div>
                     <div class="form-group custom-ease-input" id="calc-customEaseGroup"><label>قيمة الاتساع المخصصة</label><input type="number" id="calc-customEase" step="0.1" min="0" value="0"></div>
                     <button type="submit" class="btn btn-primary">🧮 احسبي القصّات</button>
@@ -736,8 +748,8 @@
                     chestCut: (m.chest/4)+ease,
                     waistCut: (m.waist/4)+ease,
                     hipsCut: (m.hips/4)+ease,
-                    finalDressLength: m.dressLength+6,
-                    finalSleeveLength: m.sleeveLength+3,
+                    finalDressLength: m.dressLength - 2,
+                    finalSleeveLength: m.sleeveLength + 4,
                     easeUsed: ease
                 };
             }
@@ -882,6 +894,7 @@
                                 url: result.uri,
                                 dialogTitle: 'حفظ النسخة الاحتياطية'
                             });
+                            localStorage.setItem('lastBackupDate', Date.now().toString());
                         } else {
                             showToast('⚠️ مكتبة المشاركة غير متوفرة');
                         }
@@ -899,6 +912,7 @@
                         a.click();
                         a.remove();
                         URL.revokeObjectURL(url);
+                        localStorage.setItem('lastBackupDate', Date.now().toString());
                         showToast('✅ تم تنزيل الملف بنجاح.');
                     } catch (e) {
                         showToast('⚠️ تعذر التنزيل.');
@@ -992,6 +1006,7 @@
                 const total = client.totalPrice || 0;
                 const advance = client.advancePayment || 0;
                 const remaining = Math.max(0, total - advance);
+                
                 const sleeveLabel = getSleeveTypeLabel(client.sleeveType);
 
                 let waBtnHTML = '';
@@ -1032,6 +1047,7 @@
                     <div class="client-details">
                         <span>👚 الصدر: ${client.measurements.chest} cm</span><span>⏳ الحزام: ${client.measurements.waist} cm</span>
                         <span>🍑 الحوض: ${client.measurements.hips} cm</span><span>📏 الطول: ${client.measurements.dressLength} cm</span>
+                        <span>🎯 التركيز: ${client.measurements.armhole || 0} cm</span><span>🤏 فم الكم: ${client.measurements.sleeveMouth || 0} cm</span>
                     </div>
                     <div class="card-actions">
                         ${!client.completed?`<button class="btn btn-success btn-sm deliver-btn" data-client-id="${client.id}">✅ تم التسليم</button>`:''}
@@ -1151,44 +1167,62 @@
                 document.getElementById('close-date-modal').onclick = () => modal.style.display = 'none';
             }
 
+            // ════════════ النافذة الجديدة ديال قص الفصالة ════════════
             function openCutsModal(client) {
                 const modal = document.getElementById('cuts-modal');
                 const body = document.getElementById('cuts-modal-body');
-                const ft = client.fitType || 'regular';
-                const ce = ft === 'custom' ? (client.customEase || 0) : 0;
-                const cuts = calculateCuts(client.measurements, ft, ce);
-                const ease = cuts.easeUsed;
+                
                 body.innerHTML = `
-                    <p><strong>${escapeHTML(client.name)}</strong> | ✂️ ${getSleeveTypeLabel(client.sleeveType)}</p>
-                    <div class="form-group"><label>إضافة الصدر</label><input type="number" id="modal-chest-ease" value="${ease}" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الحزام</label><input type="number" id="modal-waist-ease" value="${ease}" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الحوض</label><input type="number" id="modal-hips-ease" value="${ease}" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الكم</label><input type="number" id="modal-sleeve-ease" value="3" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الطول</label><input type="number" id="modal-dress-ease" value="6" step="0.1"></div>
+                    <p style="margin-bottom:12px; font-size: var(--font-lg);"><strong>👤 ${escapeHTML(client.name)}</strong> | ✂️ ${getSleeveTypeLabel(client.sleeveType)}</p>
+                    <div class="form-group"><label>إضافة الصدر</label><input type="number" id="modal-chest-ease" value="0" step="0.1"></div>
+                    <div class="form-group"><label>إضافة الحزام</label><input type="number" id="modal-waist-ease" value="0" step="0.1"></div>
+                    <div class="form-group"><label>إضافة الحوض</label><input type="number" id="modal-hips-ease" value="0" step="0.1"></div>
+                    
                     <div id="modal-results" class="results-grid"></div>
                     <button class="btn btn-outline btn-sm" id="modal-back-btn" style="margin-top:12px;">🔙 رجوع</button>
                 `;
+                
                 function update() {
-                    const ce=parseFloat(document.getElementById('modal-chest-ease').value)||0;
-                    const we=parseFloat(document.getElementById('modal-waist-ease').value)||0;
-                    const he=parseFloat(document.getElementById('modal-hips-ease').value)||0;
-                    const se=parseFloat(document.getElementById('modal-sleeve-ease').value)||0;
-                    const de=parseFloat(document.getElementById('modal-dress-ease').value)||0;
-                    const m=client.measurements;
-                    const res=[
-                        {label:'قص الكتاف',value:formatNumber((m.shoulders/2)+1)},
-                        {label:'قص الصدر',value:formatNumber((m.chest/4)+ce)},
-                        {label:'قص الحزام',value:formatNumber((m.waist/4)+we)},
-                        {label:'قص الحوض',value:formatNumber((m.hips/4)+he)},
-                        {label:'الطول النهائي',value:formatNumber(m.dressLength+de)},
-                        {label:'طول الكم',value:formatNumber(m.sleeveLength+se)}
+                    const chestEase = parseFloat(document.getElementById('modal-chest-ease').value) || 0;
+                    const waistEase = parseFloat(document.getElementById('modal-waist-ease').value) || 0;
+                    const hipsEase = parseFloat(document.getElementById('modal-hips-ease').value) || 0;
+                    
+                    const m = client.measurements;
+                    
+                    const res = [
+                        {label:'قص الكتاف', value:formatNumber((m.shoulders / 2) + 1), fixed: true}, 
+                        {label:'قص الصدر', value:formatNumber((m.chest / 4) + chestEase), empty: chestEase === 0},
+                        {label:'قص الحزام', value:formatNumber((m.waist / 4) + waistEase), empty: waistEase === 0},
+                        {label:'قص الحوض', value:formatNumber((m.hips / 4) + hipsEase), empty: hipsEase === 0},
+                        {label:'التركيز', value:formatNumber(m.armhole || 0), fixed: true}, 
+                        {label:'الطول النهائي', value:formatNumber(m.dressLength - 2), fixed: true}, 
+                        {label:'طول الكم', value:formatNumber(m.sleeveLength + 4), fixed: true}, 
+                        {label:'فم الكم', value:formatNumber(m.sleeveMouth || 0), fixed: true} 
                     ];
-                    document.getElementById('modal-results').innerHTML = res.map(r=>`<div class="result-item"><div class="result-label">${r.label}</div><div class="result-value">${r.value} cm</div></div>`).join('');
+                    
+                    document.getElementById('modal-results').innerHTML = res.map(r => {
+                        let boxClass = 'result-item';
+                        let valStyle = '';
+                        
+                        if (r.fixed) {
+                            valStyle = 'color: var(--green);';
+                        } else if (r.empty) {
+                            boxClass += ' pulse-red'; 
+                        }
+                        
+                        return `<div class="${boxClass}"><div class="result-label">${r.label}</div><div class="result-value" style="${valStyle}">${r.value} cm</div></div>`;
+                    }).join('');
                 }
-                body.querySelectorAll('input').forEach(i=>i.addEventListener('input',update));
+                
+                // خاصية Auto-select فاش تبرك على الخانة
+                body.querySelectorAll('input').forEach(i => {
+                    i.addEventListener('input', update);
+                    i.addEventListener('focus', function() { this.select(); }); 
+                });
+                
                 update();
-                document.getElementById('modal-back-btn').addEventListener('click',()=>modal.style.display='none');
-                modal.style.display='flex';
+                document.getElementById('modal-back-btn').addEventListener('click', () => modal.style.display='none');
+                modal.style.display = 'flex';
             }
 
             function openImageModal(clientId) {
@@ -1358,13 +1392,23 @@
             document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click', ()=>switchTab(b.dataset.tab)));
 
             document.getElementById('calc-fitType').addEventListener('change', function(){ document.getElementById('calc-customEaseGroup').classList.toggle('visible', this.value==='custom'); });
+            
             document.getElementById('calculator-form').addEventListener('submit', function(e){
                 e.preventDefault();
                 const ft=document.getElementById('calc-fitType').value; if(!ft) return showToast('⚠️ اختاري القصة');
                 const ease=ft==='custom'?parseFloat(document.getElementById('calc-customEase').value)||0:EASE_MAP[ft];
-                const m={ shoulders:parseFloat(document.getElementById('calc-shoulders').value), chest:parseFloat(document.getElementById('calc-chest').value), waist:parseFloat(document.getElementById('calc-waist').value), hips:parseFloat(document.getElementById('calc-hips').value), dressLength:parseFloat(document.getElementById('calc-dressLength').value), sleeveLength:parseFloat(document.getElementById('calc-sleeveLength').value) };
+                const m={ shoulders:parseFloat(document.getElementById('calc-shoulders').value), chest:parseFloat(document.getElementById('calc-chest').value), waist:parseFloat(document.getElementById('calc-waist').value), hips:parseFloat(document.getElementById('calc-hips').value), dressLength:parseFloat(document.getElementById('calc-dressLength').value), sleeveLength:parseFloat(document.getElementById('calc-sleeveLength').value), armhole:parseFloat(document.getElementById('calc-armhole').value), sleeveMouth:parseFloat(document.getElementById('calc-sleeveMouth').value) };
                 const cuts=calculateCuts(m,ft,ease);
-                const items=[ {label:'قص الكتاف',value:formatNumber(cuts.shoulderCut)}, {label:'قص الصدر',value:formatNumber(cuts.chestCut)}, {label:'قص الحزام',value:formatNumber(cuts.waistCut)}, {label:'قص الحوض',value:formatNumber(cuts.hipsCut)}, {label:'الطول النهائي',value:formatNumber(cuts.finalDressLength)}, {label:'طول الكم',value:formatNumber(cuts.finalSleeveLength)} ];
+                const items=[ 
+                    {label:'قص الكتاف',value:formatNumber(cuts.shoulderCut)}, 
+                    {label:'قص الصدر',value:formatNumber(cuts.chestCut)}, 
+                    {label:'قص الحزام',value:formatNumber(cuts.waistCut)}, 
+                    {label:'قص الحوض',value:formatNumber(cuts.hipsCut)}, 
+                    {label:'التركيز',value:formatNumber(m.armhole)}, 
+                    {label:'الطول النهائي',value:formatNumber(cuts.finalDressLength)}, 
+                    {label:'طول الكم',value:formatNumber(cuts.finalSleeveLength)},
+                    {label:'فم الكم',value:formatNumber(m.sleeveMouth)}
+                ];
                 document.getElementById('results-grid').innerHTML=items.map(i=>`<div class="result-item"><div class="result-label">${i.label}</div><div class="result-value">${i.value} cm</div></div>`).join('');
                 document.getElementById('results-card').style.display='block';
             });
@@ -1380,6 +1424,7 @@
                 e.preventDefault();
                 const sleeveType = document.getElementById('cl-sleeveType').value;
                 if (!sleeveType) return showToast('⚠️ اختاري نوع الكم');
+
                 const total = parseFloat(document.getElementById('client-totalPrice').value) || 0;
                 const advance = parseFloat(document.getElementById('client-advancePayment').value) || 0;
                 if (total < 0) return showToast('⚠️ الثمن لا يمكن أن يكون سالباً');
@@ -1392,7 +1437,16 @@
                     phone:document.getElementById('client-phone').value.trim(),
                     totalPrice: total,
                     advancePayment: advance,
-                    measurements:{ shoulders:parseFloat(document.getElementById('cl-shoulders').value), chest:parseFloat(document.getElementById('cl-chest').value), waist:parseFloat(document.getElementById('cl-waist').value), hips:parseFloat(document.getElementById('cl-hips').value), dressLength:parseFloat(document.getElementById('cl-dressLength').value), sleeveLength:parseFloat(document.getElementById('cl-sleeveLength').value) },
+                    measurements:{ 
+                        shoulders:parseFloat(document.getElementById('cl-shoulders').value) || 0, 
+                        chest:parseFloat(document.getElementById('cl-chest').value) || 0, 
+                        waist:parseFloat(document.getElementById('cl-waist').value) || 0, 
+                        hips:parseFloat(document.getElementById('cl-hips').value) || 0, 
+                        dressLength:parseFloat(document.getElementById('cl-dressLength').value) || 0, 
+                        sleeveLength:parseFloat(document.getElementById('cl-sleeveLength').value) || 0,
+                        armhole:parseFloat(document.getElementById('cl-armhole').value) || 0,
+                        sleeveMouth:parseFloat(document.getElementById('cl-sleeveMouth').value) || 0
+                    },
                     fitType: 'regular',
                     customEase: 0,
                     sleeveType: sleeveType,
@@ -1402,7 +1456,12 @@
                 await saveClient(client);
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
-                this.reset(); document.getElementById('cl-sleeveType').value=''; selectedImageBase64=null; formImagePreview.classList.remove('visible'); formImagePreview.src=''; updateRemaining();
+                this.reset(); 
+                document.getElementById('cl-sleeveType').value=''; 
+                selectedImageBase64=null; 
+                formImagePreview.classList.remove('visible'); 
+                formImagePreview.src=''; 
+                updateRemaining();
                 setAgendaFilter('all');
                 renderAgenda();
                 showToast('✅ تم الحفظ');
@@ -1445,6 +1504,19 @@
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
                 console.log('✅ تم تهيئة التطبيق مع الإشعار الدائم');
+                
+                // ════════════ نظام التذكير الأسبوعي بالنسخة الاحتياطية ════════════
+                const lastBackup = localStorage.getItem('lastBackupDate');
+                const now = Date.now();
+                const oneWeek = 7 * 24 * 60 * 60 * 1000; 
+                
+                if (!lastBackup) {
+                    localStorage.setItem('lastBackupDate', now.toString());
+                } else if ((now - parseInt(lastBackup)) > oneWeek) {
+                    setTimeout(() => {
+                        alert('⚠️ تذكير أسبوعي مهم: \n\nدازت سيمانة على آخر مرة درتي فيها حفظ للبيانات.\nالمرجو عمل "تصدير النسخة الاحتياطية" دابا باش ما يضيعوش ليك عبارات وحسابات الكليانات!');
+                    }, 1500);
+                }
             }
 
             if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
