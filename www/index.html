@@ -867,16 +867,26 @@
 
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
-                        const { Filesystem } = window.Capacitor.Plugins;
-                        await Filesystem.writeFile({
+                        const { Filesystem, Share } = window.Capacitor.Plugins;
+                        
+                        const result = await Filesystem.writeFile({
                             path: fileName,
                             data: dataStr,
-                            directory: 'DOCUMENTS',
+                            directory: 'CACHE',
                             encoding: 'utf8'
                         });
-                        showToast(`✅ تم التصدير! الملف محفوظ في مجلد المستندات (Documents) باسم: ${fileName}`);
+
+                        if (Share) {
+                            await Share.share({
+                                title: 'نسخة احتياطية لتطبيق الفصالة',
+                                url: result.uri,
+                                dialogTitle: 'حفظ النسخة الاحتياطية'
+                            });
+                        } else {
+                            showToast('⚠️ مكتبة المشاركة غير متوفرة');
+                        }
                     } catch (e) {
-                        showToast('⚠️ فشل حفظ الملف: ' + e.message);
+                        showToast('⚠️ فشل العملية: ' + e.message);
                     }
                 } else {
                     try {
@@ -899,8 +909,7 @@
             document.getElementById('import-btn').addEventListener('click', async () => {
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
-                        const { FilePicker } = window.Capacitor.Plugins;
-                        const { Filesystem } = window.Capacitor.Plugins;
+                        const { FilePicker, Filesystem } = window.Capacitor.Plugins;
                         
                         const result = await FilePicker.pickFiles({
                             types: ['application/json', '*/*'],
