@@ -718,7 +718,10 @@
                             };
                         };
                         mediaRecorder.start();
-                    } catch (err) { showToast('⚠️ تعذر الوصول للميكروفون. واش عطيتي الصلاحية؟'); }
+                    } catch (err) { 
+                        showToast('⚠️ خطأ المايك: ' + (err.message || err.name || 'مكاينش صلاحية')); 
+                        console.error('Mic Error:', err);
+                    }
                 });
             }
 
@@ -787,7 +790,10 @@
                         };
                     };
                     modalMediaRecorder.start();
-                } catch (err) { showToast('⚠️ تعذر الوصول للميكروفون'); }
+                } catch (err) { 
+                    showToast('⚠️ خطأ المايك: ' + (err.message || err.name || 'مكاينش صلاحية')); 
+                    console.error('Modal Mic Error:', err);
+                }
             });
 
             document.getElementById('save-audio-btn').onclick = async () => {
