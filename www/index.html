@@ -4,512 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
     <title>تطبيق الفصالة - لخياطة العصرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #FFF8F3;
-            --cream: #FFF5EC;
-            --beige: #F5E6D3;
+            --bg: #F4F7F6;
+            --cream: #FFFFFF;
             --card: #FFFFFF;
-            --terracotta: #C67B5C;
-            --terracotta-dark: #A85D40;
-            --terracotta-light: #F0D5C8;
-            --terracotta-lighter: #F9EBE4;
-            --gold: #C9A96E;
-            --gold-light: #F5EDDC;
-            --text: #4A2C1E;
-            --text-light: #6B4D3C;
-            --text-muted: #8B6F5E;
-            --border: #E8D5C4;
-            --border-light: #F0E0D4;
-            --red: #D44C3D;
-            --red-bg: #FDE8E5;
-            --red-light: #FEF2F0;
-            --orange: #E8913A;
-            --orange-bg: #FFF3E6;
-            --orange-light: #FFF8F2;
-            --green: #5B8C5A;
-            --green-bg: #EAF5E9;
-            --green-light: #F2FAF1;
-            --shadow: 0 2px 12px rgba(74, 44, 30, 0.07);
-            --shadow-lg: 0 6px 24px rgba(74, 44, 30, 0.10);
-            --shadow-sm: 0 1px 4px rgba(74, 44, 30, 0.05);
-            --radius: 18px;
-            --radius-sm: 12px;
-            --radius-xs: 8px;
+            --terracotta: #D06C4E; 
+            --terracotta-dark: #A85138;
+            --terracotta-light: #FFF0EB;
+            --terracotta-lighter: #FFF9F7;
+            --gold: #D4AF37;
+            --gold-light: #FDF9EE;
+            --text: #2D3748;
+            --text-light: #4A5568;
+            --text-muted: #718096;
+            --border: #E2E8F0;
+            --border-light: #EDF2F7;
+            --red: #FC8181;
+            --red-bg: #FFF5F5;
+            --red-light: #FEFCFC;
+            --orange: #F6AD55;
+            --orange-bg: #FFFAF0;
+            --orange-light: #FFFCF7;
+            --green: #48BB78;
+            --green-bg: #F0FFF4;
+            --green-light: #F9FEFA;
+            
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
+            
+            --radius: 24px;
+            --radius-sm: 16px;
+            --radius-xs: 10px;
             --radius-pill: 50px;
-            --font-sm: clamp(13px, 1.9vw, 14px);
-            --font-md: clamp(15px, 2.2vw, 17px);
-            --font-lg: clamp(17px, 2.6vw, 19px);
-            --font-xl: clamp(20px, 3.2vw, 24px);
-            --font-2xl: clamp(24px, 3.8vw, 28px);
-            --font-3xl: clamp(28px, 4.5vw, 34px);
-            --transition: 0.22s ease;
+            
+            /* تحديد حد أقصى للخطوط باش ما تخسرش الديكور */
+            --font-sm: clamp(12px, 1.8vw, 15px);
+            --font-md: clamp(14px, 2.2vw, 17px);
+            --font-lg: clamp(16px, 2.6vw, 20px);
+            --font-xl: clamp(18px, 3.2vw, 24px);
+            --font-2xl: clamp(22px, 3.8vw, 28px);
+            --font-3xl: clamp(26px, 4.5vw, 34px);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --touch-min: 48px;
         }
 
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            min-width: 0;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
 
         html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-text-size-adjust: 100%;
-            -moz-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            overflow-x: hidden;
-            width: 100%;
+            font-size: 16px; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: hidden; width: 100%;
         }
 
         body {
-            font-family: 'Segoe UI', 'Noto Sans Arabic', 'Droid Arabic Naskh', Tahoma, 'Traditional Arabic', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            min-height: 100dvh;
-            padding-bottom: env(safe-area-inset-bottom, 16px);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            user-select: none;
-            -webkit-user-select: none;
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
+            font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg); color: var(--text); line-height: 1.6;
+            min-height: 100vh; min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom, 20px);
+            -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none;
+            overflow-x: hidden; width: 100%; max-width: 100vw;
         }
 
         .app-container {
-            max-width: 560px;
-            width: 100%;
-            margin: 0 auto;
-            padding: clamp(8px, 2vw, 14px) clamp(10px, 2.5vw, 18px) 24px;
-            display: flex;
-            flex-direction: column;
-            gap: clamp(12px, 2vw, 18px);
-            overflow-x: hidden;
+            max-width: 560px; width: 100%; margin: 0 auto;
+            padding: clamp(10px, 2vw, 16px) clamp(12px, 3vw, 20px) 30px;
+            display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px); overflow-x: hidden;
         }
 
-        .app-header {
-            text-align: center;
-            padding: clamp(14px, 3vw, 20px) 8px 6px;
-            position: relative;
-            width: 100%;
-        }
-        .app-header .logo-icon {
-            font-size: clamp(38px, 8vw, 52px);
-            display: block;
-            margin-bottom: 2px;
-            animation: gentleBounce 3s ease-in-out infinite;
-        }
-        @keyframes gentleBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
-        }
-        .app-header h1 {
-            font-size: var(--font-2xl);
-            font-weight: 700;
-            color: var(--terracotta);
-            letter-spacing: -0.3px;
-            margin: 0;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-        }
-        .app-header .subtitle {
-            font-size: var(--font-sm);
-            color: var(--text-muted);
-            margin-top: 3px;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-        }
+        .app-header { text-align: center; padding: clamp(16px, 3vw, 24px) 8px 10px; position: relative; width: 100%; }
+        .settings-btn { position: absolute; top: 20px; right: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .settings-btn:hover { background: #F1F5F9; transform: rotate(15deg); }
+        .app-header .logo-icon { font-size: clamp(42px, 9vw, 56px); display: inline-block; margin-bottom: 8px; animation: float 4s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .app-header h1 { font-size: var(--font-2xl); font-weight: 800; color: var(--terracotta-dark); letter-spacing: -0.5px; margin: 0; line-height: 1.3; }
+        .app-header .subtitle { font-size: var(--font-sm); color: var(--text-muted); margin-top: 6px; font-weight: 500; }
 
         .tab-nav {
-            display: flex;
-            gap: 5px;
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 4px 5px;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 8px;
-            z-index: 100;
-            border: 1.5px solid var(--border);
-            width: 100%;
-            flex-shrink: 0;
+            display: flex; gap: 4px; background: #E9ECEF; border-radius: var(--radius-pill);
+            padding: 5px; position: sticky; top: 12px; z-index: 100;
+            width: 100%; flex-shrink: 0; box-shadow: var(--shadow-sm); backdrop-filter: blur(10px);
         }
         .tab-btn {
-            flex: 1;
-            padding: clamp(10px, 1.8vw, 13px) clamp(4px, 1vw, 10px);
-            border: none;
-            background: transparent;
-            border-radius: calc(var(--radius) - 5px);
-            font-size: var(--font-sm);
-            font-weight: 600;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: all var(--transition);
-            font-family: inherit;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            min-height: var(--touch-min);
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            flex: 1; padding: clamp(8px, 1.5vw, 12px) clamp(4px, 1vw, 10px); border: none;
+            background: transparent; border-radius: var(--radius-pill); font-size: var(--font-sm);
+            font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all var(--transition);
+            font-family: inherit; display: flex; align-items: center; justify-content: center;
+            gap: 6px; min-height: var(--touch-min); 
+            white-space: normal; /* السماح بالنزول لسطر باش ما يخرجش النص */
+            text-align: center; line-height: 1.2; word-break: break-word;
         }
-        .tab-btn:hover {
-            background: var(--terracotta-light);
-            color: var(--terracotta-dark);
-        }
-        .tab-btn:active {
-            transform: scale(0.96);
-            transition: transform 0.1s ease;
-        }
-        .tab-btn.active {
-            background: var(--terracotta);
-            color: #FFF;
-            box-shadow: 0 3px 12px rgba(198, 123, 92, 0.35);
-            font-weight: 700;
-        }
-        .tab-btn .tab-emoji {
-            font-size: clamp(16px, 2.5vw, 20px);
-            flex-shrink: 0;
-        }
+        .tab-btn:hover { color: var(--text); }
+        .tab-btn.active { background: var(--card); color: var(--terracotta-dark); box-shadow: var(--shadow-sm); }
+        .tab-btn .tab-emoji { font-size: clamp(16px, 2.5vw, 20px); flex-shrink: 0; }
 
-        .tab-content {
-            display: none;
-            flex-direction: column;
-            gap: clamp(12px, 2vw, 18px);
-            animation: fadeSlideIn 0.35s ease;
-            width: 100%;
-        }
-        .tab-content.active {
-            display: flex;
-        }
-        @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .tab-content { display: none; flex-direction: column; gap: clamp(14px, 2vw, 20px); animation: fadeIn 0.4s ease; width: 100%; }
+        .tab-content.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         .card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: clamp(14px, 3vw, 20px) clamp(12px, 2.5vw, 18px);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: all var(--transition);
-            width: 100%;
-            overflow: hidden;
+            background: var(--card); border-radius: var(--radius); padding: clamp(18px, 4vw, 24px) clamp(16px, 3.5vw, 22px);
+            box-shadow: var(--shadow); border: 1px solid rgba(226, 232, 240, 0.6); width: 100%; overflow: hidden;
         }
-        .card.accent-top { border-top: 4px solid var(--terracotta); }
-        .card.gold-top { border-top: 4px solid var(--gold); }
+        .card.accent-top { border-top: 5px solid var(--terracotta); }
+        .card.gold-top { border-top: 5px solid var(--gold); }
+        
         .card-header {
-            font-size: var(--font-lg);
-            font-weight: 700;
-            color: var(--terracotta-dark);
-            margin-bottom: clamp(10px, 2vw, 15px);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            word-break: break-word;
-            overflow-wrap: anywhere;
+            font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark);
+            margin-bottom: clamp(16px, 3vw, 20px); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; line-height: 1.4;
         }
-        .card-header .icon { font-size: clamp(20px, 3.5vw, 26px); flex-shrink: 0; }
+        .card-header .icon { font-size: clamp(22px, 4vw, 28px); flex-shrink: 0; }
 
-        .form-group { margin-bottom: clamp(10px, 1.8vw, 14px); width: 100%; }
-        .form-group label {
-            display: block;
-            font-size: var(--font-md);
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 5px;
-            word-break: break-word;
-            overflow-wrap: anywhere;
+        .form-group { margin-bottom: clamp(14px, 2vw, 18px); width: 100%; }
+        .form-group label { display: block; font-size: var(--font-sm); font-weight: 700; color: var(--text-light); margin-bottom: 8px; word-break: break-word; }
+        .form-group label .unit { font-weight: 500; color: var(--text-muted); font-size: 0.85em; }
+        
+        input[type="number"], input[type="text"], input[type="tel"], input[type="date"], select, textarea {
+            width: 100%; padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 18px);
+            font-size: var(--font-md); font-family: inherit; font-weight: 500;
+            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+            background: #F8FAFC; color: var(--text); transition: all var(--transition);
+            -webkit-appearance: none; appearance: none; min-height: var(--touch-min);
         }
-        .form-group label .unit { font-weight: 400; color: var(--text-muted); font-size: var(--font-sm); }
-        input[type="number"], input[type="text"], input[type="tel"], input[type="date"], select {
-            width: 100%;
-            padding: clamp(12px, 2vw, 15px) clamp(12px, 2vw, 16px);
-            font-size: var(--font-md);
-            font-family: inherit;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--cream);
-            color: var(--text);
-            transition: all var(--transition);
-            -webkit-appearance: none;
-            appearance: none;
-            min-height: var(--touch-min);
-            touch-action: manipulation;
-            max-width: 100%;
-        }
-        input[type="number"] { dir: ltr; text-align: left; font-variant-numeric: tabular-nums; letter-spacing: 0.5px; }
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--terracotta);
-            box-shadow: 0 0 0 4px rgba(198, 123, 92, 0.10);
-            background: #FFF;
+        input[type="number"] { dir: ltr; text-align: left; font-variant-numeric: tabular-nums; }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--terracotta); background: var(--card);
+            box-shadow: 0 0 0 4px rgba(208, 108, 78, 0.12);
         }
         select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234A2C1E' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 14px center;
-            padding-left: 40px;
+            cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: left 16px center; padding-left: 45px;
         }
 
-        .financial-inputs-wrapper { display: flex; gap: 12px; margin-bottom: 6px; width: 100%; }
-        .financial-inputs-wrapper .form-group { flex: 1; margin-bottom: 0; }
+        @keyframes pulseBorderRed {
+            0% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0.4); border-color: var(--red); }
+            70% { box-shadow: 0 0 0 6px rgba(252, 129, 129, 0); border-color: var(--red); }
+            100% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0); border-color: var(--red); }
+        }
+        .input-empty { animation: pulseBorderRed 1.8s infinite; background-color: var(--red-bg) !important; border-color: var(--red) !important; }
+        .input-filled { border-color: var(--green) !important; background-color: var(--green-bg) !important; box-shadow: none !important; }
+
+        .financial-inputs-wrapper { display: flex; gap: 14px; margin-bottom: 10px; width: 100%; flex-wrap: wrap; }
+        .financial-inputs-wrapper .form-group { flex: 1; min-width: 130px; margin-bottom: 0; }
+        
         .remaining-compact-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--terracotta-lighter);
-            border: 1px dashed var(--terracotta-light);
-            padding: 8px 16px;
-            border-radius: var(--radius-pill);
-            margin-bottom: 16px;
-            width: fit-content;
+            display: inline-flex; align-items: center; gap: 8px; background: var(--terracotta-light);
+            padding: 10px 18px; border-radius: var(--radius-sm); margin-bottom: 20px; width: fit-content; border: none;
+            flex-wrap: wrap;
         }
-        .remaining-compact-badge .badge-icon { font-size: 16px; }
-        .remaining-compact-badge .badge-text { font-size: var(--font-sm); color: var(--text-muted); font-weight: 600; }
-        .remaining-compact-badge .badge-value { font-size: var(--font-md); font-weight: 700; color: var(--terracotta-dark); }
+        .remaining-compact-badge .badge-text { font-size: var(--font-sm); color: var(--terracotta-dark); font-weight: 700; word-break: break-word; }
+        .remaining-compact-badge .badge-value { font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark); word-break: break-word; }
 
-        .debt-list { list-style: none; padding: 0; margin-top: 10px; }
-        .debt-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--border-light);
-            font-size: var(--font-sm);
-        }
+        .debt-list { list-style: none; padding: 0; margin-top: 12px; }
+        .debt-item { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: var(--font-md); }
         .debt-item:last-child { border-bottom: none; }
-        .debt-name { font-weight: 600; color: var(--text); }
-        .debt-amount { color: var(--red); font-weight: 700; direction: ltr; }
+        .debt-name { font-weight: 700; color: var(--text); word-break: break-word; }
+        .debt-amount { color: var(--red); font-weight: 800; direction: ltr; white-space: nowrap; }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: clamp(13px, 2vw, 16px) clamp(18px, 3vw, 26px);
-            font-size: var(--font-md);
-            font-weight: 700;
-            font-family: inherit;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all var(--transition);
-            min-height: var(--touch-min);
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            max-width: 100%;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px); font-size: var(--font-md);
+            font-weight: 800; font-family: inherit; border: none; border-radius: var(--radius-sm);
+            cursor: pointer; transition: all var(--transition); min-height: var(--touch-min); height: auto;
+            white-space: normal; word-break: break-word; text-align: center; line-height: 1.4; width: 100%;
         }
-        .btn:active { transform: scale(0.96); transition: transform 0.08s ease; }
-        .btn-primary { background: var(--terracotta); color: #FFF; box-shadow: 0 4px 14px rgba(198, 123, 92, 0.28); width: 100%; }
-        .btn-primary:hover { background: var(--terracotta-dark); box-shadow: 0 6px 20px rgba(168, 93, 64, 0.38); transform: translateY(-1px); }
-        .btn-outline { background: transparent; border: 2px solid var(--terracotta); color: var(--terracotta); }
-        .btn-outline:hover { background: var(--terracotta-light); }
-        .btn-danger { background: var(--red); color: #FFF; font-weight: 700; }
-        .btn-success { background: var(--green); color: #FFF; font-weight: 700; }
-        .btn-sm { padding: clamp(8px, 1.5vw, 10px) clamp(12px, 2vw, 16px); font-size: var(--font-sm); min-height: 40px; border-radius: var(--radius-xs); }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background: var(--terracotta); color: #FFF; box-shadow: 0 4px 16px rgba(208, 108, 78, 0.3); }
+        .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(208, 108, 78, 0.4); }
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-light); }
+        .btn-outline:hover { background: var(--border-light); color: var(--text); }
+        .btn-danger { background: var(--red); color: #FFF; }
+        .btn-success { background: var(--green); color: #FFF; }
+        .btn-sm { padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px); font-size: var(--font-sm); min-height: 42px; border-radius: var(--radius-xs); }
         
         .btn-pill {
-            border-radius: var(--radius-pill);
-            padding: clamp(10px, 1.8vw, 13px) clamp(14px, 2.5vw, 20px);
-            font-size: var(--font-sm);
-            font-weight: 600;
-            min-height: 42px;
-            border: 2px solid var(--border);
-            background: var(--card);
-            color: var(--text-light);
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: all var(--transition);
+            border-radius: var(--radius-pill); padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2.5vw, 20px);
+            font-size: var(--font-sm); font-weight: 700; min-height: 42px; border: 1.5px solid var(--border); height: auto;
+            background: var(--card); color: var(--text-light); transition: all var(--transition);
+            white-space: normal; text-align: center; word-break: break-word;
         }
-        .btn-pill.active-filter {
-            background: var(--terracotta);
-            color: #FFF;
-            border-color: var(--terracotta);
-            box-shadow: 0 3px 10px rgba(198, 123, 92, 0.30);
-            font-weight: 700;
-        }
+        .btn-pill.active-filter { background: var(--text); color: #FFF; border-color: var(--text); }
 
-        .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: clamp(8px, 1.5vw, 12px); margin-top: 8px; }
-        .result-item { background: var(--gold-light); border-radius: var(--radius-sm); padding: clamp(10px, 2vw, 14px) clamp(8px, 1.5vw, 12px); text-align: center; border: 1.5px solid #e8d9b8; transition: all 0.3s ease; }
-        .result-label { font-size: var(--font-sm); color: var(--text-light); }
-        .result-value { font-size: var(--font-xl); font-weight: 700; color: var(--terracotta-dark); direction: ltr; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: clamp(10px, 2vw, 14px); margin-top: 12px; }
+        .result-item { background: #FAFAFA; border-radius: var(--radius-sm); padding: clamp(14px, 2.5vw, 18px) clamp(10px, 2vw, 14px); text-align: center; border: 1px solid var(--border); transition: all 0.3s ease; }
+        .result-label { font-size: var(--font-sm); color: var(--text-muted); font-weight: 600; margin-bottom: 4px; word-break: break-word; }
+        .result-value { font-size: var(--font-xl); font-weight: 800; color: var(--text); direction: ltr; }
 
-        /* تأثير الوميض الأحمر الساطع */
         @keyframes pulseRedGlow {
-            0% { background-color: #fff0f0; border-color: var(--red); box-shadow: 0 0 5px rgba(212, 76, 61, 0.3); }
-            50% { background-color: #ffe6e6; border-color: var(--red); box-shadow: 0 0 16px rgba(212, 76, 61, 0.7); }
-            100% { background-color: #fff0f0; border-color: var(--red); box-shadow: 0 0 5px rgba(212, 76, 61, 0.3); }
+            0% { background-color: var(--red-bg); border-color: var(--red); }
+            50% { background-color: #FFE5E5; border-color: var(--red); }
+            100% { background-color: var(--red-bg); border-color: var(--red); }
         }
-        .pulse-red { animation: pulseRedGlow 1.2s infinite; }
+        .pulse-red { animation: pulseRedGlow 1.5s infinite; }
 
-        .search-bar { position: relative; width: 100%; margin-bottom: 10px; }
-        .search-bar input { padding-right: 44px; }
-        .search-bar .search-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--text-muted); pointer-events: none; }
+        .search-bar { position: relative; width: 100%; margin-bottom: 14px; }
+        .search-bar input { padding-right: 48px; border-radius: var(--radius-pill); background: #F1F5F9; border-color: transparent; }
+        .search-bar input:focus { background: var(--card); border-color: var(--terracotta); }
+        .search-bar .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted); pointer-events: none; }
+        
+        .checkbox-wrapper {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; background: #F8FAFC;
+            padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); cursor: pointer; transition: all var(--transition);
+        }
+        .checkbox-wrapper:hover { background: #F1F5F9; }
+        .checkbox-wrapper input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--terracotta); cursor: pointer; margin: 0; flex-shrink: 0; }
+        .checkbox-wrapper label { font-size: var(--font-sm); font-weight: 700; color: var(--text); cursor: pointer; margin: 0; word-break: break-word; line-height: 1.4; }
+
+        .custom-date-range-group {
+            background: #F8FAFC; padding: 16px; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; margin-top: 8px;
+        }
+        .date-filter-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .date-filter-row label { min-width: 35px; font-size: var(--font-sm); font-weight: 700; color: var(--text-light); }
+        .date-filter-row input { flex: 1; min-width: 150px; padding: 12px 16px !important; font-size: var(--font-sm) !important; background: var(--card); }
+        .date-filter-actions { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+        .date-filter-actions button { flex: 1; min-width: 100px; }
         
         .client-card {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: clamp(12px, 2.5vw, 16px) clamp(10px, 2vw, 14px);
-            box-shadow: var(--shadow-sm);
-            border-right: 6px solid var(--border);
-            transition: all var(--transition);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            background: var(--card); border-radius: var(--radius); padding: clamp(16px, 3vw, 20px);
+            box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: all var(--transition);
+            position: relative; display: flex; flex-direction: column; gap: 12px;
         }
-        .client-card.urgency-red { border-right-color: var(--red); background: var(--red-light); }
-        .client-card.urgency-orange { border-right-color: var(--orange); background: var(--orange-light); }
-        .client-card.urgency-green { border-right-color: var(--green); background: var(--green-light); }
-        .client-card .client-name { font-size: var(--font-lg); font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .client-card .urgency-badge { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-        .badge-red { background: var(--red); color: #FFF; }
-        .badge-orange { background: var(--orange); color: #FFF; }
-        .badge-green { background: var(--green); color: #FFF; }
+        .client-card.urgency-red { border-right: 6px solid var(--red); background: #FFFBFB; }
+        .client-card.urgency-orange { border-right: 6px solid var(--orange); }
+        .client-card.urgency-green { border-right: 6px solid var(--green); }
         
-        .client-card .client-details { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; font-size: var(--font-sm); color: var(--text-light); }
-        .client-image { width: 100%; max-height: 220px; object-fit: cover; border-radius: var(--radius-sm); margin: 6px 0; cursor: pointer; }
-        .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .client-card .client-name { font-size: var(--font-lg); font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; word-break: break-word; line-height: 1.4; }
+        .client-card .urgency-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--font-sm); font-weight: 800; white-space: normal; text-align: center; }
+        .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(252,129,129,0.3); }
+        .badge-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(246,173,85,0.3); }
+        .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(72,187,120,0.3); }
         
-        .more-btn {
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-            color: var(--text-muted);
-            padding: 4px;
-            margin-right: auto;
-            align-self: center;
-        }
-        .context-menu {
-            position: absolute;
-            background: var(--card);
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-lg);
-            z-index: 500;
-            padding: 8px 0;
-            min-width: 160px;
-            display: none;
-            border: 1px solid var(--border);
-        }
-        .context-menu.active { display: block; }
-        .context-menu button {
-            display: block;
-            width: 100%;
-            padding: 10px 16px;
-            background: none;
-            border: none;
-            font-family: inherit;
-            font-size: var(--font-sm);
-            cursor: pointer;
-            text-align: right;
-        }
-        .context-menu button:hover { background: var(--terracotta-light); }
+        /* جعل الخانات تتأقلم مع كبر الخطوط باش ما تهرسش الشاشة */
+        .client-card .client-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px 12px; font-size: var(--font-sm); color: var(--text-muted); font-weight: 500; }
+        .client-image { width: 100%; max-height: 240px; object-fit: cover; border-radius: var(--radius-sm); margin: 8px 0; cursor: pointer; border: 1px solid var(--border); }
+        .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+        .card-actions button { flex: 1; min-width: 110px; }
+        
+        .more-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); padding: 4px 8px; margin-right: auto; border-radius: 8px; transition: background 0.2s; flex-shrink: 0; }
+        .more-btn:hover { background: #F1F5F9; color: var(--text); }
+        
+        .context-menu { position: absolute; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); z-index: 500; padding: 10px 0; min-width: 190px; border: 1px solid var(--border); overflow: hidden; display: none; }
+        .context-menu.active { display: block; animation: fadeIn 0.2s ease; }
+        .context-menu button { display: block; width: 100%; padding: 12px 20px; background: none; border: none; font-family: inherit; font-size: var(--font-sm); font-weight: 600; cursor: pointer; text-align: right; color: var(--text); transition: background 0.2s; white-space: normal; word-break: break-word; }
+        .context-menu button:hover { background: #F8FAFC; color: var(--terracotta-dark); }
 
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-        .modal-content {
-            background: var(--card);
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 400px;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .modal-small { max-width: 300px; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: var(--card); border-radius: var(--radius); width: 100%; max-width: 420px; max-height: 85vh; overflow-y: auto; padding: 24px; box-shadow: var(--shadow-lg); animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-small { max-width: 340px; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-weight: 800; font-size: var(--font-lg); color: var(--text); flex-wrap: wrap; gap: 10px; }
+        .modal-close { background: #F1F5F9; border: none; font-size: 20px; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: 0.2s; flex-shrink: 0; }
+        .modal-close:hover { background: #E2E8F0; color: var(--text); }
         
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3D2117;
-            color: #FFF;
-            padding: 14px 24px;
-            border-radius: 30px;
-            font-size: var(--font-md);
-            font-weight: 600;
-            z-index: 9999;
-            animation: toastIn 0.4s ease, toastOut 0.4s ease 2.2s forwards;
-            max-width: 92vw;
-        }
-        @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-        @keyframes toastOut { from { opacity: 1; transform: translateX(-50%) translateY(0); } to { opacity: 0; transform: translateX(-50%) translateY(20px); } }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1E293B; color: #FFF; padding: 14px 28px; border-radius: var(--radius-pill); font-size: var(--font-md); font-weight: 700; z-index: 9999; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1), toastOut 0.4s ease 2.2s forwards; max-width: 90vw; text-align: center; word-break: break-word; line-height: 1.4; }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(30px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        @keyframes toastOut { from { opacity: 1; transform: translateX(-50%) translateY(0); } to { opacity: 0; transform: translateX(-50%) translateY(30px); } }
+        
+        .toast-big { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--green); color: #FFF; padding: clamp(20px, 4vw, 35px) clamp(25px, 5vw, 45px); border-radius: var(--radius); font-size: var(--font-xl); font-weight: 800; z-index: 10000; text-align: center; box-shadow: 0 20px 40px rgba(72, 187, 120, 0.4); animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOut 0.4s ease 2.5s forwards; width: 85%; max-width: 380px; word-break: break-word; line-height: 1.4; }
+        @keyframes popIn { from { opacity: 0; transform: translate(-50%, -40%) scale(0.8); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+        @keyframes fadeOut { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -60%) scale(0.8); } }
         
         .hidden-file-input { display: none; }
-        .image-preview { max-width: 100%; max-height: 180px; border-radius: var(--radius-xs); display: none; }
+        .image-preview { max-width: 100%; max-height: 200px; border-radius: var(--radius-sm); display: none; margin-top: 12px; border: 1px solid var(--border); object-fit: cover; }
         .image-preview.visible { display: block; }
-        .divider { border-top: 1px solid var(--border-light); margin: 8px 0; }
+        .divider { border-top: 1px solid var(--border); margin: 16px 0; }
 
-        .collapsible-toggle {
-            background: none;
-            border: none;
-            font-size: var(--font-lg);
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--terracotta-dark);
-            padding: 8px 0;
-            width: 100%;
-            text-align: right;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .collapsible-content { display: none; margin-top: 10px; }
-        .collapsible-content.open { display: block; }
-        .collapsible-toggle.open::after { content: " ▲"; }
-        .collapsible-toggle::after { content: " ▼"; }
+        .collapsible-toggle { background: #F8FAFC; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: var(--font-md); font-weight: 800; cursor: pointer; color: var(--text); padding: 16px 20px; width: 100%; text-align: right; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; flex-wrap: wrap; gap: 10px; line-height: 1.4; }
+        .collapsible-toggle:hover { background: #F1F5F9; }
+        .collapsible-content { display: none; margin-top: 16px; }
+        .collapsible-content.open { display: block; animation: fadeIn 0.3s ease; }
+        .collapsible-toggle.open::after { content: " ▴"; color: var(--terracotta); }
+        .collapsible-toggle::after { content: " ▾"; color: var(--text-muted); }
 
-        .financial-details { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 500; font-size: var(--font-sm); }
-        .financial-details .remaining-badge {
-            background: var(--terracotta-lighter);
-            color: var(--terracotta-dark);
-            padding: 0 8px;
-            border-radius: 14px;
-            font-size: 0.8em;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            line-height: 1.8;
-            border: 1px solid var(--terracotta-light);
-        }
-        .financial-details .remaining-badge .label { font-weight: 400; color: var(--text-muted); font-size: 0.7em; }
-        .agenda-search-area { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+        .financial-details { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-weight: 700; font-size: var(--font-sm); background: #F8FAFC; padding: 12px 16px; border-radius: var(--radius-sm); margin: 6px 0; }
+        .financial-details span { word-break: break-word; }
+        .financial-details .remaining-badge { background: #FFF; color: var(--text); padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.95em; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); flex-wrap: wrap; line-height: 1.3; }
+        .financial-details .remaining-badge .label { font-weight: 500; color: var(--text-muted); font-size: 0.8em; }
+        
+        .agenda-search-area { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+        .desc-box { background: #F8FAFC; padding: 14px; border-radius: var(--radius-sm); font-size: var(--font-sm); border: 1px solid var(--border); margin: 8px 0; color: var(--text-light); line-height: 1.5; font-weight: 500; word-break: break-word; }
+        
+        .client-details.measurements-box { background: #F8FAFC; padding: 12px; border-radius: var(--radius-sm); margin-top: 8px; border: 1px solid var(--border); }
+        .client-details.measurements-box span { background: #FFF; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border-light); font-weight: 600; text-align: center; word-break: break-word; line-height: 1.2; }
     </style>
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
+            <button id="settings-btn" class="settings-btn">⚙️</button>
             <span class="logo-icon">🧵</span>
             <h1>تطبيق الفصالة</h1>
             <p class="subtitle">الحلّ الكامل ديال الخياطة العصرية ✂️📏</p>
@@ -529,6 +312,11 @@
                     <div class="form-group"><label>العنوان</label><input type="text" id="client-location"></div>
                     <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="client-phone"></div>
                     
+                    <div class="form-group">
+                        <label>📝 الوصف</label>
+                        <textarea id="cl-description" rows="2" placeholder="ألوان، تفاصيل الثوب، طلبات خاصة..."></textarea>
+                    </div>
+
                     <div class="financial-inputs-wrapper">
                         <div class="form-group">
                             <label>الثمن <span class="unit">(درهم)</span> *</label>
@@ -540,49 +328,54 @@
                         </div>
                     </div>
                     <div class="remaining-compact-badge">
-                        <span class="badge-icon">⏳</span>
                         <span class="badge-text">الباقي:</span>
                         <span id="client-remaining-text" class="badge-value">0 درهم</span>
                     </div>
 
                     <hr class="divider">
-                    <div class="form-group"><label>📸 صورة الكسوة (اختياري)</label>
-                        <div class="image-upload-group" style="display:flex; gap:6px;">
-                            <button type="button" class="btn btn-outline btn-sm" id="form-capture-btn">📷 التقاط</button>
-                            <button type="button" class="btn btn-outline btn-sm" id="form-gallery-btn">🖼️ الألبوم</button>
+                    <div class="form-group"><label>📸 صورة الثوب (اختياري)</label>
+                        <div class="image-upload-group" style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button type="button" class="btn btn-outline btn-sm" id="form-capture-btn" style="flex:1; min-width:100px;">📷 التقاط</button>
+                            <button type="button" class="btn btn-outline btn-sm" id="form-gallery-btn" style="flex:1; min-width:100px;">🖼️ الألبوم</button>
                         </div>
                         <img id="form-image-preview" class="image-preview" alt="معاينة">
                         <input type="file" id="form-image-input" class="hidden-file-input" accept="image/*">
                     </div>
+                    
+                    <div class="form-group"><label>👗 صورة الموديل (شكل الخياطة)</label>
+                        <div class="image-upload-group" style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button type="button" class="btn btn-outline btn-sm" id="model-capture-btn" style="flex:1; min-width:100px;">📷 الموديل</button>
+                            <button type="button" class="btn btn-outline btn-sm" id="model-gallery-btn" style="flex:1; min-width:100px;">🖼️ الألبوم</button>
+                        </div>
+                        <img id="form-model-preview" class="image-preview" alt="معاينة الموديل">
+                        <input type="file" id="form-model-input" class="hidden-file-input" accept="image/*">
+                    </div>
+
                     <hr class="divider">
-                    <p style="font-weight:700;">📏 المقاسات (cm)</p>
-                    <div class="form-group"><label>الكتاف كامليين</label><input type="number" id="cl-shoulders" value="0" required></div>
-                    <div class="form-group"><label>التركيز</label><input type="number" id="cl-armhole" value="0" required></div>
-                    <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" id="cl-chest" value="0" required></div>
-                    <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" id="cl-waist" value="0" required></div>
-                    <div class="form-group"><label>دورة الحوض</label><input type="number" id="cl-hips" value="0" required></div>
-                    <div class="form-group"><label>الطول الإجمالي</label><input type="number" id="cl-dressLength" value="0" required></div>
-                    <div class="form-group"><label>طول الكم</label><input type="number" id="cl-sleeveLength" value="0" required></div>
-                    <div class="form-group"><label>فم الكمام</label><input type="number" id="cl-sleeveMouth" value="0" required></div>
+                    <p style="font-weight:800; font-size: var(--font-lg); color: var(--text); margin-bottom: 16px;">📏 المقاسات (cm)</p>
+                    <div class="form-group"><label>الكتاف كامليين</label><input type="number" class="measurement-input" id="cl-shoulders" value="0" required></div>
+                    <div class="form-group"><label>التركيز</label><input type="number" class="measurement-input" id="cl-armhole" value="0" required></div>
+                    <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" class="measurement-input" id="cl-chest" value="0" required></div>
+                    <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" class="measurement-input" id="cl-waist" value="0" required></div>
+                    <div class="form-group"><label>دورة الحوض</label><input type="number" class="measurement-input" id="cl-hips" value="0" required></div>
+                    <div class="form-group"><label>الطول الإجمالي</label><input type="number" class="measurement-input" id="cl-dressLength" value="0" required></div>
+                    <div class="form-group"><label>طول الكم</label><input type="number" class="measurement-input" id="cl-sleeveLength" value="0" required></div>
+                    <div class="form-group"><label>فم الكمام</label><input type="number" class="measurement-input" id="cl-sleeveMouth" value="0" required></div>
+                    
+                    <div class="form-group"><label>الجلايل</label><input type="number" class="measurement-input" id="cl-jlayel" value="0"></div>
+
                     <div class="form-group">
-                        <label>نوع الكم</label>
-                        <select id="cl-sleeveType" required>
+                        <label>نوع الاتساع *</label>
+                        <select id="cl-fitType" required>
                             <option value="">-- اختاري --</option>
-                            <option value="full">كم كامل</option>
-                            <option value="half">نصف كم</option>
-                            <option value="three-quarter">ثلاثة أرباع كم</option>
+                            <option value="واسع">واسع</option>
+                            <option value="عادي">عادي</option>
+                            <option value="إيفازي">إيفازي</option>
                         </select>
                     </div>
                     <div class="form-group"><label>تاريخ التسليم *</label><input type="date" id="cl-deliveryDate" required></div>
-                    <button type="submit" class="btn btn-primary">💾 حفظ الكليانة</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">💾 حفظ الكليانة</button>
                 </form>
-            </div>
-
-            <div class="card">
-                <div class="card-header">💾 أدوات البيانات</div>
-                <button class="btn btn-outline btn-sm" id="export-btn">📤 تصدير النسخة الاحتياطية</button>
-                <button class="btn btn-outline btn-sm" id="import-btn">📥 استيراد نسخة احتياطية</button>
-                <input type="file" id="import-file-input" class="hidden-file-input" accept=".json">
             </div>
         </section>
 
@@ -598,9 +391,18 @@
                     <div class="form-group"><label>الطول الإجمالي للبيسة <span class="unit">(cm)</span></label><input type="number" id="calc-dressLength" placeholder="مثال: 140" step="0.1" min="40" max="250" value="0" required></div>
                     <div class="form-group"><label>طول الكم <span class="unit">(cm)</span></label><input type="number" id="calc-sleeveLength" placeholder="مثال: 58" step="0.1" min="10" max="100" value="0" required></div>
                     <div class="form-group"><label>فم الكمام <span class="unit">(cm)</span></label><input type="number" id="calc-sleeveMouth" placeholder="مثال: 16" step="0.1" value="0" required></div>
-                    <div class="form-group"><label>نوع قصة الثوب والاتساع</label><select id="calc-fitType" required><option value="">-- اختاري --</option><option value="regular">عادي / مريح (+3 cm)</option><option value="fitted">مضبوط / ضيّق (+1.5 cm)</option><option value="loose">فضفاض / واسع (+5 cm)</option><option value="custom">مخصص</option></select></div>
-                    <div class="form-group custom-ease-input" id="calc-customEaseGroup"><label>قيمة الاتساع المخصصة</label><input type="number" id="calc-customEase" step="0.1" min="0" value="0"></div>
-                    <button type="submit" class="btn btn-primary">🧮 احسبي القصّات</button>
+                    <div class="form-group">
+                        <label>نوع الاتساع</label>
+                        <select id="calc-fitType" required>
+                            <option value="">-- اختاري --</option>
+                            <option value="واسع">واسع (+5 cm)</option>
+                            <option value="عادي">عادي (+3 cm)</option>
+                            <option value="إيفازي">إيفازي (+4 cm)</option>
+                            <option value="custom">مخصص</option>
+                        </select>
+                    </div>
+                    <div class="form-group custom-ease-input" id="calc-customEaseGroup" style="display:none;"><label>قيمة الاتساع المخصصة</label><input type="number" id="calc-customEase" step="0.1" min="0" value="0"></div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px;">🧮 احسبي القصّات</button>
                 </form>
             </div>
             <div class="card gold-top" id="results-card" style="display:none;">
@@ -613,49 +415,79 @@
             <div class="card accent-top">
                 <div class="card-header">📋 لائحة الكليانات النشطة</div>
                 <div class="agenda-search-area">
-                    <div class="search-bar"><span class="search-icon">🔎</span><input type="text" id="agenda-search" placeholder="ابحثي بالإسم"></div>
-                    <div class="filter-panel" id="agenda-filter-panel" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
+                    <div class="search-bar">
+                        <span class="search-icon">🔎</span>
+                        <input type="text" id="agenda-search" placeholder="ابحثي بالإسم...">
+                    </div>
+                    
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="search-in-all">
+                        <label for="search-in-all">البحث في الكل (بما فيها المسلّمة)</label>
+                    </label>
+
+                    <div class="filter-panel" id="agenda-filter-panel" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
                         <button class="btn btn-pill active-filter" data-filter="all">📋 كلشي</button>
                         <button class="btn btn-pill" data-filter="this-week">📅 هاد السيمانة</button>
                         <button class="btn btn-pill" data-filter="last-week">⬅️ اللي فاتت</button>
                         <button class="btn btn-pill" data-filter="this-month">🗓️ هاد الشهر</button>
                         <button class="btn btn-pill" data-filter="custom">📆 تحديد تاريخ</button>
                     </div>
-                    <div class="custom-date-range-group" id="agenda-custom-date-range" style="display:none; gap:6px; margin-bottom:8px;">
-                        <span>من:</span><input type="date" id="agenda-filter-from">
-                        <span>إلى:</span><input type="date" id="agenda-filter-to">
-                        <button class="btn btn-sm btn-outline" id="agenda-apply-custom">✅ طبق</button>
-                        <button class="btn btn-sm" id="agenda-clear-custom">🗑️ رجّع</button>
+                    
+                    <div class="custom-date-range-group" id="agenda-custom-date-range" style="display:none;">
+                        <div class="date-filter-row">
+                            <label>من:</label>
+                            <input type="date" id="agenda-filter-from">
+                        </div>
+                        <div class="date-filter-row">
+                            <label>إلى:</label>
+                            <input type="date" id="agenda-filter-to">
+                        </div>
+                        <div class="date-filter-actions">
+                            <button class="btn btn-primary btn-sm" id="agenda-apply-custom">✅ تطبيق</button>
+                            <button class="btn btn-outline btn-sm" id="agenda-clear-custom">🗑️ مسح</button>
+                        </div>
                     </div>
                 </div>
-                <div id="agenda-active-list"></div>
+                <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:14px;"></div>
             </div>
             
-            <div class="card">
-                <button class="collapsible-toggle" id="stats-toggle"><span>📊 إحصائيات وأرباح الشهر</span></button>
+            <div class="card" style="padding: 10px 16px;">
+                <button class="collapsible-toggle" id="stats-toggle" style="border:none; padding:10px 0;"><span>📊 إحصائيات وأرباح الشهر</span></button>
                 <div class="collapsible-content" id="stats-content">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; padding:10px; background:var(--green-light); border-radius:8px; border:1px solid var(--green);">
-                        <span style="font-weight:600; color:var(--green);">💰 دخل الشهر:</span>
-                        <span style="font-weight:700; color:var(--green);" id="stats-monthly-income">0 درهم</span>
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-bottom:12px; padding:16px; background:var(--green-bg); border-radius:var(--radius-sm); border:1px solid rgba(72,187,120,0.2);">
+                        <span style="font-weight:700; color:var(--green);">💰 دخل الشهر:</span>
+                        <span style="font-weight:800; color:var(--green); font-size:1.1em;" id="stats-monthly-income">0 درهم</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; padding:10px; background:var(--red-light); border-radius:8px; border:1px solid var(--red);">
-                        <span style="font-weight:600; color:var(--red);">⚠️ مجموع الكريدي:</span>
-                        <span style="font-weight:700; color:var(--red);" id="stats-total-debt">0 درهم</span>
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-bottom:16px; padding:16px; background:var(--red-bg); border-radius:var(--radius-sm); border:1px solid rgba(252,129,129,0.2);">
+                        <span style="font-weight:700; color:var(--red);">⚠️ مجموع الكريدي:</span>
+                        <span style="font-weight:800; color:var(--red); font-size:1.1em;" id="stats-total-debt">0 درهم</span>
                     </div>
                     <hr class="divider">
-                    <h4 style="font-size:var(--font-sm); color:var(--text-muted); margin-bottom:8px;">لائحة الكليانات لي مزال مخلصوش:</h4>
+                    <h4 style="font-size:var(--font-md); color:var(--text); margin-bottom:12px; font-weight:800;">لائحة الكليانات لي مزال مخلصوش:</h4>
                     <ul class="debt-list" id="stats-debt-list"></ul>
                 </div>
             </div>
 
-            <div class="card">
-                <button class="collapsible-toggle" id="completed-toggle"><span>✅ الطلبيات المسلّمة <span id="completed-count">(0)</span></span></button>
+            <div class="card" style="padding: 10px 16px;">
+                <button class="collapsible-toggle" id="completed-toggle" style="border:none; padding:10px 0;"><span>✅ الطلبيات المسلّمة <span id="completed-count">(0)</span></span></button>
                 <div class="collapsible-content" id="completed-content">
-                    <div class="search-bar" style="margin-top:10px;"><span class="search-icon">🔎</span><input type="text" id="agenda-completed-search" placeholder="ابحثي في المسلّمات..."></div>
-                    <div id="agenda-completed-list"></div>
+                    <div class="search-bar" style="margin-top:14px;"><span class="search-icon">🔎</span><input type="text" id="agenda-completed-search" placeholder="ابحثي في المسلّمات..."></div>
+                    <div id="agenda-completed-list" style="display:flex; flex-direction:column; gap:14px; margin-top:10px;"></div>
                 </div>
             </div>
         </section>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content modal-small">
+            <div class="modal-header"><span>⚙️ الإعدادات</span><button class="modal-close" id="close-settings-modal">&times;</button></div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <p style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 8px;">أدوات البيانات (تصدير واستيراد النسخ الاحتياطية):</p>
+                <button class="btn btn-outline" id="export-btn">📤 تصدير النسخة الاحتياطية</button>
+                <button class="btn btn-outline" id="import-btn">📥 استيراد نسخة احتياطية</button>
+                <input type="file" id="import-file-input" class="hidden-file-input" accept=".json">
+            </div>
+        </div>
     </div>
 
     <div id="price-modal" class="modal-overlay" style="display:none;">
@@ -664,7 +496,33 @@
             <input type="hidden" id="price-modal-clientId">
             <div class="form-group"><label>الثمن الإجمالي (درهم)</label><input type="number" id="price-modal-total" step="0.01"></div>
             <div class="form-group"><label>التسبيق (درهم)</label><input type="number" id="price-modal-advance" step="0.01"></div>
-            <button class="btn btn-primary" id="save-price-btn">💾 حفظ التعديلات</button>
+            <button class="btn btn-primary" id="save-price-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
+        </div>
+    </div>
+
+    <div id="measurements-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header"><span>📏 تعديل القياسات</span><button class="modal-close" id="close-measurements-modal">&times;</button></div>
+            <input type="hidden" id="measurements-modal-clientId">
+            <div class="form-group"><label>الكتاف كامليين</label><input type="number" id="edit-shoulders"></div>
+            <div class="form-group"><label>التركيز</label><input type="number" id="edit-armhole"></div>
+            <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" id="edit-chest"></div>
+            <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" id="edit-waist"></div>
+            <div class="form-group"><label>دورة الحوض</label><input type="number" id="edit-hips"></div>
+            <div class="form-group"><label>الطول الإجمالي</label><input type="number" id="edit-dressLength"></div>
+            <div class="form-group"><label>طول الكم</label><input type="number" id="edit-sleeveLength"></div>
+            <div class="form-group"><label>فم الكمام</label><input type="number" id="edit-sleeveMouth"></div>
+            <div class="form-group"><label>الجلايل</label><input type="number" id="edit-jlayel"></div>
+            <button class="btn btn-primary" id="save-measurements-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
+        </div>
+    </div>
+
+    <div id="desc-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header"><span>📝 تعديل الوصف</span><button class="modal-close" id="close-desc-modal">&times;</button></div>
+            <input type="hidden" id="desc-modal-clientId">
+            <div class="form-group"><textarea id="desc-modal-input" rows="4"></textarea></div>
+            <button class="btn btn-primary" id="save-desc-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
         </div>
     </div>
 
@@ -679,18 +537,18 @@
 
     <div id="cuts-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content">
-            <div class="modal-header"><span>🧮 قص الفصالة</span><button class="modal-close" id="close-cuts-modal">&times;</button></div>
             <div id="cuts-modal-body"></div>
         </div>
     </div>
 
     <div id="image-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content modal-small">
-            <div class="modal-header"><span>📸 صورة الكسوة</span><button class="modal-close" id="close-image-modal">&times;</button></div>
-            <img id="image-modal-img" style="width:100%; border-radius:12px; margin-bottom:12px;" src="" alt="صورة">
-            <div style="display:flex; gap:6px;">
-                <button class="btn btn-outline btn-sm" id="modal-camera-btn">📷 كاميرا</button>
-                <button class="btn btn-outline btn-sm" id="modal-gallery-btn">🖼️ الألبوم</button>
+            <div class="modal-header"><span id="image-modal-title">📸 صورة</span><button class="modal-close" id="close-image-modal">&times;</button></div>
+            <img id="image-modal-img" style="width:100%; border-radius:var(--radius-sm); margin-bottom:16px; border:1px solid var(--border);" src="" alt="صورة">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn btn-primary btn-sm" id="modal-camera-btn" style="flex:1;">📷 كاميرا</button>
+                <button class="btn btn-outline btn-sm" id="modal-gallery-btn" style="flex:1;">🖼️ الألبوم</button>
+                <button class="btn btn-danger btn-sm" id="modal-delete-btn" style="width:100%; display:none;">🗑️ حذف الصورة</button>
             </div>
         </div>
     </div>
@@ -698,13 +556,50 @@
     <div id="date-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content modal-small">
             <div class="modal-header"><span>📅 تعديل تاريخ التسليم</span><button class="modal-close" id="close-date-modal">&times;</button></div>
-            <input type="date" id="date-modal-input" style="margin-bottom:12px;">
+            <input type="date" id="date-modal-input" style="margin-bottom:16px; width:100%; padding:14px; border-radius:var(--radius-sm); border:1.5px solid var(--border);">
             <button class="btn btn-primary" id="save-date-btn">💾 حفظ</button>
         </div>
     </div>
 
     <script>
         (function() {
+            // ════════════ إعدادات زر الرجوع (Back Button) ════════════
+            function setupBackButton() {
+                const { App } = window.Capacitor?.Plugins || {};
+                if (!App) return; 
+
+                App.addListener('backButton', () => {
+                    // 1. القوائم المنبثقة (Context Menu)
+                    const contextMenu = document.querySelector('.context-menu.active');
+                    if (contextMenu) {
+                        contextMenu.remove();
+                        return;
+                    }
+
+                    // 2. النوافذ المنبثقة (Modals)
+                    const modals = document.querySelectorAll('.modal-overlay');
+                    let modalClosed = false;
+                    for (const modal of modals) {
+                        if (modal.style.display === 'flex') {
+                            modal.style.display = 'none';
+                            modalClosed = true;
+                            break; 
+                        }
+                    }
+                    if (modalClosed) return;
+
+                    // 3. الرجوع للأجندة يلا كنا فقسم آخر
+                    const activeTab = document.querySelector('.tab-btn.active');
+                    if (activeTab && activeTab.dataset.tab !== 'agenda') {
+                        switchTab('agenda');
+                        return;
+                    }
+
+                    // 4. الخروج فقط من الأجندة يلا كان كلشي مسدود
+                    App.exitApp();
+                });
+            }
+
             // ════════════ IndexedDB ════════════
             const DB_NAME = 'FessalaAppDB', STORE_NAME = 'clients';
             function openDB() {
@@ -739,7 +634,7 @@
                 });
             }
 
-            const EASE_MAP = { regular:3, fitted:1.5, loose:5 };
+            const EASE_MAP = { 'واسع':5, 'عادي':3, 'إيفازي':4, 'custom':0 };
             function getEaseValue(ft, ce) { return ft==='custom'? parseFloat(ce)||0 : EASE_MAP[ft]||0; }
             function calculateCuts(m, ft, ce) {
                 const ease = getEaseValue(ft, ce);
@@ -754,6 +649,7 @@
                 };
             }
             function formatNumber(v) { return parseFloat(v.toFixed(2)); }
+            
             function getUrgencyInfo(dateStr) {
                 const today = new Date(); today.setHours(0,0,0,0);
                 const d = new Date(dateStr+'T00:00:00');
@@ -761,13 +657,6 @@
                 if(diff<=3) return { level:'red', label:'🚨 مزروب', className:'urgency-red', badgeClass:'badge-red', daysLeft:diff };
                 if(diff<=14) return { level:'orange', label:'🟠 متوسط', className:'urgency-orange', badgeClass:'badge-orange', daysLeft:diff };
                 return { level:'green', label:'🟢 باقي الوقت', className:'urgency-green', badgeClass:'badge-green', daysLeft:diff };
-            }
-            
-            function getSleeveTypeLabel(st) {
-                if (st === 'full') return 'كم كامل';
-                if (st === 'half') return 'نصف كم';
-                if (st === 'three-quarter') return 'ثلاثة أرباع كم';
-                return st || 'غير محدد';
             }
 
             const PERSISTENT_NOTIFICATION_ID = 123456789;
@@ -777,21 +666,15 @@
                 try {
                     await LocalNotifications.requestPermissions();
                     const clients = await getClients();
-                    const activeClients = clients.filter(c => !c.completed);
-                    const todayStr = new Date().toISOString().split('T')[0];
-                    const todayClients = activeClients.filter(c => c.deliveryDate === todayStr);
-                    const overdueClients = activeClients.filter(c => c.deliveryDate < todayStr);
+                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level === 'red');
                     
                     let title, body;
-                    if (activeClients.length === 0) {
-                        title = '✅ لا توجد طلبيات نشطة';
-                        body = 'كلشي مزيان، رتّحي بالك';
+                    if (urgentClients.length === 0) {
+                        try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
+                        return; 
                     } else {
-                        title = `🧵 الطلبيات النشطة: ${activeClients.length}`;
-                        let details = [];
-                        if (todayClients.length > 0) details.push(`اليوم: ${todayClients.length}`);
-                        if (overdueClients.length > 0) details.push(`متأخرة: ${overdueClients.length}`);
-                        body = details.join('، ') || 'باقي طلبيات';
+                        title = `🚨 طلبيات مزروبة: ${urgentClients.length}`;
+                        body = 'عندك خدمة مزروبة خاصها تسلم قريباً!';
                     }
                     
                     try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
@@ -802,28 +685,16 @@
             function sendBrowserDailyNotification() {
                 if (!('Notification' in window) || Notification.permission !== 'granted') return;
                 getClients().then(clients => {
-                    const activeClients = clients.filter(c => !c.completed);
-                    const todayStr = new Date().toISOString().split('T')[0];
-                    const todayClients = activeClients.filter(c => c.deliveryDate === todayStr);
-                    const overdueClients = activeClients.filter(c => c.deliveryDate < todayStr);
-                    
-                    let title, body;
-                    if (activeClients.length === 0) {
-                        title = '✅ لا توجد طلبيات نشطة';
-                        body = 'كلشي مزيان';
-                    } else {
-                        title = `🧵 الطلبيات النشطة: ${activeClients.length}`;
-                        let details = [];
-                        if (todayClients.length > 0) details.push(`اليوم: ${todayClients.length}`);
-                        if (overdueClients.length > 0) details.push(`متأخرة: ${overdueClients.length}`);
-                        body = details.join('، ') || 'باقي طلبيات';
-                    }
-                    new Notification(title, { body, requireInteraction: true });
+                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level === 'red');
+                    if (urgentClients.length === 0) return;
+                    new Notification(`🚨 طلبيات مزروبة: ${urgentClients.length}`, { body: 'عندك خدمة مزروبة خاصها تسلم قريباً!', requireInteraction: true });
                 });
             }
 
             async function scheduleNotificationForClient(client) {
                 if (client.completed) return;
+                if (getUrgencyInfo(client.deliveryDate).level !== 'red') return;
+
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
                 if (!LocalNotifications) return;
                 try {
@@ -833,7 +704,7 @@
                     if (scheduledTime < new Date()) scheduledTime.setDate(scheduledTime.getDate() + 1);
                     const notifId = parseInt(client.id.replace(/\D/g, '').slice(-8) + Date.now().toString().slice(-4)) || Math.floor(Math.random() * 1000000);
                     if (client.notificationId) { try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {} }
-                    await LocalNotifications.schedule({ notifications: [{ id: notifId, title: `🧵 ${client.name} - اليوم هو موعد التسليم!`, body: `📅 ${client.deliveryDate}`, schedule: { at: scheduledTime }, ongoing: true, autoCancel: false }] });
+                    await LocalNotifications.schedule({ notifications: [{ id: notifId, title: `🚨 ${client.name} - موعد التسليم قرّب!`, body: `📅 ${client.deliveryDate}`, schedule: { at: scheduledTime }, ongoing: true, autoCancel: false }] });
                     client.notificationId = notifId; await saveClient(client);
                 } catch (error) { console.error(error); }
             }
@@ -841,8 +712,9 @@
             async function scheduleAllNotifications() {
                 const clients = await getClients();
                 for (const client of clients) {
-                    if (!client.completed) await scheduleNotificationForClient(client);
-                    else if (client.notificationId) {
+                    if (!client.completed && getUrgencyInfo(client.deliveryDate).level === 'red') {
+                        await scheduleNotificationForClient(client);
+                    } else if (client.notificationId) {
                         const { LocalNotifications } = window.Capacitor?.Plugins || {};
                         if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); delete client.notificationId; await saveClient(client); } catch (e) {} }
                     }
@@ -853,23 +725,32 @@
                 if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
                 if (window.Capacitor?.Plugins?.LocalNotifications) window.Capacitor.Plugins.LocalNotifications.requestPermissions();
             }
-
-            // ═══════════️ نظام إدارة الملفات (تصدير واستيراد أندرويد حقيقي) ════════════
             
             async function processImportData(data) {
                 if(!Array.isArray(data)) throw new Error('صيغة الملف غير صحيحة');
+                const existingClients = await getClients();
+                const existingIds = new Set(existingClients.map(c => c.id));
+                let added = 0;
+
                 for(const c of data) {
-                    delete c.notificationId;
-                    if (c.totalPrice === undefined) c.totalPrice = 0;
-                    if (c.advancePayment === undefined) c.advancePayment = 0;
-                    if (c.fitType === undefined) c.fitType = 'regular';
-                    if (c.sleeveType === undefined) c.sleeveType = 'full';
-                    await saveClient(c);
+                    if (!existingIds.has(c.id)) {
+                        delete c.notificationId;
+                        if (c.totalPrice === undefined) c.totalPrice = 0;
+                        if (c.advancePayment === undefined) c.advancePayment = 0;
+                        if (c.fitType === undefined) c.fitType = 'عادي';
+                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
+                        if (!c.measurements.jlayel) c.measurements.jlayel = 0;
+                        await saveClient(c);
+                        added++;
+                    }
                 }
+                
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
                 renderAgenda();
-                showToast('📥 تم استيراد البيانات بنجاح!');
+                
+                if (added > 0) showBigToast(`📥 تم استيراد ${added} طلبية جديدة بنجاح!`);
+                else showToast('⚠️ مكاينش طلبيات جديدة (البيانات المستوردة ديجا كاينة)');
             }
 
             document.getElementById('export-btn').addEventListener('click', async () => {
@@ -880,43 +761,21 @@
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
                         const { Filesystem, Share } = window.Capacitor.Plugins;
-                        
                         const result = await Filesystem.writeFile({
-                            path: fileName,
-                            data: dataStr,
-                            directory: 'CACHE',
-                            encoding: 'utf8'
+                            path: fileName, data: dataStr, directory: 'DOCUMENTS', encoding: 'utf8'
                         });
-
-                        if (Share) {
-                            await Share.share({
-                                title: 'نسخة احتياطية لتطبيق الفصالة',
-                                url: result.uri,
-                                dialogTitle: 'حفظ النسخة الاحتياطية'
-                            });
-                            localStorage.setItem('lastBackupDate', Date.now().toString());
-                        } else {
-                            showToast('⚠️ مكتبة المشاركة غير متوفرة');
-                        }
-                    } catch (e) {
-                        showToast('⚠️ فشل العملية: ' + e.message);
-                    }
+                        showToast('✅ تم الحفظ فمجلد المستندات (Documents)');
+                        localStorage.setItem('lastBackupDate', Date.now().toString());
+                    } catch (e) { showToast('⚠️ فشل الحفظ: ' + e.message); }
                 } else {
                     try {
                         const blob = new Blob([dataStr], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = fileName;
-                        document.body.appendChild(a);
-                        a.click();
-                        a.remove();
-                        URL.revokeObjectURL(url);
+                        const a = document.createElement('a'); a.href = url; a.download = fileName;
+                        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
                         localStorage.setItem('lastBackupDate', Date.now().toString());
                         showToast('✅ تم تنزيل الملف بنجاح.');
-                    } catch (e) {
-                        showToast('⚠️ تعذر التنزيل.');
-                    }
+                    } catch (e) { showToast('⚠️ تعذر التنزيل.'); }
                 }
             });
 
@@ -924,45 +783,32 @@
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
                         const { FilePicker, Filesystem } = window.Capacitor.Plugins;
-                        
-                        const result = await FilePicker.pickFiles({
-                            types: ['application/json', '*/*'],
-                            multiple: false
-                        });
-
+                        const result = await FilePicker.pickFiles({ types: ['application/json', '*/*'], multiple: false });
                         if (result.files && result.files.length > 0) {
-                            const file = await Filesystem.readFile({
-                                path: result.files[0].path,
-                                encoding: 'utf8'
-                            });
-                            
+                            const file = await Filesystem.readFile({ path: result.files[0].path, encoding: 'utf8' });
                             const data = JSON.parse(file.data);
                             await processImportData(data);
                         }
                     } catch (e) {
-                        if (e.message !== 'User cancelled.' && e.message !== 'Pick files canceled.') {
-                            showToast('⚠️ فشل قراءة الملف: ' + e.message);
-                        }
+                        if (e.message !== 'User cancelled.' && e.message !== 'Pick files canceled.') showToast('⚠️ فشل قراءة الملف: ' + e.message);
                     }
-                } else {
-                    document.getElementById('import-file-input').click();
-                }
+                } else { document.getElementById('import-file-input').click(); }
             });
 
             document.getElementById('import-file-input').addEventListener('change', async e => {
-                const file = e.target.files[0];
-                if(!file) return;
+                const file = e.target.files[0]; if(!file) return;
                 const reader = new FileReader();
                 reader.onload = async event => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        await processImportData(data);
-                    } catch { 
-                        showToast('⚠️ فشل الاستيراد: تأكدي من أن الملف صحيح'); 
-                    }
-                };
-                reader.readAsText(file);
-                e.target.value = ''; 
+                    try { await processImportData(JSON.parse(event.target.result)); } catch { showToast('⚠️ فشل الاستيراد: تأكدي من أن الملف صحيح'); }
+                }; reader.readAsText(file); e.target.value = ''; 
+            });
+
+            // Settings Modal
+            document.getElementById('settings-btn').addEventListener('click', () => {
+                document.getElementById('settings-modal').style.display = 'flex';
+            });
+            document.getElementById('close-settings-modal').addEventListener('click', () => {
+                document.getElementById('settings-modal').style.display = 'none';
             });
 
             let agendaActiveDateFilter = 'all', agendaCustomFrom = null, agendaCustomTo = null;
@@ -975,14 +821,39 @@
             const agendaActiveList = document.getElementById('agenda-active-list');
             const agendaCompletedList = document.getElementById('agenda-completed-list');
             const completedCountSpan = document.getElementById('completed-count');
+            
+            let tempImg=null, tempModel=null;
             const formImageInput = document.getElementById('form-image-input');
             const formImagePreview = document.getElementById('form-image-preview');
-            let selectedImageBase64 = null;
+            const formModelInput = document.getElementById('form-model-input');
+            const formModelPreview = document.getElementById('form-model-preview');
+
+            document.querySelectorAll('input[type="number"], input[type="tel"]').forEach(input => {
+                input.addEventListener('focus', function() { this.select(); }); 
+            });
+
+            document.querySelectorAll('.measurement-input').forEach(input => {
+                input.classList.add('input-empty');
+                input.addEventListener('input', function() {
+                    if(this.value.trim() !== '' && this.value !== '0') { 
+                        this.classList.remove('input-empty'); 
+                        this.classList.add('input-filled'); 
+                    } else { 
+                        this.classList.add('input-empty'); 
+                        this.classList.remove('input-filled'); 
+                    }
+                });
+            });
 
             function showToast(msg) {
                 const old = document.querySelector('.toast'); if(old) old.remove();
                 const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
                 document.body.appendChild(t); setTimeout(()=>t.remove(), 2600);
+            }
+            function showBigToast(msg) { 
+                const old = document.querySelector('.toast-big'); if(old) old.remove(); 
+                const t = document.createElement('div'); t.className='toast-big'; t.textContent=msg; 
+                document.body.appendChild(t); setTimeout(()=>t.remove(), 3000); 
             }
             function escapeHTML(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
             function getWeekMonday(d){ const r=new Date(d); r.setDate(r.getDate()-(r.getDay()||7)+1); r.setHours(0,0,0,0); return r; }
@@ -1001,30 +872,33 @@
             function buildClientCardHTML(client) {
                 const urgency = getUrgencyInfo(client.deliveryDate);
                 const daysText = urgency.daysLeft<0?`(تأخر بـ ${Math.abs(urgency.daysLeft)} يوم)`:urgency.daysLeft===0?'(اليوم هو التسليم!)':`(باقي ${urgency.daysLeft} يوم)`;
-                const imgHTML = client.image?`<img src="${client.image}" class="client-image" data-client-id="${client.id}">`:`<div style="margin:8px 0; color:var(--text-muted);">📷 لا توجد صورة</div>`;
-                const uploadBtns = (!client.image && !client.completed)?`<div style="display:flex; gap:6px;"><button class="btn btn-sm btn-outline capture-btn" data-client-id="${client.id}">📷 التقاط</button><button class="btn btn-sm btn-outline gallery-btn" data-client-id="${client.id}">🖼️ الألبوم</button></div>`:'';
+                
+                const imgHTML = client.image ? `<img src="${client.image}" class="client-image" data-client-id="${client.id}" data-type="dress">` : '';
+                const modelHTML = client.modelImage ? `<img src="${client.modelImage}" class="client-image" data-client-id="${client.id}" data-type="model" style="border: 2px dashed var(--gold);">` : '';
+                const noImageText = (!client.image && !client.modelImage) ? `<div style="margin:8px 0; color:var(--text-muted); font-size:var(--font-sm);">📷 لا توجد صور</div>` : '';
+                
                 const total = client.totalPrice || 0;
                 const advance = client.advancePayment || 0;
                 const remaining = Math.max(0, total - advance);
                 
-                const sleeveLabel = getSleeveTypeLabel(client.sleeveType);
+                const fitLabel = client.fitType || 'عادي';
 
                 let waBtnHTML = '';
                 if(client.phone) {
                     let waNum = client.phone.replace(/\D/g, '');
                     if(waNum.startsWith('0')) waNum = '212' + waNum.substring(1);
-                    waBtnHTML = `<a href="https://wa.me/${waNum}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#25D366; color:#FFF; padding:3px 8px; border-radius:12px; font-size:11px; text-decoration:none; font-weight:bold; margin-right:6px;">💬 واتساب</a>`;
+                    waBtnHTML = `<a href="https://wa.me/${waNum}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#25D366; color:#FFF; padding:4px 10px; border-radius:var(--radius-pill); font-size:11px; text-decoration:none; font-weight:800; margin-right:8px; box-shadow:0 2px 5px rgba(37,211,102,0.3);">💬 واتساب</a>`;
                 }
 
                 let statusBadge = '';
                 if (!client.completed) {
-                    statusBadge = `<span class="urgency-badge ${urgency.badgeClass}">${urgency.label} ${daysText}</span>`;
-                } else {
-                    if (remaining === 0) {
-                        statusBadge = `<span class="urgency-badge" style="background:var(--green); color:#FFF;">✅ مسلّمة ومخلصة</span>`;
-                    } else {
-                        statusBadge = `<span class="urgency-badge" style="background:var(--red); color:#FFF;">❌ مسلّمة (باقي ${remaining} درهم)</span>`;
+                    if (client.returned) {
+                        statusBadge = `<span class="urgency-badge" style="background:#718096; color:#FFF; margin-left:4px;">🔄 تم الإعادة</span>`;
                     }
+                    statusBadge += `<span class="urgency-badge ${urgency.badgeClass}">${urgency.label} ${daysText}</span>`;
+                } else {
+                    if (remaining === 0) statusBadge = `<span class="urgency-badge" style="background:var(--green); color:#FFF; border:none; box-shadow:0 2px 6px rgba(72,187,120,0.3);">✅ مسلّمة ومخلصة</span>`;
+                    else statusBadge = `<span class="urgency-badge" style="background:var(--red); color:#FFF; border:none; box-shadow:0 2px 6px rgba(252,129,129,0.3);">❌ مسلّمة (باقي ${remaining} درهم)</span>`;
                 }
 
                 return `
@@ -1033,26 +907,29 @@
                         <div class="client-name">👤 ${escapeHTML(client.name)} ${statusBadge}</div>
                         <button class="more-btn" data-client-id="${client.id}">⋮</button>
                     </div>
-                    ${client.location?`<div>📍 ${escapeHTML(client.location)}</div>`:''}
+                    ${client.location?`<div style="font-size:var(--font-sm); font-weight:600; color:var(--text-light);">📍 ${escapeHTML(client.location)}</div>`:''}
                     <div class="client-details">
-                        ${client.phone ? `<span>📞 ${escapeHTML(client.phone)} ${waBtnHTML}</span>` : '<span>📞 بدون رقم</span>'}
-                        <span>📅 ${client.deliveryDate}</span><span>✂️ ${sleeveLabel}</span>
+                        <span>📞 ${client.phone ? escapeHTML(client.phone) : 'بدون رقم'} ${waBtnHTML}</span>
+                        <span>📅 ${client.deliveryDate}</span><span>✂️ الاتساع: ${fitLabel}</span>
                     </div>
                     <div class="financial-details">
                         <span>💰 ${total} درهم</span>
                         <span>💵 ${advance} درهم</span>
                         <span class="remaining-badge"><span class="label">⏳</span> ${remaining} درهم</span>
                     </div>
-                    ${imgHTML} ${uploadBtns}
-                    <div class="client-details">
+                    ${client.description ? `<div class="desc-box">📝 ${escapeHTML(client.description)}</div>` : ''}
+                    <div style="display:flex; gap:10px;">${imgHTML} ${modelHTML}</div>
+                    ${noImageText}
+                    <div class="client-details measurements-box">
                         <span>👚 الصدر: ${client.measurements.chest} cm</span><span>⏳ الحزام: ${client.measurements.waist} cm</span>
                         <span>🍑 الحوض: ${client.measurements.hips} cm</span><span>📏 الطول: ${client.measurements.dressLength} cm</span>
                         <span>🎯 التركيز: ${client.measurements.armhole || 0} cm</span><span>🤏 فم الكم: ${client.measurements.sleeveMouth || 0} cm</span>
+                        <span>👗 الجلايل: ${client.measurements.jlayel || 0} cm</span>
                     </div>
                     <div class="card-actions">
                         ${!client.completed?`<button class="btn btn-success btn-sm deliver-btn" data-client-id="${client.id}">✅ تم التسليم</button>`:''}
                         <button class="btn btn-sm btn-primary calc-cuts-btn" data-client-id="${client.id}">🧮 قص الفصالة</button>
-                        <button class="btn btn-danger btn-sm delete-btn" data-client-id="${client.id}">🗑️ حذف</button>
+                        <button class="btn btn-danger btn-sm delete-btn" data-client-id="${client.id}" style="padding: 8px 12px; flex-grow: 0; min-width: auto;"><span style="font-size:16px;">🗑️</span></button>
                     </div>
                 </div>`;
             }
@@ -1068,33 +945,63 @@
                 const rect = btn.getBoundingClientRect();
                 
                 menu.style.top = `${rect.bottom + window.scrollY + 5}px`;
-                let leftPos = rect.left + window.scrollX - 130; 
+                let leftPos = rect.left + window.scrollX - 150; 
                 if (leftPos < 10) leftPos = 10;
                 menu.style.left = `${leftPos}px`;
                 
                 const clients = await getClients();
                 const client = clients.find(c => c.id === clientId);
+                if (!client) return;
 
-                menu.innerHTML = `
-                    <button data-action="edit-price">💰 تعديل الحساب</button>
-                    <button data-action="edit-date">🗓️ تعديل التاريخ</button>
-                    <button data-action="edit-image">🖼️ تعديل الصورة</button>
-                    ${(!client || !client.phone) ? `<button data-action="add-phone">📞 إضافة رقم الهاتف</button>` : ''}
-                `;
+                if (!client.completed) {
+                    menu.innerHTML = `
+                        <button data-action="edit-price">💰 تعديل الحساب</button>
+                        <button data-action="edit-measurements">📏 تعديل القياسات</button>
+                        <button data-action="edit-desc">📝 تعديل الوصف</button>
+                        <button data-action="edit-date">🗓️ تعديل التاريخ</button>
+                        <button data-action="edit-model">👗 صورة الموديل</button>
+                        <button data-action="edit-image">📸 صورة الثوب</button>
+                        ${!client.phone ? `<button data-action="add-phone">📞 إضافة رقم الهاتف</button>` : ''}
+                    `;
+                } else {
+                    menu.innerHTML = `
+                        <button data-action="undo-delivery">↩️ ما زالت لم يتم الاستلام</button>
+                    `;
+                }
                 document.body.appendChild(menu);
                 
                 menu.querySelectorAll('button').forEach(btn => btn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
                     const action = e.target.dataset.action;
                     if(action === 'edit-price') openPriceModal(clientId);
+                    else if(action === 'edit-measurements') openEditMeasurementsModal(clientId);
+                    else if(action === 'edit-desc') openDescModal(clientId);
                     else if(action === 'edit-date') openDateModal(clientId);
-                    else if(action === 'edit-image') openImageModal(clientId);
+                    else if(action === 'edit-image') openImageModal(clientId, 'dress');
+                    else if(action === 'edit-model') openImageModal(clientId, 'model');
                     else if(action === 'add-phone') openPhoneModal(clientId);
+                    else if(action === 'undo-delivery') {
+                        client.completed = false;
+                        client.returned = true;
+                        await saveClient(client);
+                        renderAgenda();
+                        showToast('🔄 تم إرجاع الطلبية للحالة النشطة');
+                    }
                     menu.remove();
                 }));
+                
+                // إغلاق القائمة بلمسة خارجية
                 setTimeout(() => {
-                    const closeMenu = (e) => { if(!menu.contains(e.target)) { menu.remove(); document.removeEventListener('click', closeMenu); } };
+                    const closeMenu = (e) => { 
+                        if(!menu.contains(e.target)) { 
+                            menu.remove(); 
+                            document.removeEventListener('click', closeMenu); 
+                            document.removeEventListener('touchstart', closeMenu);
+                        } 
+                    };
                     document.addEventListener('click', closeMenu);
-                }, 100);
+                    document.addEventListener('touchstart', closeMenu);
+                }, 10);
             }
 
             function openPhoneModal(clientId) {
@@ -1137,15 +1044,78 @@
                     const clients = await getClients();
                     const client = clients.find(c=>c.id===id);
                     if(client){
-                        client.totalPrice = newTotal;
-                        client.advancePayment = newAdvance;
-                        await saveClient(client);
-                        renderAgenda();
-                        showToast('✅ تم تعديل الحساب');
+                        client.totalPrice = newTotal; client.advancePayment = newAdvance;
+                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل الحساب');
                     }
                     modal.style.display = 'none';
                 };
                 document.getElementById('close-price-modal').onclick = () => modal.style.display = 'none';
+            }
+
+            function openEditMeasurementsModal(clientId) {
+                const modal = document.getElementById('measurements-modal');
+                getClients().then(clients=>{
+                    const client = clients.find(c=>c.id===clientId);
+                    if(client) {
+                        document.getElementById('measurements-modal-clientId').value = client.id;
+                        const m = client.measurements;
+                        document.getElementById('edit-shoulders').value = m.shoulders || 0;
+                        document.getElementById('edit-armhole').value = m.armhole || 0;
+                        document.getElementById('edit-chest').value = m.chest || 0;
+                        document.getElementById('edit-waist').value = m.waist || 0;
+                        document.getElementById('edit-hips').value = m.hips || 0;
+                        document.getElementById('edit-dressLength').value = m.dressLength || 0;
+                        document.getElementById('edit-sleeveLength').value = m.sleeveLength || 0;
+                        document.getElementById('edit-sleeveMouth').value = m.sleeveMouth || 0;
+                        document.getElementById('edit-jlayel').value = m.jlayel || 0;
+                        modal.style.display='flex';
+                    }
+                });
+                
+                document.getElementById('save-measurements-btn').onclick = async () => {
+                    const id = document.getElementById('measurements-modal-clientId').value;
+                    const clients = await getClients();
+                    const client = clients.find(c=>c.id===id);
+                    if(client){
+                        client.measurements = {
+                            shoulders: parseFloat(document.getElementById('edit-shoulders').value) || 0,
+                            armhole: parseFloat(document.getElementById('edit-armhole').value) || 0,
+                            chest: parseFloat(document.getElementById('edit-chest').value) || 0,
+                            waist: parseFloat(document.getElementById('edit-waist').value) || 0,
+                            hips: parseFloat(document.getElementById('edit-hips').value) || 0,
+                            dressLength: parseFloat(document.getElementById('edit-dressLength').value) || 0,
+                            sleeveLength: parseFloat(document.getElementById('edit-sleeveLength').value) || 0,
+                            sleeveMouth: parseFloat(document.getElementById('edit-sleeveMouth').value) || 0,
+                            jlayel: parseFloat(document.getElementById('edit-jlayel').value) || 0
+                        };
+                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل القياسات');
+                    }
+                    modal.style.display = 'none';
+                };
+                document.getElementById('close-measurements-modal').onclick = () => modal.style.display = 'none';
+            }
+            
+            function openDescModal(clientId) {
+                const modal = document.getElementById('desc-modal');
+                getClients().then(clients=>{
+                    const client = clients.find(c=>c.id===clientId);
+                    if(client) {
+                        document.getElementById('desc-modal-clientId').value = client.id;
+                        document.getElementById('desc-modal-input').value = client.description || '';
+                        modal.style.display='flex';
+                    }
+                });
+                document.getElementById('save-desc-btn').onclick = async () => {
+                    const id = document.getElementById('desc-modal-clientId').value;
+                    const clients = await getClients();
+                    const client = clients.find(c=>c.id===id);
+                    if(client){
+                        client.description = document.getElementById('desc-modal-input').value;
+                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل الوصف');
+                    }
+                    modal.style.display = 'none';
+                };
+                document.getElementById('close-desc-modal').onclick = () => modal.style.display = 'none';
             }
 
             function openDateModal(clientId) {
@@ -1167,28 +1137,35 @@
                 document.getElementById('close-date-modal').onclick = () => modal.style.display = 'none';
             }
 
-            // ════════════ النافذة الجديدة ديال قص الفصالة ════════════
             function openCutsModal(client) {
                 const modal = document.getElementById('cuts-modal');
                 const body = document.getElementById('cuts-modal-body');
+                const eases = client.customEases || { chest:0, waist:0, hips:0 };
                 
                 body.innerHTML = `
-                    <p style="margin-bottom:12px; font-size: var(--font-lg);"><strong>👤 ${escapeHTML(client.name)}</strong> | ✂️ ${getSleeveTypeLabel(client.sleeveType)}</p>
-                    <div class="form-group"><label>إضافة الصدر</label><input type="number" id="modal-chest-ease" value="0" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الحزام</label><input type="number" id="modal-waist-ease" value="0" step="0.1"></div>
-                    <div class="form-group"><label>إضافة الحوض</label><input type="number" id="modal-hips-ease" value="0" step="0.1"></div>
-                    
+                    <div class="modal-header" style="margin-bottom:14px; border-bottom:1px solid var(--border-light); padding-bottom:10px;">
+                        <span style="font-size: var(--font-xl); font-weight:800; color:var(--terracotta-dark);">✂️ ${escapeHTML(client.name)}</span>
+                        <button class="modal-close" id="close-cuts-inner-btn">&times;</button>
+                    </div>
+                    <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الصدر</label><input type="number" id="modal-chest-ease" value="${eases.chest}" step="0.1"></div>
+                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الحزام</label><input type="number" id="modal-waist-ease" value="${eases.waist}" step="0.1"></div>
+                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الحوض</label><input type="number" id="modal-hips-ease" value="${eases.hips}" step="0.1"></div>
+                    </div>
                     <div id="modal-results" class="results-grid"></div>
-                    <button class="btn btn-outline btn-sm" id="modal-back-btn" style="margin-top:12px;">🔙 رجوع</button>
                 `;
                 
+                document.getElementById('close-cuts-inner-btn').onclick = () => modal.style.display = 'none';
+
                 function update() {
                     const chestEase = parseFloat(document.getElementById('modal-chest-ease').value) || 0;
                     const waistEase = parseFloat(document.getElementById('modal-waist-ease').value) || 0;
                     const hipsEase = parseFloat(document.getElementById('modal-hips-ease').value) || 0;
                     
+                    client.customEases = { chest: chestEase, waist: waistEase, hips: hipsEase };
+                    saveClient(client);
+
                     const m = client.measurements;
-                    
                     const res = [
                         {label:'قص الكتاف', value:formatNumber((m.shoulders / 2) + 1), fixed: true}, 
                         {label:'قص الصدر', value:formatNumber((m.chest / 4) + chestEase), empty: chestEase === 0},
@@ -1203,59 +1180,81 @@
                     document.getElementById('modal-results').innerHTML = res.map(r => {
                         let boxClass = 'result-item';
                         let valStyle = '';
-                        
-                        if (r.fixed) {
-                            valStyle = 'color: var(--green);';
-                        } else if (r.empty) {
-                            boxClass += ' pulse-red'; 
-                        }
-                        
+                        if (r.fixed) valStyle = 'color: var(--green);';
+                        else if (r.empty) boxClass += ' pulse-red'; 
                         return `<div class="${boxClass}"><div class="result-label">${r.label}</div><div class="result-value" style="${valStyle}">${r.value} cm</div></div>`;
                     }).join('');
                 }
                 
-                // خاصية Auto-select فاش تبرك على الخانة
                 body.querySelectorAll('input').forEach(i => {
                     i.addEventListener('input', update);
                     i.addEventListener('focus', function() { this.select(); }); 
                 });
                 
                 update();
-                document.getElementById('modal-back-btn').addEventListener('click', () => modal.style.display='none');
                 modal.style.display = 'flex';
             }
 
-            function openImageModal(clientId) {
+            let currentImageId, currentImageType;
+            function openImageModal(clientId, type) {
                 const modal = document.getElementById('image-modal');
                 const img = document.getElementById('image-modal-img');
+                const delBtn = document.getElementById('modal-delete-btn');
+                currentImageId = clientId; currentImageType = type;
+                
+                document.getElementById('image-modal-title').textContent = type==='model' ? '👗 صورة الموديل' : '📸 صورة الثوب';
+                
                 getClients().then(clients=>{
                     const client = clients.find(c=>c.id===clientId);
-                    if(!client || !client.image) { modal.style.display='none'; return; }
-                    img.src = client.image;
+                    if(!client) return;
+                    
+                    const src = type === 'model' ? client.modelImage : client.image;
+                    img.src = src || '';
+                    
+                    // إظهار زر الحذف فقط إذا كانت هناك صورة
+                    if (src) {
+                        delBtn.style.display = 'block';
+                        delBtn.onclick = async () => {
+                            if(confirm('واش متأكد باغي تمسح هاد الصورة؟')) {
+                                if (type === 'model') client.modelImage = null; else client.image = null;
+                                await saveClient(client); renderAgenda();
+                                modal.style.display = 'none'; showToast('🗑️ تم حذف الصورة');
+                            }
+                        };
+                    } else {
+                        delBtn.style.display = 'none';
+                    }
+                    
                     modal.style.display='flex';
                 });
+                
                 document.getElementById('modal-camera-btn').onclick = async () => {
                     const input = document.createElement('input'); input.type='file'; input.accept='image/*'; input.capture='environment';
                     input.onchange = async e => {
                         const file = e.target.files[0]; if(!file) return;
                         const compressed = await compressImage(file);
-                        const clients = await getClients(); const client = clients.find(c=>c.id===clientId);
-                        if(client){ client.image = compressed; await saveClient(client); img.src = compressed; renderAgenda(); showToast('📸 تم تعديل الصورة'); }
-                    };
-                    input.click();
+                        const clients = await getClients(); const client = clients.find(c=>c.id===currentImageId);
+                        if(client){ 
+                            if(currentImageType==='model') client.modelImage = compressed; else client.image = compressed;
+                            await saveClient(client); img.src = compressed; renderAgenda(); delBtn.style.display = 'block'; showToast('📸 تم تعديل الصورة'); 
+                        }
+                    }; input.click();
                 };
+                
                 document.getElementById('modal-gallery-btn').onclick = async () => {
                     const input = document.createElement('input'); input.type='file'; input.accept='image/*';
                     input.onchange = async e => {
                         const file = e.target.files[0]; if(!file) return;
                         const compressed = await compressImage(file);
-                        const clients = await getClients(); const client = clients.find(c=>c.id===clientId);
-                        if(client){ client.image = compressed; await saveClient(client); img.src = compressed; renderAgenda(); showToast('🖼️ تم تعديل الصورة'); }
-                    };
-                    input.click();
+                        const clients = await getClients(); const client = clients.find(c=>c.id===currentImageId);
+                        if(client){ 
+                            if(currentImageType==='model') client.modelImage = compressed; else client.image = compressed;
+                            await saveClient(client); img.src = compressed; renderAgenda(); delBtn.style.display = 'block'; showToast('🖼️ تم تعديل الصورة'); 
+                        }
+                    }; input.click();
                 };
-                document.getElementById('close-image-modal').onclick = () => modal.style.display = 'none';
             }
+            document.getElementById('close-image-modal').onclick = () => document.getElementById('image-modal').style.display = 'none';
 
             function attachClientCardListeners() {
                 document.querySelectorAll('.more-btn').forEach(btn => {
@@ -1272,10 +1271,7 @@
                                 try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {}
                             }
                         }
-                        await deleteClientFromDB(id);
-                        await sendPersistentDailyNotification();
-                        renderAgenda();
-                        showToast('🗑️ تم الحذف');
+                        await deleteClientFromDB(id); await sendPersistentDailyNotification(); renderAgenda(); showToast('🗑️ تم الحذف');
                     }
                 }));
                 document.querySelectorAll('.deliver-btn').forEach(btn => btn.addEventListener('click', async function() {
@@ -1289,14 +1285,12 @@
                                 try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {}
                             }
                         }
-                        client.completed=true;
-                        client.completedAt=new Date().toISOString();
-                        delete client.image;
-                        delete client.notificationId;
-                        await saveClient(client);
-                        await sendPersistentDailyNotification();
-                        renderAgenda();
-                        showToast('🎉 تم التسليم');
+                        // تفريغ المساحة بحذف الصور
+                        client.image = null; 
+                        client.modelImage = null;
+                        
+                        client.completed=true; client.completedAt=new Date().toISOString(); delete client.notificationId;
+                        await saveClient(client); await sendPersistentDailyNotification(); renderAgenda(); showBigToast('🎉 تم التسليم بنجاح!');
                     }
                 }));
                 document.querySelectorAll('.calc-cuts-btn').forEach(btn => btn.addEventListener('click', async function() {
@@ -1305,20 +1299,8 @@
                     if(client) openCutsModal(client);
                 }));
                 document.querySelectorAll('.client-image').forEach(img => img.addEventListener('click', async function() {
-                    const id = this.dataset.clientId;
-                    openImageModal(id);
-                }));
-                document.querySelectorAll('.capture-btn, .gallery-btn').forEach(btn => btn.addEventListener('click', async function() {
-                    const id = this.dataset.clientId;
-                    const input = document.createElement('input'); input.type='file'; input.accept='image/*';
-                    if(this.classList.contains('capture-btn')) input.capture='environment';
-                    input.onchange = async e => {
-                        const file = e.target.files[0]; if(!file) return;
-                        const compressed = await compressImage(file);
-                        const clients = await getClients(); const client = clients.find(c=>c.id===id);
-                        if(client){ client.image = compressed; await saveClient(client); renderAgenda(); showToast('📸 تم الحفظ'); }
-                    };
-                    input.click();
+                    const id = this.dataset.clientId; const type = this.dataset.type;
+                    openImageModal(id, type);
                 }));
             }
 
@@ -1331,24 +1313,16 @@
 
             async function renderStats() {
                 const clients = await getClients();
-                const now = new Date();
-                const currentMonth = now.getMonth();
-                const currentYear = now.getFullYear();
+                const now = new Date(); const currentMonth = now.getMonth(); const currentYear = now.getFullYear();
                 
-                let monthlyIncome = 0;
-                let totalDebt = 0;
-                let debtHTML = '';
+                let monthlyIncome = 0; let totalDebt = 0; let debtHTML = '';
 
                 clients.forEach(c => {
-                    const total = c.totalPrice || 0;
-                    const advance = c.advancePayment || 0;
-                    const remaining = Math.max(0, total - advance);
-                    
+                    const total = c.totalPrice || 0; const advance = c.advancePayment || 0; const remaining = Math.max(0, total - advance);
                     const dateToCheck = c.completed ? new Date(c.completedAt) : new Date(c.createdAt);
                     if (dateToCheck.getMonth() === currentMonth && dateToCheck.getFullYear() === currentYear) {
                         monthlyIncome += c.completed ? total : advance;
                     }
-
                     if (remaining > 0) {
                         totalDebt += remaining;
                         debtHTML += `<li class="debt-item"><span class="debt-name">👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
@@ -1357,30 +1331,36 @@
 
                 document.getElementById('stats-monthly-income').textContent = monthlyIncome.toFixed(2) + ' درهم';
                 document.getElementById('stats-total-debt').textContent = totalDebt.toFixed(2) + ' درهم';
-                document.getElementById('stats-debt-list').innerHTML = debtHTML || '<li class="debt-item" style="justify-content:center; color:var(--green);">✅ حتى وحدة ما عندها كريدي</li>';
+                document.getElementById('stats-debt-list').innerHTML = debtHTML || '<li class="debt-item" style="justify-content:center; color:var(--green); border:none;">✅ حتى وحدة ما عندها كريدي</li>';
             }
 
             async function renderAgenda() {
                 const clients = await getClients();
                 
+                const searchInAll = document.getElementById('search-in-all').checked;
                 const searchTerm = agendaSearch.value.trim().toLowerCase();
                 const filterFn = getDateFilterFunction(agendaActiveDateFilter, agendaCustomFrom, agendaCustomTo);
-                let active = clients.filter(c => !c.completed && filterFn(c));
-                if(searchTerm) active = active.filter(c=>c.name.toLowerCase().includes(searchTerm));
-                active.sort((a,b)=>new Date(a.deliveryDate)-new Date(b.deliveryDate));
+                
+                let mainList = clients.filter(c => {
+                    if (!searchInAll && c.completed) return false;
+                    return filterFn(c);
+                });
+                
+                if (searchTerm) {
+                    mainList = mainList.filter(c => c.name.toLowerCase().includes(searchTerm));
+                }
+                mainList.sort((a,b) => new Date(a.deliveryDate) - new Date(b.deliveryDate));
 
                 const completedSearch = agendaCompletedSearch.value.trim().toLowerCase();
                 let completed = clients.filter(c => c.completed);
                 if(completedSearch) completed = completed.filter(c=>c.name.toLowerCase().includes(completedSearch));
                 completed.sort((a,b)=>new Date(b.completedAt||b.createdAt)-new Date(a.completedAt||a.createdAt));
 
-                agendaActiveList.innerHTML = active.length?active.map(c=>buildClientCardHTML(c)).join(''):'<p class="no-clients" style="text-align:center; margin-top:10px;">ما كايناش طلبيات نشطة.</p>';
-                agendaCompletedList.innerHTML = completed.length?completed.map(c=>buildClientCardHTML(c)).join(''):'<p class="no-clients" style="text-align:center; margin-top:10px;">ما كايناش مسلّمات.</p>';
+                agendaActiveList.innerHTML = mainList.length ? mainList.map(c=>buildClientCardHTML(c)).join('') : '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش طلبيات مطابقة.</p>';
+                agendaCompletedList.innerHTML = completed.length ? completed.map(c=>buildClientCardHTML(c)).join('') : '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش مسلّمات.</p>';
                 completedCountSpan.textContent = `(${clients.filter(c => c.completed).length})`;
                 
-                renderStats();
-                attachClientCardListeners();
-                sendPersistentDailyNotification();
+                renderStats(); attachClientCardListeners(); sendPersistentDailyNotification();
             }
 
             function switchTab(tabName) {
@@ -1395,19 +1375,15 @@
             
             document.getElementById('calculator-form').addEventListener('submit', function(e){
                 e.preventDefault();
-                const ft=document.getElementById('calc-fitType').value; if(!ft) return showToast('⚠️ اختاري القصة');
+                const ft=document.getElementById('calc-fitType').value; if(!ft) return showToast('⚠️ اختاري الاتساع');
                 const ease=ft==='custom'?parseFloat(document.getElementById('calc-customEase').value)||0:EASE_MAP[ft];
                 const m={ shoulders:parseFloat(document.getElementById('calc-shoulders').value), chest:parseFloat(document.getElementById('calc-chest').value), waist:parseFloat(document.getElementById('calc-waist').value), hips:parseFloat(document.getElementById('calc-hips').value), dressLength:parseFloat(document.getElementById('calc-dressLength').value), sleeveLength:parseFloat(document.getElementById('calc-sleeveLength').value), armhole:parseFloat(document.getElementById('calc-armhole').value), sleeveMouth:parseFloat(document.getElementById('calc-sleeveMouth').value) };
                 const cuts=calculateCuts(m,ft,ease);
                 const items=[ 
-                    {label:'قص الكتاف',value:formatNumber(cuts.shoulderCut)}, 
-                    {label:'قص الصدر',value:formatNumber(cuts.chestCut)}, 
-                    {label:'قص الحزام',value:formatNumber(cuts.waistCut)}, 
-                    {label:'قص الحوض',value:formatNumber(cuts.hipsCut)}, 
-                    {label:'التركيز',value:formatNumber(m.armhole)}, 
-                    {label:'الطول النهائي',value:formatNumber(cuts.finalDressLength)}, 
-                    {label:'طول الكم',value:formatNumber(cuts.finalSleeveLength)},
-                    {label:'فم الكم',value:formatNumber(m.sleeveMouth)}
+                    {label:'قص الكتاف',value:formatNumber(cuts.shoulderCut)}, {label:'قص الصدر',value:formatNumber(cuts.chestCut)}, 
+                    {label:'قص الحزام',value:formatNumber(cuts.waistCut)}, {label:'قص الحوض',value:formatNumber(cuts.hipsCut)}, 
+                    {label:'التركيز',value:formatNumber(m.armhole)}, {label:'الطول النهائي',value:formatNumber(cuts.finalDressLength)}, 
+                    {label:'طول الكم',value:formatNumber(cuts.finalSleeveLength)}, {label:'فم الكم',value:formatNumber(m.sleeveMouth)}
                 ];
                 document.getElementById('results-grid').innerHTML=items.map(i=>`<div class="result-item"><div class="result-label">${i.label}</div><div class="result-value">${i.value} cm</div></div>`).join('');
                 document.getElementById('results-card').style.display='block';
@@ -1415,26 +1391,32 @@
 
             document.getElementById('form-capture-btn').addEventListener('click',()=>{ formImageInput.capture='environment'; formImageInput.click(); });
             document.getElementById('form-gallery-btn').addEventListener('click',()=>{ formImageInput.removeAttribute('capture'); formImageInput.click(); });
-            formImageInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); selectedImageBase64=compressed; formImagePreview.src=compressed; formImagePreview.classList.add('visible'); });
+            formImageInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); tempImg=compressed; formImagePreview.src=compressed; formImagePreview.classList.add('visible'); });
+
+            document.getElementById('model-capture-btn').addEventListener('click',()=>{ formModelInput.capture='environment'; formModelInput.click(); });
+            document.getElementById('model-gallery-btn').addEventListener('click',()=>{ formModelInput.removeAttribute('capture'); formModelInput.click(); });
+            formModelInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); tempModel=compressed; formModelPreview.src=compressed; formModelPreview.classList.add('visible'); });
 
             document.getElementById('client-totalPrice').addEventListener('input', updateRemaining);
             document.getElementById('client-advancePayment').addEventListener('input', updateRemaining);
 
             document.getElementById('client-form').addEventListener('submit', async function(e){
                 e.preventDefault();
-                const sleeveType = document.getElementById('cl-sleeveType').value;
-                if (!sleeveType) return showToast('⚠️ اختاري نوع الكم');
+                const fitType = document.getElementById('cl-fitType').value;
+                if (!fitType) return showToast('⚠️ اختاري نوع الاتساع');
 
                 const total = parseFloat(document.getElementById('client-totalPrice').value) || 0;
                 const advance = parseFloat(document.getElementById('client-advancePayment').value) || 0;
                 if (total < 0) return showToast('⚠️ الثمن لا يمكن أن يكون سالباً');
                 if (advance < 0) return showToast('⚠️ التسبيق لا يمكن أن يكون سالباً');
                 if (advance > total) return showToast('⚠️ التسبيق لا يمكن أن يزيد عن الثمن الإجمالي');
+                
                 const client = {
-                    id:'cl_'+Date.now()+'_'+Math.random().toString(36).substr(2,8),
-                    name:document.getElementById('client-name').value.trim(),
-                    location:document.getElementById('client-location').value.trim(),
-                    phone:document.getElementById('client-phone').value.trim(),
+                    id: 'cl_' + Date.now() + '_' + Math.random().toString(36).substr(2,8), 
+                    name: document.getElementById('client-name').value.trim(),
+                    location: document.getElementById('client-location').value.trim(),
+                    phone: document.getElementById('client-phone').value.trim(),
+                    description: document.getElementById('cl-description').value.trim(),
                     totalPrice: total,
                     advancePayment: advance,
                     measurements:{ 
@@ -1445,30 +1427,40 @@
                         dressLength:parseFloat(document.getElementById('cl-dressLength').value) || 0, 
                         sleeveLength:parseFloat(document.getElementById('cl-sleeveLength').value) || 0,
                         armhole:parseFloat(document.getElementById('cl-armhole').value) || 0,
-                        sleeveMouth:parseFloat(document.getElementById('cl-sleeveMouth').value) || 0
+                        sleeveMouth:parseFloat(document.getElementById('cl-sleeveMouth').value) || 0,
+                        jlayel:parseFloat(document.getElementById('cl-jlayel').value) || 0
                     },
-                    fitType: 'regular',
-                    customEase: 0,
-                    sleeveType: sleeveType,
-                    deliveryDate:document.getElementById('cl-deliveryDate').value,
-                    completed:false, createdAt:new Date().toISOString(), image:selectedImageBase64||null
+                    fitType: fitType,
+                    customEases: {chest:0, waist:0, hips:0},
+                    deliveryDate: document.getElementById('cl-deliveryDate').value,
+                    completed: false, returned: false, createdAt: new Date().toISOString(), 
+                    image: tempImg || null, modelImage: tempModel || null
                 };
+                
                 await saveClient(client);
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
+                
                 this.reset(); 
-                document.getElementById('cl-sleeveType').value=''; 
-                selectedImageBase64=null; 
-                formImagePreview.classList.remove('visible'); 
-                formImagePreview.src=''; 
+                document.getElementById('cl-fitType').value=''; 
+                tempImg=null; tempModel=null; 
+                formImagePreview.classList.remove('visible'); formImagePreview.src=''; 
+                formModelPreview.classList.remove('visible'); formModelPreview.src=''; 
                 updateRemaining();
+                
+                document.querySelectorAll('.measurement-input').forEach(i => { i.classList.add('input-empty'); i.classList.remove('input-filled'); });
+
                 setAgendaFilter('all');
                 renderAgenda();
-                showToast('✅ تم الحفظ');
+                showBigToast('✅ تم إضافة الكليانة بنجاح!');
+                switchTab('agenda');
             });
 
             agendaSearch.addEventListener('input', renderAgenda);
             agendaCompletedSearch.addEventListener('input', renderAgenda); 
+            
+            document.getElementById('search-in-all').addEventListener('change', renderAgenda);
+            
             agendaFilterPanel.addEventListener('click', e=>{ const p=e.target.closest('.btn-pill'); if(p&&p.dataset.filter) setAgendaFilter(p.dataset.filter); });
             function setAgendaFilter(filterName) {
                 agendaActiveDateFilter=filterName;
@@ -1486,15 +1478,10 @@
             document.getElementById('completed-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('completed-content').classList.toggle('open'); });
             document.getElementById('stats-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('stats-content').classList.toggle('open'); });
 
-            document.getElementById('close-cuts-modal').addEventListener('click', ()=>document.getElementById('cuts-modal').style.display='none');
-            document.getElementById('close-image-modal').addEventListener('click', ()=>document.getElementById('image-modal').style.display='none');
-            document.getElementById('close-date-modal').addEventListener('click', ()=>document.getElementById('date-modal').style.display='none');
-
             async function init() {
-                document.querySelectorAll('input[type="number"], input[type="tel"]').forEach(input => {
-                    input.addEventListener('focus', function() { this.select(); });
-                });
-
+                // تفعيل مستمع زر الرجوع الخاص بـ Capacitor
+                setupBackButton();
+                
                 switchTab('clients');
                 document.querySelector('.tab-btn[data-tab="clients"]').classList.add('active');
                 document.querySelector('.tab-btn[data-tab="calculator"]').classList.remove('active');
@@ -1503,20 +1490,11 @@
                 requestNotificationPermission();
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
-                console.log('✅ تم تهيئة التطبيق مع الإشعار الدائم');
                 
-                // ════════════ نظام التذكير الأسبوعي بالنسخة الاحتياطية ════════════
                 const lastBackup = localStorage.getItem('lastBackupDate');
-                const now = Date.now();
-                const oneWeek = 7 * 24 * 60 * 60 * 1000; 
-                
-                if (!lastBackup) {
-                    localStorage.setItem('lastBackupDate', now.toString());
-                } else if ((now - parseInt(lastBackup)) > oneWeek) {
-                    setTimeout(() => {
-                        alert('⚠️ تذكير أسبوعي مهم: \n\nدازت سيمانة على آخر مرة درتي فيها حفظ للبيانات.\nالمرجو عمل "تصدير النسخة الاحتياطية" دابا باش ما يضيعوش ليك عبارات وحسابات الكليانات!');
-                    }, 1500);
-                }
+                const now = Date.now(); const oneWeek = 7 * 24 * 60 * 60 * 1000; 
+                if (!lastBackup) localStorage.setItem('lastBackupDate', now.toString());
+                else if ((now - parseInt(lastBackup)) > oneWeek) setTimeout(() => { alert('⚠️ تذكير أسبوعي: المرجو عمل "تصدير النسخة الاحتياطية" دابا من زر (⚙️) باش ما يضيعوش ليك العبارات!'); }, 1500);
             }
 
             if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
