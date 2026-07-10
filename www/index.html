@@ -40,7 +40,6 @@
             --radius-xs: 10px;
             --radius-pill: 50px;
             
-            /* تحديد حد أقصى للخطوط باش ما تخسرش الديكور */
             --font-sm: clamp(12px, 1.8vw, 15px);
             --font-md: clamp(14px, 2.2vw, 17px);
             --font-lg: clamp(16px, 2.6vw, 20px);
@@ -91,7 +90,7 @@
             font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all var(--transition);
             font-family: inherit; display: flex; align-items: center; justify-content: center;
             gap: 6px; min-height: var(--touch-min); 
-            white-space: normal; /* السماح بالنزول لسطر باش ما يخرجش النص */
+            white-space: normal;
             text-align: center; line-height: 1.2; word-break: break-word;
         }
         .tab-btn:hover { color: var(--text); }
@@ -143,6 +142,12 @@
         }
         .input-empty { animation: pulseBorderRed 1.8s infinite; background-color: var(--red-bg) !important; border-color: var(--red) !important; }
         .input-filled { border-color: var(--green) !important; background-color: var(--green-bg) !important; box-shadow: none !important; }
+
+        @keyframes pulseRecord { 
+            0%, 100% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0); background-color: var(--red); color: white; border-color: var(--red); } 
+            50% { box-shadow: 0 0 0 8px rgba(252, 129, 129, 0.4); background-color: #e53e3e; color: white; border-color: #e53e3e; } 
+        }
+        .recording-pulse { animation: pulseRecord 1.5s infinite !important; border-color: transparent !important; }
 
         .financial-inputs-wrapper { display: flex; gap: 14px; margin-bottom: 10px; width: 100%; flex-wrap: wrap; }
         .financial-inputs-wrapper .form-group { flex: 1; min-width: 130px; margin-bottom: 0; }
@@ -235,7 +240,6 @@
         .badge-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(246,173,85,0.3); }
         .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(72,187,120,0.3); }
         
-        /* جعل الخانات تتأقلم مع كبر الخطوط باش ما تهرسش الشاشة */
         .client-card .client-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px 12px; font-size: var(--font-sm); color: var(--text-muted); font-weight: 500; }
         .client-image { width: 100%; max-height: 240px; object-fit: cover; border-radius: var(--radius-sm); margin: 8px 0; cursor: pointer; border: 1px solid var(--border); }
         .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
@@ -315,6 +319,14 @@
                     <div class="form-group">
                         <label>📝 الوصف</label>
                         <textarea id="cl-description" rows="2" placeholder="ألوان، تفاصيل الثوب، طلبات خاصة..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-outline" id="record-mic-btn" style="margin-bottom: 8px;">🎙️ تسجيل صوتي (الحد الأقصى 3 دقائق)</button>
+                        <div id="audio-preview-container" style="display: none; align-items: center; gap: 10px; background: #F8FAFC; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                            <audio id="form-audio-preview" controls style="flex: 1; height: 36px;"></audio>
+                            <button type="button" class="btn btn-danger btn-sm" id="delete-audio-btn" style="padding: 6px 12px; min-width: auto;">🗑️</button>
+                        </div>
                     </div>
 
                     <div class="financial-inputs-wrapper">
@@ -490,6 +502,23 @@
         </div>
     </div>
 
+    <div id="audio-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content modal-small">
+            <div class="modal-header"><span>🎙️ إضافة تسجيل صوتي</span><button class="modal-close" id="close-audio-modal">&times;</button></div>
+            <p id="audio-modal-info" style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 12px;"></p>
+            
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <button type="button" class="btn btn-outline" id="modal-record-btn">🎙️ بدء التسجيل</button>
+                
+                <div id="modal-audio-preview-container" style="display: none; flex-direction: column; gap: 10px; background: #F8FAFC; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                    <audio id="modal-audio-preview" controls style="width: 100%; height: 36px;"></audio>
+                </div>
+                
+                <button class="btn btn-primary" id="save-audio-btn" style="margin-top:10px;">💾 حفظ التسجيل</button>
+            </div>
+        </div>
+    </div>
+
     <div id="price-modal" class="modal-overlay" style="display:none;">
         <div class="modal-content modal-small">
             <div class="modal-header"><span>💰 تعديل الحساب</span><button class="modal-close" id="close-price-modal">&times;</button></div>
@@ -569,14 +598,9 @@
                 if (!App) return; 
 
                 App.addListener('backButton', () => {
-                    // 1. القوائم المنبثقة (Context Menu)
                     const contextMenu = document.querySelector('.context-menu.active');
-                    if (contextMenu) {
-                        contextMenu.remove();
-                        return;
-                    }
+                    if (contextMenu) { contextMenu.remove(); return; }
 
-                    // 2. النوافذ المنبثقة (Modals)
                     const modals = document.querySelectorAll('.modal-overlay');
                     let modalClosed = false;
                     for (const modal of modals) {
@@ -586,16 +610,19 @@
                             break; 
                         }
                     }
-                    if (modalClosed) return;
+                    if (modalClosed) {
+                        if(modalIsRecording && modalMediaRecorder) {
+                            modalMediaRecorder.stop();
+                        }
+                        return;
+                    }
 
-                    // 3. الرجوع للأجندة يلا كنا فقسم آخر
                     const activeTab = document.querySelector('.tab-btn.active');
                     if (activeTab && activeTab.dataset.tab !== 'agenda') {
                         switchTab('agenda');
                         return;
                     }
 
-                    // 4. الخروج فقط من الأجندة يلا كان كلشي مسدود
                     App.exitApp();
                 });
             }
@@ -634,6 +661,192 @@
                 });
             }
 
+            // ════════════ ميزة التسجيل الصوتي المتقدمة ════════════
+            let mediaRecorder, audioChunks = [], isRecording = false;
+            let recordInterval, recordSeconds = 0, maxAllowedSeconds = 180;
+            let tempAudioData = null; 
+            
+            const micBtn = document.getElementById('record-mic-btn');
+            const audioPreviewContainer = document.getElementById('audio-preview-container');
+            const audioPreview = document.getElementById('form-audio-preview');
+
+            if(micBtn) {
+                micBtn.addEventListener('click', async () => {
+                    if (isRecording) { mediaRecorder.stop(); return; }
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        let options = {};
+                        if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+                            options = { mimeType: 'audio/webm;codecs=opus', audioBitsPerSecond: 16000 };
+                        }
+                        mediaRecorder = new MediaRecorder(stream, options);
+                        audioChunks = [];
+                        recordSeconds = 0;
+
+                        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+                        mediaRecorder.onstart = () => {
+                            isRecording = true; 
+                            micBtn.classList.add('recording-pulse');
+                            micBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="form-audio-timer">00:00</span> / 03:00)`;
+                            const timerText = document.getElementById('form-audio-timer');
+
+                            recordInterval = setInterval(() => {
+                                recordSeconds++;
+                                let m = Math.floor(recordSeconds/60).toString().padStart(2,'0');
+                                let s = (recordSeconds%60).toString().padStart(2,'0');
+                                if(timerText) timerText.innerText = `${m}:${s}`;
+                                
+                                if(recordSeconds >= maxAllowedSeconds) {
+                                    mediaRecorder.stop();
+                                }
+                            }, 1000);
+                        };
+                        mediaRecorder.onstop = () => {
+                            isRecording = false; 
+                            clearInterval(recordInterval);
+                            micBtn.classList.remove('recording-pulse'); 
+                            micBtn.innerHTML = '🎙️ تسجيل صوتي (الحد الأقصى 3 دقائق)';
+                            stream.getTracks().forEach(track => track.stop());
+                            
+                            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                            const reader = new FileReader(); 
+                            reader.readAsDataURL(blob);
+                            reader.onloadend = () => { 
+                                tempAudioData = { src: reader.result, duration: recordSeconds };
+                                audioPreview.src = reader.result; 
+                                audioPreviewContainer.style.display = 'flex'; 
+                            };
+                        };
+                        mediaRecorder.start();
+                    } catch (err) { showToast('⚠️ تعذر الوصول للميكروفون. واش عطيتي الصلاحية؟'); }
+                });
+            }
+
+            if(document.getElementById('delete-audio-btn')) {
+                document.getElementById('delete-audio-btn').onclick = () => { tempAudioData = null; audioPreview.src = ''; audioPreviewContainer.style.display = 'none'; };
+            }
+
+            // ════════════ التسجيل الصوتي المتعدد من الأجندة ════════════
+            let modalMediaRecorder, modalAudioChunks = [], modalIsRecording = false;
+            let modalRecordInterval, modalRecordSeconds = 0, modalMaxAllowedSeconds = 180;
+            let modalTempAudioData = null;
+            let modalCurrentClientId = null;
+            
+            const modalRecBtn = document.getElementById('modal-record-btn');
+            const modalPreviewContainer = document.getElementById('modal-audio-preview-container');
+            const modalPreview = document.getElementById('modal-audio-preview');
+            const infoText = document.getElementById('audio-modal-info');
+
+            modalRecBtn.addEventListener('click', async () => {
+                if (modalIsRecording) { modalMediaRecorder.stop(); return; }
+                if (modalMaxAllowedSeconds <= 0) return;
+                
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    let options = {};
+                    if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
+                        options = { mimeType: 'audio/webm;codecs=opus', audioBitsPerSecond: 16000 };
+                    }
+                    modalMediaRecorder = new MediaRecorder(stream, options);
+                    modalAudioChunks = [];
+                    modalRecordSeconds = 0;
+
+                    modalMediaRecorder.ondataavailable = e => { if (e.data.size > 0) modalAudioChunks.push(e.data); };
+                    modalMediaRecorder.onstart = () => {
+                        modalIsRecording = true; 
+                        modalRecBtn.classList.add('recording-pulse');
+                        modalRecBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="modal-audio-timer">00:00</span>)`;
+                        const timerText = document.getElementById('modal-audio-timer');
+
+                        modalRecordInterval = setInterval(() => {
+                            modalRecordSeconds++;
+                            let m = Math.floor(modalRecordSeconds/60).toString().padStart(2,'0');
+                            let s = (modalRecordSeconds%60).toString().padStart(2,'0');
+                            if(timerText) timerText.innerText = `${m}:${s}`;
+                            
+                            if(modalRecordSeconds >= modalMaxAllowedSeconds) {
+                                modalMediaRecorder.stop();
+                                showToast('⚠️ وصلتي للحد الأقصى!');
+                            }
+                        }, 1000);
+                    };
+                    modalMediaRecorder.onstop = () => {
+                        modalIsRecording = false; 
+                        clearInterval(modalRecordInterval);
+                        modalRecBtn.classList.remove('recording-pulse'); 
+                        modalRecBtn.innerHTML = '🎙️ إعادة التسجيل';
+                        stream.getTracks().forEach(track => track.stop());
+                        
+                        const blob = new Blob(modalAudioChunks, { type: 'audio/webm' });
+                        const reader = new FileReader(); 
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = () => { 
+                            modalTempAudioData = { src: reader.result, duration: modalRecordSeconds };
+                            modalPreview.src = reader.result; 
+                            modalPreviewContainer.style.display = 'flex'; 
+                        };
+                    };
+                    modalMediaRecorder.start();
+                } catch (err) { showToast('⚠️ تعذر الوصول للميكروفون'); }
+            });
+
+            document.getElementById('save-audio-btn').onclick = async () => {
+                if(!modalTempAudioData) return showToast('⚠️ ماسجلتي والو!');
+                const clients = await getClients();
+                const client = clients.find(c => c.id === modalCurrentClientId);
+                if(client) {
+                    if(!client.audioNotes) client.audioNotes = [];
+                    if(client.audioNote && client.audioNotes.length === 0) {
+                        client.audioNotes.push({ src: client.audioNote, duration: 60 });
+                        client.audioNote = null;
+                    }
+                    client.audioNotes.push(modalTempAudioData);
+                    await saveClient(client);
+                    renderAgenda();
+                    showToast('✅ تم إضافة التسجيل بنجاح');
+                }
+                document.getElementById('audio-modal').style.display = 'none';
+            };
+            
+            document.getElementById('close-audio-modal').onclick = () => {
+                if(modalIsRecording && modalMediaRecorder) modalMediaRecorder.stop();
+                document.getElementById('audio-modal').style.display = 'none';
+            };
+
+            function openAudioModal(clientId) {
+                modalCurrentClientId = clientId;
+                modalTempAudioData = null;
+                modalPreviewContainer.style.display = 'none';
+                modalPreview.src = '';
+                modalRecBtn.innerHTML = '🎙️ بدء التسجيل';
+
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if(!client) return;
+
+                    let currentTotal = 0;
+                    if (client.audioNotes) {
+                        client.audioNotes.forEach(n => currentTotal += (n.duration || 0));
+                    } else if (client.audioNote) {
+                        currentTotal += 60; 
+                    }
+
+                    modalMaxAllowedSeconds = 180 - currentTotal;
+
+                    if (modalMaxAllowedSeconds <= 0) {
+                        infoText.innerHTML = `<span style="color:var(--red); font-weight:800;">⚠️ وصلتي للحد الأقصى (3 دقائق). مايمكنش تزيد أوديو آخر.</span>`;
+                        modalRecBtn.style.display = 'none';
+                    } else {
+                        let m = Math.floor(modalMaxAllowedSeconds/60).toString().padStart(2,'0');
+                        let s = (modalMaxAllowedSeconds%60).toString().padStart(2,'0');
+                        infoText.innerHTML = `الوقت المتبقي للكليانة: <b style="color:var(--terracotta);">${m}:${s}</b>`;
+                        modalRecBtn.style.display = 'inline-flex';
+                    }
+                    document.getElementById('audio-modal').style.display = 'flex';
+                });
+            }
+
+            // ════════════ دوال الحسابات ════════════
             const EASE_MAP = { 'واسع':5, 'عادي':3, 'إيفازي':4, 'custom':0 };
             function getEaseValue(ft, ce) { return ft==='custom'? parseFloat(ce)||0 : EASE_MAP[ft]||0; }
             function calculateCuts(m, ft, ce) {
@@ -659,6 +872,7 @@
                 return { level:'green', label:'🟢 باقي الوقت', className:'urgency-green', badgeClass:'badge-green', daysLeft:diff };
             }
 
+            // ════════════ الإشعارات (المزروبة فقط) ════════════
             const PERSISTENT_NOTIFICATION_ID = 123456789;
             async function sendPersistentDailyNotification() {
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
@@ -726,31 +940,72 @@
                 if (window.Capacitor?.Plugins?.LocalNotifications) window.Capacitor.Plugins.LocalNotifications.requestPermissions();
             }
             
+            // ════════════ استيراد الدفعات (Web Workers) ════════════
             async function processImportData(data) {
-                if(!Array.isArray(data)) throw new Error('صيغة الملف غير صحيحة');
-                const existingClients = await getClients();
-                const existingIds = new Set(existingClients.map(c => c.id));
-                let added = 0;
+                if(!Array.isArray(data)) return showToast('صيغة الملف غير صحيحة');
+                showBigToast('⏳ جاري استيراد البيانات، الرجاء الانتظار...');
 
-                for(const c of data) {
-                    if (!existingIds.has(c.id)) {
-                        delete c.notificationId;
-                        if (c.totalPrice === undefined) c.totalPrice = 0;
-                        if (c.advancePayment === undefined) c.advancePayment = 0;
-                        if (c.fitType === undefined) c.fitType = 'عادي';
-                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
-                        if (!c.measurements.jlayel) c.measurements.jlayel = 0;
-                        await saveClient(c);
-                        added++;
+                const workerCode = `
+                    self.onmessage = async function(e) {
+                        const { data, dbName, storeName } = e.data;
+                        let db;
+                        try {
+                            db = await new Promise((res, rej) => {
+                                const req = indexedDB.open(dbName, 1);
+                                req.onsuccess = () => res(req.result);
+                                req.onerror = () => rej(req.error);
+                            });
+                        } catch(err) { self.postMessage({ error: true }); return; }
+
+                        const existingIds = await new Promise((res) => {
+                            const tx = db.transaction(storeName, 'readonly');
+                            const req = tx.objectStore(storeName).getAllKeys();
+                            req.onsuccess = () => res(new Set(req.result));
+                        });
+
+                        let added = 0;
+                        for (let i = 0; i < data.length; i += 50) {
+                            const chunk = data.slice(i, i + 50);
+                            await new Promise((res) => {
+                                const tx = db.transaction(storeName, 'readwrite');
+                                tx.oncomplete = res;
+                                const store = tx.objectStore(storeName);
+                                for (const c of chunk) {
+                                    if (!existingIds.has(c.id)) {
+                                        delete c.notificationId;
+                                        if (c.totalPrice === undefined) c.totalPrice = 0;
+                                        if (c.advancePayment === undefined) c.advancePayment = 0;
+                                        if (c.fitType === undefined) c.fitType = 'عادي';
+                                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
+                                        if (!c.measurements) c.measurements = {shoulders:0, chest:0, waist:0, hips:0, dressLength:0, sleeveLength:0, armhole:0, sleeveMouth:0, jlayel:0};
+                                        if (!c.measurements.jlayel) c.measurements.jlayel = 0;
+                                        if (c.audioNote && !c.audioNotes) { c.audioNotes = [{src: c.audioNote, duration: 60}]; c.audioNote = null; }
+                                        store.put(c);
+                                        added++;
+                                    }
+                                }
+                            });
+                            await new Promise(r => setTimeout(r, 50));
+                        }
+                        self.postMessage({ done: true, added });
+                    };
+                `;
+                const blob = new Blob([workerCode], { type: 'application/javascript' });
+                const worker = new Worker(URL.createObjectURL(blob));
+
+                worker.onmessage = async (e) => {
+                    if (e.data.error) {
+                        showToast('⚠️ فشل الاستيراد');
+                    } else if (e.data.done) {
+                        worker.terminate();
+                        await scheduleAllNotifications();
+                        await sendPersistentDailyNotification();
+                        renderAgenda();
+                        if(e.data.added > 0) showBigToast(`📥 تم استيراد ${e.data.added} طلبية جديدة بنجاح!`);
+                        else showToast('⚠️ مكاينش طلبيات جديدة (البيانات المستوردة ديجا كاينة)');
                     }
-                }
-                
-                await scheduleAllNotifications();
-                await sendPersistentDailyNotification();
-                renderAgenda();
-                
-                if (added > 0) showBigToast(`📥 تم استيراد ${added} طلبية جديدة بنجاح!`);
-                else showToast('⚠️ مكاينش طلبيات جديدة (البيانات المستوردة ديجا كاينة)');
+                };
+                worker.postMessage({ data, dbName: DB_NAME, storeName: STORE_NAME });
             }
 
             document.getElementById('export-btn').addEventListener('click', async () => {
@@ -760,8 +1015,8 @@
 
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
-                        const { Filesystem, Share } = window.Capacitor.Plugins;
-                        const result = await Filesystem.writeFile({
+                        const { Filesystem } = window.Capacitor.Plugins;
+                        await Filesystem.writeFile({
                             path: fileName, data: dataStr, directory: 'DOCUMENTS', encoding: 'utf8'
                         });
                         showToast('✅ تم الحفظ فمجلد المستندات (Documents)');
@@ -803,7 +1058,6 @@
                 }; reader.readAsText(file); e.target.value = ''; 
             });
 
-            // Settings Modal
             document.getElementById('settings-btn').addEventListener('click', () => {
                 document.getElementById('settings-modal').style.display = 'flex';
             });
@@ -877,6 +1131,18 @@
                 const modelHTML = client.modelImage ? `<img src="${client.modelImage}" class="client-image" data-client-id="${client.id}" data-type="model" style="border: 2px dashed var(--gold);">` : '';
                 const noImageText = (!client.image && !client.modelImage) ? `<div style="margin:8px 0; color:var(--text-muted); font-size:var(--font-sm);">📷 لا توجد صور</div>` : '';
                 
+                let audioHTML = '';
+                if (client.audioNotes && client.audioNotes.length > 0) {
+                    audioHTML = client.audioNotes.map((note, idx) => 
+                        `<div style="margin-top:8px;">
+                            <span style="font-size:12px; font-weight:700; color:var(--terracotta);">🎙️ تسجيل ${idx + 1}:</span>
+                            <audio controls src="${note.src}" style="width:100%; height:36px; border-radius: 8px;"></audio>
+                        </div>`
+                    ).join('');
+                } else if (client.audioNote) { 
+                    audioHTML = `<div style="margin-top:8px;"><span style="font-size:12px; font-weight:700; color:var(--terracotta);">🎙️ تسجيل 1:</span><audio controls src="${client.audioNote}" style="width:100%; height:36px; border-radius: 8px;"></audio></div>`;
+                }
+
                 const total = client.totalPrice || 0;
                 const advance = client.advancePayment || 0;
                 const remaining = Math.max(0, total - advance);
@@ -918,6 +1184,7 @@
                         <span class="remaining-badge"><span class="label">⏳</span> ${remaining} درهم</span>
                     </div>
                     ${client.description ? `<div class="desc-box">📝 ${escapeHTML(client.description)}</div>` : ''}
+                    ${audioHTML}
                     <div style="display:flex; gap:10px;">${imgHTML} ${modelHTML}</div>
                     ${noImageText}
                     <div class="client-details measurements-box">
@@ -958,6 +1225,7 @@
                         <button data-action="edit-price">💰 تعديل الحساب</button>
                         <button data-action="edit-measurements">📏 تعديل القياسات</button>
                         <button data-action="edit-desc">📝 تعديل الوصف</button>
+                        <button data-action="add-audio">🎙️ إضافة تسجيل صوتي</button>
                         <button data-action="edit-date">🗓️ تعديل التاريخ</button>
                         <button data-action="edit-model">👗 صورة الموديل</button>
                         <button data-action="edit-image">📸 صورة الثوب</button>
@@ -976,6 +1244,7 @@
                     if(action === 'edit-price') openPriceModal(clientId);
                     else if(action === 'edit-measurements') openEditMeasurementsModal(clientId);
                     else if(action === 'edit-desc') openDescModal(clientId);
+                    else if(action === 'add-audio') openAudioModal(clientId);
                     else if(action === 'edit-date') openDateModal(clientId);
                     else if(action === 'edit-image') openImageModal(clientId, 'dress');
                     else if(action === 'edit-model') openImageModal(clientId, 'model');
@@ -990,7 +1259,6 @@
                     menu.remove();
                 }));
                 
-                // إغلاق القائمة بلمسة خارجية
                 setTimeout(() => {
                     const closeMenu = (e) => { 
                         if(!menu.contains(e.target)) { 
@@ -1211,7 +1479,6 @@
                     const src = type === 'model' ? client.modelImage : client.image;
                     img.src = src || '';
                     
-                    // إظهار زر الحذف فقط إذا كانت هناك صورة
                     if (src) {
                         delBtn.style.display = 'block';
                         delBtn.onclick = async () => {
@@ -1285,9 +1552,10 @@
                                 try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {}
                             }
                         }
-                        // تفريغ المساحة بحذف الصور
                         client.image = null; 
                         client.modelImage = null;
+                        client.audioNotes = [];
+                        client.audioNote = null;
                         
                         client.completed=true; client.completedAt=new Date().toISOString(); delete client.notificationId;
                         await saveClient(client); await sendPersistentDailyNotification(); renderAgenda(); showBigToast('🎉 تم التسليم بنجاح!');
@@ -1417,6 +1685,7 @@
                     location: document.getElementById('client-location').value.trim(),
                     phone: document.getElementById('client-phone').value.trim(),
                     description: document.getElementById('cl-description').value.trim(),
+                    audioNotes: tempAudioData ? [tempAudioData] : [], 
                     totalPrice: total,
                     advancePayment: advance,
                     measurements:{ 
@@ -1444,6 +1713,8 @@
                 this.reset(); 
                 document.getElementById('cl-fitType').value=''; 
                 tempImg=null; tempModel=null; 
+                tempAudioData = null;
+                if(document.getElementById('delete-audio-btn')) document.getElementById('delete-audio-btn').click();
                 formImagePreview.classList.remove('visible'); formImagePreview.src=''; 
                 formModelPreview.classList.remove('visible'); formModelPreview.src=''; 
                 updateRemaining();
@@ -1479,8 +1750,16 @@
             document.getElementById('stats-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('stats-content').classList.toggle('open'); });
 
             async function init() {
-                // تفعيل مستمع زر الرجوع الخاص بـ Capacitor
                 setupBackButton();
+                
+                // قفل دوران الشاشة (Web API كطبقة حماية إضافية)
+                try {
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('portrait');
+                    }
+                } catch (err) { 
+                    console.log('ملاحظة: المتصفح لا يدعم القفل المباشر، سيتم الاعتماد على قفل الأندرويد.'); 
+                }
                 
                 switchTab('clients');
                 document.querySelector('.tab-btn[data-tab="clients"]').classList.add('active');
