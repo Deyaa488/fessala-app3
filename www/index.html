@@ -936,6 +936,8 @@
             border-radius: var(--radius-sm);
             padding: 12px;
             border: 1px solid var(--border);
+            /* إجبار التقويم على الاتجاه من اليسار إلى اليمين لضمان عرض أيام الأسبوع الفرنسية بشكل صحيح */
+            direction: ltr;
         }
         .calendar-header {
             display: flex;
@@ -967,6 +969,8 @@
             grid-template-columns: repeat(7, 1fr);
             gap: 4px;
             text-align: center;
+            /* اتجاه الجدول من اليسار لليمين لضمان ترتيب الأيام بشكل صحيح */
+            direction: ltr;
         }
         .calendar-grid .day-name {
             font-weight: 700;
@@ -1109,7 +1113,7 @@
         }
 
         /* ===== معاينة الصورة المكبرة (إصلاح) ===== */
-        /* تم نقل .image-overlay إلى خارج .app-container في HTML، لذا نضمن أن يبقى فوق كل شيء */
+        /* تم نقل .image-overlay إلى خارج app-container في HTML، لذا نضمن أن يبقى فوق كل شيء */
         .image-overlay {
             position: fixed;
             top: 0;
@@ -2373,7 +2377,7 @@
                     };
                     typeDisplay = client.garmentTypes.map(t =>
                         `<span style="background:var(--gold-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:#b8860b;">${typeMap[t] || t}</span>`
-                    ).join(' ');
+                    ).join('');
                 }
 
                 const extraBadges = (statusDisplay || typeDisplay || purchaseBadge) ?
