@@ -6,6 +6,7 @@
     <title>تطبيق الفصالة - لخياطة العصرية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ===== أنماط عامة ===== */
         :root {
             --bg: #F4F7F6;
             --cream: #FFFFFF;
@@ -23,23 +24,17 @@
             --border-light: #EDF2F7;
             --red: #FC8181;
             --red-bg: #FFF5F5;
-            --red-light: #FEFCFC;
             --orange: #F6AD55;
             --orange-bg: #FFFAF0;
-            --orange-light: #FFFCF7;
             --green: #48BB78;
             --green-bg: #F0FFF4;
-            --green-light: #F9FEFA;
-            
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-            
             --radius: 24px;
             --radius-sm: 16px;
             --radius-xs: 10px;
             --radius-pill: 50px;
-            
             --font-sm: clamp(12px, 1.8vw, 15px);
             --font-md: clamp(14px, 2.2vw, 17px);
             --font-lg: clamp(16px, 2.6vw, 20px);
@@ -52,10 +47,7 @@
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
 
-        html {
-            font-size: 16px; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent;
-            -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: hidden; width: 100%;
-        }
+        html { font-size: 16px; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; overflow-x: hidden; width: 100%; }
 
         body {
             font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -68,9 +60,11 @@
         .app-container {
             max-width: 560px; width: 100%; margin: 0 auto;
             padding: clamp(10px, 2vw, 16px) clamp(12px, 3vw, 20px) 30px;
-            display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px); overflow-x: hidden;
+            display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px);
+            overflow-x: hidden;
         }
 
+        /* ===== الهيدر والتبويبات ===== */
         .app-header { text-align: center; padding: clamp(16px, 3vw, 24px) 8px 10px; position: relative; width: 100%; }
         .settings-btn { position: absolute; top: 20px; right: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition); }
         .settings-btn:hover { background: #F1F5F9; transform: rotate(15deg); }
@@ -89,9 +83,7 @@
             background: transparent; border-radius: var(--radius-pill); font-size: var(--font-sm);
             font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all var(--transition);
             font-family: inherit; display: flex; align-items: center; justify-content: center;
-            gap: 6px; min-height: var(--touch-min); 
-            white-space: normal;
-            text-align: center; line-height: 1.2; word-break: break-word;
+            gap: 6px; min-height: var(--touch-min); white-space: normal; text-align: center; line-height: 1.2; word-break: break-word;
         }
         .tab-btn:hover { color: var(--text); }
         .tab-btn.active { background: var(--card); color: var(--terracotta-dark); box-shadow: var(--shadow-sm); }
@@ -101,6 +93,7 @@
         .tab-content.active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* ===== البطاقات والعناصر ===== */
         .card {
             background: var(--card); border-radius: var(--radius); padding: clamp(18px, 4vw, 24px) clamp(16px, 3.5vw, 22px);
             box-shadow: var(--shadow); border: 1px solid rgba(226, 232, 240, 0.6); width: 100%; overflow: hidden;
@@ -108,10 +101,7 @@
         .card.accent-top { border-top: 5px solid var(--terracotta); }
         .card.gold-top { border-top: 5px solid var(--gold); }
         
-        .card-header {
-            font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark);
-            margin-bottom: clamp(16px, 3vw, 20px); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; line-height: 1.4;
-        }
+        .card-header { font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark); margin-bottom: clamp(16px, 3vw, 20px); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; line-height: 1.4; }
         .card-header .icon { font-size: clamp(22px, 4vw, 28px); flex-shrink: 0; }
 
         .form-group { margin-bottom: clamp(14px, 2vw, 18px); width: 100%; }
@@ -135,13 +125,13 @@
             background-repeat: no-repeat; background-position: left 16px center; padding-left: 45px;
         }
 
-        @keyframes pulseBorderRed {
-            0% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0.4); border-color: var(--red); }
-            70% { box-shadow: 0 0 0 6px rgba(252, 129, 129, 0); border-color: var(--red); }
-            100% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0); border-color: var(--red); }
+        @keyframes pulseBorderRedStrong {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8); border-color: #ff0000; background-color: #fff0f0; }
+            50% { box-shadow: 0 0 0 12px rgba(255, 0, 0, 0); border-color: #cc0000; background-color: #ffe6e6; }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); border-color: #ff0000; background-color: #fff0f0; }
         }
-        .input-empty { animation: pulseBorderRed 1.8s infinite; background-color: var(--red-bg) !important; border-color: var(--red) !important; }
-        .input-filled { border-color: var(--green) !important; background-color: var(--green-bg) !important; box-shadow: none !important; }
+        .input-empty { animation: pulseBorderRedStrong 1.2s infinite cubic-bezier(0.66, 0, 0, 1) !important; border: 2px solid red !important; background-color: #fff0f0 !important; }
+        .input-filled { border: 2px solid var(--green) !important; background-color: var(--green-bg) !important; box-shadow: none !important; }
 
         @keyframes pulseRecord { 
             0%, 100% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0); background-color: var(--red); color: white; border-color: var(--red); } 
@@ -159,12 +149,6 @@
         }
         .remaining-compact-badge .badge-text { font-size: var(--font-sm); color: var(--terracotta-dark); font-weight: 700; word-break: break-word; }
         .remaining-compact-badge .badge-value { font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark); word-break: break-word; }
-
-        .debt-list { list-style: none; padding: 0; margin-top: 12px; }
-        .debt-item { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: var(--font-md); }
-        .debt-item:last-child { border-bottom: none; }
-        .debt-name { font-weight: 700; color: var(--text); word-break: break-word; }
-        .debt-amount { color: var(--red); font-weight: 800; direction: ltr; white-space: nowrap; }
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -190,62 +174,30 @@
         }
         .btn-pill.active-filter { background: var(--text); color: #FFF; border-color: var(--text); }
 
-        .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: clamp(10px, 2vw, 14px); margin-top: 12px; }
-        .result-item { background: #FAFAFA; border-radius: var(--radius-sm); padding: clamp(14px, 2.5vw, 18px) clamp(10px, 2vw, 14px); text-align: center; border: 1px solid var(--border); transition: all 0.3s ease; }
-        .result-label { font-size: var(--font-sm); color: var(--text-muted); font-weight: 600; margin-bottom: 4px; word-break: break-word; }
-        .result-value { font-size: var(--font-xl); font-weight: 800; color: var(--text); direction: ltr; }
-
-        @keyframes pulseRedGlow {
-            0% { background-color: var(--red-bg); border-color: var(--red); }
-            50% { background-color: #FFE5E5; border-color: var(--red); }
-            100% { background-color: var(--red-bg); border-color: var(--red); }
-        }
-        .pulse-red { animation: pulseRedGlow 1.5s infinite; }
-
-        .search-bar { position: relative; width: 100%; margin-bottom: 14px; }
-        .search-bar input { padding-right: 48px; border-radius: var(--radius-pill); background: #F1F5F9; border-color: transparent; }
-        .search-bar input:focus { background: var(--card); border-color: var(--terracotta); }
-        .search-bar .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted); pointer-events: none; }
-        
-        .checkbox-wrapper {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; background: #F8FAFC;
-            padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); cursor: pointer; transition: all var(--transition);
-        }
-        .checkbox-wrapper:hover { background: #F1F5F9; }
-        .checkbox-wrapper input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--terracotta); cursor: pointer; margin: 0; flex-shrink: 0; }
-        .checkbox-wrapper label { font-size: var(--font-sm); font-weight: 700; color: var(--text); cursor: pointer; margin: 0; word-break: break-word; line-height: 1.4; }
-
-        .custom-date-range-group {
-            background: #F8FAFC; padding: 16px; border-radius: var(--radius-sm);
-            border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; margin-top: 8px;
-        }
-        .date-filter-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .date-filter-row label { min-width: 35px; font-size: var(--font-sm); font-weight: 700; color: var(--text-light); }
-        .date-filter-row input { flex: 1; min-width: 150px; padding: 12px 16px !important; font-size: var(--font-sm) !important; background: var(--card); }
-        .date-filter-actions { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
-        .date-filter-actions button { flex: 1; min-width: 100px; }
-        
+        /* ===== بطاقات العملاء (مضغوطة) ===== */
         .client-card {
-            background: var(--card); border-radius: var(--radius); padding: clamp(16px, 3vw, 20px);
+            background: var(--card); border-radius: var(--radius); padding: clamp(12px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
             box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: all var(--transition);
-            position: relative; display: flex; flex-direction: column; gap: 12px;
+            position: relative; display: flex; flex-direction: column; gap: 8px;
         }
         .client-card.urgency-red { border-right: 6px solid var(--red); background: #FFFBFB; }
         .client-card.urgency-orange { border-right: 6px solid var(--orange); }
         .client-card.urgency-green { border-right: 6px solid var(--green); }
+        .client-card.purchased-card { opacity: 0.7; background: #f0f0f0; }
         
-        .client-card .client-name { font-size: var(--font-lg); font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; word-break: break-word; line-height: 1.4; }
-        .client-card .urgency-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--font-sm); font-weight: 800; white-space: normal; text-align: center; }
+        .client-card .client-name { font-size: clamp(15px, 2.2vw, 18px); font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; word-break: break-word; line-height: 1.3; }
+        .client-card .urgency-badge { padding: 4px 10px; border-radius: var(--radius-pill); font-size: var(--font-sm); font-weight: 800; white-space: normal; text-align: center; }
         .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(252,129,129,0.3); }
         .badge-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(246,173,85,0.3); }
         .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(72,187,120,0.3); }
+        .badge-purchased { background: #e6e6e6; color: #555; border: 1px solid #ccc; }
         
-        .client-card .client-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px 12px; font-size: var(--font-sm); color: var(--text-muted); font-weight: 500; }
-        .client-image { width: 100%; max-height: 240px; object-fit: cover; border-radius: var(--radius-sm); margin: 8px 0; cursor: pointer; border: 1px solid var(--border); }
-        .card-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
-        .card-actions button { flex: 1; min-width: 110px; }
+        .client-card .client-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 4px 8px; font-size: var(--font-sm); color: var(--text-muted); font-weight: 500; }
+        .client-image { width: 100%; max-height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin: 6px 0; cursor: pointer; border: 1px solid var(--border); }
+        .card-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+        .card-actions button { flex: 1; min-width: 90px; font-size: var(--font-sm); padding: 6px 10px; min-height: 36px; }
         
-        .more-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); padding: 4px 8px; margin-right: auto; border-radius: 8px; transition: background 0.2s; flex-shrink: 0; }
+        .more-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); padding: 2px 6px; margin-right: auto; border-radius: 8px; transition: background 0.2s; flex-shrink: 0; }
         .more-btn:hover { background: #F1F5F9; color: var(--text); }
         
         .context-menu { position: absolute; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); z-index: 500; padding: 10px 0; min-width: 190px; border: 1px solid var(--border); overflow: hidden; display: none; }
@@ -281,20 +233,262 @@
         .collapsible-toggle.open::after { content: " ▴"; color: var(--terracotta); }
         .collapsible-toggle::after { content: " ▾"; color: var(--text-muted); }
 
-        .financial-details { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-weight: 700; font-size: var(--font-sm); background: #F8FAFC; padding: 12px 16px; border-radius: var(--radius-sm); margin: 6px 0; }
+        .financial-details { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-weight: 700; font-size: var(--font-sm); background: #F8FAFC; padding: 8px 12px; border-radius: var(--radius-sm); margin: 4px 0; }
         .financial-details span { word-break: break-word; }
-        .financial-details .remaining-badge { background: #FFF; color: var(--text); padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.95em; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); flex-wrap: wrap; line-height: 1.3; }
+        .financial-details .remaining-badge { background: #FFF; color: var(--text); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.9em; display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); flex-wrap: wrap; line-height: 1.3; }
         .financial-details .remaining-badge .label { font-weight: 500; color: var(--text-muted); font-size: 0.8em; }
         
         .agenda-search-area { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-        .desc-box { background: #F8FAFC; padding: 14px; border-radius: var(--radius-sm); font-size: var(--font-sm); border: 1px solid var(--border); margin: 8px 0; color: var(--text-light); line-height: 1.5; font-weight: 500; word-break: break-word; }
+        .desc-box { background: #F8FAFC; padding: 10px 14px; border-radius: var(--radius-sm); font-size: var(--font-sm); border: 1px solid var(--border); margin: 6px 0; color: var(--text-light); line-height: 1.5; font-weight: 500; word-break: break-word; }
         
-        .client-details.measurements-box { background: #F8FAFC; padding: 12px; border-radius: var(--radius-sm); margin-top: 8px; border: 1px solid var(--border); }
-        .client-details.measurements-box span { background: #FFF; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border-light); font-weight: 600; text-align: center; word-break: break-word; line-height: 1.2; }
+        .client-details.measurements-box { background: #F8FAFC; padding: 8px 10px; border-radius: var(--radius-sm); margin-top: 6px; border: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 4px; }
+        .client-details.measurements-box span { background: #FFF; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border-light); font-weight: 600; font-size: 0.85em; text-align: center; word-break: break-word; line-height: 1.2; }
+
+        /* ===== خيارات الحالة والنوع (تحسين المظهر الأخضر) ===== */
+        .status-selector, .type-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .status-option, .type-option {
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+            padding: 10px 4px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            background: #f8f8f8;
+        }
+        .status-option:hover, .type-option:hover { transform: scale(1.02); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        
+        /* التحديد الأخضر الزاهي */
+        .status-option.selected, .type-option.selected {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+            transform: scale(1.02);
+            color: #155724;
+        }
+
+        /* ===== التقويم (في الصفحة المنفصلة) ===== */
+        .calendar-container {
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .calendar-header .month-year {
+            font-weight: 800;
+            font-size: var(--font-lg);
+            color: var(--text);
+        }
+        .calendar-header .nav-btn {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .calendar-header .nav-btn:hover { background: #F1F5F9; }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+        .calendar-grid .day-name {
+            font-weight: 700;
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            padding: 6px 0;
+        }
+        .calendar-grid .day-cell {
+            padding: 8px 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #FAFAFA;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            font-weight: 600;
+            font-size: var(--font-sm);
+            position: relative;
+            min-height: 44px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-grid .day-cell:hover {
+            border-color: var(--terracotta);
+            background: var(--terracotta-light);
+        }
+        .calendar-grid .day-cell.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+        .calendar-grid .day-cell .day-number {
+            font-size: var(--font-md);
+            font-weight: 700;
+        }
+        .calendar-grid .day-cell .day-count {
+            font-size: 10px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+        .calendar-grid .day-cell .day-count.urgent { background: var(--red); }
+        .calendar-grid .day-cell .day-count.medium { background: var(--orange); }
+        .calendar-grid .day-cell .day-count.normal { background: var(--green); }
+        .calendar-grid .day-cell .day-count.zero { background: transparent; color: var(--text-muted); }
+        .calendar-grid .day-cell.today {
+            border: 2px solid var(--terracotta);
+            background: var(--terracotta-lighter);
+        }
+
+        /* ===== الصفحات المنفصلة (overlays) ===== */
+        .page-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px 16px 30px;
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .page-overlay.active {
+            display: flex;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .page-overlay .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 8px;
+        }
+        .page-overlay .page-header .page-title {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            color: var(--terracotta-dark);
+        }
+        .page-overlay .page-header .close-page-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 4px 12px;
+            color: var(--text-muted);
+        }
+        .page-overlay .page-header .close-page-btn:hover { color: var(--text); }
+        .page-overlay .page-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* إخفاء التطبيق الأساسي ومنع التمرير عند فتح صفحة منفصلة */
+        body.page-open .app-container > *:not(.page-overlay) { display: none; }
+        body.page-open .app-container { padding: 0; }
+        body.page-open .app-container .page-overlay.active { display: flex; }
+        body.page-open { overflow: hidden; height: 100vh; }
+        body.page-open .app-container { height: 100vh; overflow: hidden; }
+
+        .purchase-action-btn {
+            min-width: 80px;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 6px;
+        }
+
+        /* ===== أنماط معاينة الصورة المكبرة ===== */
+        .image-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        .image-overlay.active {
+            display: flex;
+            animation: fadeIn 0.25s ease;
+        }
+        .image-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .image-overlay .close-image-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .image-overlay .close-image-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* ===== صفحة عرض القياسات ===== */
+        .measurements-page .measurement-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            font-weight: 600;
+            font-size: var(--font-md);
+        }
+        .measurements-page .measurement-item .label {
+            color: var(--text-muted);
+        }
+        .measurements-page .measurement-item .value {
+            color: var(--terracotta-dark);
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
     <div class="app-container">
+
         <header class="app-header">
             <button id="settings-btn" class="settings-btn">⚙️</button>
             <span class="logo-icon">🧵</span>
@@ -322,11 +516,28 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline" id="record-mic-btn" style="margin-bottom: 8px;">🎙️ تسجيل صوتي (الحد الأقصى 3 دقائق)</button>
-                        <div id="audio-preview-container" style="display: none; align-items: center; gap: 10px; background: #F8FAFC; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                            <audio id="form-audio-preview" controls style="flex: 1; height: 36px;"></audio>
-                            <button type="button" class="btn btn-danger btn-sm" id="delete-audio-btn" style="padding: 6px 12px; min-width: auto;">🗑️</button>
+                        <label style="display:block; margin-bottom:8px;">📌 حالة الكليانة (اختياري)</label>
+                        <div class="status-selector" id="status-selector">
+                            <div class="status-option" data-status="hard" style="background:#fee;">😠 صعبة</div>
+                            <div class="status-option" data-status="normal" style="background:#fff9e6;">😐 عادية</div>
+                            <div class="status-option" data-status="special" style="background:#e6f9e6;">🤩 مميزة</div>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display:block; margin-bottom:8px;">👗 نوع الثوب (اختياري - يمكن اختيار الاثنين)</label>
+                        <div class="type-selector" id="type-selector">
+                            <div class="type-option" data-type="dontel" style="background:#f0f0ff;">🧵 دونتيل</div>
+                            <div class="type-option" data-type="sadr" style="background:#fff0f0;">👚 صدر</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="margin-bottom: 10px; display: block; color: var(--text-light); font-weight: 700;">🎙️ الملاحظات الصوتية (المجموع: 3 دقائق كحد أقصى)</label>
+                        <div id="form-audios-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;"></div>
+                        <button type="button" class="btn btn-outline" id="record-mic-btn" style="border: 2px solid var(--terracotta); color: var(--terracotta);">
+                            🎙️ بدء تسجيل صوتي (<span id="form-audio-total-time">00:00</span> / 03:00)
+                        </button>
                     </div>
 
                     <div class="financial-inputs-wrapper">
@@ -419,13 +630,22 @@
             </div>
             <div class="card gold-top" id="results-card" style="display:none;">
                 <div class="card-header">✨ نتائج القصّات</div>
-                <div class="results-grid" id="results-grid"></div>
+                <div class="results-grid" id="results-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:clamp(10px,2vw,14px); margin-top:12px;"></div>
             </div>
         </section>
 
         <section class="tab-content" id="tab-agenda">
             <div class="card accent-top">
                 <div class="card-header">📋 لائحة الكليانات النشطة</div>
+                
+                <button id="show-purchase-modal-btn" class="btn btn-success" style="margin-bottom:12px; background: #28a745;">
+                    🛒 شراء السلع (صدر / دونتيل)
+                </button>
+
+                <button id="open-calendar-btn" class="btn btn-primary" style="margin-bottom:12px; background:var(--gold); color:#FFF; box-shadow:0 4px 16px rgba(212,175,55,0.3);">
+                    📅 التقويم الشهري
+                </button>
+
                 <div class="agenda-search-area">
                     <div class="search-bar">
                         <span class="search-icon">🔎</span>
@@ -440,27 +660,10 @@
                     <div class="filter-panel" id="agenda-filter-panel" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
                         <button class="btn btn-pill active-filter" data-filter="all">📋 كلشي</button>
                         <button class="btn btn-pill" data-filter="this-week">📅 هاد السيمانة</button>
-                        <button class="btn btn-pill" data-filter="last-week">⬅️ اللي فاتت</button>
                         <button class="btn btn-pill" data-filter="this-month">🗓️ هاد الشهر</button>
-                        <button class="btn btn-pill" data-filter="custom">📆 تحديد تاريخ</button>
-                    </div>
-                    
-                    <div class="custom-date-range-group" id="agenda-custom-date-range" style="display:none;">
-                        <div class="date-filter-row">
-                            <label>من:</label>
-                            <input type="date" id="agenda-filter-from">
-                        </div>
-                        <div class="date-filter-row">
-                            <label>إلى:</label>
-                            <input type="date" id="agenda-filter-to">
-                        </div>
-                        <div class="date-filter-actions">
-                            <button class="btn btn-primary btn-sm" id="agenda-apply-custom">✅ تطبيق</button>
-                            <button class="btn btn-outline btn-sm" id="agenda-clear-custom">🗑️ مسح</button>
-                        </div>
                     </div>
                 </div>
-                <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:14px;"></div>
+                <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:12px;"></div>
             </div>
             
             <div class="card" style="padding: 10px 16px;">
@@ -484,150 +687,232 @@
                 <button class="collapsible-toggle" id="completed-toggle" style="border:none; padding:10px 0;"><span>✅ الطلبيات المسلّمة <span id="completed-count">(0)</span></span></button>
                 <div class="collapsible-content" id="completed-content">
                     <div class="search-bar" style="margin-top:14px;"><span class="search-icon">🔎</span><input type="text" id="agenda-completed-search" placeholder="ابحثي في المسلّمات..."></div>
-                    <div id="agenda-completed-list" style="display:flex; flex-direction:column; gap:14px; margin-top:10px;"></div>
+                    <div id="agenda-completed-list" style="display:flex; flex-direction:column; gap:12px; margin-top:10px;"></div>
                 </div>
             </div>
         </section>
-    </div>
 
-    <div id="settings-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span>⚙️ الإعدادات</span><button class="modal-close" id="close-settings-modal">&times;</button></div>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-                <p style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 8px;">أدوات البيانات (تصدير واستيراد النسخ الاحتياطية):</p>
-                <button class="btn btn-outline" id="export-btn">📤 تصدير النسخة الاحتياطية</button>
-                <button class="btn btn-outline" id="import-btn">📥 استيراد نسخة احتياطية</button>
-                <input type="file" id="import-file-input" class="hidden-file-input" accept=".json">
+        <!-- ===== الصفحات المنفصلة (page-overlays) ===== -->
+        <div class="page-overlay" id="calendar-page">
+            <div class="page-header">
+                <span class="page-title" id="calendar-page-title">📅 التقويم</span>
+                <button class="close-page-btn" id="close-calendar-page">&times;</button>
+            </div>
+            <div class="page-body">
+                <div id="calendar-container-full" class="calendar-container"></div>
             </div>
         </div>
-    </div>
 
-    <div id="audio-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span>🎙️ إضافة تسجيل صوتي</span><button class="modal-close" id="close-audio-modal">&times;</button></div>
-            <p id="audio-modal-info" style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 12px;"></p>
-            
-            <div style="display:flex; flex-direction:column; gap:12px;">
-                <button type="button" class="btn btn-outline" id="modal-record-btn">🎙️ بدء التسجيل</button>
-                
-                <div id="modal-audio-preview-container" style="display: none; flex-direction: column; gap: 10px; background: #F8FAFC; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-                    <audio id="modal-audio-preview" controls style="width: 100%; height: 36px;"></audio>
+        <div class="page-overlay" id="day-detail-page">
+            <div class="page-header">
+                <span class="page-title" id="day-detail-title">📅 كليانات اليوم</span>
+                <button class="close-page-btn" id="close-day-detail-page">&times;</button>
+            </div>
+            <div class="page-body">
+                <div id="day-detail-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+            </div>
+        </div>
+
+        <!-- صفحة عرض القياسات -->
+        <div class="page-overlay measurements-page" id="measurements-page">
+            <div class="page-header">
+                <span class="page-title" id="measurements-page-title">📏 قياسات الكليانة</span>
+                <button class="close-page-btn" id="close-measurements-page">&times;</button>
+            </div>
+            <div class="page-body">
+                <div id="measurements-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+            </div>
+        </div>
+
+        <!-- صفحة شراء السلع -->
+        <div class="page-overlay" id="purchase-detail-page">
+            <div class="page-header">
+                <span class="page-title" id="purchase-detail-title">🛒 شراء السلع</span>
+                <button class="close-page-btn" id="close-purchase-detail-page">&times;</button>
+            </div>
+            <div class="page-body">
+                <div id="purchase-detail-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+                <button class="btn btn-success" id="purchase-all-btn" style="padding:16px; font-size:var(--font-xl); margin-top:10px;">✅ تم شراء السلعة كلها</button>
+            </div>
+        </div>
+
+        <!-- ===== مودالات ===== -->
+        <div class="modal-overlay" id="purchase-type-modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header"><span>🛒 شراء السلع</span><button class="modal-close" id="close-purchase-type-modal">&times;</button></div>
+                <div style="display:flex; flex-direction:column; gap:16px; padding:8px 0;">
+                    <button class="btn btn-outline" id="choose-sadr-btn" style="border-color:var(--red); color:var(--red); font-size:var(--font-xl); padding:20px;">
+                        👚 صدر (<span id="sadr-count-badge">0</span>)
+                    </button>
+                    <button class="btn btn-outline" id="choose-dontel-btn" style="border-color:var(--terracotta); color:var(--terracotta); font-size:var(--font-xl); padding:20px;">
+                        🧵 دونتيل (<span id="dontel-count-badge">0</span>)
+                    </button>
                 </div>
-                
-                <button class="btn btn-primary" id="save-audio-btn" style="margin-top:10px;">💾 حفظ التسجيل</button>
             </div>
         </div>
-    </div>
 
-    <div id="price-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span>💰 تعديل الحساب</span><button class="modal-close" id="close-price-modal">&times;</button></div>
-            <input type="hidden" id="price-modal-clientId">
-            <div class="form-group"><label>الثمن الإجمالي (درهم)</label><input type="number" id="price-modal-total" step="0.01"></div>
-            <div class="form-group"><label>التسبيق (درهم)</label><input type="number" id="price-modal-advance" step="0.01"></div>
-            <button class="btn btn-primary" id="save-price-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
-        </div>
-    </div>
-
-    <div id="measurements-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content">
-            <div class="modal-header"><span>📏 تعديل القياسات</span><button class="modal-close" id="close-measurements-modal">&times;</button></div>
-            <input type="hidden" id="measurements-modal-clientId">
-            <div class="form-group"><label>الكتاف كامليين</label><input type="number" id="edit-shoulders"></div>
-            <div class="form-group"><label>التركيز</label><input type="number" id="edit-armhole"></div>
-            <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" id="edit-chest"></div>
-            <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" id="edit-waist"></div>
-            <div class="form-group"><label>دورة الحوض</label><input type="number" id="edit-hips"></div>
-            <div class="form-group"><label>الطول الإجمالي</label><input type="number" id="edit-dressLength"></div>
-            <div class="form-group"><label>طول الكم</label><input type="number" id="edit-sleeveLength"></div>
-            <div class="form-group"><label>فم الكمام</label><input type="number" id="edit-sleeveMouth"></div>
-            <div class="form-group"><label>الجلايل</label><input type="number" id="edit-jlayel"></div>
-            <button class="btn btn-primary" id="save-measurements-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
-        </div>
-    </div>
-
-    <div id="desc-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content">
-            <div class="modal-header"><span>📝 تعديل الوصف</span><button class="modal-close" id="close-desc-modal">&times;</button></div>
-            <input type="hidden" id="desc-modal-clientId">
-            <div class="form-group"><textarea id="desc-modal-input" rows="4"></textarea></div>
-            <button class="btn btn-primary" id="save-desc-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
-        </div>
-    </div>
-
-    <div id="phone-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span>📞 إضافة رقم الهاتف</span><button class="modal-close" id="close-phone-modal">&times;</button></div>
-            <input type="hidden" id="phone-modal-clientId">
-            <div class="form-group"><input type="tel" id="phone-modal-input" placeholder="رقم الهاتف (مثال: 0612345678)" style="margin-bottom:12px;"></div>
-            <button class="btn btn-primary" id="save-phone-btn">💾 حفظ</button>
-        </div>
-    </div>
-
-    <div id="cuts-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content">
-            <div id="cuts-modal-body"></div>
-        </div>
-    </div>
-
-    <div id="image-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span id="image-modal-title">📸 صورة</span><button class="modal-close" id="close-image-modal">&times;</button></div>
-            <img id="image-modal-img" style="width:100%; border-radius:var(--radius-sm); margin-bottom:16px; border:1px solid var(--border);" src="" alt="صورة">
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button class="btn btn-primary btn-sm" id="modal-camera-btn" style="flex:1;">📷 كاميرا</button>
-                <button class="btn btn-outline btn-sm" id="modal-gallery-btn" style="flex:1;">🖼️ الألبوم</button>
-                <button class="btn btn-danger btn-sm" id="modal-delete-btn" style="width:100%; display:none;">🗑️ حذف الصورة</button>
+        <div id="settings-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span>⚙️ الإعدادات</span><button class="modal-close" id="close-settings-modal">&times;</button></div>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    <p style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 8px;">أدوات البيانات (تصدير واستيراد النسخ الاحتياطية):</p>
+                    <button class="btn btn-outline" id="export-btn">📤 تصدير النسخة الاحتياطية</button>
+                    <button class="btn btn-outline" id="import-btn">📥 استيراد نسخة احتياطية</button>
+                    <input type="file" id="import-file-input" class="hidden-file-input" accept=".json">
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="date-modal" class="modal-overlay" style="display:none;">
-        <div class="modal-content modal-small">
-            <div class="modal-header"><span>📅 تعديل تاريخ التسليم</span><button class="modal-close" id="close-date-modal">&times;</button></div>
-            <input type="date" id="date-modal-input" style="margin-bottom:16px; width:100%; padding:14px; border-radius:var(--radius-sm); border:1.5px solid var(--border);">
-            <button class="btn btn-primary" id="save-date-btn">💾 حفظ</button>
+        <div id="audio-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span>🎙️ إضافة تسجيل صوتي</span><button class="modal-close" id="close-audio-modal">&times;</button></div>
+                <p id="audio-modal-info" style="font-size: var(--font-sm); color: var(--text-muted); margin-bottom: 12px;"></p>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    <button type="button" class="btn btn-outline" id="modal-record-btn">🎙️ بدء التسجيل</button>
+                    <div id="modal-audio-preview-container" style="display: none; flex-direction: column; gap: 10px; background: #F8FAFC; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                        <audio id="modal-audio-preview" controls style="width: 100%; height: 36px;"></audio>
+                    </div>
+                    <button class="btn btn-primary" id="save-audio-btn" style="margin-top:10px;">💾 حفظ التسجيل</button>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div id="price-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span>💰 تعديل الحساب</span><button class="modal-close" id="close-price-modal">&times;</button></div>
+                <input type="hidden" id="price-modal-clientId">
+                <div class="form-group"><label>الثمن الإجمالي (درهم)</label><input type="number" id="price-modal-total" step="0.01"></div>
+                <div class="form-group"><label>التسبيق (درهم)</label><input type="number" id="price-modal-advance" step="0.01"></div>
+                <button class="btn btn-primary" id="save-price-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
+            </div>
+        </div>
+
+        <div id="measurements-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header"><span>📏 تعديل القياسات</span><button class="modal-close" id="close-measurements-modal">&times;</button></div>
+                <input type="hidden" id="measurements-modal-clientId">
+                <div class="form-group"><label>الكتاف كامليين</label><input type="number" id="edit-shoulders"></div>
+                <div class="form-group"><label>التركيز</label><input type="number" id="edit-armhole"></div>
+                <div class="form-group"><label>دورة الصدر كاملة</label><input type="number" id="edit-chest"></div>
+                <div class="form-group"><label>دورة الحزام كاملة</label><input type="number" id="edit-waist"></div>
+                <div class="form-group"><label>دورة الحوض</label><input type="number" id="edit-hips"></div>
+                <div class="form-group"><label>الطول الإجمالي</label><input type="number" id="edit-dressLength"></div>
+                <div class="form-group"><label>طول الكم</label><input type="number" id="edit-sleeveLength"></div>
+                <div class="form-group"><label>فم الكمام</label><input type="number" id="edit-sleeveMouth"></div>
+                <div class="form-group"><label>الجلايل</label><input type="number" id="edit-jlayel"></div>
+                <button class="btn btn-primary" id="save-measurements-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
+            </div>
+        </div>
+
+        <div id="desc-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header"><span>📝 تعديل الوصف</span><button class="modal-close" id="close-desc-modal">&times;</button></div>
+                <input type="hidden" id="desc-modal-clientId">
+                <div class="form-group"><textarea id="desc-modal-input" rows="4"></textarea></div>
+                <button class="btn btn-primary" id="save-desc-btn" style="margin-top:10px;">💾 حفظ التعديلات</button>
+            </div>
+        </div>
+
+        <div id="phone-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span>📞 إضافة رقم الهاتف</span><button class="modal-close" id="close-phone-modal">&times;</button></div>
+                <input type="hidden" id="phone-modal-clientId">
+                <div class="form-group"><input type="tel" id="phone-modal-input" placeholder="رقم الهاتف (مثال: 0612345678)" style="margin-bottom:12px;"></div>
+                <button class="btn btn-primary" id="save-phone-btn">💾 حفظ</button>
+            </div>
+        </div>
+
+        <div id="cuts-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <div id="cuts-modal-body"></div>
+            </div>
+        </div>
+
+        <div id="image-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span id="image-modal-title">📸 صورة</span><button class="modal-close" id="close-image-modal">&times;</button></div>
+                <img id="image-modal-img" style="width:100%; border-radius:var(--radius-sm); margin-bottom:16px; border:1px solid var(--border);" src="" alt="صورة">
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" id="modal-camera-btn" style="flex:1;">📷 كاميرا</button>
+                    <button class="btn btn-outline btn-sm" id="modal-gallery-btn" style="flex:1;">🖼️ الألبوم</button>
+                    <button class="btn btn-danger btn-sm" id="modal-delete-btn" style="width:100%; display:none;">🗑️ حذف الصورة</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="date-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content modal-small">
+                <div class="modal-header"><span>📅 تعديل تاريخ التسليم</span><button class="modal-close" id="close-date-modal">&times;</button></div>
+                <input type="date" id="date-modal-input" style="margin-bottom:16px; width:100%; padding:14px; border-radius:var(--radius-sm); border:1.5px solid var(--border);">
+                <button class="btn btn-primary" id="save-date-btn">💾 حفظ</button>
+            </div>
+        </div>
+
+        <!-- ===== معاينة الصورة المكبرة ===== -->
+        <div class="image-overlay" id="image-overlay">
+            <button class="close-image-btn" id="close-image-overlay">&times;</button>
+            <img id="full-image" src="" alt="صورة مكبرة">
+        </div>
+
+    </div> <!-- نهاية app-container -->
 
     <script>
         (function() {
-            // ════════════ إعدادات زر الرجوع (Back Button) ════════════
+            // ====== إعدادات زر الرجوع (المحدثة) ======
             function setupBackButton() {
                 const { App } = window.Capacitor?.Plugins || {};
                 if (!App) return; 
-
                 App.addListener('backButton', () => {
-                    const contextMenu = document.querySelector('.context-menu.active');
-                    if (contextMenu) { contextMenu.remove(); return; }
-
+                    // 1. إغلاق معاينة الصورة المكبرة
+                    const overlay = document.getElementById('image-overlay');
+                    if (overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                        document.body.classList.remove('page-open');
+                        return;
+                    }
+                    // 2. إغلاق الصفحات المنبثقة (page-overlay) بالترتيب
+                    const pages = document.querySelectorAll('.page-overlay.active');
+                    if (pages.length > 0) {
+                        const lastPage = pages[pages.length - 1];
+                        lastPage.classList.remove('active');
+                        if (document.querySelectorAll('.page-overlay.active').length === 0) {
+                            document.body.classList.remove('page-open');
+                        }
+                        return;
+                    }
+                    // 3. إغلاق المودال المفتوح
                     const modals = document.querySelectorAll('.modal-overlay');
-                    let modalClosed = false;
+                    let openModal = null;
                     for (const modal of modals) {
                         if (modal.style.display === 'flex') {
-                            modal.style.display = 'none';
-                            modalClosed = true;
-                            break; 
+                            openModal = modal;
                         }
                     }
-                    if (modalClosed) {
-                        if(modalIsRecording && modalMediaRecorder) {
-                            modalMediaRecorder.stop();
-                        }
+                    if (openModal) {
+                        openModal.style.display = 'none';
                         return;
                     }
-
+                    // 4. إغلاق قائمة السياق
+                    const contextMenu = document.querySelector('.context-menu.active');
+                    if (contextMenu) { contextMenu.remove(); return; }
+                    // 5. إيقاف التسجيل الصوتي
+                    if (typeof isFormRecording !== 'undefined' && isFormRecording && formMediaRecorder) {
+                        formMediaRecorder.stop();
+                        waitingToSaveClient = false;
+                        return;
+                    }
+                    // 6. العودة إلى تبويب العملاء
                     const activeTab = document.querySelector('.tab-btn.active');
-                    if (activeTab && activeTab.dataset.tab !== 'agenda') {
-                        switchTab('agenda');
+                    if (activeTab && activeTab.dataset.tab !== 'clients') {
+                        switchTab('clients');
                         return;
                     }
-
+                    // 7. الخروج من التطبيق
                     App.exitApp();
                 });
             }
 
-            // ════════════ IndexedDB ════════════
+            // ====== IndexedDB (نفس الكود السابق) ======
             const DB_NAME = 'FessalaAppDB', STORE_NAME = 'clients';
             function openDB() {
                 return new Promise((resolve, reject) => {
@@ -661,79 +946,120 @@
                 });
             }
 
-            // ════════════ ميزة التسجيل الصوتي المتقدمة ════════════
-            let mediaRecorder, audioChunks = [], isRecording = false;
-            let recordInterval, recordSeconds = 0, maxAllowedSeconds = 180;
-            let tempAudioData = null; 
+            // ====== التسجيل الصوتي (نفس الكود السابق) ======
+            let formAudioNotes = [];
+            let formTotalSeconds = 0;
+            let formMaxSeconds = 180;
+            let formMediaRecorder, isFormRecording = false;
+            let formRecordInterval, formCurrentRecordSeconds = 0;
+            let waitingToSaveClient = false; 
             
             const micBtn = document.getElementById('record-mic-btn');
-            const audioPreviewContainer = document.getElementById('audio-preview-container');
-            const audioPreview = document.getElementById('form-audio-preview');
+            const formAudiosList = document.getElementById('form-audios-list');
+
+            window.renderFormAudios = function() {
+                formAudiosList.innerHTML = '';
+                formTotalSeconds = 0;
+                formAudioNotes.forEach((note, index) => {
+                    formTotalSeconds += note.duration;
+                    const div = document.createElement('div');
+                    div.style.display = 'flex';
+                    div.style.alignItems = 'center';
+                    div.style.gap = '10px';
+                    div.style.background = '#FFF5F5';
+                    div.style.padding = '8px 12px';
+                    div.style.borderRadius = 'var(--radius-sm)';
+                    div.style.border = '1px solid var(--border)';
+                    const audioSrc = note.blobUrl || note.src;
+                    div.innerHTML = `
+                        <span style="font-size:12px; font-weight:800; color:var(--terracotta); white-space:nowrap;">🎙️ أوديو ${index + 1}</span>
+                        <audio controls src="${audioSrc}" style="flex: 1; height: 36px;"></audio>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeFormAudio(${index})" style="padding: 6px 12px; min-width: auto; height: 36px; display:flex; align-items:center;">🗑️</button>
+                    `;
+                    formAudiosList.appendChild(div);
+                });
+                let m = Math.floor(formTotalSeconds/60).toString().padStart(2,'0');
+                let s = (formTotalSeconds%60).toString().padStart(2,'0');
+                document.getElementById('form-audio-total-time').innerText = `${m}:${s}`;
+                if (formTotalSeconds >= formMaxSeconds) {
+                    micBtn.style.display = 'none';
+                } else {
+                    micBtn.style.display = 'inline-flex';
+                    micBtn.innerHTML = `🎙️ تسجيل صوتي إضافي (<span id="form-audio-total-time">${m}:${s}</span> / 03:00)`;
+                }
+            };
+
+            window.removeFormAudio = function(index) {
+                formAudioNotes.splice(index, 1);
+                renderFormAudios();
+            };
 
             if(micBtn) {
                 micBtn.addEventListener('click', async () => {
-                    if (isRecording) { mediaRecorder.stop(); return; }
+                    if (isFormRecording) { formMediaRecorder.stop(); return; }
+                    if (formTotalSeconds >= formMaxSeconds) return showToast('⚠️ وصلتي للحد الأقصى (3 دقائق)');
                     try {
                         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                         let options = {};
-                        if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
-                            options = { mimeType: 'audio/webm;codecs=opus', audioBitsPerSecond: 16000 };
+                        if (MediaRecorder.isTypeSupported('audio/webm')) {
+                            options = { mimeType: 'audio/webm' };
+                        } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
+                            options = { mimeType: 'audio/mp4' };
                         }
-                        mediaRecorder = new MediaRecorder(stream, options);
-                        audioChunks = [];
-                        recordSeconds = 0;
-
-                        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
-                        mediaRecorder.onstart = () => {
-                            isRecording = true; 
+                        formMediaRecorder = new MediaRecorder(stream, options);
+                        let audioChunks = [];
+                        formCurrentRecordSeconds = 0;
+                        formMediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+                        formMediaRecorder.onstart = () => {
+                            isFormRecording = true; 
                             micBtn.classList.add('recording-pulse');
-                            micBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="form-audio-timer">00:00</span> / 03:00)`;
-                            const timerText = document.getElementById('form-audio-timer');
-
-                            recordInterval = setInterval(() => {
-                                recordSeconds++;
-                                let m = Math.floor(recordSeconds/60).toString().padStart(2,'0');
-                                let s = (recordSeconds%60).toString().padStart(2,'0');
+                            micBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="form-current-timer">00:00</span>)`;
+                            const timerText = document.getElementById('form-current-timer');
+                            formRecordInterval = setInterval(() => {
+                                formCurrentRecordSeconds++;
+                                let m = Math.floor(formCurrentRecordSeconds/60).toString().padStart(2,'0');
+                                let s = (formCurrentRecordSeconds%60).toString().padStart(2,'0');
                                 if(timerText) timerText.innerText = `${m}:${s}`;
-                                
-                                if(recordSeconds >= maxAllowedSeconds) {
-                                    mediaRecorder.stop();
+                                if((formTotalSeconds + formCurrentRecordSeconds) >= formMaxSeconds) {
+                                    formMediaRecorder.stop();
+                                    showToast('⚠️ وصلتي للحد الأقصى المسموح (3 دقائق)!');
                                 }
                             }, 1000);
                         };
-                        mediaRecorder.onstop = () => {
-                            isRecording = false; 
-                            clearInterval(recordInterval);
+                        formMediaRecorder.onstop = () => {
+                            isFormRecording = false; 
+                            clearInterval(formRecordInterval);
                             micBtn.classList.remove('recording-pulse'); 
-                            micBtn.innerHTML = '🎙️ تسجيل صوتي (الحد الأقصى 3 دقائق)';
-                            stream.getTracks().forEach(track => track.stop());
-                            
-                            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                            if(formMediaRecorder.stream) {
+                                formMediaRecorder.stream.getTracks().forEach(track => track.stop());
+                            }
+                            const blob = new Blob(audioChunks, { type: options.mimeType || 'audio/webm' });
+                            const blobUrl = URL.createObjectURL(blob);
                             const reader = new FileReader(); 
                             reader.readAsDataURL(blob);
                             reader.onloadend = () => { 
-                                tempAudioData = { src: reader.result, duration: recordSeconds };
-                                audioPreview.src = reader.result; 
-                                audioPreviewContainer.style.display = 'flex'; 
+                                formAudioNotes.push({ src: reader.result, blobUrl: blobUrl, duration: formCurrentRecordSeconds });
+                                renderFormAudios();
+                                if (waitingToSaveClient) {
+                                    executeSaveNewClient();
+                                    waitingToSaveClient = false;
+                                }
                             };
                         };
-                        mediaRecorder.start();
+                        formMediaRecorder.start();
                     } catch (err) { 
-                        showToast('⚠️ خطأ المايك: ' + (err.message || err.name || 'مكاينش صلاحية')); 
+                        showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.'); 
                         console.error('Mic Error:', err);
                     }
                 });
             }
 
-            if(document.getElementById('delete-audio-btn')) {
-                document.getElementById('delete-audio-btn').onclick = () => { tempAudioData = null; audioPreview.src = ''; audioPreviewContainer.style.display = 'none'; };
-            }
-
-            // ════════════ التسجيل الصوتي المتعدد من الأجندة ════════════
+            // ====== التسجيل الصوتي من الأجندة ======
             let modalMediaRecorder, modalAudioChunks = [], modalIsRecording = false;
             let modalRecordInterval, modalRecordSeconds = 0, modalMaxAllowedSeconds = 180;
             let modalTempAudioData = null;
             let modalCurrentClientId = null;
+            let waitingToSaveModalAudio = false;
             
             const modalRecBtn = document.getElementById('modal-record-btn');
             const modalPreviewContainer = document.getElementById('modal-audio-preview-container');
@@ -743,30 +1069,28 @@
             modalRecBtn.addEventListener('click', async () => {
                 if (modalIsRecording) { modalMediaRecorder.stop(); return; }
                 if (modalMaxAllowedSeconds <= 0) return;
-                
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     let options = {};
-                    if (MediaRecorder.isTypeSupported('audio/webm;codecs=opus')) {
-                        options = { mimeType: 'audio/webm;codecs=opus', audioBitsPerSecond: 16000 };
+                    if (MediaRecorder.isTypeSupported('audio/webm')) {
+                        options = { mimeType: 'audio/webm' };
+                    } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
+                        options = { mimeType: 'audio/mp4' };
                     }
                     modalMediaRecorder = new MediaRecorder(stream, options);
                     modalAudioChunks = [];
                     modalRecordSeconds = 0;
-
                     modalMediaRecorder.ondataavailable = e => { if (e.data.size > 0) modalAudioChunks.push(e.data); };
                     modalMediaRecorder.onstart = () => {
                         modalIsRecording = true; 
                         modalRecBtn.classList.add('recording-pulse');
                         modalRecBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="modal-audio-timer">00:00</span>)`;
                         const timerText = document.getElementById('modal-audio-timer');
-
                         modalRecordInterval = setInterval(() => {
                             modalRecordSeconds++;
                             let m = Math.floor(modalRecordSeconds/60).toString().padStart(2,'0');
                             let s = (modalRecordSeconds%60).toString().padStart(2,'0');
                             if(timerText) timerText.innerText = `${m}:${s}`;
-                            
                             if(modalRecordSeconds >= modalMaxAllowedSeconds) {
                                 modalMediaRecorder.stop();
                                 showToast('⚠️ وصلتي للحد الأقصى!');
@@ -778,25 +1102,40 @@
                         clearInterval(modalRecordInterval);
                         modalRecBtn.classList.remove('recording-pulse'); 
                         modalRecBtn.innerHTML = '🎙️ إعادة التسجيل';
-                        stream.getTracks().forEach(track => track.stop());
-                        
-                        const blob = new Blob(modalAudioChunks, { type: 'audio/webm' });
+                        if(modalMediaRecorder.stream) {
+                            modalMediaRecorder.stream.getTracks().forEach(track => track.stop());
+                        }
+                        const blob = new Blob(modalAudioChunks, { type: options.mimeType || 'audio/webm' });
+                        const blobUrl = URL.createObjectURL(blob);
+                        modalPreview.src = blobUrl; 
+                        modalPreviewContainer.style.display = 'flex'; 
                         const reader = new FileReader(); 
                         reader.readAsDataURL(blob);
                         reader.onloadend = () => { 
-                            modalTempAudioData = { src: reader.result, duration: modalRecordSeconds };
-                            modalPreview.src = reader.result; 
-                            modalPreviewContainer.style.display = 'flex'; 
+                            modalTempAudioData = { src: reader.result, blobUrl: blobUrl, duration: modalRecordSeconds };
+                            if (waitingToSaveModalAudio) {
+                                executeModalAudioSave();
+                                waitingToSaveModalAudio = false;
+                            }
                         };
                     };
                     modalMediaRecorder.start();
                 } catch (err) { 
-                    showToast('⚠️ خطأ المايك: ' + (err.message || err.name || 'مكاينش صلاحية')); 
+                    showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.'); 
                     console.error('Modal Mic Error:', err);
                 }
             });
 
             document.getElementById('save-audio-btn').onclick = async () => {
+                if (modalIsRecording && modalMediaRecorder) {
+                    waitingToSaveModalAudio = true; 
+                    modalMediaRecorder.stop();
+                    return;
+                }
+                executeModalAudioSave();
+            };
+
+            async function executeModalAudioSave() {
                 if(!modalTempAudioData) return showToast('⚠️ ماسجلتي والو!');
                 const clients = await getClients();
                 const client = clients.find(c => c.id === modalCurrentClientId);
@@ -812,33 +1151,33 @@
                     showToast('✅ تم إضافة التسجيل بنجاح');
                 }
                 document.getElementById('audio-modal').style.display = 'none';
-            };
+            }
             
             document.getElementById('close-audio-modal').onclick = () => {
-                if(modalIsRecording && modalMediaRecorder) modalMediaRecorder.stop();
+                if(modalIsRecording && modalMediaRecorder) {
+                    modalMediaRecorder.stop();
+                    waitingToSaveModalAudio = false;
+                }
                 document.getElementById('audio-modal').style.display = 'none';
             };
 
             function openAudioModal(clientId) {
                 modalCurrentClientId = clientId;
                 modalTempAudioData = null;
+                waitingToSaveModalAudio = false;
                 modalPreviewContainer.style.display = 'none';
                 modalPreview.src = '';
                 modalRecBtn.innerHTML = '🎙️ بدء التسجيل';
-
                 getClients().then(clients => {
                     const client = clients.find(c => c.id === clientId);
                     if(!client) return;
-
                     let currentTotal = 0;
                     if (client.audioNotes) {
                         client.audioNotes.forEach(n => currentTotal += (n.duration || 0));
                     } else if (client.audioNote) {
                         currentTotal += 60; 
                     }
-
                     modalMaxAllowedSeconds = 180 - currentTotal;
-
                     if (modalMaxAllowedSeconds <= 0) {
                         infoText.innerHTML = `<span style="color:var(--red); font-weight:800;">⚠️ وصلتي للحد الأقصى (3 دقائق). مايمكنش تزيد أوديو آخر.</span>`;
                         modalRecBtn.style.display = 'none';
@@ -852,7 +1191,7 @@
                 });
             }
 
-            // ════════════ دوال الحسابات ════════════
+            // ====== دوال الحسابات والإشعارات ======
             const EASE_MAP = { 'واسع':5, 'عادي':3, 'إيفازي':4, 'custom':0 };
             function getEaseValue(ft, ce) { return ft==='custom'? parseFloat(ce)||0 : EASE_MAP[ft]||0; }
             function calculateCuts(m, ft, ce) {
@@ -878,7 +1217,7 @@
                 return { level:'green', label:'🟢 باقي الوقت', className:'urgency-green', badgeClass:'badge-green', daysLeft:diff };
             }
 
-            // ════════════ الإشعارات (المزروبة فقط) ════════════
+            // ====== الإشعارات ======
             const PERSISTENT_NOTIFICATION_ID = 123456789;
             async function sendPersistentDailyNotification() {
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
@@ -887,7 +1226,6 @@
                     await LocalNotifications.requestPermissions();
                     const clients = await getClients();
                     const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level === 'red');
-                    
                     let title, body;
                     if (urgentClients.length === 0) {
                         try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
@@ -896,7 +1234,6 @@
                         title = `🚨 طلبيات مزروبة: ${urgentClients.length}`;
                         body = 'عندك خدمة مزروبة خاصها تسلم قريباً!';
                     }
-                    
                     try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
                     await LocalNotifications.schedule({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID, title: title, body: body, schedule: { at: new Date(Date.now() + 500) }, ongoing: true, autoCancel: false }] });
                 } catch (error) { console.error(error); }
@@ -914,7 +1251,6 @@
             async function scheduleNotificationForClient(client) {
                 if (client.completed) return;
                 if (getUrgencyInfo(client.deliveryDate).level !== 'red') return;
-
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
                 if (!LocalNotifications) return;
                 try {
@@ -945,98 +1281,87 @@
                 if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
                 if (window.Capacitor?.Plugins?.LocalNotifications) window.Capacitor.Plugins.LocalNotifications.requestPermissions();
             }
-            
-            // ════════════ استيراد الدفعات (Web Workers) ════════════
+
+            // ====== استيراد/تصدير (محسن) ======
             async function processImportData(data) {
-                if(!Array.isArray(data)) return showToast('صيغة الملف غير صحيحة');
-                showBigToast('⏳ جاري استيراد البيانات، الرجاء الانتظار...');
-
-                const workerCode = `
-                    self.onmessage = async function(e) {
-                        const { data, dbName, storeName } = e.data;
-                        let db;
-                        try {
-                            db = await new Promise((res, rej) => {
-                                const req = indexedDB.open(dbName, 1);
-                                req.onsuccess = () => res(req.result);
-                                req.onerror = () => rej(req.error);
-                            });
-                        } catch(err) { self.postMessage({ error: true }); return; }
-
-                        const existingIds = await new Promise((res) => {
-                            const tx = db.transaction(storeName, 'readonly');
-                            const req = tx.objectStore(storeName).getAllKeys();
-                            req.onsuccess = () => res(new Set(req.result));
-                        });
-
-                        let added = 0;
-                        for (let i = 0; i < data.length; i += 50) {
-                            const chunk = data.slice(i, i + 50);
-                            await new Promise((res) => {
-                                const tx = db.transaction(storeName, 'readwrite');
-                                tx.oncomplete = res;
-                                const store = tx.objectStore(storeName);
-                                for (const c of chunk) {
-                                    if (!existingIds.has(c.id)) {
-                                        delete c.notificationId;
-                                        if (c.totalPrice === undefined) c.totalPrice = 0;
-                                        if (c.advancePayment === undefined) c.advancePayment = 0;
-                                        if (c.fitType === undefined) c.fitType = 'عادي';
-                                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
-                                        if (!c.measurements) c.measurements = {shoulders:0, chest:0, waist:0, hips:0, dressLength:0, sleeveLength:0, armhole:0, sleeveMouth:0, jlayel:0};
-                                        if (!c.measurements.jlayel) c.measurements.jlayel = 0;
-                                        if (c.audioNote && !c.audioNotes) { c.audioNotes = [{src: c.audioNote, duration: 60}]; c.audioNote = null; }
-                                        store.put(c);
-                                        added++;
-                                    }
-                                }
-                            });
-                            await new Promise(r => setTimeout(r, 50));
+                if(!Array.isArray(data)) throw new Error('صيغة الملف غير صحيحة');
+                const existingClients = await getClients();
+                const existingIds = new Set(existingClients.map(c => c.id));
+                let added = 0;
+                for(const c of data) {
+                    if (!existingIds.has(c.id)) {
+                        delete c.notificationId;
+                        if (c.totalPrice === undefined) c.totalPrice = 0;
+                        if (c.advancePayment === undefined) c.advancePayment = 0;
+                        if (c.fitType === undefined) c.fitType = 'عادي';
+                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
+                        if (!c.measurements.jlayel) c.measurements.jlayel = 0;
+                        if (c.audioNote && !c.audioNotes) { c.audioNotes = [{src: c.audioNote, duration: 60}]; c.audioNote = null; }
+                        if (!c.status) c.status = null;
+                        if (c.garmentType && !c.garmentTypes) {
+                            c.garmentTypes = [c.garmentType];
+                        } else if (!c.garmentTypes) {
+                            c.garmentTypes = [];
                         }
-                        self.postMessage({ done: true, added });
-                    };
-                `;
-                const blob = new Blob([workerCode], { type: 'application/javascript' });
-                const worker = new Worker(URL.createObjectURL(blob));
-
-                worker.onmessage = async (e) => {
-                    if (e.data.error) {
-                        showToast('⚠️ فشل الاستيراد');
-                    } else if (e.data.done) {
-                        worker.terminate();
-                        await scheduleAllNotifications();
-                        await sendPersistentDailyNotification();
-                        renderAgenda();
-                        if(e.data.added > 0) showBigToast(`📥 تم استيراد ${e.data.added} طلبية جديدة بنجاح!`);
-                        else showToast('⚠️ مكاينش طلبيات جديدة (البيانات المستوردة ديجا كاينة)');
+                        if (c.purchased === undefined) c.purchased = false;
+                        await saveClient(c);
+                        added++;
                     }
-                };
-                worker.postMessage({ data, dbName: DB_NAME, storeName: STORE_NAME });
+                }
+                await scheduleAllNotifications();
+                await sendPersistentDailyNotification();
+                renderAgenda();
+                updatePurchaseCounts();
+                if (added > 0) showBigToast(`📥 تم استيراد ${added} طلبية جديدة بنجاح!`);
+                else showToast('⚠️ مكاينش طلبيات جديدة (البيانات المستوردة ديجا كاينة)');
             }
 
             document.getElementById('export-btn').addEventListener('click', async () => {
                 const clients = await getClients();
                 const dataStr = JSON.stringify(clients, null, 2);
                 const fileName = `Fessala_Backup_${new Date().toISOString().split('T')[0]}.json`;
-
+                
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
-                        const { Filesystem } = window.Capacitor.Plugins;
-                        await Filesystem.writeFile({
-                            path: fileName, data: dataStr, directory: 'DOCUMENTS', encoding: 'utf8'
+                        const { Filesystem, Share } = window.Capacitor.Plugins;
+                        // حفظ الملف في نظام الملفات
+                        const result = await Filesystem.writeFile({
+                            path: fileName,
+                            data: dataStr,
+                            directory: 'DOCUMENTS',
+                            encoding: 'utf8'
                         });
-                        showToast('✅ تم الحفظ فمجلد المستندات (Documents)');
+                        // عرض قائمة المشاركة
+                        await Share.share({
+                            title: 'نسخة احتياطية لتطبيق الفصالة',
+                            text: 'ملف النسخة الاحتياطية لتطبيق الفصالة',
+                            url: result.uri, // بعض الأنظمة تدعم مشاركة الملف عبر URI
+                            dialogTitle: 'شارك ملف النسخة الاحتياطية'
+                        });
                         localStorage.setItem('lastBackupDate', Date.now().toString());
-                    } catch (e) { showToast('⚠️ فشل الحفظ: ' + e.message); }
+                        showToast('✅ تم الحفظ والمشاركة بنجاح');
+                    } catch (e) {
+                        if (e.message !== 'Share canceled') {
+                            showToast('⚠️ فشل التصدير: ' + e.message);
+                        }
+                    }
                 } else {
+                    // للمتصفحات: تنزيل الملف
                     try {
                         const blob = new Blob([dataStr], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a'); a.href = url; a.download = fileName;
-                        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
                         localStorage.setItem('lastBackupDate', Date.now().toString());
                         showToast('✅ تم تنزيل الملف بنجاح.');
-                    } catch (e) { showToast('⚠️ تعذر التنزيل.'); }
+                    } catch (e) {
+                        showToast('⚠️ تعذر التنزيل.');
+                    }
                 }
             });
 
@@ -1064,6 +1389,7 @@
                 }; reader.readAsText(file); e.target.value = ''; 
             });
 
+            // ====== الإعدادات ======
             document.getElementById('settings-btn').addEventListener('click', () => {
                 document.getElementById('settings-modal').style.display = 'flex';
             });
@@ -1071,13 +1397,10 @@
                 document.getElementById('settings-modal').style.display = 'none';
             });
 
-            let agendaActiveDateFilter = 'all', agendaCustomFrom = null, agendaCustomTo = null;
+            // ====== متغيرات الأجندة ======
+            let agendaActiveDateFilter = 'all';
             const agendaSearch = document.getElementById('agenda-search');
             const agendaCompletedSearch = document.getElementById('agenda-completed-search');
-            const agendaFilterPanel = document.getElementById('agenda-filter-panel');
-            const agendaCustomRange = document.getElementById('agenda-custom-date-range');
-            const agendaFilterFrom = document.getElementById('agenda-filter-from');
-            const agendaFilterTo = document.getElementById('agenda-filter-to');
             const agendaActiveList = document.getElementById('agenda-active-list');
             const agendaCompletedList = document.getElementById('agenda-completed-list');
             const completedCountSpan = document.getElementById('completed-count');
@@ -1088,6 +1411,7 @@
             const formModelInput = document.getElementById('form-model-input');
             const formModelPreview = document.getElementById('form-model-preview');
 
+            // ====== إعدادات الحقول الرقمية ======
             document.querySelectorAll('input[type="number"], input[type="tel"]').forEach(input => {
                 input.addEventListener('focus', function() { this.select(); }); 
             });
@@ -1105,6 +1429,7 @@
                 });
             });
 
+            // ====== دوال الإشعارات ======
             function showToast(msg) {
                 const old = document.querySelector('.toast'); if(old) old.remove();
                 const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
@@ -1116,20 +1441,21 @@
                 document.body.appendChild(t); setTimeout(()=>t.remove(), 3000); 
             }
             function escapeHTML(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+            // ====== دوال التاريخ ======
             function getWeekMonday(d){ const r=new Date(d); r.setDate(r.getDate()-(r.getDay()||7)+1); r.setHours(0,0,0,0); return r; }
             function getWeekSunday(m){ const r=new Date(m); r.setDate(r.getDate()+6); r.setHours(23,59,59,999); return r; }
-            function getDateFilterFunction(filter, from, to) {
+            function getDateFilterFunction(filter) {
                 const today=new Date(); today.setHours(0,0,0,0);
                 switch(filter) {
                     case 'this-week': { const m=getWeekMonday(today), s=getWeekSunday(m); return c=>c.deliveryDate && new Date(c.deliveryDate+'T00:00:00')>=m && new Date(c.deliveryDate+'T00:00:00')<=s; }
-                    case 'last-week': { const lm=new Date(getWeekMonday(today)); lm.setDate(lm.getDate()-7); const ls=getWeekSunday(lm); return c=>c.deliveryDate && new Date(c.deliveryDate+'T00:00:00')>=lm && new Date(c.deliveryDate+'T00:00:00')<=ls; }
                     case 'this-month': { const ms=new Date(today.getFullYear(), today.getMonth(),1), me=new Date(today.getFullYear(), today.getMonth()+1,0,23,59,59,999); return c=>c.deliveryDate && new Date(c.deliveryDate+'T00:00:00')>=ms && new Date(c.deliveryDate+'T00:00:00')<=me; }
-                    case 'custom': { const f=from?new Date(from+'T00:00:00'):null, t=to?new Date(to+'T23:59:59.999'):null; return c=>{ if(!c.deliveryDate) return false; const d=new Date(c.deliveryDate+'T00:00:00'); if(f&&d<f) return false; if(t&&d>t) return false; return true; }; }
                     default: return ()=>true;
                 }
             }
 
-            function buildClientCardHTML(client) {
+            // ====== بناء بطاقة العميل (معدل لإضافة زر القياسات) ======
+            function buildClientCardHTML(client, showPurchaseBtn = false) {
                 const urgency = getUrgencyInfo(client.deliveryDate);
                 const daysText = urgency.daysLeft<0?`(تأخر بـ ${Math.abs(urgency.daysLeft)} يوم)`:urgency.daysLeft===0?'(اليوم هو التسليم!)':`(باقي ${urgency.daysLeft} يوم)`;
                 
@@ -1152,7 +1478,6 @@
                 const total = client.totalPrice || 0;
                 const advance = client.advancePayment || 0;
                 const remaining = Math.max(0, total - advance);
-                
                 const fitLabel = client.fitType || 'عادي';
 
                 let waBtnHTML = '';
@@ -1173,6 +1498,43 @@
                     else statusBadge = `<span class="urgency-badge" style="background:var(--red); color:#FFF; border:none; box-shadow:0 2px 6px rgba(252,129,129,0.3);">❌ مسلّمة (باقي ${remaining} درهم)</span>`;
                 }
 
+                let purchaseBadge = '';
+                if (client.purchased) {
+                    purchaseBadge = `<span class="urgency-badge badge-purchased">🛒 تم الشراء</span>`;
+                }
+
+                let statusDisplay = '';
+                if (client.status) {
+                    const statusMap = {
+                        'hard': '😠 صعبة',
+                        'normal': '😐 عادية',
+                        'special': '🤩 مميزة'
+                    };
+                    statusDisplay = `<span style="background:var(--terracotta-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:var(--terracotta-dark);">${statusMap[client.status] || client.status}</span>`;
+                }
+                
+                let typeDisplay = '';
+                if (client.garmentTypes && client.garmentTypes.length > 0) {
+                    const typeMap = {
+                        'dontel': '🧵 دونتيل',
+                        'sadr': '👚 صدر'
+                    };
+                    typeDisplay = client.garmentTypes.map(t => 
+                        `<span style="background:var(--gold-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:#b8860b;">${typeMap[t] || t}</span>`
+                    ).join(' ');
+                }
+                
+                const extraBadges = (statusDisplay || typeDisplay || purchaseBadge) ? 
+                    `<div style="display:flex; gap:6px; flex-wrap:wrap; margin:4px 0;">${statusDisplay}${typeDisplay}${purchaseBadge}</div>` : '';
+
+                let purchaseAction = '';
+                if (showPurchaseBtn && !client.purchased && !client.completed) {
+                    purchaseAction = `<button class="btn btn-success btn-sm purchase-single-btn" data-client-id="${client.id}" style="flex:0.5; min-width:80px;">✅ شراء</button>`;
+                }
+
+                // زر عرض القياسات
+                const measurementsBtn = `<button class="btn btn-primary btn-sm show-measurements-btn" data-client-id="${client.id}" style="background:var(--terracotta);">📏 قياسات الكليانة</button>`;
+
                 return `
                 <div class="client-card ${client.completed?'':urgency.className}" data-client-id="${client.id}">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1190,6 +1552,7 @@
                         <span class="remaining-badge"><span class="label">⏳</span> ${remaining} درهم</span>
                     </div>
                     ${client.description ? `<div class="desc-box">📝 ${escapeHTML(client.description)}</div>` : ''}
+                    ${extraBadges}
                     ${audioHTML}
                     <div style="display:flex; gap:10px;">${imgHTML} ${modelHTML}</div>
                     ${noImageText}
@@ -1202,32 +1565,31 @@
                     <div class="card-actions">
                         ${!client.completed?`<button class="btn btn-success btn-sm deliver-btn" data-client-id="${client.id}">✅ تم التسليم</button>`:''}
                         <button class="btn btn-sm btn-primary calc-cuts-btn" data-client-id="${client.id}">🧮 قص الفصالة</button>
+                        ${measurementsBtn}
+                        ${purchaseAction}
                         <button class="btn btn-danger btn-sm delete-btn" data-client-id="${client.id}" style="padding: 8px 12px; flex-grow: 0; min-width: auto;"><span style="font-size:16px;">🗑️</span></button>
                     </div>
                 </div>`;
             }
 
+            // ====== دوال القوائم والسياق (نفسها) ======
             async function showContextMenu(clientId, event) {
                 event.stopPropagation();
                 const existing = document.querySelector('.context-menu');
                 if(existing) existing.remove();
                 const menu = document.createElement('div');
                 menu.className = 'context-menu active';
-                
                 const btn = event.currentTarget;
                 const rect = btn.getBoundingClientRect();
-                
                 menu.style.top = `${rect.bottom + window.scrollY + 5}px`;
                 let leftPos = rect.left + window.scrollX - 150; 
                 if (leftPos < 10) leftPos = 10;
                 menu.style.left = `${leftPos}px`;
-                
                 const clients = await getClients();
                 const client = clients.find(c => c.id === clientId);
                 if (!client) return;
-
                 if (!client.completed) {
-                    menu.innerHTML = `
+                    let menuItems = `
                         <button data-action="edit-price">💰 تعديل الحساب</button>
                         <button data-action="edit-measurements">📏 تعديل القياسات</button>
                         <button data-action="edit-desc">📝 تعديل الوصف</button>
@@ -1237,13 +1599,18 @@
                         <button data-action="edit-image">📸 صورة الثوب</button>
                         ${!client.phone ? `<button data-action="add-phone">📞 إضافة رقم الهاتف</button>` : ''}
                     `;
+                    if (client.purchased) {
+                        menuItems += `<button data-action="unpurchase-single">↩️ إلغاء شراء السلعة</button>`;
+                    } else if (client.garmentTypes && client.garmentTypes.length > 0) {
+                        menuItems += `<button data-action="purchase-single">🛒 شراء السلعة (فردي)</button>`;
+                    }
+                    menu.innerHTML = menuItems;
                 } else {
                     menu.innerHTML = `
                         <button data-action="undo-delivery">↩️ ما زالت لم يتم الاستلام</button>
                     `;
                 }
                 document.body.appendChild(menu);
-                
                 menu.querySelectorAll('button').forEach(btn => btn.addEventListener('click', async (e) => {
                     e.stopPropagation();
                     const action = e.target.dataset.action;
@@ -1255,6 +1622,20 @@
                     else if(action === 'edit-image') openImageModal(clientId, 'dress');
                     else if(action === 'edit-model') openImageModal(clientId, 'model');
                     else if(action === 'add-phone') openPhoneModal(clientId);
+                    else if(action === 'purchase-single') {
+                        client.purchased = true;
+                        await saveClient(client);
+                        renderAgenda();
+                        updatePurchaseCounts();
+                        showToast('✅ تم شراء السلعة لهذه الكليانة');
+                    }
+                    else if(action === 'unpurchase-single') {
+                        client.purchased = false;
+                        await saveClient(client);
+                        renderAgenda();
+                        updatePurchaseCounts();
+                        showToast('🔄 تم إلغاء شراء السلعة');
+                    }
                     else if(action === 'undo-delivery') {
                         client.completed = false;
                         client.returned = true;
@@ -1264,7 +1645,6 @@
                     }
                     menu.remove();
                 }));
-                
                 setTimeout(() => {
                     const closeMenu = (e) => { 
                         if(!menu.contains(e.target)) { 
@@ -1345,7 +1725,6 @@
                         modal.style.display='flex';
                     }
                 });
-                
                 document.getElementById('save-measurements-btn').onclick = async () => {
                     const id = document.getElementById('measurements-modal-clientId').value;
                     const clients = await getClients();
@@ -1415,7 +1794,6 @@
                 const modal = document.getElementById('cuts-modal');
                 const body = document.getElementById('cuts-modal-body');
                 const eases = client.customEases || { chest:0, waist:0, hips:0 };
-                
                 body.innerHTML = `
                     <div class="modal-header" style="margin-bottom:14px; border-bottom:1px solid var(--border-light); padding-bottom:10px;">
                         <span style="font-size: var(--font-xl); font-weight:800; color:var(--terracotta-dark);">✂️ ${escapeHTML(client.name)}</span>
@@ -1428,17 +1806,13 @@
                     </div>
                     <div id="modal-results" class="results-grid"></div>
                 `;
-                
                 document.getElementById('close-cuts-inner-btn').onclick = () => modal.style.display = 'none';
-
                 function update() {
                     const chestEase = parseFloat(document.getElementById('modal-chest-ease').value) || 0;
                     const waistEase = parseFloat(document.getElementById('modal-waist-ease').value) || 0;
                     const hipsEase = parseFloat(document.getElementById('modal-hips-ease').value) || 0;
-                    
                     client.customEases = { chest: chestEase, waist: waistEase, hips: hipsEase };
                     saveClient(client);
-
                     const m = client.measurements;
                     const res = [
                         {label:'قص الكتاف', value:formatNumber((m.shoulders / 2) + 1), fixed: true}, 
@@ -1450,7 +1824,6 @@
                         {label:'طول الكم', value:formatNumber(m.sleeveLength + 4), fixed: true}, 
                         {label:'فم الكم', value:formatNumber(m.sleeveMouth || 0), fixed: true} 
                     ];
-                    
                     document.getElementById('modal-results').innerHTML = res.map(r => {
                         let boxClass = 'result-item';
                         let valStyle = '';
@@ -1459,12 +1832,10 @@
                         return `<div class="${boxClass}"><div class="result-label">${r.label}</div><div class="result-value" style="${valStyle}">${r.value} cm</div></div>`;
                     }).join('');
                 }
-                
                 body.querySelectorAll('input').forEach(i => {
                     i.addEventListener('input', update);
                     i.addEventListener('focus', function() { this.select(); }); 
                 });
-                
                 update();
                 modal.style.display = 'flex';
             }
@@ -1475,16 +1846,12 @@
                 const img = document.getElementById('image-modal-img');
                 const delBtn = document.getElementById('modal-delete-btn');
                 currentImageId = clientId; currentImageType = type;
-                
                 document.getElementById('image-modal-title').textContent = type==='model' ? '👗 صورة الموديل' : '📸 صورة الثوب';
-                
                 getClients().then(clients=>{
                     const client = clients.find(c=>c.id===clientId);
                     if(!client) return;
-                    
                     const src = type === 'model' ? client.modelImage : client.image;
                     img.src = src || '';
-                    
                     if (src) {
                         delBtn.style.display = 'block';
                         delBtn.onclick = async () => {
@@ -1497,10 +1864,8 @@
                     } else {
                         delBtn.style.display = 'none';
                     }
-                    
                     modal.style.display='flex';
                 });
-                
                 document.getElementById('modal-camera-btn').onclick = async () => {
                     const input = document.createElement('input'); input.type='file'; input.accept='image/*'; input.capture='environment';
                     input.onchange = async e => {
@@ -1513,7 +1878,6 @@
                         }
                     }; input.click();
                 };
-                
                 document.getElementById('modal-gallery-btn').onclick = async () => {
                     const input = document.createElement('input'); input.type='file'; input.accept='image/*';
                     input.onchange = async e => {
@@ -1529,6 +1893,57 @@
             }
             document.getElementById('close-image-modal').onclick = () => document.getElementById('image-modal').style.display = 'none';
 
+            // ====== معاينة الصورة المكبرة ======
+            function showFullImage(src) {
+                const overlay = document.getElementById('image-overlay');
+                const fullImg = document.getElementById('full-image');
+                fullImg.src = src;
+                overlay.classList.add('active');
+                document.body.classList.add('page-open');
+            }
+
+            document.getElementById('close-image-overlay').addEventListener('click', () => {
+                document.getElementById('image-overlay').classList.remove('active');
+                document.body.classList.remove('page-open');
+            });
+
+            // ====== عرض صفحة القياسات ======
+            function openMeasurementsPage(clientId) {
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (!client) return showToast('⚠️ الكليانة غير موجودة');
+                    const page = document.getElementById('measurements-page');
+                    document.getElementById('measurements-page-title').textContent = `📏 قياسات ${client.name}`;
+                    const list = document.getElementById('measurements-list');
+                    const m = client.measurements;
+                    const items = [
+                        { label: 'الكتاف كامليين', value: m.shoulders },
+                        { label: 'التركيز', value: m.armhole },
+                        { label: 'دورة الصدر كاملة', value: m.chest },
+                        { label: 'دورة الحزام كاملة', value: m.waist },
+                        { label: 'دورة الحوض', value: m.hips },
+                        { label: 'الطول الإجمالي', value: m.dressLength },
+                        { label: 'طول الكم', value: m.sleeveLength },
+                        { label: 'فم الكمام', value: m.sleeveMouth },
+                        { label: 'الجلايل', value: m.jlayel }
+                    ];
+                    list.innerHTML = items.map(item => `
+                        <div class="measurement-item">
+                            <span class="label">${item.label}</span>
+                            <span class="value">${item.value} cm</span>
+                        </div>
+                    `).join('');
+                    page.classList.add('active');
+                    document.body.classList.add('page-open');
+                });
+            }
+
+            document.getElementById('close-measurements-page').addEventListener('click', () => {
+                document.getElementById('measurements-page').classList.remove('active');
+                document.body.classList.remove('page-open');
+            });
+
+            // ====== ربط الأحداث للبطاقات (معدل) ======
             function attachClientCardListeners() {
                 document.querySelectorAll('.more-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => showContextMenu(btn.dataset.clientId, e));
@@ -1562,7 +1977,6 @@
                         client.modelImage = null;
                         client.audioNotes = [];
                         client.audioNote = null;
-                        
                         client.completed=true; client.completedAt=new Date().toISOString(); delete client.notificationId;
                         await saveClient(client); await sendPersistentDailyNotification(); renderAgenda(); showBigToast('🎉 تم التسليم بنجاح!');
                     }
@@ -1572,10 +1986,36 @@
                     const clients = await getClients(); const client = clients.find(c=>c.id===id);
                     if(client) openCutsModal(client);
                 }));
-                document.querySelectorAll('.client-image').forEach(img => img.addEventListener('click', async function() {
-                    const id = this.dataset.clientId; const type = this.dataset.type;
-                    openImageModal(id, type);
-                }));
+                document.querySelectorAll('.client-image').forEach(img => {
+                    img.addEventListener('click', function() {
+                        const src = this.src;
+                        if (src) showFullImage(src);
+                    });
+                });
+                document.querySelectorAll('.show-measurements-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        openMeasurementsPage(this.dataset.clientId);
+                    });
+                });
+                document.querySelectorAll('.purchase-single-btn').forEach(btn => {
+                    btn.addEventListener('click', async function() {
+                        const id = this.dataset.clientId;
+                        const clients = await getClients();
+                        const client = clients.find(c => c.id === id);
+                        if(client && !client.purchased) {
+                            client.purchased = true;
+                            await saveClient(client);
+                            renderAgenda();
+                            updatePurchaseCounts();
+                            const detailPage = document.getElementById('purchase-detail-page');
+                            if (detailPage.classList.contains('active')) {
+                                const currentType = detailPage.dataset.type;
+                                if (currentType) loadPurchaseDetail(currentType);
+                            }
+                            showToast('✅ تم شراء السلعة لهذه الكليانة');
+                        }
+                    });
+                });
             }
 
             function updateRemaining() {
@@ -1585,12 +2025,11 @@
                 document.getElementById('client-remaining-text').textContent = remaining.toFixed(2) + ' درهم';
             }
 
+            // ====== الإحصائيات ======
             async function renderStats() {
                 const clients = await getClients();
                 const now = new Date(); const currentMonth = now.getMonth(); const currentYear = now.getFullYear();
-                
                 let monthlyIncome = 0; let totalDebt = 0; let debtHTML = '';
-
                 clients.forEach(c => {
                     const total = c.totalPrice || 0; const advance = c.advancePayment || 0; const remaining = Math.max(0, total - advance);
                     const dateToCheck = c.completed ? new Date(c.completedAt) : new Date(c.createdAt);
@@ -1602,24 +2041,233 @@
                         debtHTML += `<li class="debt-item"><span class="debt-name">👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
                     }
                 });
-
                 document.getElementById('stats-monthly-income').textContent = monthlyIncome.toFixed(2) + ' درهم';
                 document.getElementById('stats-total-debt').textContent = totalDebt.toFixed(2) + ' درهم';
                 document.getElementById('stats-debt-list').innerHTML = debtHTML || '<li class="debt-item" style="justify-content:center; color:var(--green); border:none;">✅ حتى وحدة ما عندها كريدي</li>';
             }
 
+            // ====== تحديث أعداد الشراء ======
+            async function updatePurchaseCounts() {
+                const clients = await getClients();
+                const sadrCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('sadr') && !c.purchased && !c.completed).length;
+                const dontelCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('dontel') && !c.purchased && !c.completed).length;
+                document.getElementById('sadr-count-badge').textContent = sadrCount;
+                document.getElementById('dontel-count-badge').textContent = dontelCount;
+                return { sadrCount, dontelCount };
+            }
+
+            // ====== التقويم (نفس الكود) ======
+            let calendarYear, calendarMonth;
+            function renderFullCalendar(year, month) {
+                if (!year || !month) {
+                    const now = new Date();
+                    year = now.getFullYear();
+                    month = now.getMonth();
+                }
+                calendarYear = year;
+                calendarMonth = month;
+                const container = document.getElementById('calendar-container-full');
+                if (!container) return;
+
+                const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'ماي', 'يونيو', 'يوليو', 'غشت', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+                const header = document.createElement('div');
+                header.className = 'calendar-header';
+                header.innerHTML = `
+                    <button class="nav-btn" id="cal-prev">‹</button>
+                    <span class="month-year">${monthNames[month]} ${year}</span>
+                    <button class="nav-btn" id="cal-next">›</button>
+                `;
+                container.innerHTML = '';
+                container.appendChild(header);
+
+                const daysOfWeek = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'];
+                const grid = document.createElement('div');
+                grid.className = 'calendar-grid';
+                daysOfWeek.forEach(d => {
+                    const dayName = document.createElement('div');
+                    dayName.className = 'day-name';
+                    dayName.textContent = d;
+                    grid.appendChild(dayName);
+                });
+
+                let firstDay = new Date(year, month, 1).getDay();
+                let offset = (firstDay === 0) ? 6 : firstDay - 1;
+                
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const today = new Date();
+                const todayDate = today.getDate();
+                const todayMonth = today.getMonth();
+                const todayYear = today.getFullYear();
+
+                getClients().then(clients => {
+                    const dateCounts = {};
+                    clients.forEach(c => {
+                        if (!c.deliveryDate) return;
+                        const d = new Date(c.deliveryDate + 'T00:00:00');
+                        const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+                        if (!dateCounts[key]) dateCounts[key] = { count: 0, maxUrgency: 0 };
+                        dateCounts[key].count++;
+                        const urgency = getUrgencyInfo(c.deliveryDate).level === 'red' ? 3 : getUrgencyInfo(c.deliveryDate).level === 'orange' ? 2 : 1;
+                        if (urgency > dateCounts[key].maxUrgency) dateCounts[key].maxUrgency = urgency;
+                    });
+
+                    for (let i = 0; i < offset; i++) {
+                        const empty = document.createElement('div');
+                        empty.className = 'day-cell empty';
+                        grid.appendChild(empty);
+                    }
+
+                    for (let d = 1; d <= daysInMonth; d++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'day-cell';
+                        const dateObj = new Date(year, month, d);
+                        const key = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
+                        const data = dateCounts[key] || { count: 0, maxUrgency: 0 };
+                        const isToday = (d === todayDate && month === todayMonth && year === todayYear);
+                        if (isToday) cell.classList.add('today');
+
+                        let colorClass = 'zero';
+                        if (data.count > 0) {
+                            if (data.maxUrgency === 3) colorClass = 'urgent';
+                            else if (data.maxUrgency === 2) colorClass = 'medium';
+                            else colorClass = 'normal';
+                        }
+
+                        cell.innerHTML = `
+                            <span class="day-number">${d}</span>
+                            <span class="day-count ${colorClass}">${data.count > 0 ? data.count : ''}</span>
+                        `;
+                        cell.dataset.date = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                        cell.addEventListener('click', function() {
+                            const dateStr = this.dataset.date;
+                            if (dateStr) {
+                                showDayDetail(dateStr);
+                            }
+                        });
+                        grid.appendChild(cell);
+                    }
+
+                    container.appendChild(grid);
+
+                    document.getElementById('cal-prev').addEventListener('click', () => {
+                        if (month === 0) { renderFullCalendar(year - 1, 11); } else { renderFullCalendar(year, month - 1); }
+                    });
+                    document.getElementById('cal-next').addEventListener('click', () => {
+                        if (month === 11) { renderFullCalendar(year + 1, 0); } else { renderFullCalendar(year, month + 1); }
+                    });
+                });
+            }
+
+            function openCalendarPage() {
+                const page = document.getElementById('calendar-page');
+                page.classList.add('active');
+                document.body.classList.add('page-open');
+                const now = new Date();
+                renderFullCalendar(now.getFullYear(), now.getMonth());
+            }
+
+            document.getElementById('open-calendar-btn').addEventListener('click', openCalendarPage);
+            document.getElementById('close-calendar-page').addEventListener('click', () => {
+                document.getElementById('calendar-page').classList.remove('active');
+                document.body.classList.remove('page-open');
+            });
+
+            function showDayDetail(dateStr) {
+                const page = document.getElementById('day-detail-page');
+                const title = document.getElementById('day-detail-title');
+                const list = document.getElementById('day-detail-list');
+                title.textContent = `📅 كليانات ${dateStr}`;
+                
+                getClients().then(clients => {
+                    const dayClients = clients.filter(c => c.deliveryDate === dateStr);
+                    if (dayClients.length === 0) {
+                        list.innerHTML = `<p style="text-align:center; color:var(--text-muted);">لا توجد كليانات في هذا اليوم</p>`;
+                    } else {
+                        list.innerHTML = dayClients.map(c => buildClientCardHTML(c)).join('');
+                        attachClientCardListeners();
+                    }
+                    page.classList.add('active');
+                    document.body.classList.add('page-open');
+                });
+            }
+
+            document.getElementById('close-day-detail-page').addEventListener('click', () => {
+                document.getElementById('day-detail-page').classList.remove('active');
+                document.body.classList.remove('page-open');
+            });
+
+            // ====== نظام الشراء ======
+            document.getElementById('show-purchase-modal-btn').addEventListener('click', async () => {
+                await updatePurchaseCounts();
+                document.getElementById('purchase-type-modal').style.display = 'flex';
+            });
+            document.getElementById('close-purchase-type-modal').addEventListener('click', () => {
+                document.getElementById('purchase-type-modal').style.display = 'none';
+            });
+
+            async function loadPurchaseDetail(type) {
+                const page = document.getElementById('purchase-detail-page');
+                const list = document.getElementById('purchase-detail-list');
+                const title = document.getElementById('purchase-detail-title');
+                const typeLabel = type === 'sadr' ? '👚 صدر' : '🧵 دونتيل';
+                title.textContent = `🛒 شراء ${typeLabel}`;
+                page.dataset.type = type;
+
+                const clients = await getClients();
+                const filtered = clients.filter(c => c.garmentTypes && c.garmentTypes.includes(type) && !c.purchased && !c.completed);
+                
+                if (filtered.length === 0) {
+                    list.innerHTML = `<p style="text-align:center; color:var(--text-muted);">✅ كل السلع من هذا النوع تم شراؤها!</p>`;
+                } else {
+                    list.innerHTML = filtered.map(c => buildClientCardHTML(c, true)).join('');
+                    attachClientCardListeners();
+                }
+                page.classList.add('active');
+                document.body.classList.add('page-open');
+                document.getElementById('purchase-type-modal').style.display = 'none';
+            }
+
+            document.getElementById('choose-sadr-btn').addEventListener('click', () => loadPurchaseDetail('sadr'));
+            document.getElementById('choose-dontel-btn').addEventListener('click', () => loadPurchaseDetail('dontel'));
+            document.getElementById('close-purchase-detail-page').addEventListener('click', () => {
+                document.getElementById('purchase-detail-page').classList.remove('active');
+                document.body.classList.remove('page-open');
+                updatePurchaseCounts();
+            });
+
+            document.getElementById('purchase-all-btn').addEventListener('click', async function() {
+                const page = document.getElementById('purchase-detail-page');
+                const type = page.dataset.type;
+                if (!type) return showToast('⚠️ خطأ في النوع');
+                if (!confirm(`تأكيد شراء كل السلع من نوع ${type === 'sadr' ? 'الصدر' : 'الدونتيل'}؟`)) return;
+
+                const clients = await getClients();
+                let updated = 0;
+                for (const c of clients) {
+                    if (c.garmentTypes && c.garmentTypes.includes(type) && !c.purchased && !c.completed) {
+                        c.purchased = true;
+                        await saveClient(c);
+                        updated++;
+                    }
+                }
+                showBigToast(`✅ تم شراء السلع لـ ${updated} كليانة!`);
+                page.classList.remove('active');
+                document.body.classList.remove('page-open');
+                renderAgenda();
+                updatePurchaseCounts();
+            });
+
+            // ====== عرض الأجندة ======
             async function renderAgenda() {
                 const clients = await getClients();
-                
                 const searchInAll = document.getElementById('search-in-all').checked;
                 const searchTerm = agendaSearch.value.trim().toLowerCase();
-                const filterFn = getDateFilterFunction(agendaActiveDateFilter, agendaCustomFrom, agendaCustomTo);
+                const filterFn = getDateFilterFunction(agendaActiveDateFilter);
                 
                 let mainList = clients.filter(c => {
                     if (!searchInAll && c.completed) return false;
                     return filterFn(c);
                 });
-                
                 if (searchTerm) {
                     mainList = mainList.filter(c => c.name.toLowerCase().includes(searchTerm));
                 }
@@ -1634,17 +2282,40 @@
                 agendaCompletedList.innerHTML = completed.length ? completed.map(c=>buildClientCardHTML(c)).join('') : '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش مسلّمات.</p>';
                 completedCountSpan.textContent = `(${clients.filter(c => c.completed).length})`;
                 
-                renderStats(); attachClientCardListeners(); sendPersistentDailyNotification();
+                renderStats(); 
+                attachClientCardListeners(); 
+                sendPersistentDailyNotification();
+                updatePurchaseCounts();
             }
 
+            // ====== تبديل التبويبات ======
             function switchTab(tabName) {
                 document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tabName));
                 document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
-                document.getElementById(`tab-${tabName}`).classList.add('active');
-                if(tabName==='agenda') renderAgenda();
+                const tabContent = document.getElementById(`tab-${tabName}`);
+                if (tabContent) tabContent.classList.add('active');
+                if (tabName === 'agenda') {
+                    renderAgenda();
+                }
             }
             document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click', ()=>switchTab(b.dataset.tab)));
 
+            // ====== فلترة الأجندة ======
+            document.querySelectorAll('#agenda-filter-panel .btn-pill').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    agendaActiveDateFilter = filter;
+                    document.querySelectorAll('#agenda-filter-panel .btn-pill').forEach(b => b.classList.remove('active-filter'));
+                    this.classList.add('active-filter');
+                    renderAgenda();
+                });
+            });
+
+            agendaSearch.addEventListener('input', renderAgenda);
+            agendaCompletedSearch.addEventListener('input', renderAgenda); 
+            document.getElementById('search-in-all').addEventListener('change', renderAgenda);
+
+            // ====== حاسبة القصات ======
             document.getElementById('calc-fitType').addEventListener('change', function(){ document.getElementById('calc-customEaseGroup').classList.toggle('visible', this.value==='custom'); });
             
             document.getElementById('calculator-form').addEventListener('submit', function(e){
@@ -1663,6 +2334,7 @@
                 document.getElementById('results-card').style.display='block';
             });
 
+            // ====== رفع الصور ======
             document.getElementById('form-capture-btn').addEventListener('click',()=>{ formImageInput.capture='environment'; formImageInput.click(); });
             document.getElementById('form-gallery-btn').addEventListener('click',()=>{ formImageInput.removeAttribute('capture'); formImageInput.click(); });
             formImageInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); tempImg=compressed; formImagePreview.src=compressed; formImagePreview.classList.add('visible'); });
@@ -1674,8 +2346,50 @@
             document.getElementById('client-totalPrice').addEventListener('input', updateRemaining);
             document.getElementById('client-advancePayment').addEventListener('input', updateRemaining);
 
+            // ====== اختيار الحالة والنوع ======
+            let selectedStatus = null;
+            let selectedTypes = [];
+
+            document.querySelectorAll('.status-option').forEach(el => {
+                el.addEventListener('click', function() {
+                    const status = this.dataset.status;
+                    if (selectedStatus === status) {
+                        this.classList.remove('selected');
+                        selectedStatus = null;
+                    } else {
+                        document.querySelectorAll('.status-option').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedStatus = status;
+                    }
+                });
+            });
+
+            document.querySelectorAll('.type-option').forEach(el => {
+                el.addEventListener('click', function() {
+                    const type = this.dataset.type;
+                    const index = selectedTypes.indexOf(type);
+                    if (index > -1) {
+                        selectedTypes.splice(index, 1);
+                        this.classList.remove('selected');
+                    } else {
+                        selectedTypes.push(type);
+                        this.classList.add('selected');
+                    }
+                });
+            });
+
+            // ====== حفظ الكليانة ======
             document.getElementById('client-form').addEventListener('submit', async function(e){
                 e.preventDefault();
+                if (isFormRecording && formMediaRecorder) {
+                    waitingToSaveClient = true;
+                    formMediaRecorder.stop();
+                    return;
+                }
+                executeSaveNewClient();
+            });
+            
+            async function executeSaveNewClient() {
                 const fitType = document.getElementById('cl-fitType').value;
                 if (!fitType) return showToast('⚠️ اختاري نوع الاتساع');
 
@@ -1691,7 +2405,7 @@
                     location: document.getElementById('client-location').value.trim(),
                     phone: document.getElementById('client-phone').value.trim(),
                     description: document.getElementById('cl-description').value.trim(),
-                    audioNotes: tempAudioData ? [tempAudioData] : [], 
+                    audioNotes: formAudioNotes.length > 0 ? [...formAudioNotes] : [],
                     totalPrice: total,
                     advancePayment: advance,
                     measurements:{ 
@@ -1709,56 +2423,42 @@
                     customEases: {chest:0, waist:0, hips:0},
                     deliveryDate: document.getElementById('cl-deliveryDate').value,
                     completed: false, returned: false, createdAt: new Date().toISOString(), 
-                    image: tempImg || null, modelImage: tempModel || null
+                    image: tempImg || null, modelImage: tempModel || null,
+                    status: selectedStatus,
+                    garmentTypes: [...selectedTypes], 
+                    purchased: false
                 };
                 
                 await saveClient(client);
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
                 
-                this.reset(); 
+                document.getElementById('client-form').reset(); 
                 document.getElementById('cl-fitType').value=''; 
                 tempImg=null; tempModel=null; 
-                tempAudioData = null;
-                if(document.getElementById('delete-audio-btn')) document.getElementById('delete-audio-btn').click();
+                document.querySelectorAll('.status-option, .type-option').forEach(opt => opt.classList.remove('selected'));
+                selectedStatus = null;
+                selectedTypes = []; 
+                
+                formAudioNotes = [];
+                renderFormAudios();
+                
                 formImagePreview.classList.remove('visible'); formImagePreview.src=''; 
                 formModelPreview.classList.remove('visible'); formModelPreview.src=''; 
                 updateRemaining();
                 
                 document.querySelectorAll('.measurement-input').forEach(i => { i.classList.add('input-empty'); i.classList.remove('input-filled'); });
 
-                setAgendaFilter('all');
-                renderAgenda();
                 showBigToast('✅ تم إضافة الكليانة بنجاح!');
-                switchTab('agenda');
-            });
-
-            agendaSearch.addEventListener('input', renderAgenda);
-            agendaCompletedSearch.addEventListener('input', renderAgenda); 
-            
-            document.getElementById('search-in-all').addEventListener('change', renderAgenda);
-            
-            agendaFilterPanel.addEventListener('click', e=>{ const p=e.target.closest('.btn-pill'); if(p&&p.dataset.filter) setAgendaFilter(p.dataset.filter); });
-            function setAgendaFilter(filterName) {
-                agendaActiveDateFilter=filterName;
-                agendaFilterPanel.querySelectorAll('.btn-pill').forEach(p=>p.classList.remove('active-filter'));
-                const ap=agendaFilterPanel.querySelector(`[data-filter="${filterName}"]`); if(ap) ap.classList.add('active-filter');
-                if(filterName==='custom') agendaCustomRange.style.display='flex';
-                else { agendaCustomRange.style.display='none'; agendaCustomFrom=null; agendaCustomTo=null; agendaFilterFrom.value=''; agendaFilterTo.value=''; }
-                renderAgenda();
             }
-            document.getElementById('agenda-apply-custom').addEventListener('click', ()=>{ agendaCustomFrom=agendaFilterFrom.value||null; agendaCustomTo=agendaFilterTo.value||null; if(!agendaCustomFrom&&!agendaCustomTo) return showToast('⚠️ اختاري تاريخ'); setAgendaFilter('custom'); showToast('✅ تم التصفية'); });
-            document.getElementById('agenda-clear-custom').addEventListener('click', ()=>setAgendaFilter('all'));
-            agendaFilterFrom.addEventListener('change', ()=>{ if(agendaActiveDateFilter==='custom'){ agendaCustomFrom=agendaFilterFrom.value||null; renderAgenda(); } });
-            agendaFilterTo.addEventListener('change', ()=>{ if(agendaActiveDateFilter==='custom'){ agendaCustomTo=agendaFilterTo.value||null; renderAgenda(); } });
 
+            // ====== الأقسام القابلة للطي ======
             document.getElementById('completed-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('completed-content').classList.toggle('open'); });
             document.getElementById('stats-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('stats-content').classList.toggle('open'); });
 
+            // ====== التهيئة ======
             async function init() {
                 setupBackButton();
-                
-                // قفل دوران الشاشة (Web API كطبقة حماية إضافية)
                 try {
                     if (screen.orientation && screen.orientation.lock) {
                         await screen.orientation.lock('portrait');
@@ -1766,20 +2466,21 @@
                 } catch (err) { 
                     console.log('ملاحظة: المتصفح لا يدعم القفل المباشر، سيتم الاعتماد على قفل الأندرويد.'); 
                 }
-                
                 switchTab('clients');
                 document.querySelector('.tab-btn[data-tab="clients"]').classList.add('active');
                 document.querySelector('.tab-btn[data-tab="calculator"]').classList.remove('active');
-                setAgendaFilter('all');
+                
                 await renderAgenda();
+                await updatePurchaseCounts();
+                
                 requestNotificationPermission();
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
                 
                 const lastBackup = localStorage.getItem('lastBackupDate');
-                const now = Date.now(); const oneWeek = 7 * 24 * 60 * 60 * 1000; 
-                if (!lastBackup) localStorage.setItem('lastBackupDate', now.toString());
-                else if ((now - parseInt(lastBackup)) > oneWeek) setTimeout(() => { alert('⚠️ تذكير أسبوعي: المرجو عمل "تصدير النسخة الاحتياطية" دابا من زر (⚙️) باش ما يضيعوش ليك العبارات!'); }, 1500);
+                const nowTime = Date.now(); const oneWeek = 7 * 24 * 60 * 60 * 1000; 
+                if (!lastBackup) localStorage.setItem('lastBackupDate', nowTime.toString());
+                else if ((nowTime - parseInt(lastBackup)) > oneWeek) setTimeout(() => { alert('⚠️ تذكير أسبوعي: المرجو عمل "تصدير النسخة الاحتياطية" دابا من زر (⚙️) باش ما يضيعوش ليك العبارات!'); }, 1500);
             }
 
             if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
