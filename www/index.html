@@ -11,7 +11,7 @@
             --bg: #F4F7F6;
             --cream: #FFFFFF;
             --card: #FFFFFF;
-            --terracotta: #D06C4E; 
+            --terracotta: #D06C4E;
             --terracotta-dark: #A85138;
             --terracotta-light: #FFF0EB;
             --terracotta-lighter: #FFF9F7;
@@ -45,212 +45,865 @@
             --touch-min: 48px;
         }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-width: 0;
+        }
 
-        html { font-size: 16px; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; overflow-x: hidden; width: 100%; }
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
+            width: 100%;
+        }
 
         body {
             font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg); color: var(--text); line-height: 1.6;
-            min-height: 100vh; min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom, 20px);
-            -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none;
-            overflow-x: hidden; width: 100%; max-width: 100vw;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+            -webkit-font-smoothing: antialiased;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
         }
 
         .app-container {
-            max-width: 560px; width: 100%; margin: 0 auto;
+            max-width: 560px;
+            width: 100%;
+            margin: 0 auto;
             padding: clamp(10px, 2vw, 16px) clamp(12px, 3vw, 20px) 30px;
-            display: flex; flex-direction: column; gap: clamp(14px, 2vw, 20px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(14px, 2vw, 20px);
             overflow-x: hidden;
         }
 
         /* ===== الهيدر والتبويبات ===== */
-        .app-header { text-align: center; padding: clamp(16px, 3vw, 24px) 8px 10px; position: relative; width: 100%; }
-        .settings-btn { position: absolute; top: 20px; right: 10px; background: var(--card); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition); }
-        .settings-btn:hover { background: #F1F5F9; transform: rotate(15deg); }
-        .app-header .logo-icon { font-size: clamp(42px, 9vw, 56px); display: inline-block; margin-bottom: 8px; animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .app-header h1 { font-size: var(--font-2xl); font-weight: 800; color: var(--terracotta-dark); letter-spacing: -0.5px; margin: 0; line-height: 1.3; }
-        .app-header .subtitle { font-size: var(--font-sm); color: var(--text-muted); margin-top: 6px; font-weight: 500; }
+        .app-header {
+            text-align: center;
+            padding: clamp(16px, 3vw, 24px) 8px 10px;
+            position: relative;
+            width: 100%;
+        }
+        .settings-btn {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .settings-btn:hover {
+            background: #F1F5F9;
+            transform: rotate(15deg);
+        }
+        .app-header .logo-icon {
+            font-size: clamp(42px, 9vw, 56px);
+            display: inline-block;
+            margin-bottom: 8px;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        .app-header h1 {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            color: var(--terracotta-dark);
+            letter-spacing: -0.5px;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .app-header .subtitle {
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 500;
+        }
 
         .tab-nav {
-            display: flex; gap: 4px; background: #E9ECEF; border-radius: var(--radius-pill);
-            padding: 5px; position: sticky; top: 12px; z-index: 100;
-            width: 100%; flex-shrink: 0; box-shadow: var(--shadow-sm); backdrop-filter: blur(10px);
+            display: flex;
+            gap: 4px;
+            background: #E9ECEF;
+            border-radius: var(--radius-pill);
+            padding: 5px;
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            width: 100%;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
         .tab-btn {
-            flex: 1; padding: clamp(8px, 1.5vw, 12px) clamp(4px, 1vw, 10px); border: none;
-            background: transparent; border-radius: var(--radius-pill); font-size: var(--font-sm);
-            font-weight: 700; cursor: pointer; color: var(--text-muted); transition: all var(--transition);
-            font-family: inherit; display: flex; align-items: center; justify-content: center;
-            gap: 6px; min-height: var(--touch-min); white-space: normal; text-align: center; line-height: 1.2; word-break: break-word;
+            flex: 1;
+            padding: clamp(8px, 1.5vw, 12px) clamp(4px, 1vw, 10px);
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-pill);
+            font-size: var(--font-sm);
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all var(--transition);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: var(--touch-min);
+            white-space: normal;
+            text-align: center;
+            line-height: 1.2;
+            word-break: break-word;
         }
-        .tab-btn:hover { color: var(--text); }
-        .tab-btn.active { background: var(--card); color: var(--terracotta-dark); box-shadow: var(--shadow-sm); }
-        .tab-btn .tab-emoji { font-size: clamp(16px, 2.5vw, 20px); flex-shrink: 0; }
+        .tab-btn:hover {
+            color: var(--text);
+        }
+        .tab-btn.active {
+            background: var(--card);
+            color: var(--terracotta-dark);
+            box-shadow: var(--shadow-sm);
+        }
+        .tab-btn .tab-emoji {
+            font-size: clamp(16px, 2.5vw, 20px);
+            flex-shrink: 0;
+        }
 
-        .tab-content { display: none; flex-direction: column; gap: clamp(14px, 2vw, 20px); animation: fadeIn 0.4s ease; width: 100%; }
-        .tab-content.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: clamp(14px, 2vw, 20px);
+            animation: fadeIn 0.4s ease;
+            width: 100%;
+        }
+        .tab-content.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* ===== البطاقات والعناصر ===== */
         .card {
-            background: var(--card); border-radius: var(--radius); padding: clamp(18px, 4vw, 24px) clamp(16px, 3.5vw, 22px);
-            box-shadow: var(--shadow); border: 1px solid rgba(226, 232, 240, 0.6); width: 100%; overflow: hidden;
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: clamp(18px, 4vw, 24px) clamp(16px, 3.5vw, 22px);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            width: 100%;
+            overflow: hidden;
         }
-        .card.accent-top { border-top: 5px solid var(--terracotta); }
-        .card.gold-top { border-top: 5px solid var(--gold); }
-        
-        .card-header { font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark); margin-bottom: clamp(16px, 3vw, 20px); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; line-height: 1.4; }
-        .card-header .icon { font-size: clamp(22px, 4vw, 28px); flex-shrink: 0; }
+        .card.accent-top {
+            border-top: 5px solid var(--terracotta);
+        }
+        .card.gold-top {
+            border-top: 5px solid var(--gold);
+        }
 
-        .form-group { margin-bottom: clamp(14px, 2vw, 18px); width: 100%; }
-        .form-group label { display: block; font-size: var(--font-sm); font-weight: 700; color: var(--text-light); margin-bottom: 8px; word-break: break-word; }
-        .form-group label .unit { font-weight: 500; color: var(--text-muted); font-size: 0.85em; }
-        
-        input[type="number"], input[type="text"], input[type="tel"], input[type="date"], select, textarea {
-            width: 100%; padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 18px);
-            font-size: var(--font-md); font-family: inherit; font-weight: 500;
-            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
-            background: #F8FAFC; color: var(--text); transition: all var(--transition);
-            -webkit-appearance: none; appearance: none; min-height: var(--touch-min);
+        .card-header {
+            font-size: var(--font-lg);
+            font-weight: 800;
+            color: var(--terracotta-dark);
+            margin-bottom: clamp(16px, 3vw, 20px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            line-height: 1.4;
         }
-        input[type="number"] { dir: ltr; text-align: left; font-variant-numeric: tabular-nums; }
-        input:focus, select:focus, textarea:focus {
-            outline: none; border-color: var(--terracotta); background: var(--card);
+        .card-header .icon {
+            font-size: clamp(22px, 4vw, 28px);
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: clamp(14px, 2vw, 18px);
+            width: 100%;
+        }
+        .form-group label {
+            display: block;
+            font-size: var(--font-sm);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+        .form-group label .unit {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.85em;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 18px);
+            font-size: var(--font-md);
+            font-family: inherit;
+            font-weight: 500;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #F8FAFC;
+            color: var(--text);
+            transition: all var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: var(--touch-min);
+        }
+        input[type="number"] {
+            dir: ltr;
+            text-align: left;
+            font-variant-numeric: tabular-nums;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            background: var(--card);
             box-shadow: 0 0 0 4px rgba(208, 108, 78, 0.12);
         }
         select {
-            cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: left 16px center; padding-left: 45px;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 16px center;
+            padding-left: 45px;
+        }
+
+        .input-empty {
+            animation: pulseBorderRedStrong 1.2s infinite cubic-bezier(0.66, 0, 0, 1) !important;
+            border: 2px solid red !important;
+            background-color: #fff0f0 !important;
+        }
+        .input-filled {
+            border: 2px solid var(--green) !important;
+            background-color: var(--green-bg) !important;
+            box-shadow: none !important;
         }
 
         @keyframes pulseBorderRedStrong {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8); border-color: #ff0000; background-color: #fff0f0; }
-            50% { box-shadow: 0 0 0 12px rgba(255, 0, 0, 0); border-color: #cc0000; background-color: #ffe6e6; }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); border-color: #ff0000; background-color: #fff0f0; }
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.8);
+                border-color: #ff0000;
+                background-color: #fff0f0;
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(255, 0, 0, 0);
+                border-color: #cc0000;
+                background-color: #ffe6e6;
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+                border-color: #ff0000;
+                background-color: #fff0f0;
+            }
         }
-        .input-empty { animation: pulseBorderRedStrong 1.2s infinite cubic-bezier(0.66, 0, 0, 1) !important; border: 2px solid red !important; background-color: #fff0f0 !important; }
-        .input-filled { border: 2px solid var(--green) !important; background-color: var(--green-bg) !important; box-shadow: none !important; }
 
-        @keyframes pulseRecord { 
-            0%, 100% { box-shadow: 0 0 0 0 rgba(252, 129, 129, 0); background-color: var(--red); color: white; border-color: var(--red); } 
-            50% { box-shadow: 0 0 0 8px rgba(252, 129, 129, 0.4); background-color: #e53e3e; color: white; border-color: #e53e3e; } 
+        @keyframes pulseRecord {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(252, 129, 129, 0);
+                background-color: var(--red);
+                color: white;
+                border-color: var(--red);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(252, 129, 129, 0.4);
+                background-color: #e53e3e;
+                color: white;
+                border-color: #e53e3e;
+            }
         }
-        .recording-pulse { animation: pulseRecord 1.5s infinite !important; border-color: transparent !important; }
+        .recording-pulse {
+            animation: pulseRecord 1.5s infinite !important;
+            border-color: transparent !important;
+        }
 
-        .financial-inputs-wrapper { display: flex; gap: 14px; margin-bottom: 10px; width: 100%; flex-wrap: wrap; }
-        .financial-inputs-wrapper .form-group { flex: 1; min-width: 130px; margin-bottom: 0; }
-        
-        .remaining-compact-badge {
-            display: inline-flex; align-items: center; gap: 8px; background: var(--terracotta-light);
-            padding: 10px 18px; border-radius: var(--radius-sm); margin-bottom: 20px; width: fit-content; border: none;
+        .financial-inputs-wrapper {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 10px;
+            width: 100%;
             flex-wrap: wrap;
         }
-        .remaining-compact-badge .badge-text { font-size: var(--font-sm); color: var(--terracotta-dark); font-weight: 700; word-break: break-word; }
-        .remaining-compact-badge .badge-value { font-size: var(--font-lg); font-weight: 800; color: var(--terracotta-dark); word-break: break-word; }
+        .financial-inputs-wrapper .form-group {
+            flex: 1;
+            min-width: 130px;
+            margin-bottom: 0;
+        }
+
+        .remaining-compact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--terracotta-light);
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+            width: fit-content;
+            border: none;
+            flex-wrap: wrap;
+        }
+        .remaining-compact-badge .badge-text {
+            font-size: var(--font-sm);
+            color: var(--terracotta-dark);
+            font-weight: 700;
+            word-break: break-word;
+        }
+        .remaining-compact-badge .badge-value {
+            font-size: var(--font-lg);
+            font-weight: 800;
+            color: var(--terracotta-dark);
+            word-break: break-word;
+        }
 
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px); font-size: var(--font-md);
-            font-weight: 800; font-family: inherit; border: none; border-radius: var(--radius-sm);
-            cursor: pointer; transition: all var(--transition); min-height: var(--touch-min); height: auto;
-            white-space: normal; word-break: break-word; text-align: center; line-height: 1.4; width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px);
+            font-size: var(--font-md);
+            font-weight: 800;
+            font-family: inherit;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            min-height: var(--touch-min);
+            height: auto;
+            white-space: normal;
+            word-break: break-word;
+            text-align: center;
+            line-height: 1.4;
+            width: 100%;
         }
-        .btn:active { transform: scale(0.97); }
-        .btn-primary { background: var(--terracotta); color: #FFF; box-shadow: 0 4px 16px rgba(208, 108, 78, 0.3); }
-        .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(208, 108, 78, 0.4); }
-        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text-light); }
-        .btn-outline:hover { background: var(--border-light); color: var(--text); }
-        .btn-danger { background: var(--red); color: #FFF; }
-        .btn-success { background: var(--green); color: #FFF; }
-        .btn-sm { padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px); font-size: var(--font-sm); min-height: 42px; border-radius: var(--radius-xs); }
-        
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: var(--terracotta);
+            color: #FFF;
+            box-shadow: 0 4px 16px rgba(208, 108, 78, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(208, 108, 78, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-light);
+        }
+        .btn-outline:hover {
+            background: var(--border-light);
+            color: var(--text);
+        }
+        .btn-danger {
+            background: var(--red);
+            color: #FFF;
+        }
+        .btn-success {
+            background: var(--green);
+            color: #FFF;
+        }
+        .btn-sm {
+            padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
+            font-size: var(--font-sm);
+            min-height: 42px;
+            border-radius: var(--radius-xs);
+        }
+
         .btn-pill {
-            border-radius: var(--radius-pill); padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2.5vw, 20px);
-            font-size: var(--font-sm); font-weight: 700; min-height: 42px; border: 1.5px solid var(--border); height: auto;
-            background: var(--card); color: var(--text-light); transition: all var(--transition);
-            white-space: normal; text-align: center; word-break: break-word;
+            border-radius: var(--radius-pill);
+            padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2.5vw, 20px);
+            font-size: var(--font-sm);
+            font-weight: 700;
+            min-height: 42px;
+            border: 1.5px solid var(--border);
+            height: auto;
+            background: var(--card);
+            color: var(--text-light);
+            transition: all var(--transition);
+            white-space: normal;
+            text-align: center;
+            word-break: break-word;
         }
-        .btn-pill.active-filter { background: var(--text); color: #FFF; border-color: var(--text); }
+        .btn-pill.active-filter {
+            background: var(--text);
+            color: #FFF;
+            border-color: var(--text);
+        }
 
-        /* ===== بطاقات العملاء (مضغوطة) ===== */
+        /* ===== بطاقات العملاء ===== */
         .client-card {
-            background: var(--card); border-radius: var(--radius); padding: clamp(12px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
-            box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: all var(--transition);
-            position: relative; display: flex; flex-direction: column; gap: 8px;
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: clamp(12px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        .client-card.urgency-red { border-right: 6px solid var(--red); background: #FFFBFB; }
-        .client-card.urgency-orange { border-right: 6px solid var(--orange); }
-        .client-card.urgency-green { border-right: 6px solid var(--green); }
-        .client-card.purchased-card { opacity: 0.7; background: #f0f0f0; }
-        
-        .client-card .client-name { font-size: clamp(15px, 2.2vw, 18px); font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; word-break: break-word; line-height: 1.3; }
-        .client-card .urgency-badge { padding: 4px 10px; border-radius: var(--radius-pill); font-size: var(--font-sm); font-weight: 800; white-space: normal; text-align: center; }
-        .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(252,129,129,0.3); }
-        .badge-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(246,173,85,0.3); }
-        .badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(72,187,120,0.3); }
-        .badge-purchased { background: #e6e6e6; color: #555; border: 1px solid #ccc; }
-        
-        .client-card .client-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 4px 8px; font-size: var(--font-sm); color: var(--text-muted); font-weight: 500; }
-        .client-image { width: 100%; max-height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin: 6px 0; cursor: pointer; border: 1px solid var(--border); }
-        .card-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
-        .card-actions button { flex: 1; min-width: 90px; font-size: var(--font-sm); padding: 6px 10px; min-height: 36px; }
-        
-        .more-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); padding: 2px 6px; margin-right: auto; border-radius: 8px; transition: background 0.2s; flex-shrink: 0; }
-        .more-btn:hover { background: #F1F5F9; color: var(--text); }
-        
-        .context-menu { position: absolute; background: var(--card); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); z-index: 500; padding: 10px 0; min-width: 190px; border: 1px solid var(--border); overflow: hidden; display: none; }
-        .context-menu.active { display: block; animation: fadeIn 0.2s ease; }
-        .context-menu button { display: block; width: 100%; padding: 12px 20px; background: none; border: none; font-family: inherit; font-size: var(--font-sm); font-weight: 600; cursor: pointer; text-align: right; color: var(--text); transition: background 0.2s; white-space: normal; word-break: break-word; }
-        .context-menu button:hover { background: #F8FAFC; color: var(--terracotta-dark); }
+        .client-card.urgency-red {
+            border-right: 6px solid var(--red);
+            background: #FFFBFB;
+        }
+        .client-card.urgency-orange {
+            border-right: 6px solid var(--orange);
+        }
+        .client-card.urgency-green {
+            border-right: 6px solid var(--green);
+        }
+        .client-card.purchased-card {
+            opacity: 0.7;
+            background: #f0f0f0;
+        }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: var(--card); border-radius: var(--radius); width: 100%; max-width: 420px; max-height: 85vh; overflow-y: auto; padding: 24px; box-shadow: var(--shadow-lg); animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .modal-small { max-width: 340px; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-weight: 800; font-size: var(--font-lg); color: var(--text); flex-wrap: wrap; gap: 10px; }
-        .modal-close { background: #F1F5F9; border: none; font-size: 20px; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: 0.2s; flex-shrink: 0; }
-        .modal-close:hover { background: #E2E8F0; color: var(--text); }
-        
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1E293B; color: #FFF; padding: 14px 28px; border-radius: var(--radius-pill); font-size: var(--font-md); font-weight: 700; z-index: 9999; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1), toastOut 0.4s ease 2.2s forwards; max-width: 90vw; text-align: center; word-break: break-word; line-height: 1.4; }
-        @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(30px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-        @keyframes toastOut { from { opacity: 1; transform: translateX(-50%) translateY(0); } to { opacity: 0; transform: translateX(-50%) translateY(30px); } }
-        
-        .toast-big { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--green); color: #FFF; padding: clamp(20px, 4vw, 35px) clamp(25px, 5vw, 45px); border-radius: var(--radius); font-size: var(--font-xl); font-weight: 800; z-index: 10000; text-align: center; box-shadow: 0 20px 40px rgba(72, 187, 120, 0.4); animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOut 0.4s ease 2.5s forwards; width: 85%; max-width: 380px; word-break: break-word; line-height: 1.4; }
-        @keyframes popIn { from { opacity: 0; transform: translate(-50%, -40%) scale(0.8); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-        @keyframes fadeOut { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -60%) scale(0.8); } }
-        
-        .hidden-file-input { display: none; }
-        .image-preview { max-width: 100%; max-height: 200px; border-radius: var(--radius-sm); display: none; margin-top: 12px; border: 1px solid var(--border); object-fit: cover; }
-        .image-preview.visible { display: block; }
-        .divider { border-top: 1px solid var(--border); margin: 16px 0; }
+        .client-card .client-name {
+            font-size: clamp(15px, 2.2vw, 18px);
+            font-weight: 800;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            word-break: break-word;
+            line-height: 1.3;
+        }
+        .client-card .urgency-badge {
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: var(--font-sm);
+            font-weight: 800;
+            white-space: normal;
+            text-align: center;
+        }
+        .badge-red {
+            background: var(--red-bg);
+            color: var(--red);
+            border: 1px solid rgba(252, 129, 129, 0.3);
+        }
+        .badge-orange {
+            background: var(--orange-bg);
+            color: var(--orange);
+            border: 1px solid rgba(246, 173, 85, 0.3);
+        }
+        .badge-green {
+            background: var(--green-bg);
+            color: var(--green);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+        }
+        .badge-purchased {
+            background: #e6e6e6;
+            color: #555;
+            border: 1px solid #ccc;
+        }
 
-        .collapsible-toggle { background: #F8FAFC; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: var(--font-md); font-weight: 800; cursor: pointer; color: var(--text); padding: 16px 20px; width: 100%; text-align: right; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; flex-wrap: wrap; gap: 10px; line-height: 1.4; }
-        .collapsible-toggle:hover { background: #F1F5F9; }
-        .collapsible-content { display: none; margin-top: 16px; }
-        .collapsible-content.open { display: block; animation: fadeIn 0.3s ease; }
-        .collapsible-toggle.open::after { content: " ▴"; color: var(--terracotta); }
-        .collapsible-toggle::after { content: " ▾"; color: var(--text-muted); }
+        .client-card .client-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 4px 8px;
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .client-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin: 6px 0;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+        .client-image:hover {
+            transform: scale(1.01);
+        }
+        .card-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+        .card-actions button {
+            flex: 1;
+            min-width: 90px;
+            font-size: var(--font-sm);
+            padding: 6px 10px;
+            min-height: 36px;
+        }
 
-        .financial-details { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-weight: 700; font-size: var(--font-sm); background: #F8FAFC; padding: 8px 12px; border-radius: var(--radius-sm); margin: 4px 0; }
-        .financial-details span { word-break: break-word; }
-        .financial-details .remaining-badge { background: #FFF; color: var(--text); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.9em; display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); flex-wrap: wrap; line-height: 1.3; }
-        .financial-details .remaining-badge .label { font-weight: 500; color: var(--text-muted); font-size: 0.8em; }
-        
-        .agenda-search-area { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-        .desc-box { background: #F8FAFC; padding: 10px 14px; border-radius: var(--radius-sm); font-size: var(--font-sm); border: 1px solid var(--border); margin: 6px 0; color: var(--text-light); line-height: 1.5; font-weight: 500; word-break: break-word; }
-        
-        .client-details.measurements-box { background: #F8FAFC; padding: 8px 10px; border-radius: var(--radius-sm); margin-top: 6px; border: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 4px; }
-        .client-details.measurements-box span { background: #FFF; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border-light); font-weight: 600; font-size: 0.85em; text-align: center; word-break: break-word; line-height: 1.2; }
+        .more-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 2px 6px;
+            margin-right: auto;
+            border-radius: 8px;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .more-btn:hover {
+            background: #F1F5F9;
+            color: var(--text);
+        }
 
-        /* ===== خيارات الحالة والنوع (تحسين المظهر الأخضر) ===== */
-        .status-selector, .type-selector {
+        .context-menu {
+            position: absolute;
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            z-index: 500;
+            padding: 10px 0;
+            min-width: 190px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: none;
+        }
+        .context-menu.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        .context-menu button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: var(--font-sm);
+            font-weight: 600;
+            cursor: pointer;
+            text-align: right;
+            color: var(--text);
+            transition: background 0.2s;
+            white-space: normal;
+            word-break: break-word;
+        }
+        .context-menu button:hover {
+            background: #F8FAFC;
+            color: var(--terracotta-dark);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: var(--card);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 420px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-small {
+            max-width: 340px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+            font-size: var(--font-lg);
+            color: var(--text);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .modal-close {
+            background: #F1F5F9;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .modal-close:hover {
+            background: #E2E8F0;
+            color: var(--text);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1E293B;
+            color: #FFF;
+            padding: 14px 28px;
+            border-radius: var(--radius-pill);
+            font-size: var(--font-md);
+            font-weight: 700;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1), toastOut 0.4s ease 2.2s forwards;
+            max-width: 90vw;
+            text-align: center;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px);
+            }
+        }
+
+        .toast-big {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--green);
+            color: #FFF;
+            padding: clamp(20px, 4vw, 35px) clamp(25px, 5vw, 45px);
+            border-radius: var(--radius);
+            font-size: var(--font-xl);
+            font-weight: 800;
+            z-index: 10000;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(72, 187, 120, 0.4);
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards, fadeOut 0.4s ease 2.5s forwards;
+            width: 85%;
+            max-width: 380px;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.8);
+            }
+        }
+
+        .hidden-file-input {
+            display: none;
+        }
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: var(--radius-sm);
+            display: none;
+            margin-top: 12px;
+            border: 1px solid var(--border);
+            object-fit: cover;
+        }
+        .image-preview.visible {
+            display: block;
+        }
+        .divider {
+            border-top: 1px solid var(--border);
+            margin: 16px 0;
+        }
+
+        .collapsible-toggle {
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-md);
+            font-weight: 800;
+            cursor: pointer;
+            color: var(--text);
+            padding: 16px 20px;
+            width: 100%;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            flex-wrap: wrap;
+            gap: 10px;
+            line-height: 1.4;
+        }
+        .collapsible-toggle:hover {
+            background: #F1F5F9;
+        }
+        .collapsible-content {
+            display: none;
+            margin-top: 16px;
+        }
+        .collapsible-content.open {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .collapsible-toggle.open::after {
+            content: " ▴";
+            color: var(--terracotta);
+        }
+        .collapsible-toggle::after {
+            content: " ▾";
+            color: var(--text-muted);
+        }
+
+        .financial-details {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 12px;
+            font-weight: 700;
+            font-size: var(--font-sm);
+            background: #F8FAFC;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            margin: 4px 0;
+        }
+        .financial-details span {
+            word-break: break-word;
+        }
+        .financial-details .remaining-badge {
+            background: #FFF;
+            color: var(--text);
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+            line-height: 1.3;
+        }
+        .financial-details .remaining-badge .label {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.8em;
+        }
+
+        .agenda-search-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .desc-box {
+            background: #F8FAFC;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-sm);
+            border: 1px solid var(--border);
+            margin: 6px 0;
+            color: var(--text-light);
+            line-height: 1.5;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        /* ===== خيارات الحالة والنوع ===== */
+        .status-selector,
+        .type-selector {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
         }
-        .status-option, .type-option {
+        .status-option,
+        .type-option {
             flex: 1;
             min-width: 80px;
             text-align: center;
@@ -263,10 +916,13 @@
             transition: all 0.2s ease;
             background: #f8f8f8;
         }
-        .status-option:hover, .type-option:hover { transform: scale(1.02); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        
-        /* التحديد الأخضر الزاهي */
-        .status-option.selected, .type-option.selected {
+        .status-option:hover,
+        .type-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .status-option.selected,
+        .type-option.selected {
             background: #d4edda !important;
             border-color: #28a745 !important;
             box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
@@ -274,7 +930,7 @@
             color: #155724;
         }
 
-        /* ===== التقويم (في الصفحة المنفصلة) ===== */
+        /* ===== التقويم (إصلاح شامل) ===== */
         .calendar-container {
             background: var(--card);
             border-radius: var(--radius-sm);
@@ -300,8 +956,12 @@
             padding: 4px 12px;
             border-radius: 8px;
             transition: background 0.2s;
+            min-width: 44px;
+            min-height: 44px;
         }
-        .calendar-header .nav-btn:hover { background: #F1F5F9; }
+        .calendar-header .nav-btn:hover {
+            background: #F1F5F9;
+        }
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -355,10 +1015,19 @@
             font-weight: 800;
             margin-top: 2px;
         }
-        .calendar-grid .day-cell .day-count.urgent { background: var(--red); }
-        .calendar-grid .day-cell .day-count.medium { background: var(--orange); }
-        .calendar-grid .day-cell .day-count.normal { background: var(--green); }
-        .calendar-grid .day-cell .day-count.zero { background: transparent; color: var(--text-muted); }
+        .calendar-grid .day-cell .day-count.urgent {
+            background: var(--red);
+        }
+        .calendar-grid .day-cell .day-count.medium {
+            background: var(--orange);
+        }
+        .calendar-grid .day-cell .day-count.normal {
+            background: var(--green);
+        }
+        .calendar-grid .day-cell .day-count.zero {
+            background: transparent;
+            color: var(--text-muted);
+        }
         .calendar-grid .day-cell.today {
             border: 2px solid var(--terracotta);
             background: var(--terracotta-lighter);
@@ -367,7 +1036,10 @@
         /* ===== الصفحات المنفصلة (overlays) ===== */
         .page-overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: var(--bg);
             z-index: 2000;
             overflow-y: auto;
@@ -401,7 +1073,9 @@
             padding: 4px 12px;
             color: var(--text-muted);
         }
-        .page-overlay .page-header .close-page-btn:hover { color: var(--text); }
+        .page-overlay .page-header .close-page-btn:hover {
+            color: var(--text);
+        }
         .page-overlay .page-body {
             flex: 1;
             display: flex;
@@ -409,12 +1083,23 @@
             gap: 14px;
         }
 
-        /* إخفاء التطبيق الأساسي ومنع التمرير عند فتح صفحة منفصلة */
-        body.page-open .app-container > *:not(.page-overlay) { display: none; }
-        body.page-open .app-container { padding: 0; }
-        body.page-open .app-container .page-overlay.active { display: flex; }
-        body.page-open { overflow: hidden; height: 100vh; }
-        body.page-open .app-container { height: 100vh; overflow: hidden; }
+        body.page-open .app-container>*:not(.page-overlay) {
+            display: none;
+        }
+        body.page-open .app-container {
+            padding: 0;
+        }
+        body.page-open .app-container .page-overlay.active {
+            display: flex;
+        }
+        body.page-open {
+            overflow: hidden;
+            height: 100vh;
+        }
+        body.page-open .app-container {
+            height: 100vh;
+            overflow: hidden;
+        }
 
         .purchase-action-btn {
             min-width: 80px;
@@ -423,16 +1108,21 @@
             border-radius: 6px;
         }
 
-        /* ===== أنماط معاينة الصورة المكبرة ===== */
+        /* ===== معاينة الصورة المكبرة (إصلاح) ===== */
+        /* تم نقل .image-overlay إلى خارج .app-container في HTML، لذا نضمن أن يبقى فوق كل شيء */
         .image-overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.85);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.92);
             z-index: 3000;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 30px;
+            padding: 20px;
+            flex-direction: column;
         }
         .image-overlay.active {
             display: flex;
@@ -440,16 +1130,16 @@
         }
         .image-overlay img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 90vh;
             object-fit: contain;
             border-radius: var(--radius-sm);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
         }
         .image-overlay .close-image-btn {
             position: absolute;
             top: 20px;
             left: 20px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.15);
             border: none;
             color: white;
             font-size: 36px;
@@ -461,9 +1151,10 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
+            transition: background 0.2s;
         }
         .image-overlay .close-image-btn:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.25);
         }
 
         /* ===== صفحة عرض القياسات ===== */
@@ -484,9 +1175,120 @@
             color: var(--terracotta-dark);
             font-weight: 800;
         }
+
+        .result-item {
+            background: #F8FAFC;
+            border-radius: var(--radius-xs);
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .result-item .result-label {
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .result-item .result-value {
+            font-size: var(--font-lg);
+            font-weight: 800;
+            color: var(--terracotta-dark);
+            margin-top: 4px;
+        }
+        .result-item.pulse-red {
+            animation: pulseBorderRedStrong 1.2s infinite cubic-bezier(0.66, 0, 0, 1);
+            border-color: red;
+            background-color: #fff0f0;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: clamp(10px, 2vw, 14px);
+            margin-top: 12px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #F8FAFC;
+            border-radius: var(--radius-pill);
+            padding: 4px 16px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        .search-bar:focus-within {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(208, 108, 78, 0.12);
+        }
+        .search-bar .search-icon {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+        .search-bar input {
+            border: none;
+            background: transparent;
+            padding: 12px 8px;
+            font-size: var(--font-md);
+            font-family: inherit;
+            width: 100%;
+            outline: none;
+            color: var(--text);
+        }
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--font-sm);
+            font-weight: 600;
+            color: var(--text-light);
+            padding: 6px 0;
+        }
+        .checkbox-wrapper input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--terracotta);
+            cursor: pointer;
+        }
+        .debt-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .debt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--card);
+            border-radius: var(--radius-xs);
+            border: 1px solid var(--border-light);
+            font-weight: 600;
+            font-size: var(--font-sm);
+        }
+        .debt-item .debt-amount {
+            color: var(--red);
+            font-weight: 800;
+        }
+        .visible {
+            display: block !important;
+        }
+        .custom-ease-input.visible {
+            display: block !important;
+        }
+        .custom-ease-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
+
+    <!-- ===== معاينة الصورة المكبرة (خارج app-container) ===== -->
+    <div class="image-overlay" id="image-overlay">
+        <button class="close-image-btn" id="close-image-overlay">&times;</button>
+        <img id="full-image" src="" alt="صورة مكبرة">
+    </div>
+
     <div class="app-container">
 
         <header class="app-header">
@@ -509,12 +1311,7 @@
                     <div class="form-group"><label>إسم الكليانة *</label><input type="text" id="client-name" required></div>
                     <div class="form-group"><label>العنوان</label><input type="text" id="client-location"></div>
                     <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="client-phone"></div>
-                    
-                    <div class="form-group">
-                        <label>📝 الوصف</label>
-                        <textarea id="cl-description" rows="2" placeholder="ألوان، تفاصيل الثوب، طلبات خاصة..."></textarea>
-                    </div>
-
+                    <div class="form-group"><label>📝 الوصف</label><textarea id="cl-description" rows="2" placeholder="ألوان، تفاصيل الثوب، طلبات خاصة..."></textarea></div>
                     <div class="form-group">
                         <label style="display:block; margin-bottom:8px;">📌 حالة الكليانة (اختياري)</label>
                         <div class="status-selector" id="status-selector">
@@ -523,7 +1320,6 @@
                             <div class="status-option" data-status="special" style="background:#e6f9e6;">🤩 مميزة</div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label style="display:block; margin-bottom:8px;">👗 نوع الثوب (اختياري - يمكن اختيار الاثنين)</label>
                         <div class="type-selector" id="type-selector">
@@ -531,7 +1327,6 @@
                             <div class="type-option" data-type="sadr" style="background:#fff0f0;">👚 صدر</div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label style="margin-bottom: 10px; display: block; color: var(--text-light); font-weight: 700;">🎙️ الملاحظات الصوتية (المجموع: 3 دقائق كحد أقصى)</label>
                         <div id="form-audios-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;"></div>
@@ -539,7 +1334,6 @@
                             🎙️ بدء تسجيل صوتي (<span id="form-audio-total-time">00:00</span> / 03:00)
                         </button>
                     </div>
-
                     <div class="financial-inputs-wrapper">
                         <div class="form-group">
                             <label>الثمن <span class="unit">(درهم)</span> *</label>
@@ -554,7 +1348,6 @@
                         <span class="badge-text">الباقي:</span>
                         <span id="client-remaining-text" class="badge-value">0 درهم</span>
                     </div>
-
                     <hr class="divider">
                     <div class="form-group"><label>📸 صورة الثوب (اختياري)</label>
                         <div class="image-upload-group" style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -564,7 +1357,6 @@
                         <img id="form-image-preview" class="image-preview" alt="معاينة">
                         <input type="file" id="form-image-input" class="hidden-file-input" accept="image/*">
                     </div>
-                    
                     <div class="form-group"><label>👗 صورة الموديل (شكل الخياطة)</label>
                         <div class="image-upload-group" style="display:flex; gap:10px; flex-wrap:wrap;">
                             <button type="button" class="btn btn-outline btn-sm" id="model-capture-btn" style="flex:1; min-width:100px;">📷 الموديل</button>
@@ -573,7 +1365,6 @@
                         <img id="form-model-preview" class="image-preview" alt="معاينة الموديل">
                         <input type="file" id="form-model-input" class="hidden-file-input" accept="image/*">
                     </div>
-
                     <hr class="divider">
                     <p style="font-weight:800; font-size: var(--font-lg); color: var(--text); margin-bottom: 16px;">📏 المقاسات (cm)</p>
                     <div class="form-group"><label>الكتاف كامليين</label><input type="number" class="measurement-input" id="cl-shoulders" value="0" required></div>
@@ -584,9 +1375,7 @@
                     <div class="form-group"><label>الطول الإجمالي</label><input type="number" class="measurement-input" id="cl-dressLength" value="0" required></div>
                     <div class="form-group"><label>طول الكم</label><input type="number" class="measurement-input" id="cl-sleeveLength" value="0" required></div>
                     <div class="form-group"><label>فم الكمام</label><input type="number" class="measurement-input" id="cl-sleeveMouth" value="0" required></div>
-                    
                     <div class="form-group"><label>الجلايل</label><input type="number" class="measurement-input" id="cl-jlayel" value="0"></div>
-
                     <div class="form-group">
                         <label>نوع الاتساع *</label>
                         <select id="cl-fitType" required>
@@ -637,26 +1426,11 @@
         <section class="tab-content" id="tab-agenda">
             <div class="card accent-top">
                 <div class="card-header">📋 لائحة الكليانات النشطة</div>
-                
-                <button id="show-purchase-modal-btn" class="btn btn-success" style="margin-bottom:12px; background: #28a745;">
-                    🛒 شراء السلع (صدر / دونتيل)
-                </button>
-
-                <button id="open-calendar-btn" class="btn btn-primary" style="margin-bottom:12px; background:var(--gold); color:#FFF; box-shadow:0 4px 16px rgba(212,175,55,0.3);">
-                    📅 التقويم الشهري
-                </button>
-
+                <button id="show-purchase-modal-btn" class="btn btn-success" style="margin-bottom:12px; background: #28a745;">🛒 شراء السلع (صدر / دونتيل)</button>
+                <button id="open-calendar-btn" class="btn btn-primary" style="margin-bottom:12px; background:var(--gold); color:#FFF; box-shadow:0 4px 16px rgba(212,175,55,0.3);">📅 التقويم الشهري</button>
                 <div class="agenda-search-area">
-                    <div class="search-bar">
-                        <span class="search-icon">🔎</span>
-                        <input type="text" id="agenda-search" placeholder="ابحثي بالإسم...">
-                    </div>
-                    
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" id="search-in-all">
-                        <label for="search-in-all">البحث في الكل (بما فيها المسلّمة)</label>
-                    </label>
-
+                    <div class="search-bar"><span class="search-icon">🔎</span><input type="text" id="agenda-search" placeholder="ابحثي بالإسم..."></div>
+                    <label class="checkbox-wrapper"><input type="checkbox" id="search-in-all"><label for="search-in-all">البحث في الكل (بما فيها المسلّمة)</label></label>
                     <div class="filter-panel" id="agenda-filter-panel" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
                         <button class="btn btn-pill active-filter" data-filter="all">📋 كلشي</button>
                         <button class="btn btn-pill" data-filter="this-week">📅 هاد السيمانة</button>
@@ -665,7 +1439,6 @@
                 </div>
                 <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:12px;"></div>
             </div>
-            
             <div class="card" style="padding: 10px 16px;">
                 <button class="collapsible-toggle" id="stats-toggle" style="border:none; padding:10px 0;"><span>📊 إحصائيات وأرباح الشهر</span></button>
                 <div class="collapsible-content" id="stats-content">
@@ -682,7 +1455,6 @@
                     <ul class="debt-list" id="stats-debt-list"></ul>
                 </div>
             </div>
-
             <div class="card" style="padding: 10px 16px;">
                 <button class="collapsible-toggle" id="completed-toggle" style="border:none; padding:10px 0;"><span>✅ الطلبيات المسلّمة <span id="completed-count">(0)</span></span></button>
                 <div class="collapsible-content" id="completed-content">
@@ -713,7 +1485,6 @@
             </div>
         </div>
 
-        <!-- صفحة عرض القياسات -->
         <div class="page-overlay measurements-page" id="measurements-page">
             <div class="page-header">
                 <span class="page-title" id="measurements-page-title">📏 قياسات الكليانة</span>
@@ -724,7 +1495,6 @@
             </div>
         </div>
 
-        <!-- صفحة شراء السلع -->
         <div class="page-overlay" id="purchase-detail-page">
             <div class="page-header">
                 <span class="page-title" id="purchase-detail-title">🛒 شراء السلع</span>
@@ -741,12 +1511,8 @@
             <div class="modal-content">
                 <div class="modal-header"><span>🛒 شراء السلع</span><button class="modal-close" id="close-purchase-type-modal">&times;</button></div>
                 <div style="display:flex; flex-direction:column; gap:16px; padding:8px 0;">
-                    <button class="btn btn-outline" id="choose-sadr-btn" style="border-color:var(--red); color:var(--red); font-size:var(--font-xl); padding:20px;">
-                        👚 صدر (<span id="sadr-count-badge">0</span>)
-                    </button>
-                    <button class="btn btn-outline" id="choose-dontel-btn" style="border-color:var(--terracotta); color:var(--terracotta); font-size:var(--font-xl); padding:20px;">
-                        🧵 دونتيل (<span id="dontel-count-badge">0</span>)
-                    </button>
+                    <button class="btn btn-outline" id="choose-sadr-btn" style="border-color:var(--red); color:var(--red); font-size:var(--font-xl); padding:20px;">👚 صدر (<span id="sadr-count-badge">0</span>)</button>
+                    <button class="btn btn-outline" id="choose-dontel-btn" style="border-color:var(--terracotta); color:var(--terracotta); font-size:var(--font-xl); padding:20px;">🧵 دونتيل (<span id="dontel-count-badge">0</span>)</button>
                 </div>
             </div>
         </div>
@@ -848,29 +1614,21 @@
             </div>
         </div>
 
-        <!-- ===== معاينة الصورة المكبرة ===== -->
-        <div class="image-overlay" id="image-overlay">
-            <button class="close-image-btn" id="close-image-overlay">&times;</button>
-            <img id="full-image" src="" alt="صورة مكبرة">
-        </div>
-
     </div> <!-- نهاية app-container -->
 
     <script>
         (function() {
-            // ====== إعدادات زر الرجوع (المحدثة) ======
+            // ====== إعدادات زر الرجوع ======
             function setupBackButton() {
                 const { App } = window.Capacitor?.Plugins || {};
-                if (!App) return; 
+                if (!App) return;
                 App.addListener('backButton', () => {
-                    // 1. إغلاق معاينة الصورة المكبرة
                     const overlay = document.getElementById('image-overlay');
                     if (overlay.classList.contains('active')) {
                         overlay.classList.remove('active');
                         document.body.classList.remove('page-open');
                         return;
                     }
-                    // 2. إغلاق الصفحات المنبثقة (page-overlay) بالترتيب
                     const pages = document.querySelectorAll('.page-overlay.active');
                     if (pages.length > 0) {
                         const lastPage = pages[pages.length - 1];
@@ -880,7 +1638,6 @@
                         }
                         return;
                     }
-                    // 3. إغلاق المودال المفتوح
                     const modals = document.querySelectorAll('.modal-overlay');
                     let openModal = null;
                     for (const modal of modals) {
@@ -892,51 +1649,67 @@
                         openModal.style.display = 'none';
                         return;
                     }
-                    // 4. إغلاق قائمة السياق
                     const contextMenu = document.querySelector('.context-menu.active');
                     if (contextMenu) { contextMenu.remove(); return; }
-                    // 5. إيقاف التسجيل الصوتي
                     if (typeof isFormRecording !== 'undefined' && isFormRecording && formMediaRecorder) {
                         formMediaRecorder.stop();
                         waitingToSaveClient = false;
                         return;
                     }
-                    // 6. العودة إلى تبويب العملاء
                     const activeTab = document.querySelector('.tab-btn.active');
                     if (activeTab && activeTab.dataset.tab !== 'clients') {
                         switchTab('clients');
                         return;
                     }
-                    // 7. الخروج من التطبيق
                     App.exitApp();
                 });
             }
 
-            // ====== IndexedDB (نفس الكود السابق) ======
-            const DB_NAME = 'FessalaAppDB', STORE_NAME = 'clients';
+            // ====== IndexedDB ======
+            const DB_NAME = 'FessalaAppDB',
+                STORE_NAME = 'clients';
+
             function openDB() {
                 return new Promise((resolve, reject) => {
                     const req = indexedDB.open(DB_NAME, 1);
-                    req.onupgradeneeded = e => { if (!e.target.result.objectStoreNames.contains(STORE_NAME)) e.target.result.createObjectStore(STORE_NAME, { keyPath: 'id' }); };
+                    req.onupgradeneeded = e => { if (!e.target.result.objectStoreNames.contains(STORE_NAME)) e.target
+                            .result.createObjectStore(STORE_NAME, { keyPath: 'id' }); };
                     req.onsuccess = () => resolve(req.result);
                     req.onerror = () => reject(req.error);
                 });
             }
-            async function getClients() { const db = await openDB(); return new Promise((res, rej) => { const tx = db.transaction(STORE_NAME,'readonly'); const r = tx.objectStore(STORE_NAME).getAll(); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); }
-            async function saveClient(client) { const db = await openDB(); return new Promise((res, rej) => { const tx = db.transaction(STORE_NAME,'readwrite'); tx.objectStore(STORE_NAME).put(client); tx.oncomplete = () => res(); tx.onerror = () => rej(tx.error); }); }
-            async function deleteClientFromDB(id) { const db = await openDB(); return new Promise((res, rej) => { const tx = db.transaction(STORE_NAME,'readwrite'); tx.objectStore(STORE_NAME).delete(id); tx.oncomplete = () => res(); tx.onerror = () => rej(tx.error); }); }
 
-            function compressImage(file, maxWidth=800, quality=0.6) {
+            async function getClients() { const db = await openDB(); return new Promise((res, rej) => { const tx = db
+                        .transaction(STORE_NAME, 'readonly'); const r = tx.objectStore(STORE_NAME).getAll(); r
+                        .onsuccess = () => res(r.result);
+                    r.onerror = () => rej(r.error); }); }
+
+            async function saveClient(client) { const db = await openDB(); return new Promise((res, rej) => { const tx =
+                        db.transaction(STORE_NAME, 'readwrite');
+                    tx.objectStore(STORE_NAME).put(client);
+                    tx.oncomplete = () => res();
+                    tx.onerror = () => rej(tx.error); }); }
+
+            async function deleteClientFromDB(id) { const db = await openDB(); return new Promise((res, rej) => { const
+                        tx = db.transaction(STORE_NAME, 'readwrite');
+                    tx.objectStore(STORE_NAME).delete(id);
+                    tx.oncomplete = () => res();
+                    tx.onerror = () => rej(tx.error); }); }
+
+            function compressImage(file, maxWidth = 800, quality = 0.6) {
                 return new Promise((resolve, reject) => {
                     const reader = new FileReader();
                     reader.onload = e => {
                         const img = new Image();
                         img.onload = () => {
                             const canvas = document.createElement('canvas');
-                            let w=img.width, h=img.height;
-                            if(w>maxWidth){ h=(h*maxWidth)/w; w=maxWidth; }
-                            canvas.width=w; canvas.height=h;
-                            canvas.getContext('2d').drawImage(img,0,0,w,h);
+                            let w = img.width,
+                                h = img.height;
+                            if (w > maxWidth) { h = (h * maxWidth) / w;
+                                w = maxWidth; }
+                            canvas.width = w;
+                            canvas.height = h;
+                            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
                             resolve(canvas.toDataURL('image/jpeg', quality));
                         };
                         img.src = e.target.result;
@@ -946,14 +1719,15 @@
                 });
             }
 
-            // ====== التسجيل الصوتي (نفس الكود السابق) ======
+            // ====== التسجيل الصوتي ======
             let formAudioNotes = [];
             let formTotalSeconds = 0;
             let formMaxSeconds = 180;
-            let formMediaRecorder, isFormRecording = false;
+            let formMediaRecorder,
+                isFormRecording = false;
             let formRecordInterval, formCurrentRecordSeconds = 0;
-            let waitingToSaveClient = false; 
-            
+            let waitingToSaveClient = false;
+
             const micBtn = document.getElementById('record-mic-btn');
             const formAudiosList = document.getElementById('form-audios-list');
 
@@ -978,14 +1752,15 @@
                     `;
                     formAudiosList.appendChild(div);
                 });
-                let m = Math.floor(formTotalSeconds/60).toString().padStart(2,'0');
-                let s = (formTotalSeconds%60).toString().padStart(2,'0');
+                let m = Math.floor(formTotalSeconds / 60).toString().padStart(2, '0');
+                let s = (formTotalSeconds % 60).toString().padStart(2, '0');
                 document.getElementById('form-audio-total-time').innerText = `${m}:${s}`;
                 if (formTotalSeconds >= formMaxSeconds) {
                     micBtn.style.display = 'none';
                 } else {
                     micBtn.style.display = 'inline-flex';
-                    micBtn.innerHTML = `🎙️ تسجيل صوتي إضافي (<span id="form-audio-total-time">${m}:${s}</span> / 03:00)`;
+                    micBtn.innerHTML =
+                        `🎙️ تسجيل صوتي إضافي (<span id="form-audio-total-time">${m}:${s}</span> / 03:00)`;
                 }
             };
 
@@ -994,7 +1769,7 @@
                 renderFormAudios();
             };
 
-            if(micBtn) {
+            if (micBtn) {
                 micBtn.addEventListener('click', async () => {
                     if (isFormRecording) { formMediaRecorder.stop(); return; }
                     if (formTotalSeconds >= formMaxSeconds) return showToast('⚠️ وصلتي للحد الأقصى (3 دقائق)');
@@ -1011,34 +1786,37 @@
                         formCurrentRecordSeconds = 0;
                         formMediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
                         formMediaRecorder.onstart = () => {
-                            isFormRecording = true; 
+                            isFormRecording = true;
                             micBtn.classList.add('recording-pulse');
                             micBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="form-current-timer">00:00</span>)`;
                             const timerText = document.getElementById('form-current-timer');
                             formRecordInterval = setInterval(() => {
                                 formCurrentRecordSeconds++;
-                                let m = Math.floor(formCurrentRecordSeconds/60).toString().padStart(2,'0');
-                                let s = (formCurrentRecordSeconds%60).toString().padStart(2,'0');
-                                if(timerText) timerText.innerText = `${m}:${s}`;
-                                if((formTotalSeconds + formCurrentRecordSeconds) >= formMaxSeconds) {
+                                let m = Math.floor(formCurrentRecordSeconds / 60).toString()
+                                    .padStart(2, '0');
+                                let s = (formCurrentRecordSeconds % 60).toString()
+                                    .padStart(2, '0');
+                                if (timerText) timerText.innerText = `${m}:${s}`;
+                                if ((formTotalSeconds + formCurrentRecordSeconds) >= formMaxSeconds) {
                                     formMediaRecorder.stop();
                                     showToast('⚠️ وصلتي للحد الأقصى المسموح (3 دقائق)!');
                                 }
                             }, 1000);
                         };
                         formMediaRecorder.onstop = () => {
-                            isFormRecording = false; 
+                            isFormRecording = false;
                             clearInterval(formRecordInterval);
-                            micBtn.classList.remove('recording-pulse'); 
-                            if(formMediaRecorder.stream) {
+                            micBtn.classList.remove('recording-pulse');
+                            if (formMediaRecorder.stream) {
                                 formMediaRecorder.stream.getTracks().forEach(track => track.stop());
                             }
                             const blob = new Blob(audioChunks, { type: options.mimeType || 'audio/webm' });
                             const blobUrl = URL.createObjectURL(blob);
-                            const reader = new FileReader(); 
+                            const reader = new FileReader();
                             reader.readAsDataURL(blob);
-                            reader.onloadend = () => { 
-                                formAudioNotes.push({ src: reader.result, blobUrl: blobUrl, duration: formCurrentRecordSeconds });
+                            reader.onloadend = () => {
+                                formAudioNotes.push({ src: reader.result, blobUrl: blobUrl,
+                                    duration: formCurrentRecordSeconds });
                                 renderFormAudios();
                                 if (waitingToSaveClient) {
                                     executeSaveNewClient();
@@ -1047,20 +1825,24 @@
                             };
                         };
                         formMediaRecorder.start();
-                    } catch (err) { 
-                        showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.'); 
+                    } catch (err) {
+                        showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.');
                         console.error('Mic Error:', err);
                     }
                 });
             }
 
             // ====== التسجيل الصوتي من الأجندة ======
-            let modalMediaRecorder, modalAudioChunks = [], modalIsRecording = false;
-            let modalRecordInterval, modalRecordSeconds = 0, modalMaxAllowedSeconds = 180;
+            let modalMediaRecorder,
+                modalAudioChunks = [],
+                modalIsRecording = false;
+            let modalRecordInterval,
+                modalRecordSeconds = 0,
+                modalMaxAllowedSeconds = 180;
             let modalTempAudioData = null;
             let modalCurrentClientId = null;
             let waitingToSaveModalAudio = false;
-            
+
             const modalRecBtn = document.getElementById('modal-record-btn');
             const modalPreviewContainer = document.getElementById('modal-audio-preview-container');
             const modalPreview = document.getElementById('modal-audio-preview');
@@ -1082,37 +1864,39 @@
                     modalRecordSeconds = 0;
                     modalMediaRecorder.ondataavailable = e => { if (e.data.size > 0) modalAudioChunks.push(e.data); };
                     modalMediaRecorder.onstart = () => {
-                        modalIsRecording = true; 
+                        modalIsRecording = true;
                         modalRecBtn.classList.add('recording-pulse');
                         modalRecBtn.innerHTML = `🛑 إيقاف التسجيل (<span id="modal-audio-timer">00:00</span>)`;
                         const timerText = document.getElementById('modal-audio-timer');
                         modalRecordInterval = setInterval(() => {
                             modalRecordSeconds++;
-                            let m = Math.floor(modalRecordSeconds/60).toString().padStart(2,'0');
-                            let s = (modalRecordSeconds%60).toString().padStart(2,'0');
-                            if(timerText) timerText.innerText = `${m}:${s}`;
-                            if(modalRecordSeconds >= modalMaxAllowedSeconds) {
+                            let m = Math.floor(modalRecordSeconds / 60).toString().padStart(2,
+                            '0');
+                            let s = (modalRecordSeconds % 60).toString().padStart(2, '0');
+                            if (timerText) timerText.innerText = `${m}:${s}`;
+                            if (modalRecordSeconds >= modalMaxAllowedSeconds) {
                                 modalMediaRecorder.stop();
                                 showToast('⚠️ وصلتي للحد الأقصى!');
                             }
                         }, 1000);
                     };
                     modalMediaRecorder.onstop = () => {
-                        modalIsRecording = false; 
+                        modalIsRecording = false;
                         clearInterval(modalRecordInterval);
-                        modalRecBtn.classList.remove('recording-pulse'); 
+                        modalRecBtn.classList.remove('recording-pulse');
                         modalRecBtn.innerHTML = '🎙️ إعادة التسجيل';
-                        if(modalMediaRecorder.stream) {
+                        if (modalMediaRecorder.stream) {
                             modalMediaRecorder.stream.getTracks().forEach(track => track.stop());
                         }
                         const blob = new Blob(modalAudioChunks, { type: options.mimeType || 'audio/webm' });
                         const blobUrl = URL.createObjectURL(blob);
-                        modalPreview.src = blobUrl; 
-                        modalPreviewContainer.style.display = 'flex'; 
-                        const reader = new FileReader(); 
+                        modalPreview.src = blobUrl;
+                        modalPreviewContainer.style.display = 'flex';
+                        const reader = new FileReader();
                         reader.readAsDataURL(blob);
-                        reader.onloadend = () => { 
-                            modalTempAudioData = { src: reader.result, blobUrl: blobUrl, duration: modalRecordSeconds };
+                        reader.onloadend = () => {
+                            modalTempAudioData = { src: reader.result, blobUrl: blobUrl,
+                                duration: modalRecordSeconds };
                             if (waitingToSaveModalAudio) {
                                 executeModalAudioSave();
                                 waitingToSaveModalAudio = false;
@@ -1120,15 +1904,15 @@
                         };
                     };
                     modalMediaRecorder.start();
-                } catch (err) { 
-                    showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.'); 
+                } catch (err) {
+                    showToast('⚠️ خطأ المايك: تأكد أنك عطيتي الصلاحية للتطبيق.');
                     console.error('Modal Mic Error:', err);
                 }
             });
 
             document.getElementById('save-audio-btn').onclick = async () => {
                 if (modalIsRecording && modalMediaRecorder) {
-                    waitingToSaveModalAudio = true; 
+                    waitingToSaveModalAudio = true;
                     modalMediaRecorder.stop();
                     return;
                 }
@@ -1136,12 +1920,12 @@
             };
 
             async function executeModalAudioSave() {
-                if(!modalTempAudioData) return showToast('⚠️ ماسجلتي والو!');
+                if (!modalTempAudioData) return showToast('⚠️ ماسجلتي والو!');
                 const clients = await getClients();
                 const client = clients.find(c => c.id === modalCurrentClientId);
-                if(client) {
-                    if(!client.audioNotes) client.audioNotes = [];
-                    if(client.audioNote && client.audioNotes.length === 0) {
+                if (client) {
+                    if (!client.audioNotes) client.audioNotes = [];
+                    if (client.audioNote && client.audioNotes.length === 0) {
                         client.audioNotes.push({ src: client.audioNote, duration: 60 });
                         client.audioNote = null;
                     }
@@ -1152,9 +1936,9 @@
                 }
                 document.getElementById('audio-modal').style.display = 'none';
             }
-            
+
             document.getElementById('close-audio-modal').onclick = () => {
-                if(modalIsRecording && modalMediaRecorder) {
+                if (modalIsRecording && modalMediaRecorder) {
                     modalMediaRecorder.stop();
                     waitingToSaveModalAudio = false;
                 }
@@ -1170,20 +1954,21 @@
                 modalRecBtn.innerHTML = '🎙️ بدء التسجيل';
                 getClients().then(clients => {
                     const client = clients.find(c => c.id === clientId);
-                    if(!client) return;
+                    if (!client) return;
                     let currentTotal = 0;
                     if (client.audioNotes) {
                         client.audioNotes.forEach(n => currentTotal += (n.duration || 0));
                     } else if (client.audioNote) {
-                        currentTotal += 60; 
+                        currentTotal += 60;
                     }
                     modalMaxAllowedSeconds = 180 - currentTotal;
                     if (modalMaxAllowedSeconds <= 0) {
-                        infoText.innerHTML = `<span style="color:var(--red); font-weight:800;">⚠️ وصلتي للحد الأقصى (3 دقائق). مايمكنش تزيد أوديو آخر.</span>`;
+                        infoText.innerHTML =
+                            `<span style="color:var(--red); font-weight:800;">⚠️ وصلتي للحد الأقصى (3 دقائق). مايمكنش تزيد أوديو آخر.</span>`;
                         modalRecBtn.style.display = 'none';
                     } else {
-                        let m = Math.floor(modalMaxAllowedSeconds/60).toString().padStart(2,'0');
-                        let s = (modalMaxAllowedSeconds%60).toString().padStart(2,'0');
+                        let m = Math.floor(modalMaxAllowedSeconds / 60).toString().padStart(2, '0');
+                        let s = (modalMaxAllowedSeconds % 60).toString().padStart(2, '0');
                         infoText.innerHTML = `الوقت المتبقي للكليانة: <b style="color:var(--terracotta);">${m}:${s}</b>`;
                         modalRecBtn.style.display = 'inline-flex';
                     }
@@ -1192,59 +1977,74 @@
             }
 
             // ====== دوال الحسابات والإشعارات ======
-            const EASE_MAP = { 'واسع':5, 'عادي':3, 'إيفازي':4, 'custom':0 };
-            function getEaseValue(ft, ce) { return ft==='custom'? parseFloat(ce)||0 : EASE_MAP[ft]||0; }
+            const EASE_MAP = { 'واسع': 5, 'عادي': 3, 'إيفازي': 4, 'custom': 0 };
+
+            function getEaseValue(ft, ce) { return ft === 'custom' ? parseFloat(ce) || 0 : EASE_MAP[ft] || 0; }
+
             function calculateCuts(m, ft, ce) {
                 const ease = getEaseValue(ft, ce);
                 return {
-                    shoulderCut: (m.shoulders/2)+1,
-                    chestCut: (m.chest/4)+ease,
-                    waistCut: (m.waist/4)+ease,
-                    hipsCut: (m.hips/4)+ease,
+                    shoulderCut: (m.shoulders / 2) + 1,
+                    chestCut: (m.chest / 4) + ease,
+                    waistCut: (m.waist / 4) + ease,
+                    hipsCut: (m.hips / 4) + ease,
                     finalDressLength: m.dressLength - 2,
                     finalSleeveLength: m.sleeveLength + 4,
                     easeUsed: ease
                 };
             }
+
             function formatNumber(v) { return parseFloat(v.toFixed(2)); }
-            
+
             function getUrgencyInfo(dateStr) {
-                const today = new Date(); today.setHours(0,0,0,0);
-                const d = new Date(dateStr+'T00:00:00');
-                const diff = Math.ceil((d-today)/86400000);
-                if(diff<=3) return { level:'red', label:'🚨 مزروب', className:'urgency-red', badgeClass:'badge-red', daysLeft:diff };
-                if(diff<=14) return { level:'orange', label:'🟠 متوسط', className:'urgency-orange', badgeClass:'badge-orange', daysLeft:diff };
-                return { level:'green', label:'🟢 باقي الوقت', className:'urgency-green', badgeClass:'badge-green', daysLeft:diff };
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const d = new Date(dateStr + 'T00:00:00');
+                const diff = Math.ceil((d - today) / 86400000);
+                if (diff <= 3) return { level: 'red', label: '🚨 مزروب', className: 'urgency-red',
+                    badgeClass: 'badge-red', daysLeft: diff };
+                if (diff <= 14) return { level: 'orange', label: '🟠 متوسط', className: 'urgency-orange',
+                    badgeClass: 'badge-orange', daysLeft: diff };
+                return { level: 'green', label: '🟢 باقي الوقت', className: 'urgency-green',
+                badgeClass: 'badge-green', daysLeft: diff };
             }
 
             // ====== الإشعارات ======
             const PERSISTENT_NOTIFICATION_ID = 123456789;
+
             async function sendPersistentDailyNotification() {
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
                 if (!LocalNotifications) { sendBrowserDailyNotification(); return; }
                 try {
                     await LocalNotifications.requestPermissions();
                     const clients = await getClients();
-                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level === 'red');
+                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate)
+                    .level === 'red');
                     let title, body;
                     if (urgentClients.length === 0) {
-                        try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
-                        return; 
+                        try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); }
+                        catch (e) {}
+                        return;
                     } else {
                         title = `🚨 طلبيات مزروبة: ${urgentClients.length}`;
                         body = 'عندك خدمة مزروبة خاصها تسلم قريباً!';
                     }
-                    try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); } catch (e) {}
-                    await LocalNotifications.schedule({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID, title: title, body: body, schedule: { at: new Date(Date.now() + 500) }, ongoing: true, autoCancel: false }] });
+                    try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); }
+                    catch (e) {}
+                    await LocalNotifications.schedule({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID, title: title,
+                            body: body, schedule: { at: new Date(Date.now() + 500) }, ongoing: true,
+                            autoCancel: false }] });
                 } catch (error) { console.error(error); }
             }
 
             function sendBrowserDailyNotification() {
                 if (!('Notification' in window) || Notification.permission !== 'granted') return;
                 getClients().then(clients => {
-                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level === 'red');
+                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate)
+                        .level === 'red');
                     if (urgentClients.length === 0) return;
-                    new Notification(`🚨 طلبيات مزروبة: ${urgentClients.length}`, { body: 'عندك خدمة مزروبة خاصها تسلم قريباً!', requireInteraction: true });
+                    new Notification(`🚨 طلبيات مزروبة: ${urgentClients.length}`, { body: 'عندك خدمة مزروبة خاصها تسلم قريباً!',
+                        requireInteraction: true });
                 });
             }
 
@@ -1256,12 +2056,18 @@
                 try {
                     await LocalNotifications.requestPermissions();
                     const dateParts = client.deliveryDate.split('-');
-                    const scheduledTime = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]), 8, 0, 0);
+                    const scheduledTime = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(
+                    dateParts[2]), 8, 0, 0);
                     if (scheduledTime < new Date()) scheduledTime.setDate(scheduledTime.getDate() + 1);
-                    const notifId = parseInt(client.id.replace(/\D/g, '').slice(-8) + Date.now().toString().slice(-4)) || Math.floor(Math.random() * 1000000);
-                    if (client.notificationId) { try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {} }
-                    await LocalNotifications.schedule({ notifications: [{ id: notifId, title: `🚨 ${client.name} - موعد التسليم قرّب!`, body: `📅 ${client.deliveryDate}`, schedule: { at: scheduledTime }, ongoing: true, autoCancel: false }] });
-                    client.notificationId = notifId; await saveClient(client);
+                    const notifId = parseInt(client.id.replace(/\D/g, '').slice(-8) + Date.now().toString().slice(
+                        -4)) || Math.floor(Math.random() * 1000000);
+                    if (client.notificationId) { try { await LocalNotifications.cancel({ notifications: [{ id: client
+                                    .notificationId }] }); } catch (e) {} }
+                    await LocalNotifications.schedule({ notifications: [{ id: notifId, title: `🚨 ${client.name} - موعد التسليم قرّب!`,
+                            body: `📅 ${client.deliveryDate}`, schedule: { at: scheduledTime }, ongoing: true,
+                            autoCancel: false }] });
+                    client.notificationId = notifId;
+                    await saveClient(client);
                 } catch (error) { console.error(error); }
             }
 
@@ -1272,31 +2078,36 @@
                         await scheduleNotificationForClient(client);
                     } else if (client.notificationId) {
                         const { LocalNotifications } = window.Capacitor?.Plugins || {};
-                        if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); delete client.notificationId; await saveClient(client); } catch (e) {} }
+                        if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [{ id: client
+                                        .notificationId }] });
+                                delete client.notificationId;
+                                await saveClient(client); } catch (e) {} }
                     }
                 }
             }
 
             function requestNotificationPermission() {
                 if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
-                if (window.Capacitor?.Plugins?.LocalNotifications) window.Capacitor.Plugins.LocalNotifications.requestPermissions();
+                if (window.Capacitor?.Plugins?.LocalNotifications) window.Capacitor.Plugins.LocalNotifications
+                    .requestPermissions();
             }
 
-            // ====== استيراد/تصدير (محسن) ======
+            // ====== استيراد/تصدير ======
             async function processImportData(data) {
-                if(!Array.isArray(data)) throw new Error('صيغة الملف غير صحيحة');
+                if (!Array.isArray(data)) throw new Error('صيغة الملف غير صحيحة');
                 const existingClients = await getClients();
                 const existingIds = new Set(existingClients.map(c => c.id));
                 let added = 0;
-                for(const c of data) {
+                for (const c of data) {
                     if (!existingIds.has(c.id)) {
                         delete c.notificationId;
                         if (c.totalPrice === undefined) c.totalPrice = 0;
                         if (c.advancePayment === undefined) c.advancePayment = 0;
                         if (c.fitType === undefined) c.fitType = 'عادي';
-                        if (!c.customEases) c.customEases = {chest:0, waist:0, hips:0};
+                        if (!c.customEases) c.customEases = { chest: 0, waist: 0, hips: 0 };
                         if (!c.measurements.jlayel) c.measurements.jlayel = 0;
-                        if (c.audioNote && !c.audioNotes) { c.audioNotes = [{src: c.audioNote, duration: 60}]; c.audioNote = null; }
+                        if (c.audioNote && !c.audioNotes) { c.audioNotes = [{ src: c.audioNote, duration: 60 }];
+                            c.audioNote = null; }
                         if (!c.status) c.status = null;
                         if (c.garmentType && !c.garmentTypes) {
                             c.garmentTypes = [c.garmentType];
@@ -1320,22 +2131,20 @@
                 const clients = await getClients();
                 const dataStr = JSON.stringify(clients, null, 2);
                 const fileName = `Fessala_Backup_${new Date().toISOString().split('T')[0]}.json`;
-                
+
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
                         const { Filesystem, Share } = window.Capacitor.Plugins;
-                        // حفظ الملف في نظام الملفات
                         const result = await Filesystem.writeFile({
                             path: fileName,
                             data: dataStr,
                             directory: 'DOCUMENTS',
                             encoding: 'utf8'
                         });
-                        // عرض قائمة المشاركة
                         await Share.share({
                             title: 'نسخة احتياطية لتطبيق الفصالة',
                             text: 'ملف النسخة الاحتياطية لتطبيق الفصالة',
-                            url: result.uri, // بعض الأنظمة تدعم مشاركة الملف عبر URI
+                            url: result.uri,
                             dialogTitle: 'شارك ملف النسخة الاحتياطية'
                         });
                         localStorage.setItem('lastBackupDate', Date.now().toString());
@@ -1346,7 +2155,6 @@
                         }
                     }
                 } else {
-                    // للمتصفحات: تنزيل الملف
                     try {
                         const blob = new Blob([dataStr], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
@@ -1369,24 +2177,31 @@
                 if (window.Capacitor && window.Capacitor.isNative) {
                     try {
                         const { FilePicker, Filesystem } = window.Capacitor.Plugins;
-                        const result = await FilePicker.pickFiles({ types: ['application/json', '*/*'], multiple: false });
+                        const result = await FilePicker.pickFiles({ types: ['application/json', '*/*'],
+                            multiple: false });
                         if (result.files && result.files.length > 0) {
-                            const file = await Filesystem.readFile({ path: result.files[0].path, encoding: 'utf8' });
+                            const file = await Filesystem.readFile({ path: result.files[0].path,
+                            encoding: 'utf8' });
                             const data = JSON.parse(file.data);
                             await processImportData(data);
                         }
                     } catch (e) {
-                        if (e.message !== 'User cancelled.' && e.message !== 'Pick files canceled.') showToast('⚠️ فشل قراءة الملف: ' + e.message);
+                        if (e.message !== 'User cancelled.' && e.message !== 'Pick files canceled.') showToast(
+                            '⚠️ فشل قراءة الملف: ' + e.message);
                     }
                 } else { document.getElementById('import-file-input').click(); }
             });
 
             document.getElementById('import-file-input').addEventListener('change', async e => {
-                const file = e.target.files[0]; if(!file) return;
+                const file = e.target.files[0];
+                if (!file) return;
                 const reader = new FileReader();
                 reader.onload = async event => {
-                    try { await processImportData(JSON.parse(event.target.result)); } catch { showToast('⚠️ فشل الاستيراد: تأكدي من أن الملف صحيح'); }
-                }; reader.readAsText(file); e.target.value = ''; 
+                    try { await processImportData(JSON.parse(event.target.result)); } catch { showToast(
+                            '⚠️ فشل الاستيراد: تأكدي من أن الملف صحيح'); }
+                };
+                reader.readAsText(file);
+                e.target.value = '';
             });
 
             // ====== الإعدادات ======
@@ -1404,8 +2219,9 @@
             const agendaActiveList = document.getElementById('agenda-active-list');
             const agendaCompletedList = document.getElementById('agenda-completed-list');
             const completedCountSpan = document.getElementById('completed-count');
-            
-            let tempImg=null, tempModel=null;
+
+            let tempImg = null,
+                tempModel = null;
             const formImageInput = document.getElementById('form-image-input');
             const formImagePreview = document.getElementById('form-image-preview');
             const formModelInput = document.getElementById('form-model-input');
@@ -1413,66 +2229,97 @@
 
             // ====== إعدادات الحقول الرقمية ======
             document.querySelectorAll('input[type="number"], input[type="tel"]').forEach(input => {
-                input.addEventListener('focus', function() { this.select(); }); 
+                input.addEventListener('focus', function() { this.select(); });
             });
 
             document.querySelectorAll('.measurement-input').forEach(input => {
                 input.classList.add('input-empty');
                 input.addEventListener('input', function() {
-                    if(this.value.trim() !== '' && this.value !== '0') { 
-                        this.classList.remove('input-empty'); 
-                        this.classList.add('input-filled'); 
-                    } else { 
-                        this.classList.add('input-empty'); 
-                        this.classList.remove('input-filled'); 
+                    if (this.value.trim() !== '' && this.value !== '0') {
+                        this.classList.remove('input-empty');
+                        this.classList.add('input-filled');
+                    } else {
+                        this.classList.add('input-empty');
+                        this.classList.remove('input-filled');
                     }
                 });
             });
 
             // ====== دوال الإشعارات ======
             function showToast(msg) {
-                const old = document.querySelector('.toast'); if(old) old.remove();
-                const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
-                document.body.appendChild(t); setTimeout(()=>t.remove(), 2600);
+                const old = document.querySelector('.toast');
+                if (old) old.remove();
+                const t = document.createElement('div');
+                t.className = 'toast';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                setTimeout(() => t.remove(), 2600);
             }
-            function showBigToast(msg) { 
-                const old = document.querySelector('.toast-big'); if(old) old.remove(); 
-                const t = document.createElement('div'); t.className='toast-big'; t.textContent=msg; 
-                document.body.appendChild(t); setTimeout(()=>t.remove(), 3000); 
+
+            function showBigToast(msg) {
+                const old = document.querySelector('.toast-big');
+                if (old) old.remove();
+                const t = document.createElement('div');
+                t.className = 'toast-big';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                setTimeout(() => t.remove(), 3000);
             }
-            function escapeHTML(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+            function escapeHTML(s) { const d = document.createElement('div');
+                d.textContent = s; return d.innerHTML; }
 
             // ====== دوال التاريخ ======
-            function getWeekMonday(d){ const r=new Date(d); r.setDate(r.getDate()-(r.getDay()||7)+1); r.setHours(0,0,0,0); return r; }
-            function getWeekSunday(m){ const r=new Date(m); r.setDate(r.getDate()+6); r.setHours(23,59,59,999); return r; }
+            function getWeekMonday(d) { const r = new Date(d);
+                r.setDate(r.getDate() - (r.getDay() || 7) + 1);
+                r.setHours(0, 0, 0, 0); return r; }
+
+            function getWeekSunday(m) { const r = new Date(m);
+                r.setDate(r.getDate() + 6);
+                r.setHours(23, 59, 59, 999); return r; }
+
             function getDateFilterFunction(filter) {
-                const today=new Date(); today.setHours(0,0,0,0);
-                switch(filter) {
-                    case 'this-week': { const m=getWeekMonday(today), s=getWeekSunday(m); return c=>c.deliveryDate && new Date(c.deliveryDate+'T00:00:00')>=m && new Date(c.deliveryDate+'T00:00:00')<=s; }
-                    case 'this-month': { const ms=new Date(today.getFullYear(), today.getMonth(),1), me=new Date(today.getFullYear(), today.getMonth()+1,0,23,59,59,999); return c=>c.deliveryDate && new Date(c.deliveryDate+'T00:00:00')>=ms && new Date(c.deliveryDate+'T00:00:00')<=me; }
-                    default: return ()=>true;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                switch (filter) {
+                    case 'this-week': { const m = getWeekMonday(today),
+                            s = getWeekSunday(m); return c => c.deliveryDate && new Date(c.deliveryDate +
+                            'T00:00:00') >= m && new Date(c.deliveryDate + 'T00:00:00') <= s; }
+                    case 'this-month': { const ms = new Date(today.getFullYear(), today.getMonth(), 1),
+                            me = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59, 999); return c =>
+                            c.deliveryDate && new Date(c.deliveryDate + 'T00:00:00') >= ms && new Date(c
+                                .deliveryDate + 'T00:00:00') <= me; }
+                    default: return () => true;
                 }
             }
 
-            // ====== بناء بطاقة العميل (معدل لإضافة زر القياسات) ======
+            // ====== بناء بطاقة العميل ======
             function buildClientCardHTML(client, showPurchaseBtn = false) {
                 const urgency = getUrgencyInfo(client.deliveryDate);
-                const daysText = urgency.daysLeft<0?`(تأخر بـ ${Math.abs(urgency.daysLeft)} يوم)`:urgency.daysLeft===0?'(اليوم هو التسليم!)':`(باقي ${urgency.daysLeft} يوم)`;
-                
-                const imgHTML = client.image ? `<img src="${client.image}" class="client-image" data-client-id="${client.id}" data-type="dress">` : '';
-                const modelHTML = client.modelImage ? `<img src="${client.modelImage}" class="client-image" data-client-id="${client.id}" data-type="model" style="border: 2px dashed var(--gold);">` : '';
-                const noImageText = (!client.image && !client.modelImage) ? `<div style="margin:8px 0; color:var(--text-muted); font-size:var(--font-sm);">📷 لا توجد صور</div>` : '';
-                
+                const daysText = urgency.daysLeft < 0 ? `(تأخر بـ ${Math.abs(urgency.daysLeft)} يوم)` : urgency
+                    .daysLeft === 0 ? '(اليوم هو التسليم!)' : `(باقي ${urgency.daysLeft} يوم)`;
+
+                const imgHTML = client.image ?
+                    `<img src="${client.image}" class="client-image" data-client-id="${client.id}" data-type="dress">` :
+                    '';
+                const modelHTML = client.modelImage ?
+                    `<img src="${client.modelImage}" class="client-image" data-client-id="${client.id}" data-type="model" style="border: 2px dashed var(--gold);">` :
+                    '';
+                const noImageText = (!client.image && !client.modelImage) ?
+                    `<div style="margin:8px 0; color:var(--text-muted); font-size:var(--font-sm);">📷 لا توجد صور</div>` :
+                    '';
+
                 let audioHTML = '';
                 if (client.audioNotes && client.audioNotes.length > 0) {
-                    audioHTML = client.audioNotes.map((note, idx) => 
+                    audioHTML = client.audioNotes.map((note, idx) =>
                         `<div style="margin-top:8px;">
                             <span style="font-size:12px; font-weight:700; color:var(--terracotta);">🎙️ تسجيل ${idx + 1}:</span>
                             <audio controls src="${note.src}" style="width:100%; height:36px; border-radius: 8px;"></audio>
                         </div>`
                     ).join('');
-                } else if (client.audioNote) { 
-                    audioHTML = `<div style="margin-top:8px;"><span style="font-size:12px; font-weight:700; color:var(--terracotta);">🎙️ تسجيل 1:</span><audio controls src="${client.audioNote}" style="width:100%; height:36px; border-radius: 8px;"></audio></div>`;
+                } else if (client.audioNote) {
+                    audioHTML =
+                        `<div style="margin-top:8px;"><span style="font-size:12px; font-weight:700; color:var(--terracotta);">🎙️ تسجيل 1:</span><audio controls src="${client.audioNote}" style="width:100%; height:36px; border-radius: 8px;"></audio></div>`;
                 }
 
                 const total = client.totalPrice || 0;
@@ -1481,21 +2328,25 @@
                 const fitLabel = client.fitType || 'عادي';
 
                 let waBtnHTML = '';
-                if(client.phone) {
+                if (client.phone) {
                     let waNum = client.phone.replace(/\D/g, '');
-                    if(waNum.startsWith('0')) waNum = '212' + waNum.substring(1);
-                    waBtnHTML = `<a href="https://wa.me/${waNum}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#25D366; color:#FFF; padding:4px 10px; border-radius:var(--radius-pill); font-size:11px; text-decoration:none; font-weight:800; margin-right:8px; box-shadow:0 2px 5px rgba(37,211,102,0.3);">💬 واتساب</a>`;
+                    if (waNum.startsWith('0')) waNum = '212' + waNum.substring(1);
+                    waBtnHTML =
+                        `<a href="https://wa.me/${waNum}" target="_blank" style="display:inline-flex; align-items:center; gap:4px; background:#25D366; color:#FFF; padding:4px 10px; border-radius:var(--radius-pill); font-size:11px; text-decoration:none; font-weight:800; margin-right:8px; box-shadow:0 2px 5px rgba(37,211,102,0.3);">💬 واتساب</a>`;
                 }
 
                 let statusBadge = '';
                 if (!client.completed) {
                     if (client.returned) {
-                        statusBadge = `<span class="urgency-badge" style="background:#718096; color:#FFF; margin-left:4px;">🔄 تم الإعادة</span>`;
+                        statusBadge =
+                            `<span class="urgency-badge" style="background:#718096; color:#FFF; margin-left:4px;">🔄 تم الإعادة</span>`;
                     }
                     statusBadge += `<span class="urgency-badge ${urgency.badgeClass}">${urgency.label} ${daysText}</span>`;
                 } else {
-                    if (remaining === 0) statusBadge = `<span class="urgency-badge" style="background:var(--green); color:#FFF; border:none; box-shadow:0 2px 6px rgba(72,187,120,0.3);">✅ مسلّمة ومخلصة</span>`;
-                    else statusBadge = `<span class="urgency-badge" style="background:var(--red); color:#FFF; border:none; box-shadow:0 2px 6px rgba(252,129,129,0.3);">❌ مسلّمة (باقي ${remaining} درهم)</span>`;
+                    if (remaining === 0) statusBadge =
+                        `<span class="urgency-badge" style="background:var(--green); color:#FFF; border:none; box-shadow:0 2px 6px rgba(72,187,120,0.3);">✅ مسلّمة ومخلصة</span>`;
+                    else statusBadge =
+                        `<span class="urgency-badge" style="background:var(--red); color:#FFF; border:none; box-shadow:0 2px 6px rgba(252,129,129,0.3);">❌ مسلّمة (باقي ${remaining} درهم)</span>`;
                 }
 
                 let purchaseBadge = '';
@@ -1510,30 +2361,33 @@
                         'normal': '😐 عادية',
                         'special': '🤩 مميزة'
                     };
-                    statusDisplay = `<span style="background:var(--terracotta-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:var(--terracotta-dark);">${statusMap[client.status] || client.status}</span>`;
+                    statusDisplay =
+                        `<span style="background:var(--terracotta-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:var(--terracotta-dark);">${statusMap[client.status] || client.status}</span>`;
                 }
-                
+
                 let typeDisplay = '';
                 if (client.garmentTypes && client.garmentTypes.length > 0) {
                     const typeMap = {
                         'dontel': '🧵 دونتيل',
                         'sadr': '👚 صدر'
                     };
-                    typeDisplay = client.garmentTypes.map(t => 
+                    typeDisplay = client.garmentTypes.map(t =>
                         `<span style="background:var(--gold-light); padding:4px 12px; border-radius:var(--radius-pill); font-weight:700; font-size:0.9em; color:#b8860b;">${typeMap[t] || t}</span>`
                     ).join(' ');
                 }
-                
-                const extraBadges = (statusDisplay || typeDisplay || purchaseBadge) ? 
-                    `<div style="display:flex; gap:6px; flex-wrap:wrap; margin:4px 0;">${statusDisplay}${typeDisplay}${purchaseBadge}</div>` : '';
+
+                const extraBadges = (statusDisplay || typeDisplay || purchaseBadge) ?
+                    `<div style="display:flex; gap:6px; flex-wrap:wrap; margin:4px 0;">${statusDisplay}${typeDisplay}${purchaseBadge}</div>` :
+                    '';
 
                 let purchaseAction = '';
                 if (showPurchaseBtn && !client.purchased && !client.completed) {
-                    purchaseAction = `<button class="btn btn-success btn-sm purchase-single-btn" data-client-id="${client.id}" style="flex:0.5; min-width:80px;">✅ شراء</button>`;
+                    purchaseAction =
+                        `<button class="btn btn-success btn-sm purchase-single-btn" data-client-id="${client.id}" style="flex:0.5; min-width:80px;">✅ شراء</button>`;
                 }
 
-                // زر عرض القياسات
-                const measurementsBtn = `<button class="btn btn-primary btn-sm show-measurements-btn" data-client-id="${client.id}" style="background:var(--terracotta);">📏 قياسات الكليانة</button>`;
+                const measurementsBtn =
+                    `<button class="btn btn-primary btn-sm show-measurements-btn" data-client-id="${client.id}" style="background:var(--terracotta);">📏 قياسات الكليانة</button>`;
 
                 return `
                 <div class="client-card ${client.completed?'':urgency.className}" data-client-id="${client.id}">
@@ -1554,14 +2408,8 @@
                     ${client.description ? `<div class="desc-box">📝 ${escapeHTML(client.description)}</div>` : ''}
                     ${extraBadges}
                     ${audioHTML}
-                    <div style="display:flex; gap:10px;">${imgHTML} ${modelHTML}</div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">${imgHTML} ${modelHTML}</div>
                     ${noImageText}
-                    <div class="client-details measurements-box">
-                        <span>👚 الصدر: ${client.measurements.chest} cm</span><span>⏳ الحزام: ${client.measurements.waist} cm</span>
-                        <span>🍑 الحوض: ${client.measurements.hips} cm</span><span>📏 الطول: ${client.measurements.dressLength} cm</span>
-                        <span>🎯 التركيز: ${client.measurements.armhole || 0} cm</span><span>🤏 فم الكم: ${client.measurements.sleeveMouth || 0} cm</span>
-                        <span>👗 الجلايل: ${client.measurements.jlayel || 0} cm</span>
-                    </div>
                     <div class="card-actions">
                         ${!client.completed?`<button class="btn btn-success btn-sm deliver-btn" data-client-id="${client.id}">✅ تم التسليم</button>`:''}
                         <button class="btn btn-sm btn-primary calc-cuts-btn" data-client-id="${client.id}">🧮 قص الفصالة</button>
@@ -1572,17 +2420,17 @@
                 </div>`;
             }
 
-            // ====== دوال القوائم والسياق (نفسها) ======
+            // ====== دوال القوائم والسياق ======
             async function showContextMenu(clientId, event) {
                 event.stopPropagation();
                 const existing = document.querySelector('.context-menu');
-                if(existing) existing.remove();
+                if (existing) existing.remove();
                 const menu = document.createElement('div');
                 menu.className = 'context-menu active';
                 const btn = event.currentTarget;
                 const rect = btn.getBoundingClientRect();
                 menu.style.top = `${rect.bottom + window.scrollY + 5}px`;
-                let leftPos = rect.left + window.scrollX - 150; 
+                let leftPos = rect.left + window.scrollX - 150;
                 if (leftPos < 10) leftPos = 10;
                 menu.style.left = `${leftPos}px`;
                 const clients = await getClients();
@@ -1614,29 +2462,27 @@
                 menu.querySelectorAll('button').forEach(btn => btn.addEventListener('click', async (e) => {
                     e.stopPropagation();
                     const action = e.target.dataset.action;
-                    if(action === 'edit-price') openPriceModal(clientId);
-                    else if(action === 'edit-measurements') openEditMeasurementsModal(clientId);
-                    else if(action === 'edit-desc') openDescModal(clientId);
-                    else if(action === 'add-audio') openAudioModal(clientId);
-                    else if(action === 'edit-date') openDateModal(clientId);
-                    else if(action === 'edit-image') openImageModal(clientId, 'dress');
-                    else if(action === 'edit-model') openImageModal(clientId, 'model');
-                    else if(action === 'add-phone') openPhoneModal(clientId);
-                    else if(action === 'purchase-single') {
+                    if (action === 'edit-price') openPriceModal(clientId);
+                    else if (action === 'edit-measurements') openEditMeasurementsModal(clientId);
+                    else if (action === 'edit-desc') openDescModal(clientId);
+                    else if (action === 'add-audio') openAudioModal(clientId);
+                    else if (action === 'edit-date') openDateModal(clientId);
+                    else if (action === 'edit-image') openImageModal(clientId, 'dress');
+                    else if (action === 'edit-model') openImageModal(clientId, 'model');
+                    else if (action === 'add-phone') openPhoneModal(clientId);
+                    else if (action === 'purchase-single') {
                         client.purchased = true;
                         await saveClient(client);
                         renderAgenda();
                         updatePurchaseCounts();
                         showToast('✅ تم شراء السلعة لهذه الكليانة');
-                    }
-                    else if(action === 'unpurchase-single') {
+                    } else if (action === 'unpurchase-single') {
                         client.purchased = false;
                         await saveClient(client);
                         renderAgenda();
                         updatePurchaseCounts();
                         showToast('🔄 تم إلغاء شراء السلعة');
-                    }
-                    else if(action === 'undo-delivery') {
+                    } else if (action === 'undo-delivery') {
                         client.completed = false;
                         client.returned = true;
                         await saveClient(client);
@@ -1646,12 +2492,12 @@
                     menu.remove();
                 }));
                 setTimeout(() => {
-                    const closeMenu = (e) => { 
-                        if(!menu.contains(e.target)) { 
-                            menu.remove(); 
-                            document.removeEventListener('click', closeMenu); 
+                    const closeMenu = (e) => {
+                        if (!menu.contains(e.target)) {
+                            menu.remove();
+                            document.removeEventListener('click', closeMenu);
                             document.removeEventListener('touchstart', closeMenu);
-                        } 
+                        }
                     };
                     document.addEventListener('click', closeMenu);
                     document.addEventListener('touchstart', closeMenu);
@@ -1666,10 +2512,10 @@
             document.getElementById('save-phone-btn').onclick = async () => {
                 const id = document.getElementById('phone-modal-clientId').value;
                 const newPhone = document.getElementById('phone-modal-input').value.trim();
-                if(newPhone) {
+                if (newPhone) {
                     const clients = await getClients();
                     const client = clients.find(c => c.id === id);
-                    if(client) {
+                    if (client) {
                         client.phone = newPhone;
                         await saveClient(client);
                         renderAgenda();
@@ -1678,17 +2524,18 @@
                 }
                 document.getElementById('phone-modal').style.display = 'none';
             };
-            document.getElementById('close-phone-modal').onclick = () => document.getElementById('phone-modal').style.display = 'none';
+            document.getElementById('close-phone-modal').onclick = () => document.getElementById('phone-modal').style
+                .display = 'none';
 
             function openPriceModal(clientId) {
                 const modal = document.getElementById('price-modal');
-                getClients().then(clients=>{
-                    const client = clients.find(c=>c.id===clientId);
-                    if(client) {
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (client) {
                         document.getElementById('price-modal-clientId').value = client.id;
                         document.getElementById('price-modal-total').value = client.totalPrice || 0;
                         document.getElementById('price-modal-advance').value = client.advancePayment || 0;
-                        modal.style.display='flex';
+                        modal.style.display = 'flex';
                     }
                 });
                 document.getElementById('save-price-btn').onclick = async () => {
@@ -1696,10 +2543,13 @@
                     const newTotal = parseFloat(document.getElementById('price-modal-total').value) || 0;
                     const newAdvance = parseFloat(document.getElementById('price-modal-advance').value) || 0;
                     const clients = await getClients();
-                    const client = clients.find(c=>c.id===id);
-                    if(client){
-                        client.totalPrice = newTotal; client.advancePayment = newAdvance;
-                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل الحساب');
+                    const client = clients.find(c => c.id === id);
+                    if (client) {
+                        client.totalPrice = newTotal;
+                        client.advancePayment = newAdvance;
+                        await saveClient(client);
+                        renderAgenda();
+                        showToast('✅ تم تعديل الحساب');
                     }
                     modal.style.display = 'none';
                 };
@@ -1708,9 +2558,9 @@
 
             function openEditMeasurementsModal(clientId) {
                 const modal = document.getElementById('measurements-modal');
-                getClients().then(clients=>{
-                    const client = clients.find(c=>c.id===clientId);
-                    if(client) {
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (client) {
                         document.getElementById('measurements-modal-clientId').value = client.id;
                         const m = client.measurements;
                         document.getElementById('edit-shoulders').value = m.shoulders || 0;
@@ -1722,14 +2572,14 @@
                         document.getElementById('edit-sleeveLength').value = m.sleeveLength || 0;
                         document.getElementById('edit-sleeveMouth').value = m.sleeveMouth || 0;
                         document.getElementById('edit-jlayel').value = m.jlayel || 0;
-                        modal.style.display='flex';
+                        modal.style.display = 'flex';
                     }
                 });
                 document.getElementById('save-measurements-btn').onclick = async () => {
                     const id = document.getElementById('measurements-modal-clientId').value;
                     const clients = await getClients();
-                    const client = clients.find(c=>c.id===id);
-                    if(client){
+                    const client = clients.find(c => c.id === id);
+                    if (client) {
                         client.measurements = {
                             shoulders: parseFloat(document.getElementById('edit-shoulders').value) || 0,
                             armhole: parseFloat(document.getElementById('edit-armhole').value) || 0,
@@ -1741,30 +2591,34 @@
                             sleeveMouth: parseFloat(document.getElementById('edit-sleeveMouth').value) || 0,
                             jlayel: parseFloat(document.getElementById('edit-jlayel').value) || 0
                         };
-                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل القياسات');
+                        await saveClient(client);
+                        renderAgenda();
+                        showToast('✅ تم تعديل القياسات');
                     }
                     modal.style.display = 'none';
                 };
                 document.getElementById('close-measurements-modal').onclick = () => modal.style.display = 'none';
             }
-            
+
             function openDescModal(clientId) {
                 const modal = document.getElementById('desc-modal');
-                getClients().then(clients=>{
-                    const client = clients.find(c=>c.id===clientId);
-                    if(client) {
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (client) {
                         document.getElementById('desc-modal-clientId').value = client.id;
                         document.getElementById('desc-modal-input').value = client.description || '';
-                        modal.style.display='flex';
+                        modal.style.display = 'flex';
                     }
                 });
                 document.getElementById('save-desc-btn').onclick = async () => {
                     const id = document.getElementById('desc-modal-clientId').value;
                     const clients = await getClients();
-                    const client = clients.find(c=>c.id===id);
-                    if(client){
+                    const client = clients.find(c => c.id === id);
+                    if (client) {
                         client.description = document.getElementById('desc-modal-input').value;
-                        await saveClient(client); renderAgenda(); showToast('✅ تم تعديل الوصف');
+                        await saveClient(client);
+                        renderAgenda();
+                        showToast('✅ تم تعديل الوصف');
                     }
                     modal.style.display = 'none';
                 };
@@ -1775,16 +2629,21 @@
                 const modal = document.getElementById('date-modal');
                 const input = document.getElementById('date-modal-input');
                 modal.style.display = 'flex';
-                getClients().then(clients=>{
-                    const client = clients.find(c=>c.id===clientId);
-                    if(client) input.value = client.deliveryDate;
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (client) input.value = client.deliveryDate;
                 });
                 document.getElementById('save-date-btn').onclick = async () => {
                     const newDate = input.value;
-                    if(!newDate) return;
+                    if (!newDate) return;
                     const clients = await getClients();
-                    const client = clients.find(c=>c.id===clientId);
-                    if(client){ client.deliveryDate = newDate; await saveClient(client); await scheduleNotificationForClient(client); await sendPersistentDailyNotification(); renderAgenda(); showToast('📅 تم تعديل التاريخ'); }
+                    const client = clients.find(c => c.id === clientId);
+                    if (client) { client.deliveryDate = newDate;
+                        await saveClient(client);
+                        await scheduleNotificationForClient(client);
+                        await sendPersistentDailyNotification();
+                        renderAgenda();
+                        showToast('📅 تم تعديل التاريخ'); }
                     modal.style.display = 'none';
                 };
                 document.getElementById('close-date-modal').onclick = () => modal.style.display = 'none';
@@ -1793,7 +2652,7 @@
             function openCutsModal(client) {
                 const modal = document.getElementById('cuts-modal');
                 const body = document.getElementById('cuts-modal-body');
-                const eases = client.customEases || { chest:0, waist:0, hips:0 };
+                const eases = client.customEases || { chest: 0, waist: 0, hips: 0 };
                 body.innerHTML = `
                     <div class="modal-header" style="margin-bottom:14px; border-bottom:1px solid var(--border-light); padding-bottom:10px;">
                         <span style="font-size: var(--font-xl); font-weight:800; color:var(--terracotta-dark);">✂️ ${escapeHTML(client.name)}</span>
@@ -1807,6 +2666,7 @@
                     <div id="modal-results" class="results-grid"></div>
                 `;
                 document.getElementById('close-cuts-inner-btn').onclick = () => modal.style.display = 'none';
+
                 function update() {
                     const chestEase = parseFloat(document.getElementById('modal-chest-ease').value) || 0;
                     const waistEase = parseFloat(document.getElementById('modal-waist-ease').value) || 0;
@@ -1815,88 +2675,120 @@
                     saveClient(client);
                     const m = client.measurements;
                     const res = [
-                        {label:'قص الكتاف', value:formatNumber((m.shoulders / 2) + 1), fixed: true}, 
-                        {label:'قص الصدر', value:formatNumber((m.chest / 4) + chestEase), empty: chestEase === 0},
-                        {label:'قص الحزام', value:formatNumber((m.waist / 4) + waistEase), empty: waistEase === 0},
-                        {label:'قص الحوض', value:formatNumber((m.hips / 4) + hipsEase), empty: hipsEase === 0},
-                        {label:'التركيز', value:formatNumber(m.armhole || 0), fixed: true}, 
-                        {label:'الطول النهائي', value:formatNumber(m.dressLength - 2), fixed: true}, 
-                        {label:'طول الكم', value:formatNumber(m.sleeveLength + 4), fixed: true}, 
-                        {label:'فم الكم', value:formatNumber(m.sleeveMouth || 0), fixed: true} 
+                        { label: 'قص الكتاف', value: formatNumber((m.shoulders / 2) + 1), fixed: true },
+                        { label: 'قص الصدر', value: formatNumber((m.chest / 4) + chestEase),
+                        empty: chestEase === 0 },
+                        { label: 'قص الحزام', value: formatNumber((m.waist / 4) + waistEase),
+                        empty: waistEase === 0 },
+                        { label: 'قص الحوض', value: formatNumber((m.hips / 4) + hipsEase),
+                        empty: hipsEase === 0 },
+                        { label: 'التركيز', value: formatNumber(m.armhole || 0), fixed: true },
+                        { label: 'الطول النهائي', value: formatNumber(m.dressLength - 2), fixed: true },
+                        { label: 'طول الكم', value: formatNumber(m.sleeveLength + 4), fixed: true },
+                        { label: 'فم الكم', value: formatNumber(m.sleeveMouth || 0), fixed: true }
                     ];
                     document.getElementById('modal-results').innerHTML = res.map(r => {
                         let boxClass = 'result-item';
                         let valStyle = '';
                         if (r.fixed) valStyle = 'color: var(--green);';
-                        else if (r.empty) boxClass += ' pulse-red'; 
+                        else if (r.empty) boxClass += ' pulse-red';
                         return `<div class="${boxClass}"><div class="result-label">${r.label}</div><div class="result-value" style="${valStyle}">${r.value} cm</div></div>`;
                     }).join('');
                 }
                 body.querySelectorAll('input').forEach(i => {
                     i.addEventListener('input', update);
-                    i.addEventListener('focus', function() { this.select(); }); 
+                    i.addEventListener('focus', function() { this.select(); });
                 });
                 update();
                 modal.style.display = 'flex';
             }
 
             let currentImageId, currentImageType;
+
             function openImageModal(clientId, type) {
                 const modal = document.getElementById('image-modal');
                 const img = document.getElementById('image-modal-img');
                 const delBtn = document.getElementById('modal-delete-btn');
-                currentImageId = clientId; currentImageType = type;
-                document.getElementById('image-modal-title').textContent = type==='model' ? '👗 صورة الموديل' : '📸 صورة الثوب';
-                getClients().then(clients=>{
-                    const client = clients.find(c=>c.id===clientId);
-                    if(!client) return;
+                currentImageId = clientId;
+                currentImageType = type;
+                document.getElementById('image-modal-title').textContent = type === 'model' ? '👗 صورة الموديل' :
+                    '📸 صورة الثوب';
+                getClients().then(clients => {
+                    const client = clients.find(c => c.id === clientId);
+                    if (!client) return;
                     const src = type === 'model' ? client.modelImage : client.image;
                     img.src = src || '';
                     if (src) {
                         delBtn.style.display = 'block';
                         delBtn.onclick = async () => {
-                            if(confirm('واش متأكد باغي تمسح هاد الصورة؟')) {
-                                if (type === 'model') client.modelImage = null; else client.image = null;
-                                await saveClient(client); renderAgenda();
-                                modal.style.display = 'none'; showToast('🗑️ تم حذف الصورة');
+                            if (confirm('واش متأكد باغي تمسح هاد الصورة؟')) {
+                                if (type === 'model') client.modelImage = null;
+                                else client.image = null;
+                                await saveClient(client);
+                                renderAgenda();
+                                modal.style.display = 'none';
+                                showToast('🗑️ تم حذف الصورة');
                             }
                         };
                     } else {
                         delBtn.style.display = 'none';
                     }
-                    modal.style.display='flex';
+                    modal.style.display = 'flex';
                 });
                 document.getElementById('modal-camera-btn').onclick = async () => {
-                    const input = document.createElement('input'); input.type='file'; input.accept='image/*'; input.capture='environment';
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.capture = 'environment';
                     input.onchange = async e => {
-                        const file = e.target.files[0]; if(!file) return;
+                        const file = e.target.files[0];
+                        if (!file) return;
                         const compressed = await compressImage(file);
-                        const clients = await getClients(); const client = clients.find(c=>c.id===currentImageId);
-                        if(client){ 
-                            if(currentImageType==='model') client.modelImage = compressed; else client.image = compressed;
-                            await saveClient(client); img.src = compressed; renderAgenda(); delBtn.style.display = 'block'; showToast('📸 تم تعديل الصورة'); 
+                        const clients = await getClients();
+                        const client = clients.find(c => c.id === currentImageId);
+                        if (client) {
+                            if (currentImageType === 'model') client.modelImage = compressed;
+                            else client.image = compressed;
+                            await saveClient(client);
+                            img.src = compressed;
+                            renderAgenda();
+                            delBtn.style.display = 'block';
+                            showToast('📸 تم تعديل الصورة');
                         }
-                    }; input.click();
+                    };
+                    input.click();
                 };
                 document.getElementById('modal-gallery-btn').onclick = async () => {
-                    const input = document.createElement('input'); input.type='file'; input.accept='image/*';
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
                     input.onchange = async e => {
-                        const file = e.target.files[0]; if(!file) return;
+                        const file = e.target.files[0];
+                        if (!file) return;
                         const compressed = await compressImage(file);
-                        const clients = await getClients(); const client = clients.find(c=>c.id===currentImageId);
-                        if(client){ 
-                            if(currentImageType==='model') client.modelImage = compressed; else client.image = compressed;
-                            await saveClient(client); img.src = compressed; renderAgenda(); delBtn.style.display = 'block'; showToast('🖼️ تم تعديل الصورة'); 
+                        const clients = await getClients();
+                        const client = clients.find(c => c.id === currentImageId);
+                        if (client) {
+                            if (currentImageType === 'model') client.modelImage = compressed;
+                            else client.image = compressed;
+                            await saveClient(client);
+                            img.src = compressed;
+                            renderAgenda();
+                            delBtn.style.display = 'block';
+                            showToast('🖼️ تم تعديل الصورة');
                         }
-                    }; input.click();
+                    };
+                    input.click();
                 };
             }
-            document.getElementById('close-image-modal').onclick = () => document.getElementById('image-modal').style.display = 'none';
+            document.getElementById('close-image-modal').onclick = () => document.getElementById('image-modal').style
+                .display = 'none';
 
-            // ====== معاينة الصورة المكبرة ======
+            // ====== معاينة الصورة المكبرة (إصلاح) ======
             function showFullImage(src) {
                 const overlay = document.getElementById('image-overlay');
                 const fullImg = document.getElementById('full-image');
+                if (!src) return;
                 fullImg.src = src;
                 overlay.classList.add('active');
                 document.body.classList.add('page-open');
@@ -1943,48 +2835,61 @@
                 document.body.classList.remove('page-open');
             });
 
-            // ====== ربط الأحداث للبطاقات (معدل) ======
+            // ====== ربط الأحداث للبطاقات ======
             function attachClientCardListeners() {
                 document.querySelectorAll('.more-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => showContextMenu(btn.dataset.clientId, e));
                 });
                 document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', async function() {
                     const id = this.dataset.clientId;
-                    const clients = await getClients(); const client = clients.find(c=>c.id===id);
-                    if(!client) return;
-                    if(confirm(`حذف "${client.name}"؟`)) {
+                    const clients = await getClients();
+                    const client = clients.find(c => c.id === id);
+                    if (!client) return;
+                    if (confirm(`حذف "${client.name}"؟`)) {
                         if (client.notificationId) {
                             const { LocalNotifications } = window.Capacitor?.Plugins || {};
                             if (LocalNotifications) {
-                                try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {}
+                                try { await LocalNotifications.cancel({ notifications: [{ id: client
+                                            .notificationId }] }); } catch (e) {}
                             }
                         }
-                        await deleteClientFromDB(id); await sendPersistentDailyNotification(); renderAgenda(); showToast('🗑️ تم الحذف');
+                        await deleteClientFromDB(id);
+                        await sendPersistentDailyNotification();
+                        renderAgenda();
+                        showToast('🗑️ تم الحذف');
                     }
                 }));
                 document.querySelectorAll('.deliver-btn').forEach(btn => btn.addEventListener('click', async function() {
                     const id = this.dataset.clientId;
-                    const clients = await getClients(); const client = clients.find(c=>c.id===id);
-                    if(!client) return;
-                    if(confirm(`تأكيد تسليم "${client.name}"؟`)) {
+                    const clients = await getClients();
+                    const client = clients.find(c => c.id === id);
+                    if (!client) return;
+                    if (confirm(`تأكيد تسليم "${client.name}"؟`)) {
                         if (client.notificationId) {
                             const { LocalNotifications } = window.Capacitor?.Plugins || {};
                             if (LocalNotifications) {
-                                try { await LocalNotifications.cancel({ notifications: [{ id: client.notificationId }] }); } catch (e) {}
+                                try { await LocalNotifications.cancel({ notifications: [{ id: client
+                                            .notificationId }] }); } catch (e) {}
                             }
                         }
-                        client.image = null; 
+                        client.image = null;
                         client.modelImage = null;
                         client.audioNotes = [];
                         client.audioNote = null;
-                        client.completed=true; client.completedAt=new Date().toISOString(); delete client.notificationId;
-                        await saveClient(client); await sendPersistentDailyNotification(); renderAgenda(); showBigToast('🎉 تم التسليم بنجاح!');
+                        client.completed = true;
+                        client.completedAt = new Date().toISOString();
+                        delete client.notificationId;
+                        await saveClient(client);
+                        await sendPersistentDailyNotification();
+                        renderAgenda();
+                        showBigToast('🎉 تم التسليم بنجاح!');
                     }
                 }));
                 document.querySelectorAll('.calc-cuts-btn').forEach(btn => btn.addEventListener('click', async function() {
                     const id = this.dataset.clientId;
-                    const clients = await getClients(); const client = clients.find(c=>c.id===id);
-                    if(client) openCutsModal(client);
+                    const clients = await getClients();
+                    const client = clients.find(c => c.id === id);
+                    if (client) openCutsModal(client);
                 }));
                 document.querySelectorAll('.client-image').forEach(img => {
                     img.addEventListener('click', function() {
@@ -2002,7 +2907,7 @@
                         const id = this.dataset.clientId;
                         const clients = await getClients();
                         const client = clients.find(c => c.id === id);
-                        if(client && !client.purchased) {
+                        if (client && !client.purchased) {
                             client.purchased = true;
                             await saveClient(client);
                             renderAgenda();
@@ -2028,38 +2933,50 @@
             // ====== الإحصائيات ======
             async function renderStats() {
                 const clients = await getClients();
-                const now = new Date(); const currentMonth = now.getMonth(); const currentYear = now.getFullYear();
-                let monthlyIncome = 0; let totalDebt = 0; let debtHTML = '';
+                const now = new Date();
+                const currentMonth = now.getMonth();
+                const currentYear = now.getFullYear();
+                let monthlyIncome = 0;
+                let totalDebt = 0;
+                let debtHTML = '';
                 clients.forEach(c => {
-                    const total = c.totalPrice || 0; const advance = c.advancePayment || 0; const remaining = Math.max(0, total - advance);
+                    const total = c.totalPrice || 0;
+                    const advance = c.advancePayment || 0;
+                    const remaining = Math.max(0, total - advance);
                     const dateToCheck = c.completed ? new Date(c.completedAt) : new Date(c.createdAt);
                     if (dateToCheck.getMonth() === currentMonth && dateToCheck.getFullYear() === currentYear) {
                         monthlyIncome += c.completed ? total : advance;
                     }
                     if (remaining > 0) {
                         totalDebt += remaining;
-                        debtHTML += `<li class="debt-item"><span class="debt-name">👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
+                        debtHTML +=
+                            `<li class="debt-item"><span class="debt-name">👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
                     }
                 });
                 document.getElementById('stats-monthly-income').textContent = monthlyIncome.toFixed(2) + ' درهم';
                 document.getElementById('stats-total-debt').textContent = totalDebt.toFixed(2) + ' درهم';
-                document.getElementById('stats-debt-list').innerHTML = debtHTML || '<li class="debt-item" style="justify-content:center; color:var(--green); border:none;">✅ حتى وحدة ما عندها كريدي</li>';
+                document.getElementById('stats-debt-list').innerHTML = debtHTML ||
+                    '<li class="debt-item" style="justify-content:center; color:var(--green); border:none;">✅ حتى وحدة ما عندها كريدي</li>';
             }
 
             // ====== تحديث أعداد الشراء ======
             async function updatePurchaseCounts() {
                 const clients = await getClients();
-                const sadrCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('sadr') && !c.purchased && !c.completed).length;
-                const dontelCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('dontel') && !c.purchased && !c.completed).length;
+                const sadrCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('sadr') && !c.purchased &&
+                    !c.completed).length;
+                const dontelCount = clients.filter(c => c.garmentTypes && c.garmentTypes.includes('dontel') && !c
+                    .purchased && !c.completed).length;
                 document.getElementById('sadr-count-badge').textContent = sadrCount;
                 document.getElementById('dontel-count-badge').textContent = dontelCount;
                 return { sadrCount, dontelCount };
             }
 
-            // ====== التقويم (نفس الكود) ======
+            // ====== التقويم (إصلاح شامل) ======
             let calendarYear, calendarMonth;
+
             function renderFullCalendar(year, month) {
-                if (!year || !month) {
+                // إصلاح: التحقق من وجود year و month باستخدام typeof بدلاً من falsy
+                if (typeof year !== 'number' || typeof month !== 'number') {
                     const now = new Date();
                     year = now.getFullYear();
                     month = now.getMonth();
@@ -2069,7 +2986,9 @@
                 const container = document.getElementById('calendar-container-full');
                 if (!container) return;
 
-                const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'ماي', 'يونيو', 'يوليو', 'غشت', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+                const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'ماي', 'يونيو', 'يوليو', 'غشت', 'سبتمبر', 'أكتوبر',
+                    'نوفمبر', 'ديسمبر'
+                ];
                 const header = document.createElement('div');
                 header.className = 'calendar-header';
                 header.innerHTML = `
@@ -2092,7 +3011,7 @@
 
                 let firstDay = new Date(year, month, 1).getDay();
                 let offset = (firstDay === 0) ? 6 : firstDay - 1;
-                
+
                 const daysInMonth = new Date(year, month + 1, 0).getDate();
                 const today = new Date();
                 const todayDate = today.getDate();
@@ -2107,7 +3026,8 @@
                         const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
                         if (!dateCounts[key]) dateCounts[key] = { count: 0, maxUrgency: 0 };
                         dateCounts[key].count++;
-                        const urgency = getUrgencyInfo(c.deliveryDate).level === 'red' ? 3 : getUrgencyInfo(c.deliveryDate).level === 'orange' ? 2 : 1;
+                        const urgency = getUrgencyInfo(c.deliveryDate).level === 'red' ? 3 :
+                            getUrgencyInfo(c.deliveryDate).level === 'orange' ? 2 : 1;
                         if (urgency > dateCounts[key].maxUrgency) dateCounts[key].maxUrgency = urgency;
                     });
 
@@ -2137,7 +3057,8 @@
                             <span class="day-number">${d}</span>
                             <span class="day-count ${colorClass}">${data.count > 0 ? data.count : ''}</span>
                         `;
-                        cell.dataset.date = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                        cell.dataset.date =
+                            `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
                         cell.addEventListener('click', function() {
                             const dateStr = this.dataset.date;
                             if (dateStr) {
@@ -2149,12 +3070,31 @@
 
                     container.appendChild(grid);
 
-                    document.getElementById('cal-prev').addEventListener('click', () => {
-                        if (month === 0) { renderFullCalendar(year - 1, 11); } else { renderFullCalendar(year, month - 1); }
-                    });
-                    document.getElementById('cal-next').addEventListener('click', () => {
-                        if (month === 11) { renderFullCalendar(year + 1, 0); } else { renderFullCalendar(year, month + 1); }
-                    });
+                    // استخدام onclick مباشر مع إصلاح الإغلاق
+                    const prevBtn = document.getElementById('cal-prev');
+                    const nextBtn = document.getElementById('cal-next');
+                    // إزالة أي مستمعين سابقين عن طريق استبدال العناصر
+                    const newPrev = prevBtn.cloneNode(true);
+                    const newNext = nextBtn.cloneNode(true);
+                    prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+                    nextBtn.parentNode.replaceChild(newNext, nextBtn);
+
+                    newPrev.onclick = function(e) {
+                        e.stopPropagation();
+                        if (month === 0) {
+                            renderFullCalendar(year - 1, 11);
+                        } else {
+                            renderFullCalendar(year, month - 1);
+                        }
+                    };
+                    newNext.onclick = function(e) {
+                        e.stopPropagation();
+                        if (month === 11) {
+                            renderFullCalendar(year + 1, 0);
+                        } else {
+                            renderFullCalendar(year, month + 1);
+                        }
+                    };
                 });
             }
 
@@ -2172,16 +3112,18 @@
                 document.body.classList.remove('page-open');
             });
 
+            // ====== صفحة تفاصيل اليوم ======
             function showDayDetail(dateStr) {
                 const page = document.getElementById('day-detail-page');
                 const title = document.getElementById('day-detail-title');
                 const list = document.getElementById('day-detail-list');
                 title.textContent = `📅 كليانات ${dateStr}`;
-                
+
                 getClients().then(clients => {
                     const dayClients = clients.filter(c => c.deliveryDate === dateStr);
                     if (dayClients.length === 0) {
-                        list.innerHTML = `<p style="text-align:center; color:var(--text-muted);">لا توجد كليانات في هذا اليوم</p>`;
+                        list.innerHTML =
+                            `<p style="text-align:center; color:var(--text-muted);">لا توجد كليانات في هذا اليوم</p>`;
                     } else {
                         list.innerHTML = dayClients.map(c => buildClientCardHTML(c)).join('');
                         attachClientCardListeners();
@@ -2214,10 +3156,12 @@
                 page.dataset.type = type;
 
                 const clients = await getClients();
-                const filtered = clients.filter(c => c.garmentTypes && c.garmentTypes.includes(type) && !c.purchased && !c.completed);
-                
+                const filtered = clients.filter(c => c.garmentTypes && c.garmentTypes.includes(type) && !c.purchased &&
+                    !c.completed);
+
                 if (filtered.length === 0) {
-                    list.innerHTML = `<p style="text-align:center; color:var(--text-muted);">✅ كل السلع من هذا النوع تم شراؤها!</p>`;
+                    list.innerHTML =
+                        `<p style="text-align:center; color:var(--text-muted);">✅ كل السلع من هذا النوع تم شراؤها!</p>`;
                 } else {
                     list.innerHTML = filtered.map(c => buildClientCardHTML(c, true)).join('');
                     attachClientCardListeners();
@@ -2263,7 +3207,7 @@
                 const searchInAll = document.getElementById('search-in-all').checked;
                 const searchTerm = agendaSearch.value.trim().toLowerCase();
                 const filterFn = getDateFilterFunction(agendaActiveDateFilter);
-                
+
                 let mainList = clients.filter(c => {
                     if (!searchInAll && c.completed) return false;
                     return filterFn(c);
@@ -2271,77 +3215,118 @@
                 if (searchTerm) {
                     mainList = mainList.filter(c => c.name.toLowerCase().includes(searchTerm));
                 }
-                mainList.sort((a,b) => new Date(a.deliveryDate) - new Date(b.deliveryDate));
+                mainList.sort((a, b) => new Date(a.deliveryDate) - new Date(b.deliveryDate));
 
                 const completedSearch = agendaCompletedSearch.value.trim().toLowerCase();
                 let completed = clients.filter(c => c.completed);
-                if(completedSearch) completed = completed.filter(c=>c.name.toLowerCase().includes(completedSearch));
-                completed.sort((a,b)=>new Date(b.completedAt||b.createdAt)-new Date(a.completedAt||a.createdAt));
+                if (completedSearch) completed = completed.filter(c => c.name.toLowerCase().includes(
+                completedSearch));
+                completed.sort((a, b) => new Date(b.completedAt || b.createdAt) - new Date(a.completedAt || a
+                .createdAt));
 
-                agendaActiveList.innerHTML = mainList.length ? mainList.map(c=>buildClientCardHTML(c)).join('') : '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش طلبيات مطابقة.</p>';
-                agendaCompletedList.innerHTML = completed.length ? completed.map(c=>buildClientCardHTML(c)).join('') : '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش مسلّمات.</p>';
+                agendaActiveList.innerHTML = mainList.length ? mainList.map(c => buildClientCardHTML(c)).join('') :
+                    '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش طلبيات مطابقة.</p>';
+                agendaCompletedList.innerHTML = completed.length ? completed.map(c => buildClientCardHTML(c)).join('') :
+                    '<p style="text-align:center; margin-top:20px; color:var(--text-muted); font-weight:600;">ما كايناش مسلّمات.</p>';
                 completedCountSpan.textContent = `(${clients.filter(c => c.completed).length})`;
-                
-                renderStats(); 
-                attachClientCardListeners(); 
+
+                renderStats();
+                attachClientCardListeners();
                 sendPersistentDailyNotification();
                 updatePurchaseCounts();
             }
 
             // ====== تبديل التبويبات ======
             function switchTab(tabName) {
-                document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tabName));
-                document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab ===
+                tabName));
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
                 const tabContent = document.getElementById(`tab-${tabName}`);
                 if (tabContent) tabContent.classList.add('active');
                 if (tabName === 'agenda') {
                     renderAgenda();
                 }
             }
-            document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click', ()=>switchTab(b.dataset.tab)));
+            document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => switchTab(b.dataset
+                .tab)));
 
             // ====== فلترة الأجندة ======
             document.querySelectorAll('#agenda-filter-panel .btn-pill').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const filter = this.dataset.filter;
                     agendaActiveDateFilter = filter;
-                    document.querySelectorAll('#agenda-filter-panel .btn-pill').forEach(b => b.classList.remove('active-filter'));
+                    document.querySelectorAll('#agenda-filter-panel .btn-pill').forEach(b => b.classList.remove(
+                        'active-filter'));
                     this.classList.add('active-filter');
                     renderAgenda();
                 });
             });
 
             agendaSearch.addEventListener('input', renderAgenda);
-            agendaCompletedSearch.addEventListener('input', renderAgenda); 
+            agendaCompletedSearch.addEventListener('input', renderAgenda);
             document.getElementById('search-in-all').addEventListener('change', renderAgenda);
 
             // ====== حاسبة القصات ======
-            document.getElementById('calc-fitType').addEventListener('change', function(){ document.getElementById('calc-customEaseGroup').classList.toggle('visible', this.value==='custom'); });
-            
-            document.getElementById('calculator-form').addEventListener('submit', function(e){
+            document.getElementById('calc-fitType').addEventListener('change', function() { document.getElementById(
+                    'calc-customEaseGroup').classList.toggle('visible', this.value === 'custom'); });
+
+            document.getElementById('calculator-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const ft=document.getElementById('calc-fitType').value; if(!ft) return showToast('⚠️ اختاري الاتساع');
-                const ease=ft==='custom'?parseFloat(document.getElementById('calc-customEase').value)||0:EASE_MAP[ft];
-                const m={ shoulders:parseFloat(document.getElementById('calc-shoulders').value), chest:parseFloat(document.getElementById('calc-chest').value), waist:parseFloat(document.getElementById('calc-waist').value), hips:parseFloat(document.getElementById('calc-hips').value), dressLength:parseFloat(document.getElementById('calc-dressLength').value), sleeveLength:parseFloat(document.getElementById('calc-sleeveLength').value), armhole:parseFloat(document.getElementById('calc-armhole').value), sleeveMouth:parseFloat(document.getElementById('calc-sleeveMouth').value) };
-                const cuts=calculateCuts(m,ft,ease);
-                const items=[ 
-                    {label:'قص الكتاف',value:formatNumber(cuts.shoulderCut)}, {label:'قص الصدر',value:formatNumber(cuts.chestCut)}, 
-                    {label:'قص الحزام',value:formatNumber(cuts.waistCut)}, {label:'قص الحوض',value:formatNumber(cuts.hipsCut)}, 
-                    {label:'التركيز',value:formatNumber(m.armhole)}, {label:'الطول النهائي',value:formatNumber(cuts.finalDressLength)}, 
-                    {label:'طول الكم',value:formatNumber(cuts.finalSleeveLength)}, {label:'فم الكم',value:formatNumber(m.sleeveMouth)}
+                const ft = document.getElementById('calc-fitType').value;
+                if (!ft) return showToast('⚠️ اختاري الاتساع');
+                const ease = ft === 'custom' ? parseFloat(document.getElementById('calc-customEase').value) || 0 :
+                    EASE_MAP[ft];
+                const m = {
+                    shoulders: parseFloat(document.getElementById('calc-shoulders').value),
+                    chest: parseFloat(document.getElementById('calc-chest').value),
+                    waist: parseFloat(document.getElementById('calc-waist').value),
+                    hips: parseFloat(document.getElementById('calc-hips').value),
+                    dressLength: parseFloat(document.getElementById('calc-dressLength').value),
+                    sleeveLength: parseFloat(document.getElementById('calc-sleeveLength').value),
+                    armhole: parseFloat(document.getElementById('calc-armhole').value),
+                    sleeveMouth: parseFloat(document.getElementById('calc-sleeveMouth').value)
+                };
+                const cuts = calculateCuts(m, ft, ease);
+                const items = [
+                    { label: 'قص الكتاف', value: formatNumber(cuts.shoulderCut) },
+                    { label: 'قص الصدر', value: formatNumber(cuts.chestCut) },
+                    { label: 'قص الحزام', value: formatNumber(cuts.waistCut) },
+                    { label: 'قص الحوض', value: formatNumber(cuts.hipsCut) },
+                    { label: 'التركيز', value: formatNumber(m.armhole) },
+                    { label: 'الطول النهائي', value: formatNumber(cuts.finalDressLength) },
+                    { label: 'طول الكم', value: formatNumber(cuts.finalSleeveLength) },
+                    { label: 'فم الكم', value: formatNumber(m.sleeveMouth) }
                 ];
-                document.getElementById('results-grid').innerHTML=items.map(i=>`<div class="result-item"><div class="result-label">${i.label}</div><div class="result-value">${i.value} cm</div></div>`).join('');
-                document.getElementById('results-card').style.display='block';
+                document.getElementById('results-grid').innerHTML = items.map(i =>
+                    `<div class="result-item"><div class="result-label">${i.label}</div><div class="result-value">${i.value} cm</div></div>`
+                    ).join('');
+                document.getElementById('results-card').style.display = 'block';
             });
 
             // ====== رفع الصور ======
-            document.getElementById('form-capture-btn').addEventListener('click',()=>{ formImageInput.capture='environment'; formImageInput.click(); });
-            document.getElementById('form-gallery-btn').addEventListener('click',()=>{ formImageInput.removeAttribute('capture'); formImageInput.click(); });
-            formImageInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); tempImg=compressed; formImagePreview.src=compressed; formImagePreview.classList.add('visible'); });
+            document.getElementById('form-capture-btn').addEventListener('click', () => { formImageInput.capture =
+                    'environment';
+                formImageInput.click(); });
+            document.getElementById('form-gallery-btn').addEventListener('click', () => { formImageInput.removeAttribute(
+                    'capture');
+                formImageInput.click(); });
+            formImageInput.addEventListener('change', async e => { const file = e.target.files[0]; if (!file) return;
+                const compressed = await compressImage(file);
+                tempImg = compressed;
+                formImagePreview.src = compressed;
+                formImagePreview.classList.add('visible'); });
 
-            document.getElementById('model-capture-btn').addEventListener('click',()=>{ formModelInput.capture='environment'; formModelInput.click(); });
-            document.getElementById('model-gallery-btn').addEventListener('click',()=>{ formModelInput.removeAttribute('capture'); formModelInput.click(); });
-            formModelInput.addEventListener('change', async e=>{ const file=e.target.files[0]; if(!file) return; const compressed=await compressImage(file); tempModel=compressed; formModelPreview.src=compressed; formModelPreview.classList.add('visible'); });
+            document.getElementById('model-capture-btn').addEventListener('click', () => { formModelInput.capture =
+                    'environment';
+                formModelInput.click(); });
+            document.getElementById('model-gallery-btn').addEventListener('click', () => { formModelInput.removeAttribute(
+                    'capture');
+                formModelInput.click(); });
+            formModelInput.addEventListener('change', async e => { const file = e.target.files[0]; if (!file) return;
+                const compressed = await compressImage(file);
+                tempModel = compressed;
+                formModelPreview.src = compressed;
+                formModelPreview.classList.add('visible'); });
 
             document.getElementById('client-totalPrice').addEventListener('input', updateRemaining);
             document.getElementById('client-advancePayment').addEventListener('input', updateRemaining);
@@ -2357,7 +3342,8 @@
                         this.classList.remove('selected');
                         selectedStatus = null;
                     } else {
-                        document.querySelectorAll('.status-option').forEach(opt => opt.classList.remove('selected'));
+                        document.querySelectorAll('.status-option').forEach(opt => opt.classList.remove(
+                            'selected'));
                         this.classList.add('selected');
                         selectedStatus = status;
                     }
@@ -2379,7 +3365,7 @@
             });
 
             // ====== حفظ الكليانة ======
-            document.getElementById('client-form').addEventListener('submit', async function(e){
+            document.getElementById('client-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 if (isFormRecording && formMediaRecorder) {
                     waitingToSaveClient = true;
@@ -2388,7 +3374,7 @@
                 }
                 executeSaveNewClient();
             });
-            
+
             async function executeSaveNewClient() {
                 const fitType = document.getElementById('cl-fitType').value;
                 if (!fitType) return showToast('⚠️ اختاري نوع الاتساع');
@@ -2398,9 +3384,9 @@
                 if (total < 0) return showToast('⚠️ الثمن لا يمكن أن يكون سالباً');
                 if (advance < 0) return showToast('⚠️ التسبيق لا يمكن أن يكون سالباً');
                 if (advance > total) return showToast('⚠️ التسبيق لا يمكن أن يزيد عن الثمن الإجمالي');
-                
+
                 const client = {
-                    id: 'cl_' + Date.now() + '_' + Math.random().toString(36).substr(2,8), 
+                    id: 'cl_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8),
                     name: document.getElementById('client-name').value.trim(),
                     location: document.getElementById('client-location').value.trim(),
                     phone: document.getElementById('client-phone').value.trim(),
@@ -2408,53 +3394,64 @@
                     audioNotes: formAudioNotes.length > 0 ? [...formAudioNotes] : [],
                     totalPrice: total,
                     advancePayment: advance,
-                    measurements:{ 
-                        shoulders:parseFloat(document.getElementById('cl-shoulders').value) || 0, 
-                        chest:parseFloat(document.getElementById('cl-chest').value) || 0, 
-                        waist:parseFloat(document.getElementById('cl-waist').value) || 0, 
-                        hips:parseFloat(document.getElementById('cl-hips').value) || 0, 
-                        dressLength:parseFloat(document.getElementById('cl-dressLength').value) || 0, 
-                        sleeveLength:parseFloat(document.getElementById('cl-sleeveLength').value) || 0,
-                        armhole:parseFloat(document.getElementById('cl-armhole').value) || 0,
-                        sleeveMouth:parseFloat(document.getElementById('cl-sleeveMouth').value) || 0,
-                        jlayel:parseFloat(document.getElementById('cl-jlayel').value) || 0
+                    measurements: {
+                        shoulders: parseFloat(document.getElementById('cl-shoulders').value) || 0,
+                        chest: parseFloat(document.getElementById('cl-chest').value) || 0,
+                        waist: parseFloat(document.getElementById('cl-waist').value) || 0,
+                        hips: parseFloat(document.getElementById('cl-hips').value) || 0,
+                        dressLength: parseFloat(document.getElementById('cl-dressLength').value) || 0,
+                        sleeveLength: parseFloat(document.getElementById('cl-sleeveLength').value) || 0,
+                        armhole: parseFloat(document.getElementById('cl-armhole').value) || 0,
+                        sleeveMouth: parseFloat(document.getElementById('cl-sleeveMouth').value) || 0,
+                        jlayel: parseFloat(document.getElementById('cl-jlayel').value) || 0
                     },
                     fitType: fitType,
-                    customEases: {chest:0, waist:0, hips:0},
+                    customEases: { chest: 0, waist: 0, hips: 0 },
                     deliveryDate: document.getElementById('cl-deliveryDate').value,
-                    completed: false, returned: false, createdAt: new Date().toISOString(), 
-                    image: tempImg || null, modelImage: tempModel || null,
+                    completed: false,
+                    returned: false,
+                    createdAt: new Date().toISOString(),
+                    image: tempImg || null,
+                    modelImage: tempModel || null,
                     status: selectedStatus,
-                    garmentTypes: [...selectedTypes], 
+                    garmentTypes: [...selectedTypes],
                     purchased: false
                 };
-                
+
                 await saveClient(client);
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
-                
-                document.getElementById('client-form').reset(); 
-                document.getElementById('cl-fitType').value=''; 
-                tempImg=null; tempModel=null; 
-                document.querySelectorAll('.status-option, .type-option').forEach(opt => opt.classList.remove('selected'));
+
+                document.getElementById('client-form').reset();
+                document.getElementById('cl-fitType').value = '';
+                tempImg = null;
+                tempModel = null;
+                document.querySelectorAll('.status-option, .type-option').forEach(opt => opt.classList.remove(
+                'selected'));
                 selectedStatus = null;
-                selectedTypes = []; 
-                
+                selectedTypes = [];
+
                 formAudioNotes = [];
                 renderFormAudios();
-                
-                formImagePreview.classList.remove('visible'); formImagePreview.src=''; 
-                formModelPreview.classList.remove('visible'); formModelPreview.src=''; 
+
+                formImagePreview.classList.remove('visible');
+                formImagePreview.src = '';
+                formModelPreview.classList.remove('visible');
+                formModelPreview.src = '';
                 updateRemaining();
-                
-                document.querySelectorAll('.measurement-input').forEach(i => { i.classList.add('input-empty'); i.classList.remove('input-filled'); });
+
+                document.querySelectorAll('.measurement-input').forEach(i => { i.classList.add('input-empty');
+                    i.classList.remove('input-filled'); });
 
                 showBigToast('✅ تم إضافة الكليانة بنجاح!');
             }
 
             // ====== الأقسام القابلة للطي ======
-            document.getElementById('completed-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('completed-content').classList.toggle('open'); });
-            document.getElementById('stats-toggle').addEventListener('click', function(){ this.classList.toggle('open'); document.getElementById('stats-content').classList.toggle('open'); });
+            document.getElementById('completed-toggle').addEventListener('click', function() { this.classList.toggle(
+                    'open');
+                document.getElementById('completed-content').classList.toggle('open'); });
+            document.getElementById('stats-toggle').addEventListener('click', function() { this.classList.toggle('open');
+                document.getElementById('stats-content').classList.toggle('open'); });
 
             // ====== التهيئة ======
             async function init() {
@@ -2463,27 +3460,32 @@
                     if (screen.orientation && screen.orientation.lock) {
                         await screen.orientation.lock('portrait');
                     }
-                } catch (err) { 
-                    console.log('ملاحظة: المتصفح لا يدعم القفل المباشر، سيتم الاعتماد على قفل الأندرويد.'); 
+                } catch (err) {
+                    console.log('ملاحظة: المتصفح لا يدعم القفل المباشر، سيتم الاعتماد على قفل الأندرويد.');
                 }
                 switchTab('clients');
                 document.querySelector('.tab-btn[data-tab="clients"]').classList.add('active');
                 document.querySelector('.tab-btn[data-tab="calculator"]').classList.remove('active');
-                
+
                 await renderAgenda();
                 await updatePurchaseCounts();
-                
+
                 requestNotificationPermission();
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
-                
+
                 const lastBackup = localStorage.getItem('lastBackupDate');
-                const nowTime = Date.now(); const oneWeek = 7 * 24 * 60 * 60 * 1000; 
+                const nowTime = Date.now();
+                const oneWeek = 7 * 24 * 60 * 60 * 1000;
                 if (!lastBackup) localStorage.setItem('lastBackupDate', nowTime.toString());
-                else if ((nowTime - parseInt(lastBackup)) > oneWeek) setTimeout(() => { alert('⚠️ تذكير أسبوعي: المرجو عمل "تصدير النسخة الاحتياطية" دابا من زر (⚙️) باش ما يضيعوش ليك العبارات!'); }, 1500);
+                else if ((nowTime - parseInt(lastBackup)) > oneWeek) setTimeout(() => {
+                    alert(
+                        '⚠️ تذكير أسبوعي: المرجو عمل "تصدير النسخة الاحتياطية" دابا من زر (⚙️) باش ما يضيعوش ليك العبارات!'
+                        );
+                }, 1500);
             }
 
-            if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
             else init();
         })();
     </script>
