@@ -21,7 +21,7 @@
             --text-secondary: #4A4A5A;
             --text-tertiary: #8A8A9A;
             --border: rgba(0, 0, 0, 0.05);
-            --border-strong: rgba(0, 0, 0, 0.08);
+            --border-strong: rgba(0, 0, 0, 0.15);
 
             --success: #0E9C6E;
             --success-50: #ECFDF5;
@@ -32,6 +32,7 @@
 
             --gold: #C9A84C;
             --gold-light: #FBF5E8;
+            --highlight-blue: #2196F3;
 
             --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -75,12 +76,13 @@
             --text-secondary: #B8B8CC;
             --text-tertiary: #7A7A92;
             --border: rgba(255, 255, 255, 0.04);
-            --border-strong: rgba(255, 255, 255, 0.07);
+            --border-strong: rgba(255, 255, 255, 0.15);
             --primary-50: rgba(199, 91, 58, 0.12);
             --primary-100: rgba(199, 91, 58, 0.2);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.5);
+            --highlight-blue: #64B5F6;
         }
 
         *,
@@ -189,6 +191,7 @@
             display: flex;
             gap: var(--space-2);
             flex-shrink: 0;
+            position: relative;
         }
 
         .icon-btn {
@@ -206,6 +209,8 @@
             box-shadow: var(--shadow-xs);
             transition: all var(--transition-fast);
             flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
         }
         .icon-btn:hover {
             background: var(--primary-50);
@@ -214,6 +219,23 @@
         }
         .icon-btn:active {
             transform: scale(0.94);
+        }
+
+        /* Dark mode ripple effect */
+        .theme-ripple {
+            position: fixed;
+            border-radius: 50%;
+            background: var(--surface);
+            transform: scale(0);
+            animation: rippleTheme 0.8s ease-out forwards;
+            pointer-events: none;
+            z-index: 999;
+        }
+        @keyframes rippleTheme {
+            to {
+                transform: scale(50);
+                opacity: 0;
+            }
         }
 
         /* ===== Today Card ===== */
@@ -369,7 +391,7 @@
         .card {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-4);
+            padding: var(--space-3);
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border);
             margin-bottom: var(--space-3);
@@ -383,17 +405,17 @@
             display: flex;
             align-items: center;
             gap: var(--space-3);
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-2);
         }
         .card-header-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: var(--primary-50);
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
             transition: background var(--transition-base);
         }
@@ -415,7 +437,7 @@
 
         /* ===== Form Elements ===== */
         .form-group {
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-2);
         }
         .form-group label {
             display: block;
@@ -439,7 +461,7 @@
             font-size: var(--font-base);
             font-family: inherit;
             font-weight: 500;
-            border: 1.5px solid var(--border-strong);
+            border: 2px solid var(--border-strong);
             border-radius: var(--radius-md);
             background: var(--bg);
             color: var(--text-primary);
@@ -494,7 +516,7 @@
         .financial-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-3);
+            gap: var(--space-2);
         }
 
         .remaining-badge {
@@ -502,12 +524,12 @@
             align-items: center;
             gap: var(--space-2);
             background: var(--primary-50);
-            padding: var(--space-2) var(--space-4);
+            padding: var(--space-1) var(--space-4);
             border-radius: var(--radius-md);
             font-weight: 800;
             color: var(--primary-dark);
-            font-size: var(--font-lg);
-            margin-bottom: var(--space-3);
+            font-size: var(--font-base);
+            margin-bottom: var(--space-2);
             border: 1px solid var(--primary-100);
             transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
         }
@@ -551,7 +573,7 @@
         .btn-secondary {
             background: var(--surface);
             color: var(--text-primary);
-            border: 1.5px solid var(--border-strong);
+            border: 2px solid var(--border-strong);
         }
         .btn-secondary:hover {
             background: var(--bg);
@@ -568,9 +590,9 @@
             color: #FFF;
         }
         .btn-sm {
-            padding: var(--space-1) var(--space-3);
-            font-size: var(--font-sm);
-            min-height: 34px;
+            padding: var(--space-1) var(--space-2);
+            font-size: var(--font-xs);
+            min-height: 32px;
             border-radius: var(--radius-sm);
         }
 
@@ -581,7 +603,7 @@
             border-radius: var(--radius-md);
             padding: 3px;
             gap: 3px;
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-2);
             border: 1px solid var(--border);
             transition: background var(--transition-base), border-color var(--transition-base);
         }
@@ -590,7 +612,7 @@
         }
         .mode-toggle .mode-btn {
             flex: 1;
-            padding: var(--space-2) var(--space-2);
+            padding: var(--space-1) var(--space-2);
             border: none;
             background: transparent;
             border-radius: var(--radius-sm);
@@ -600,7 +622,7 @@
             color: var(--text-tertiary);
             cursor: pointer;
             transition: all var(--transition-fast);
-            min-height: 40px;
+            min-height: 36px;
         }
         .mode-toggle .mode-btn.active {
             background: var(--surface);
@@ -618,7 +640,7 @@
         .rotouch-area {
             display: none;
             flex-direction: column;
-            gap: var(--space-3);
+            gap: var(--space-2);
             padding: var(--space-2) 0;
         }
         .rotouch-area.visible {
@@ -657,7 +679,7 @@
             gap: var(--space-2);
         }
         .selector-option {
-            padding: var(--space-2) var(--space-2);
+            padding: var(--space-1) var(--space-2);
             border-radius: var(--radius-md);
             border: 2px solid var(--border);
             background: var(--surface);
@@ -670,7 +692,7 @@
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            min-height: 58px;
+            min-height: 50px;
             justify-content: center;
         }
         .selector-option:hover {
@@ -694,11 +716,11 @@
         /* ===== Client Cards ===== */
         .client-card {
             background: var(--surface);
-            border-radius: var(--radius-xl);
-            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2);
             box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
-            margin-bottom: var(--space-3);
+            border: 2px solid var(--border);
+            margin-bottom: var(--space-2);
             transition: all var(--transition-fast);
             position: relative;
             overflow: hidden;
@@ -726,11 +748,37 @@
             transform: translateY(-2px);
         }
 
+        /* Highlight for navigation - blue glow */
+        .client-card.highlight {
+            border-color: var(--highlight-blue) !important;
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.3), var(--shadow-md);
+            animation: highlightPulse 0.6s ease 1;
+            transition: all 0.4s ease;
+        }
+        @keyframes highlightPulse {
+            0% { transform: scale(1); border-color: var(--highlight-blue); }
+            30% { transform: scale(1.03); border-color: var(--highlight-blue); box-shadow: 0 0 40px rgba(33,150,243,0.5); }
+            100% { transform: scale(1); border-color: var(--highlight-blue); }
+        }
+        .client-card.highlight:after {
+            content: '👈';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 1.4rem;
+            animation: bounceArrow 0.6s ease 1;
+        }
+        @keyframes bounceArrow {
+            0% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(10px); opacity: 1; }
+            100% { transform: translateX(0); opacity: 0; }
+        }
+
         .client-card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1);
             gap: var(--space-2);
         }
         .client-name-section {
@@ -741,7 +789,7 @@
             min-width: 0;
         }
         .client-name {
-            font-size: var(--font-lg);
+            font-size: var(--font-base);
             font-weight: 800;
             color: var(--text-primary);
             display: flex;
@@ -756,7 +804,7 @@
             flex-wrap: wrap;
         }
         .badge {
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: var(--radius-pill);
             font-size: var(--font-xs);
             font-weight: 800;
@@ -794,9 +842,9 @@
         .client-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-2);
-            margin-bottom: var(--space-2);
-            font-size: var(--font-sm);
+            gap: var(--space-1) var(--space-2);
+            margin-bottom: var(--space-1);
+            font-size: var(--font-xs);
             color: var(--text-tertiary);
         }
         .client-meta span {
@@ -807,15 +855,15 @@
 
         .client-financial {
             display: flex;
-            gap: var(--space-2);
-            margin-bottom: var(--space-2);
+            gap: var(--space-1);
+            margin-bottom: var(--space-1);
             flex-wrap: wrap;
         }
         .financial-chip {
-            padding: var(--space-1) var(--space-3);
+            padding: 2px var(--space-3);
             background: var(--bg);
             border-radius: var(--radius-sm);
-            font-size: var(--font-sm);
+            font-size: var(--font-xs);
             font-weight: 700;
             color: var(--text-secondary);
             transition: background var(--transition-base);
@@ -834,11 +882,11 @@
 
         .client-description {
             background: var(--bg);
-            padding: var(--space-2) var(--space-3);
+            padding: var(--space-1) var(--space-3);
             border-radius: var(--radius-md);
-            font-size: var(--font-sm);
+            font-size: var(--font-xs);
             color: var(--text-secondary);
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1);
             line-height: 1.6;
             border-right: 3px solid var(--primary-100);
             transition: background var(--transition-base);
@@ -855,7 +903,7 @@
         }
         .client-image {
             width: 100%;
-            height: 120px;
+            height: 100px;
             object-fit: cover;
             border-radius: var(--radius-md);
             cursor: pointer;
@@ -872,8 +920,8 @@
         .client-audios {
             display: flex;
             flex-direction: column;
-            gap: var(--space-2);
-            margin-bottom: var(--space-2);
+            gap: var(--space-1);
+            margin-bottom: var(--space-1);
         }
         .audio-item {
             display: flex;
@@ -896,31 +944,35 @@
         }
         .audio-item audio {
             flex: 1;
-            height: 32px;
+            height: 28px;
             min-width: 60px;
         }
 
         .card-actions {
             display: flex;
-            gap: var(--space-2);
+            gap: var(--space-1);
             flex-wrap: wrap;
+            margin-top: var(--space-1);
         }
         .card-actions .btn {
             flex: 1;
-            min-width: 64px;
+            min-width: 60px;
+            font-size: var(--font-xs);
+            padding: var(--space-1) var(--space-2);
+            min-height: 30px;
         }
 
         .more-btn {
             background: none;
             border: none;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             cursor: pointer;
             color: var(--text-tertiary);
             padding: var(--space-1);
             border-radius: var(--radius-sm);
             transition: all var(--transition-fast);
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -931,15 +983,29 @@
             color: var(--text-primary);
         }
 
-        /* ===== Search & Filter ===== */
+        /* ===== Search & Filter - Sticky ===== */
+        .search-section {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--surface);
+            padding: var(--space-2) 0;
+            margin: 0 calc(-1 * var(--space-3));
+            padding-left: var(--space-3);
+            padding-right: var(--space-3);
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition-base), border-color var(--transition-base);
+        }
+        [data-theme="dark"] .search-section {
+            background: var(--surface);
+        }
         .search-bar {
             display: flex;
             align-items: center;
-            background: var(--surface);
+            background: var(--bg);
             border-radius: var(--radius-pill);
             padding: var(--space-1) var(--space-4);
-            border: 1.5px solid var(--border);
-            margin-bottom: var(--space-3);
+            border: 2px solid var(--border-strong);
             transition: all var(--transition-fast);
         }
         .search-bar:focus-within {
@@ -958,17 +1024,31 @@
             font-size: var(--font-base);
             width: 100%;
             outline: none;
-            min-height: auto;
+            min-height: 40px;
+            color: var(--text-primary);
         }
         .search-bar input::placeholder {
             color: var(--text-tertiary);
             opacity: 0.6;
         }
 
+        .search-options {
+            display: none;
+            margin-top: var(--space-2);
+            padding: var(--space-2);
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition-fast);
+        }
+        .search-options.visible {
+            display: block;
+        }
+
         .filter-row {
             display: flex;
             gap: var(--space-2);
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-2);
             overflow-x: auto;
             padding-bottom: var(--space-1);
             scrollbar-width: none;
@@ -979,18 +1059,18 @@
         }
 
         .btn-pill {
-            padding: var(--space-1) var(--space-4);
+            padding: var(--space-1) var(--space-3);
             border-radius: var(--radius-pill);
             font-size: var(--font-sm);
             font-weight: 700;
-            border: 1.5px solid var(--border);
+            border: 2px solid var(--border);
             background: var(--surface);
             color: var(--text-secondary);
             cursor: pointer;
             transition: all var(--transition-fast);
             white-space: nowrap;
             font-family: inherit;
-            min-height: 36px;
+            min-height: 32px;
         }
         .btn-pill.active {
             background: var(--text-primary);
@@ -1006,20 +1086,43 @@
             transform: scale(0.96);
         }
 
+        .search-checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: var(--space-1) 0;
+        }
+        .search-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            border-radius: 4px;
+            border: 2px solid var(--border-strong);
+            background: var(--surface);
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+            appearance: auto;
+        }
+
         /* ===== Quick Actions ===== */
         .quick-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-3);
+            gap: var(--space-2);
             margin-bottom: var(--space-3);
         }
         .quick-action-btn {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
-            padding: var(--space-3);
+            gap: var(--space-2);
+            padding: var(--space-2);
             background: var(--surface);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius-lg);
             cursor: pointer;
             transition: all var(--transition-fast);
@@ -1031,13 +1134,13 @@
             transform: translateY(-1px);
         }
         .quick-action-btn .qa-icon {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
         }
         .quick-action-btn .qa-text {
@@ -1059,7 +1162,7 @@
         .result-item {
             background: var(--bg);
             border-radius: var(--radius-md);
-            padding: var(--space-3) var(--space-2);
+            padding: var(--space-2);
             text-align: center;
             border: 1px solid var(--border);
             transition: all var(--transition-fast);
@@ -1077,7 +1180,7 @@
             margin-bottom: var(--space-1);
         }
         .result-item .result-value {
-            font-size: var(--font-xl);
+            font-size: var(--font-lg);
             font-weight: 900;
             color: var(--primary);
         }
@@ -1106,7 +1209,7 @@
         .calendar-container {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-4);
+            padding: var(--space-3);
             border: 1px solid var(--border);
             transition: background var(--transition-base), border-color var(--transition-base);
         }
@@ -1123,8 +1226,8 @@
             transition: color var(--transition-base);
         }
         .calendar-header .nav-btn {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border: none;
             background: var(--bg);
             border-radius: var(--radius-md);
@@ -1261,7 +1364,7 @@
             transition: color var(--transition-base);
         }
         .page-body {
-            padding: var(--space-4);
+            padding: var(--space-3);
             flex: 1;
         }
 
@@ -1288,7 +1391,7 @@
             max-width: 400px;
             max-height: 85vh;
             overflow-y: auto;
-            padding: var(--space-4);
+            padding: var(--space-3);
             box-shadow: var(--shadow-lg);
             animation: slideUp 0.3s var(--transition-base) forwards;
             transition: background var(--transition-base);
@@ -1297,7 +1400,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-2);
         }
         .modal-header h3 {
             font-size: var(--font-lg);
@@ -1306,12 +1409,12 @@
             transition: color var(--transition-base);
         }
         .modal-close {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border: none;
             background: var(--bg);
             border-radius: 50%;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             cursor: pointer;
             color: var(--text-tertiary);
             display: flex;
@@ -1486,7 +1589,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--space-3) 0;
+            padding: var(--space-2) 0;
             cursor: pointer;
             font-weight: 800;
             font-size: var(--font-base);
@@ -1528,6 +1631,11 @@
             font-weight: 700;
             font-size: var(--font-sm);
             transition: background var(--transition-base);
+            cursor: pointer;
+            border: 2px solid var(--border);
+        }
+        .debt-item:hover {
+            background: var(--primary-50);
         }
         [data-theme="dark"] .debt-item {
             background: var(--surface-elevated);
@@ -1546,7 +1654,7 @@
             background: var(--bg);
             border-radius: var(--radius-md);
             margin-bottom: var(--space-2);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             transition: background var(--transition-base), border-color var(--transition-base);
         }
         [data-theme="dark"] .measurement-item {
@@ -1573,11 +1681,11 @@
         }
         .image-preview {
             width: 100%;
-            max-height: 160px;
+            max-height: 140px;
             object-fit: cover;
             border-radius: var(--radius-md);
             margin-top: var(--space-2);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             display: none;
         }
         .image-preview.visible {
@@ -1616,7 +1724,7 @@
             background: var(--bg);
             padding: var(--space-1) var(--space-3);
             border-radius: var(--radius-md);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             transition: background var(--transition-base), border-color var(--transition-base);
         }
         [data-theme="dark"] .form-audio-item {
@@ -1631,18 +1739,18 @@
         }
         .form-audio-item audio {
             flex: 1;
-            height: 32px;
+            height: 28px;
             min-width: 60px;
         }
         .form-audio-item .delete-audio-btn {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border: none;
             background: var(--danger-50);
             color: var(--danger);
             border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1752,10 +1860,80 @@
             font-family: inherit;
             white-space: nowrap;
             transition: transform var(--transition-fast);
-            min-height: 36px;
+            min-height: 32px;
         }
         .suggestion-banner .suggestion-btn:active {
             transform: scale(0.95);
+        }
+
+        /* ===== Today Orders Modal List ===== */
+        .today-order-item {
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        .today-order-item:hover {
+            background: var(--primary-50);
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+        [data-theme="dark"] .today-order-item {
+            background: var(--surface-elevated);
+        }
+
+        /* ===== Completed Orders Button ===== */
+        .completed-orders-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-2);
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 700;
+            color: var(--text-primary);
+            width: 100%;
+            font-family: inherit;
+            font-size: var(--font-base);
+            margin-bottom: var(--space-3);
+        }
+        .completed-orders-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-50);
+            transform: translateY(-1px);
+        }
+        .completed-orders-btn .badge {
+            background: var(--success-50);
+            color: #0A6B4A;
+            font-weight: 800;
+        }
+
+        /* ===== Copy Measurement Page ===== */
+        .copy-measurements-page .measurement-display {
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            padding: var(--space-2);
+            margin-bottom: var(--space-2);
+            border: 2px solid var(--border);
+        }
+        .copy-measurements-page .measurement-display .meas-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-1) 0;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+        .copy-measurements-page .measurement-display .meas-item:last-child {
+            border-bottom: none;
         }
 
         /* ===== Responsive ===== */
@@ -1785,7 +1963,7 @@
                 grid-template-columns: 1fr 1fr;
             }
             .client-image {
-                height: 100px;
+                height: 80px;
             }
             .selector-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -1811,7 +1989,7 @@
                 font-size: 1rem;
             }
             .card {
-                padding: var(--space-3);
+                padding: var(--space-2);
             }
             .form-group {
                 margin-bottom: var(--space-2);
@@ -1828,7 +2006,7 @@
             .card-actions .btn {
                 font-size: var(--font-xs);
                 padding: var(--space-1);
-                min-height: 32px;
+                min-height: 28px;
             }
         }
 
@@ -1837,27 +2015,6 @@
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
-        }
-
-        /* ===== Checkbox styling ===== */
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--primary);
-            cursor: pointer;
-            border-radius: 4px;
-            border: 2px solid var(--border-strong);
-            background: var(--surface);
-            transition: all var(--transition-fast);
-            flex-shrink: 0;
-            appearance: auto;
-        }
-        input[type="checkbox"]:checked {
-            border-color: var(--primary);
-        }
-        input[type="checkbox"]:focus {
-            outline: 2px solid var(--primary-50);
-            outline-offset: 2px;
         }
     </style>
 </head>
@@ -1881,7 +2038,7 @@
                     </div>
                 </div>
                 <div class="header-actions">
-                    <button class="icon-btn" id="theme-toggle" title="تبديل الوضع">🌙</button>
+                    <button class="icon-btn" id="theme-toggle" title="تبديل الوضع" style="font-size:1.4rem;">🌙</button>
                     <button class="icon-btn" id="settings-btn" title="الإعدادات">⚙️</button>
                 </div>
             </div>
@@ -1892,7 +2049,7 @@
             <div class="today-card" id="today-card">
                 <div class="today-label">
                     <span class="emoji">📅</span>
-                    <span class="label-text">طلبية اليوم</span>
+                    <span class="label-text">الطلبيات اليوم</span>
                 </div>
                 <span class="today-count" id="today-count">0</span>
             </div>
@@ -2013,7 +2170,7 @@
                             <input type="file" id="form-model-input" class="hidden" accept="image/*">
                         </div>
 
-                        <div style="margin: var(--space-4) 0; border-top: 2px dashed var(--border);"></div>
+                        <div style="margin: var(--space-3) 0; border-top: 2px dashed var(--border);"></div>
 
                         <!-- Mode Toggle -->
                         <div class="card-header" style="margin-bottom: var(--space-2);">
@@ -2081,15 +2238,6 @@
                             <div class="form-group">
                                 <label>الجلايل</label>
                                 <input type="number" class="measurement-input" id="cl-jlayel" placeholder="—">
-                            </div>
-                            <div class="form-group">
-                                <label>نوع الاتساع</label>
-                                <select id="cl-fitType">
-                                    <option value="">— اختاري —</option>
-                                    <option value="واسع">واسع (+5 cm)</option>
-                                    <option value="عادي">عادي (+3 cm)</option>
-                                    <option value="إيفازي">إيفازي (+4 cm)</option>
-                                </select>
                             </div>
                         </div>
 
@@ -2223,8 +2371,13 @@
                     </button>
                 </div>
 
+                <!-- Completed Orders Button (top of agenda) -->
+                <button class="completed-orders-btn" id="completed-orders-btn">
+                    ✅ الطلبيات المسلّمة <span class="badge" id="completed-count-badge">0</span>
+                </button>
+
                 <!-- Active List -->
-                <div class="card">
+                <div class="card" style="margin-top: var(--space-2);">
                     <div class="card-header">
                         <div class="card-header-icon">📋</div>
                         <div class="card-header-text">
@@ -2232,42 +2385,28 @@
                         </div>
                     </div>
 
-                    <div class="search-bar">
-                        <span class="search-icon">🔎</span>
-                        <input type="text" id="agenda-search" placeholder="ابحثي بالإسم...">
-                    </div>
-
-                    <label style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); font-size: var(--font-sm); font-weight: 600; color: var(--text-secondary); cursor: pointer;">
-                        <input type="checkbox" id="search-in-all" style="width: 20px; height: 20px; accent-color: var(--primary);">
-                        البحث في الكل (بما فيها المسلّمة)
-                    </label>
-
-                    <div class="filter-row" id="agenda-filter-panel">
-                        <button class="btn-pill active" data-filter="all">📋 الكل</button>
-                        <button class="btn-pill" data-filter="this-week">📅 هاد السيمانة</button>
-                        <button class="btn-pill" data-filter="this-month">🗓️ هاد الشهر</button>
-                        <button class="btn-pill" data-filter="urgent">🚨 مزروبة</button>
-                        <button class="btn-pill" data-filter="rotouch">🔄 روتوش</button>
-                    </div>
-
-                    <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:var(--space-3);"></div>
-                </div>
-
-                <!-- تم حذف كارد الإحصائيات من هنا -->
-
-                <!-- Completed -->
-                <div class="card">
-                    <div class="collapsible-header" id="completed-toggle">
-                        <span>✅ الطلبيات المسلّمة <span id="completed-count">(0)</span></span>
-                        <span class="chevron">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="completed-content">
-                        <div class="search-bar" style="margin-top: var(--space-2);">
+                    <!-- Search Section - Sticky -->
+                    <div class="search-section">
+                        <div class="search-bar">
                             <span class="search-icon">🔎</span>
-                            <input type="text" id="agenda-completed-search" placeholder="ابحثي في المسلّمات...">
+                            <input type="text" id="agenda-search" placeholder="ابحثي بالاسم...">
                         </div>
-                        <div id="agenda-completed-list" style="display:flex; flex-direction:column; gap:var(--space-3); margin-top:var(--space-3);"></div>
+                        <div class="search-options" id="search-options">
+                            <div class="filter-row" id="agenda-filter-panel">
+                                <button class="btn-pill active" data-filter="all">📋 الكل</button>
+                                <button class="btn-pill" data-filter="this-week">📅 هاد السيمانة</button>
+                                <button class="btn-pill" data-filter="this-month">🗓️ هاد الشهر</button>
+                                <button class="btn-pill" data-filter="urgent">🚨 مزروبة</button>
+                                <button class="btn-pill" data-filter="rotouch">🔄 روتوش</button>
+                            </div>
+                            <label class="search-checkbox">
+                                <input type="checkbox" id="search-in-all">
+                                البحث في الكل (بما فيها المسلّمة)
+                            </label>
+                        </div>
                     </div>
+
+                    <div id="agenda-active-list" style="display:flex; flex-direction:column; gap:var(--space-2);"></div>
                 </div>
             </section>
         </div>
@@ -2307,7 +2446,7 @@
                 <button class="icon-btn" id="close-day-detail-page" style="font-size: 1.5rem;">✕</button>
             </div>
             <div class="page-body">
-                <div id="day-detail-list" style="display:flex; flex-direction:column; gap:var(--space-3);"></div>
+                <div id="day-detail-list" style="display:flex; flex-direction:column; gap:var(--space-2);"></div>
             </div>
         </div>
 
@@ -2327,19 +2466,19 @@
                 <button class="icon-btn" id="close-purchase-detail-page" style="font-size: 1.5rem;">✕</button>
             </div>
             <div class="page-body">
-                <div id="purchase-detail-list" style="display:flex; flex-direction:column; gap:var(--space-3);"></div>
-                <button class="btn btn-success" id="purchase-all-btn" style="margin-top: var(--space-4); padding: var(--space-4); font-size: var(--font-lg);">✅ تم شراء السلعة كلها</button>
+                <div id="purchase-detail-list" style="display:flex; flex-direction:column; gap:var(--space-2);"></div>
+                <button class="btn btn-success" id="purchase-all-btn" style="margin-top: var(--space-3); padding: var(--space-3); font-size: var(--font-lg);">✅ تم شراء السلعة كلها</button>
             </div>
         </div>
 
-        <!-- صفحة الإحصائيات الجديدة (في الإعدادات) -->
+        <!-- Stats Page -->
         <div class="page-overlay" id="stats-page">
             <div class="page-header">
                 <span class="page-title" id="stats-page-title">📊 الإحصائيات والأرباح</span>
                 <button class="icon-btn" id="close-stats-page" style="font-size: 1.5rem;">✕</button>
             </div>
             <div class="page-body">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-bottom: var(--space-4);">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-bottom: var(--space-3);">
                     <div style="background: var(--success-50); padding: var(--space-3); border-radius: var(--radius-lg); text-align: center; border: 1px solid rgba(14,156,110,0.12);">
                         <div style="font-size: var(--font-xs); color: var(--success); font-weight: 700; margin-bottom: 2px;">💰 دخل الشهر</div>
                         <div style="font-size: var(--font-xl); font-weight: 900; color: var(--success);" id="stats-monthly-income">0 درهم</div>
@@ -2354,6 +2493,197 @@
             </div>
         </div>
 
+        <!-- Completed Orders Page -->
+        <div class="page-overlay" id="completed-page">
+            <div class="page-header">
+                <span class="page-title" id="completed-page-title">✅ الطلبيات المسلّمة</span>
+                <button class="icon-btn" id="close-completed-page" style="font-size: 1.5rem;">✕</button>
+            </div>
+            <div class="page-body">
+                <div class="search-bar" style="margin-bottom:var(--space-3);">
+                    <span class="search-icon">🔎</span>
+                    <input type="text" id="completed-page-search" placeholder="ابحثي في المسلّمات...">
+                </div>
+                <div id="completed-page-list" style="display:flex; flex-direction:column; gap:var(--space-2);"></div>
+            </div>
+        </div>
+
+        <!-- Copy Measurements Page (for new order from completed) -->
+        <div class="page-overlay copy-measurements-page" id="copy-measurements-page">
+            <div class="page-header">
+                <span class="page-title" id="copy-measurements-title">👗 طلب كسوة جديدة</span>
+                <button class="icon-btn" id="close-copy-measurements-page" style="font-size: 1.5rem;">✕</button>
+            </div>
+            <div class="page-body">
+                <form id="copy-form" autocomplete="off">
+                    <input type="hidden" id="copy-source-id">
+                    <div class="form-group">
+                        <label>إسم الكليانة *</label>
+                        <input type="text" id="copy-client-name" placeholder="الإسم الكامل" required>
+                    </div>
+
+                    <div class="financial-row">
+                        <div class="form-group">
+                            <label>العنوان</label>
+                            <input type="text" id="copy-client-location" placeholder="الحي / المدينة">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="copy-client-phone" placeholder="0612345678">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📝 الوصف</label>
+                        <textarea id="copy-description" rows="2" placeholder="ألوان، تفاصيل الثوب، طلبات خاصة..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📌 حالة الكليانة</label>
+                        <div class="selector-grid" id="copy-status-selector">
+                            <div class="selector-option" data-status="hard">
+                                <span class="option-emoji">😠</span>
+                                <span>صعبة</span>
+                            </div>
+                            <div class="selector-option" data-status="normal">
+                                <span class="option-emoji">😐</span>
+                                <span>عادية</span>
+                            </div>
+                            <div class="selector-option" data-status="special">
+                                <span class="option-emoji">🤩</span>
+                                <span>مميزة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>👗 نوع الثوب (يمكن اختيار أكثر من واحد)</label>
+                        <div class="selector-grid" id="copy-type-selector">
+                            <div class="selector-option" data-type="dontel">
+                                <span class="option-emoji">🧵</span>
+                                <span>دونتيل</span>
+                            </div>
+                            <div class="selector-option" data-type="sadr">
+                                <span class="option-emoji">👚</span>
+                                <span>صدر</span>
+                            </div>
+                            <div class="selector-option" data-type="other">
+                                <span class="option-emoji">✨</span>
+                                <span>آخر</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🎙️ الملاحظات الصوتية (<span id="copy-audio-total-time">00:00</span> / 03:00)</label>
+                        <div class="form-audios-list" id="copy-audios-list"></div>
+                        <button type="button" class="btn btn-secondary" id="copy-record-btn" style="border-color: var(--danger); color: var(--danger);">
+                            🎙️ تسجيل صوتي
+                        </button>
+                    </div>
+
+                    <div class="financial-row">
+                        <div class="form-group">
+                            <label>الثمن <span class="unit">(درهم)</span> *</label>
+                            <input type="number" id="copy-totalPrice" step="0.01" min="0" placeholder="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>التسبيق <span class="unit">(درهم)</span></label>
+                            <input type="number" id="copy-advancePayment" step="0.01" min="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="remaining-badge">
+                        <span>💳 الباقي:</span>
+                        <span id="copy-remaining-text">0 درهم</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📸 صورة الثوب</label>
+                        <div class="image-upload-group">
+                            <button type="button" class="btn btn-secondary btn-sm" id="copy-capture-btn">📷 كاميرا</button>
+                            <button type="button" class="btn btn-secondary btn-sm" id="copy-gallery-btn">🖼️ ألبوم</button>
+                        </div>
+                        <img id="copy-image-preview" class="image-preview" alt="معاينة">
+                        <input type="file" id="copy-image-input" class="hidden" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label>👗 صورة الموديل</label>
+                        <div class="image-upload-group">
+                            <button type="button" class="btn btn-secondary btn-sm" id="copy-model-capture-btn">📷 كاميرا</button>
+                            <button type="button" class="btn btn-secondary btn-sm" id="copy-model-gallery-btn">🖼️ ألبوم</button>
+                        </div>
+                        <img id="copy-model-preview" class="image-preview" alt="معاينة الموديل">
+                        <input type="file" id="copy-model-input" class="hidden" accept="image/*">
+                    </div>
+
+                    <!-- Display measurements from source -->
+                    <div class="measurement-display" id="copy-measurements-display">
+                        <h4 style="margin-bottom:var(--space-2); font-weight:800;">📏 القياسات المحفوظة (قابلة للتعديل)</h4>
+                        <div class="financial-row">
+                            <div class="form-group">
+                                <label>الكتاف كامليين</label>
+                                <input type="number" id="copy-shoulders" step="0.1" placeholder="—">
+                            </div>
+                            <div class="form-group">
+                                <label>التركيز</label>
+                                <input type="number" id="copy-armhole" step="0.1" placeholder="—">
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <div class="form-group">
+                                <label>دورة الصدر</label>
+                                <input type="number" id="copy-chest" step="0.1" placeholder="—">
+                            </div>
+                            <div class="form-group">
+                                <label>دورة الحزام</label>
+                                <input type="number" id="copy-waist" step="0.1" placeholder="—">
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <div class="form-group">
+                                <label>دورة الحوض</label>
+                                <input type="number" id="copy-hips" step="0.1" placeholder="—">
+                            </div>
+                            <div class="form-group">
+                                <label>الطول الإجمالي</label>
+                                <input type="number" id="copy-dressLength" step="0.1" placeholder="—">
+                            </div>
+                        </div>
+                        <div class="financial-row">
+                            <div class="form-group">
+                                <label>طول الكم</label>
+                                <input type="number" id="copy-sleeveLength" step="0.1" placeholder="—">
+                            </div>
+                            <div class="form-group">
+                                <label>فم الكمام</label>
+                                <input type="number" id="copy-sleeveMouth" step="0.1" placeholder="—">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>الجلايل</label>
+                            <input type="number" id="copy-jlayel" step="0.1" placeholder="—">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>تاريخ التسليم *</label>
+                        <input type="date" id="copy-deliveryDate" required>
+                        <div id="copy-date-status" class="date-status" style="display:none;"></div>
+                        <div class="suggestion-banner" id="copy-suggestion-banner">
+                            <span class="suggestion-text">💡 </span>
+                            <button class="suggestion-btn" id="copy-suggestion-apply-btn">تطبيق الاقتراح</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top: var(--space-2);">
+                        💾 حفظ الكسوة الجديدة
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <!-- Modals -->
         <div class="modal-overlay" id="purchase-type-modal">
             <div class="modal-content">
@@ -2362,10 +2692,10 @@
                     <button class="modal-close" id="close-purchase-type-modal">✕</button>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:var(--space-3);">
-                    <button class="btn btn-secondary" id="choose-sadr-btn" style="border-color: var(--danger); color: var(--danger); font-size: var(--font-lg); padding: var(--space-4);">
+                    <button class="btn btn-secondary" id="choose-sadr-btn" style="border-color: var(--danger); color: var(--danger); font-size: var(--font-lg); padding: var(--space-3);">
                         👚 صدر (<span id="sadr-count-badge">0</span>)
                     </button>
-                    <button class="btn btn-secondary" id="choose-dontel-btn" style="border-color: var(--primary); color: var(--primary); font-size: var(--font-lg); padding: var(--space-4);">
+                    <button class="btn btn-secondary" id="choose-dontel-btn" style="border-color: var(--primary); color: var(--primary); font-size: var(--font-lg); padding: var(--space-3);">
                         🧵 دونتيل (<span id="dontel-count-badge">0</span>)
                     </button>
                 </div>
@@ -2497,7 +2827,7 @@
                     <h3 id="image-modal-title">📸 صورة</h3>
                     <button class="modal-close" id="close-image-modal">✕</button>
                 </div>
-                <img id="image-modal-img" style="width:100%; border-radius:var(--radius-md); margin-bottom:var(--space-4);" src="" alt="صورة">
+                <img id="image-modal-img" style="width:100%; border-radius:var(--radius-md); margin-bottom:var(--space-3);" src="" alt="صورة">
                 <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
                     <button class="btn btn-primary btn-sm" id="modal-camera-btn" style="flex:1;">📷 كاميرا</button>
                     <button class="btn btn-secondary btn-sm" id="modal-gallery-btn" style="flex:1;">🖼️ ألبوم</button>
@@ -2512,25 +2842,26 @@
                     <h3>📅 تعديل تاريخ التسليم</h3>
                     <button class="modal-close" id="close-date-modal">✕</button>
                 </div>
-                <input type="date" id="date-modal-input" style="margin-bottom:var(--space-4); width:100%; padding:var(--space-3); border-radius:var(--radius-md); border:1.5px solid var(--border); font-family:inherit; font-size:var(--font-base);">
+                <input type="date" id="date-modal-input" style="margin-bottom:var(--space-3); width:100%; padding:var(--space-2); border-radius:var(--radius-md); border:2px solid var(--border); font-family:inherit; font-size:var(--font-base);">
                 <button class="btn btn-primary" id="save-date-btn">💾 حفظ</button>
             </div>
         </div>
 
+        <!-- Today Orders Modal -->
         <div class="modal-overlay" id="today-orders-modal">
             <div class="modal-content" style="max-width: 480px; max-height: 80vh;">
                 <div class="modal-header">
                     <h3 id="today-orders-title">📅 طلبيات اليوم</h3>
                     <button class="modal-close" id="close-today-orders-modal">✕</button>
                 </div>
-                <div id="today-orders-list" style="display:flex; flex-direction:column; gap:var(--space-3); max-height:50vh; overflow-y:auto;"></div>
+                <div id="today-orders-list" style="display:flex; flex-direction:column; gap:var(--space-2); max-height:50vh; overflow-y:auto;"></div>
             </div>
         </div>
     </div>
 
     <script>
         (function() {
-            // ===== Theme =====
+            // ===== Theme with ripple effect =====
             const themeToggle = document.getElementById('theme-toggle');
             const toggleThemeBtn = document.getElementById('toggle-theme-btn');
 
@@ -2539,12 +2870,29 @@
                 themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
                 localStorage.setItem('fessala-theme', theme);
             }
+
+            function createThemeRipple(e) {
+                const btn = e.currentTarget;
+                const rect = btn.getBoundingClientRect();
+                const ripple = document.createElement('div');
+                ripple.className = 'theme-ripple';
+                const size = Math.max(rect.width, rect.height) * 2;
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 800);
+            }
+
             const savedTheme = localStorage.getItem('fessala-theme') || 'light';
             applyTheme(savedTheme);
 
-            function toggleTheme() {
-                const current = document.documentElement.getAttribute('data-theme');
-                applyTheme(current === 'dark' ? 'light' : 'dark');
+            function toggleTheme(e) {
+                createThemeRipple(e);
+                setTimeout(() => {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    applyTheme(current === 'dark' ? 'light' : 'dark');
+                }, 100);
             }
             themeToggle.addEventListener('click', toggleTheme);
             toggleThemeBtn.addEventListener('click', toggleTheme);
@@ -2554,18 +2902,28 @@
                 const { App } = window.Capacitor?.Plugins || {};
                 if (!App) return;
                 App.addListener('backButton', () => {
+                    // Close image overlay
                     const overlay = document.getElementById('image-overlay');
                     if (overlay.classList.contains('active')) { overlay.classList.remove('active'); return; }
+                    // Close any page overlay
                     const pages = document.querySelectorAll('.page-overlay.active');
                     if (pages.length > 0) { pages[pages.length - 1].classList.remove('active'); return; }
+                    // Close modals
                     const modals = document.querySelectorAll('.modal-overlay.active');
                     if (modals.length > 0) { modals.forEach(m => m.classList.remove('active')); return; }
+                    // Remove highlight from cards
+                    document.querySelectorAll('.client-card.highlight').forEach(el => el.classList.remove('highlight'));
+                    // Context menu
                     const contextMenu = document.querySelector('.context-menu.active');
                     if (contextMenu) { contextMenu.remove(); return; }
+                    // Stop recordings
                     if (isFormRecording && formMediaRecorder) { formMediaRecorder.stop();
                         waitingToSaveClient = false; return; }
                     if (isRotouchRecording && rotouchMediaRecorder) { rotouchMediaRecorder.stop();
                         waitingToSaveRotouch = false; return; }
+                    if (isCopyRecording && copyMediaRecorder) { copyMediaRecorder.stop();
+                        waitingToSaveCopy = false; return; }
+                    // Switch to clients tab if not there
                     const activeTab = document.querySelector('.nav-item.active');
                     if (activeTab && activeTab.dataset.tab !== 'clients') { switchTab('clients'); return; }
                     App.exitApp();
@@ -2834,6 +3192,102 @@
                 });
             }
 
+            // ===== Copy Audio (for copy measurements page) =====
+            let copyAudioNotes = [];
+            let copyTotalSeconds = 0;
+            let copyMaxSeconds = 180;
+            let copyMediaRecorder,
+                isCopyRecording = false;
+            let copyRecordInterval, copyCurrentRecordSeconds = 0;
+            let waitingToSaveCopy = false;
+            const copyMicBtn = document.getElementById('copy-record-btn');
+            const copyAudiosList = document.getElementById('copy-audios-list');
+
+            window.renderCopyAudios = function() {
+                copyAudiosList.innerHTML = '';
+                copyTotalSeconds = 0;
+                copyAudioNotes.forEach((note, index) => {
+                    copyTotalSeconds += note.duration;
+                    const div = document.createElement('div');
+                    div.className = 'form-audio-item';
+                    const audioSrc = note.blobUrl || note.src;
+                    div.innerHTML = `
+                        <span>🎙️ ${index + 1}</span>
+                        <audio controls src="${audioSrc}"></audio>
+                        <button class="delete-audio-btn" onclick="removeCopyAudio(${index})">🗑️</button>
+                    `;
+                    copyAudiosList.appendChild(div);
+                });
+                let m = Math.floor(copyTotalSeconds / 60).toString().padStart(2, '0');
+                let s = (copyTotalSeconds % 60).toString().padStart(2, '0');
+                document.getElementById('copy-audio-total-time').innerText = `${m}:${s}`;
+                if (copyTotalSeconds >= copyMaxSeconds) {
+                    copyMicBtn.style.display = 'none';
+                } else {
+                    copyMicBtn.style.display = 'inline-flex';
+                    copyMicBtn.innerHTML = `🎙️ تسجيل صوتي إضافي`;
+                }
+            };
+            window.removeCopyAudio = function(index) {
+                copyAudioNotes.splice(index, 1);
+                renderCopyAudios();
+            };
+
+            if (copyMicBtn) {
+                copyMicBtn.addEventListener('click', async () => {
+                    if (isCopyRecording) { copyMediaRecorder.stop(); return; }
+                    if (copyTotalSeconds >= copyMaxSeconds) return showToast('⚠️ وصلتي للحد الأقصى (3 دقائق)');
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        let options = {};
+                        if (MediaRecorder.isTypeSupported('audio/webm')) options = { mimeType: 'audio/webm' };
+                        else if (MediaRecorder.isTypeSupported('audio/mp4')) options = { mimeType: 'audio/mp4' };
+                        copyMediaRecorder = new MediaRecorder(stream, options);
+                        let audioChunks = [];
+                        copyCurrentRecordSeconds = 0;
+                        copyMediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+                        copyMediaRecorder.onstart = () => {
+                            isCopyRecording = true;
+                            copyMicBtn.classList.add('recording-pulse');
+                            copyMicBtn.innerHTML = `🛑 إيقاف (<span id="copy-current-timer">00:00</span>)`;
+                            const timerText = document.getElementById('copy-current-timer');
+                            copyRecordInterval = setInterval(() => {
+                                copyCurrentRecordSeconds++;
+                                let m = Math.floor(copyCurrentRecordSeconds / 60).toString().padStart(2,
+                                '0');
+                                let s = (copyCurrentRecordSeconds % 60).toString().padStart(2, '0');
+                                if (timerText) timerText.innerText = `${m}:${s}`;
+                                if ((copyTotalSeconds + copyCurrentRecordSeconds) >= copyMaxSeconds) {
+                                    copyMediaRecorder.stop();
+                                    showToast('⚠️ وصلتي للحد الأقصى!');
+                                }
+                            }, 1000);
+                        };
+                        copyMediaRecorder.onstop = () => {
+                            isCopyRecording = false;
+                            clearInterval(copyRecordInterval);
+                            copyMicBtn.classList.remove('recording-pulse');
+                            if (copyMediaRecorder.stream) copyMediaRecorder.stream.getTracks().forEach(t => t
+                            .stop());
+                            const blob = new Blob(audioChunks, { type: options.mimeType || 'audio/webm' });
+                            const blobUrl = URL.createObjectURL(blob);
+                            const reader = new FileReader();
+                            reader.readAsDataURL(blob);
+                            reader.onloadend = () => {
+                                copyAudioNotes.push({ src: reader.result, blobUrl: blobUrl,
+                                    duration: copyCurrentRecordSeconds });
+                                renderCopyAudios();
+                                if (waitingToSaveCopy) { executeSaveCopyOrder();
+                                    waitingToSaveCopy = false; }
+                            };
+                        };
+                        copyMediaRecorder.start();
+                    } catch (err) {
+                        showToast('⚠️ خطأ المايك: تأكدي من الصلاحيات');
+                    }
+                });
+            }
+
             // ===== Modal Audio =====
             let modalMediaRecorder, modalAudioChunks = [],
                 modalIsRecording = false;
@@ -3005,6 +3459,7 @@
                 document.getElementById('today-count').textContent = orders.length;
             }
 
+            // Today card click: show modal with names only
             document.getElementById('today-card').addEventListener('click', async function() {
                 const orders = await getTodayOrders();
                 const modal = document.getElementById('today-orders-modal');
@@ -3019,8 +3474,21 @@
                     list.innerHTML =
                         `<p style="text-align:center; padding:var(--space-8) 0; color:var(--text-tertiary); font-weight:600;">🎉 ما كايناش طلبيات اليوم!</p>`;
                 } else {
-                    list.innerHTML = orders.map(c => buildClientCardHTML(c)).join('');
-                    attachDelegation();
+                    list.innerHTML = orders.map(c =>
+                        `<div class="today-order-item" data-client-id="${c.id}">👤 ${escapeHTML(c.name)}</div>`
+                    ).join('');
+                    list.querySelectorAll('.today-order-item').forEach(el => {
+                        el.addEventListener('click', function() {
+                            const id = this.dataset.clientId;
+                            if (id) {
+                                document.getElementById('today-orders-modal').classList.remove('active');
+                                switchTab('agenda');
+                                setTimeout(() => {
+                                    highlightClientCard(id);
+                                }, 300);
+                            }
+                        });
+                    });
                 }
                 modal.classList.add('active');
             });
@@ -3028,6 +3496,21 @@
             document.getElementById('close-today-orders-modal').addEventListener('click', () => {
                 document.getElementById('today-orders-modal').classList.remove('active');
             });
+
+            // ===== Highlight Client Card in Agenda =====
+            function highlightClientCard(clientId) {
+                document.querySelectorAll('.client-card.highlight').forEach(el => el.classList.remove('highlight'));
+                const card = document.querySelector(`.client-card[data-client-id="${clientId}"]`);
+                if (card) {
+                    card.classList.add('highlight');
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => {
+                        card.classList.remove('highlight');
+                    }, 3500);
+                } else {
+                    showToast('⚠️ الطلبية غير موجودة في اللائحة الحالية');
+                }
+            }
 
             // ===== Notifications =====
             const PERSISTENT_NOTIFICATION_ID = 123456789;
@@ -3038,8 +3521,11 @@
                 try {
                     await LocalNotifications.requestPermissions();
                     const clients = await getClients();
-                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate).level ===
-                    'red');
+                    const today = new Date();
+                    const dateStr = today.getFullYear() + '-' +
+                        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                        String(today.getDate()).padStart(2, '0');
+                    const urgentClients = clients.filter(c => !c.completed && c.deliveryDate === dateStr);
                     if (urgentClients.length === 0) {
                         try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); }
                         catch (e) {}
@@ -3048,8 +3534,8 @@
                     try { await LocalNotifications.cancel({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID }] }); }
                     catch (e) {}
                     await LocalNotifications.schedule({ notifications: [{ id: PERSISTENT_NOTIFICATION_ID,
-                            title: `🚨 طلبيات مزروبة: ${urgentClients.length}`,
-                            body: 'عندك خدمة مزروبة خاصها تسلم قريباً!',
+                            title: `📅 طلبيات اليوم: ${urgentClients.length}`,
+                            body: 'عندك طلبيات خاصك تسلميها اليوم!',
                             schedule: { at: new Date(Date.now() + 500) },
                             ongoing: true,
                             autoCancel: false
@@ -3060,17 +3546,24 @@
             function sendBrowserDailyNotification() {
                 if (!('Notification' in window) || Notification.permission !== 'granted') return;
                 getClients().then(clients => {
-                    const urgentClients = clients.filter(c => !c.completed && getUrgencyInfo(c.deliveryDate)
-                    .level === 'red');
+                    const today = new Date();
+                    const dateStr = today.getFullYear() + '-' +
+                        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                        String(today.getDate()).padStart(2, '0');
+                    const urgentClients = clients.filter(c => !c.completed && c.deliveryDate === dateStr);
                     if (urgentClients.length === 0) return;
-                    new Notification(`🚨 طلبيات مزروبة: ${urgentClients.length}`, { body: 'عندك خدمة مزروبة خاصها تسلم قريباً!',
+                    new Notification(`📅 طلبيات اليوم: ${urgentClients.length}`, { body: 'عندك طلبيات خاصك تسلميها اليوم!',
                         requireInteraction: true });
                 });
             }
 
             async function scheduleNotificationForClient(client) {
                 if (client.completed) return;
-                if (getUrgencyInfo(client.deliveryDate).level !== 'red') return;
+                const today = new Date();
+                const dateStr = today.getFullYear() + '-' +
+                    String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(today.getDate()).padStart(2, '0');
+                if (client.deliveryDate !== dateStr) return;
                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
                 if (!LocalNotifications) return;
                 try {
@@ -3084,7 +3577,7 @@
                     if (client.notificationId) { try { await LocalNotifications.cancel({ notifications: [{ id: client
                                 .notificationId }] }); } catch (e) {} }
                     await LocalNotifications.schedule({ notifications: [{ id: notifId,
-                            title: `🚨 ${client.name} - موعد التسليم قرّب!`,
+                            title: `📅 ${client.name} - اليوم موعد التسليم!`,
                             body: `📅 ${client.deliveryDate}`,
                             schedule: { at: scheduledTime },
                             ongoing: true,
@@ -3097,9 +3590,13 @@
 
             async function scheduleAllNotifications() {
                 const clients = await getClients();
+                const today = new Date();
+                const dateStr = today.getFullYear() + '-' +
+                    String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(today.getDate()).padStart(2, '0');
                 for (const client of clients) {
-                    if (!client.completed && getUrgencyInfo(client.deliveryDate).level === 'red') await scheduleNotificationForClient(
-                        client);
+                    if (!client.completed && client.deliveryDate === dateStr) await scheduleNotificationForClient(
+                    client);
                     else if (client.notificationId) {
                         const { LocalNotifications } = window.Capacitor?.Plugins || {};
                         if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [{ id: client
@@ -3218,13 +3715,13 @@
                 document.getElementById('settings-modal').classList.remove('active');
             });
 
-            // زر عرض الإحصائيات في الإعدادات
             document.getElementById('show-stats-btn').addEventListener('click', () => {
                 document.getElementById('settings-modal').classList.remove('active');
                 openStatsPage();
             });
             document.getElementById('close-stats-page').addEventListener('click', () => {
                 document.getElementById('stats-page').classList.remove('active');
+                document.querySelectorAll('.client-card.highlight').forEach(el => el.classList.remove('highlight'));
             });
 
             async function openStatsPage() {
@@ -3247,23 +3744,49 @@
                     if (remaining > 0) {
                         totalDebt += remaining;
                         debtHTML +=
-                            `<li class="debt-item"><span>👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
+                            `<li class="debt-item" data-client-id="${c.id}"><span>👤 ${escapeHTML(c.name)}</span><span class="debt-amount">${remaining} درهم</span></li>`;
                     }
                 });
                 document.getElementById('stats-monthly-income').textContent = monthlyIncome.toFixed(2) + ' درهم';
                 document.getElementById('stats-total-debt').textContent = totalDebt.toFixed(2) + ' درهم';
                 document.getElementById('stats-debt-list').innerHTML = debtHTML ||
-                    '<li class="debt-item" style="justify-content:center; color:var(--success); border:none;">✅ مكاينش كريدي</li>';
+                    '<li class="debt-item" style="justify-content:center; color:var(--success); border:none; cursor:default;">✅ مكاينش كريدي</li>';
+                document.querySelectorAll('#stats-debt-list .debt-item[data-client-id]').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const id = this.dataset.clientId;
+                        if (id) {
+                            document.getElementById('stats-page').classList.remove('active');
+                            switchTab('agenda');
+                            setTimeout(() => {
+                                highlightClientCard(id);
+                            }, 300);
+                        }
+                    });
+                });
                 page.classList.add('active');
             }
 
             // ===== Agenda =====
             let agendaActiveDateFilter = 'all';
             const agendaSearch = document.getElementById('agenda-search');
-            const agendaCompletedSearch = document.getElementById('agenda-completed-search');
             const agendaActiveList = document.getElementById('agenda-active-list');
-            const agendaCompletedList = document.getElementById('agenda-completed-list');
-            const completedCountSpan = document.getElementById('completed-count');
+            const completedCountBadge = document.getElementById('completed-count-badge');
+            const searchOptions = document.getElementById('search-options');
+
+            // Show/hide search options on focus/blur
+            agendaSearch.addEventListener('focus', function() {
+                searchOptions.classList.add('visible');
+            });
+            agendaSearch.addEventListener('blur', function() {
+                setTimeout(() => {
+                    if (!searchOptions.contains(document.activeElement)) {
+                        searchOptions.classList.remove('visible');
+                    }
+                }, 150);
+            });
+            searchOptions.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+            });
 
             let tempImg = null,
                 tempModel = null;
@@ -3291,7 +3814,6 @@
 
             // ===== Auto-advance for measurement fields =====
             function setupAutoAdvance() {
-                // Define order: id, max digits, next field id
                 const fields = [
                     { id: 'cl-shoulders', max: 2, next: 'cl-armhole' },
                     { id: 'cl-armhole', max: 2, next: 'cl-chest' },
@@ -3309,30 +3831,22 @@
                     if (!input) return;
                     input.addEventListener('input', function(e) {
                         const val = this.value;
-                        // Remove non-digit characters to keep only numbers
                         const digits = val.replace(/\D/g, '');
                         if (digits.length > f.max) {
-                            // Keep first max digits in current field
                             const keep = digits.slice(0, f.max);
                             const overflow = digits.slice(f.max);
                             this.value = keep;
-                            // If there is a next field, move overflow there
                             if (f.next) {
                                 const nextInput = document.getElementById(f.next);
                                 if (nextInput) {
-                                    // Append overflow to next field's current value
                                     const currentNext = nextInput.value.replace(/\D/g, '');
                                     nextInput.value = currentNext + overflow;
-                                    // Trigger input event on next field to handle its own max
                                     nextInput.dispatchEvent(new Event('input', { bubbles: true }));
-                                    // Focus next field
                                     nextInput.focus();
-                                    // Place cursor at end
                                     nextInput.setSelectionRange(nextInput.value.length, nextInput.value.length);
                                 }
                             }
                         } else {
-                            // If digits are within limit, just set the value (ensures only digits)
                             this.value = digits;
                         }
                     });
@@ -3391,14 +3905,16 @@
 
             async function updateStatsBar() {
                 await updateTodayCount();
+                const clients = await getClients();
+                completedCountBadge.textContent = clients.filter(c => c.completed).length;
             }
 
             // ===== Date Status & Suggestion =====
-            async function updateDateStatus(dateStr) {
-                const statusDiv = document.getElementById('date-status');
-                const banner = document.getElementById('suggestion-banner');
+            async function updateDateStatus(dateStr, statusId, bannerId, applyBtnId) {
+                const statusDiv = document.getElementById(statusId);
+                const banner = document.getElementById(bannerId);
                 const text = banner.querySelector('.suggestion-text');
-                const applyBtn = document.getElementById('suggestion-apply-btn');
+                const applyBtn = document.getElementById(applyBtnId);
 
                 if (!dateStr) {
                     statusDiv.style.display = 'none';
@@ -3473,8 +3989,7 @@
             }
 
             document.getElementById('cl-deliveryDate').addEventListener('change', function() {
-                updateDateStatus(this.value);
-                // التحقق الإضافي من التاريخ الماضي
+                updateDateStatus(this.value, 'date-status', 'suggestion-banner', 'suggestion-apply-btn');
                 const selectedDate = new Date(this.value + 'T00:00:00');
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
@@ -3488,13 +4003,13 @@
                 if (suggested) {
                     document.getElementById('cl-deliveryDate').value = suggested;
                     document.getElementById('suggestion-banner').classList.remove('visible');
-                    updateDateStatus(suggested);
+                    updateDateStatus(suggested, 'date-status', 'suggestion-banner', 'suggestion-apply-btn');
                     showToast(`📅 تم تغيير التاريخ إلى ${suggested}`);
                 }
             });
 
-            // ===== Client Card Builder =====
-            function buildClientCardHTML(client, showPurchaseBtn = false) {
+            // ===== Client Card Builder (compact) =====
+            function buildClientCardHTML(client, showPurchaseBtn = false, showCopyBtn = false) {
                 const urgency = getUrgencyInfo(client.deliveryDate);
                 const daysText = urgency.daysLeft < 0 ? `(تأخر ${Math.abs(urgency.daysLeft)} يوم)` : urgency.daysLeft ===
                     0 ? '(اليوم!)' : `(باقي ${urgency.daysLeft} يوم)`;
@@ -3522,7 +4037,7 @@
                 let rotouchHTML = '';
                 if (client.rotouchNotes && client.rotouchNotes.length > 0) {
                     rotouchHTML =
-                        `<div class="client-audios" style="border-right:3px solid var(--warning); padding-right:var(--space-3);">${client.rotouchNotes.map((note, idx) => `
+                        `<div class="client-audios" style="border-right:3px solid var(--warning); padding-right:var(--space-2);">${client.rotouchNotes.map((note, idx) => `
                             <div class="audio-item" style="background:var(--warning-50);">
                                 <span>🔄 ${idx + 1}</span>
                                 <audio controls src="${note.src}"></audio>
@@ -3579,6 +4094,17 @@
                         `<button class="btn btn-success btn-sm purchase-single-btn" data-client-id="${client.id}" style="flex:0.5;">✅ شراء</button>`;
                 }
 
+                let copyAction = '';
+                if (showCopyBtn && client.completed) {
+                    copyAction =
+                        `<button class="btn btn-primary btn-sm copy-order-btn" data-client-id="${client.id}" style="background:var(--primary);">👗 طلب كسوة جديدة</button>`;
+                }
+
+                // For completed clients, replace "قص الفصالة" with copy action
+                const tailoringBtn = (!client.completed && (!client.mode || client.mode === 'tailoring')) ?
+                    `<button class="btn btn-sm btn-primary calc-cuts-btn" data-client-id="${client.id}" style="background:var(--primary);">🧮 قص الفصالة</button>` :
+                    '';
+
                 return `
                 <div class="client-card ${client.completed ? '' : urgency.className}" data-client-id="${client.id}">
                     <div class="client-card-header">
@@ -3607,10 +4133,11 @@
                     ${(imgHTML || modelHTML) ? `<div class="client-images">${imgHTML}${modelHTML}</div>` : ''}
                     <div class="card-actions">
                         ${!client.completed ? `<button class="btn btn-success btn-sm deliver-btn" data-client-id="${client.id}">✅ تم التسليم</button>` : ''}
-                        ${(!client.mode || client.mode === 'tailoring') ? `<button class="btn btn-sm btn-primary calc-cuts-btn" data-client-id="${client.id}" style="background:var(--primary);">🧮 قص الفصالة</button>` : ''}
+                        ${tailoringBtn}
+                        ${copyAction}
                         <button class="btn btn-sm btn-secondary show-measurements-btn" data-client-id="${client.id}">${client.mode === 'rotouch' ? '🔄 ملاحظات' : '📏 القياسات'}</button>
                         ${purchaseAction}
-                        <button class="btn btn-danger btn-sm delete-btn" data-client-id="${client.id}" style="flex:0; min-width:40px; padding:8px;">🗑️</button>
+                        <button class="btn btn-danger btn-sm delete-btn" data-client-id="${client.id}" style="flex:0; min-width:36px; padding:4px;">🗑️</button>
                     </div>
                 </div>`;
             }
@@ -3648,7 +4175,10 @@
                         `<button data-action="purchase-single">🛒 شراء السلعة</button>`;
                     menu.innerHTML = menuItems;
                 } else {
-                    menu.innerHTML = `<button data-action="undo-delivery">↩️ إرجاع للنشطة</button>`;
+                    menu.innerHTML = `
+                        <button data-action="undo-delivery">↩️ إرجاع للنشطة</button>
+                        <button data-action="copy-order">👗 طلب كسوة جديدة</button>
+                    `;
                 }
                 document.body.appendChild(menu);
                 menu.querySelectorAll('button').forEach(btn => btn.addEventListener('click', async (e) => {
@@ -3685,6 +4215,8 @@
                         await saveClient(client);
                         renderAgenda();
                         showToast(`✅ تم التحويل إلى ${newMode === 'rotouch' ? 'الروتوش' : 'الخياطة'}`);
+                    } else if (action === 'copy-order') {
+                        openCopyMeasurementsPage(clientId);
                     }
                     menu.remove();
                 }));
@@ -3833,7 +4365,6 @@
                 saveBtn.onclick = async () => {
                     const newDate = input.value;
                     if (!newDate) return;
-                    // التحقق من التاريخ الماضي
                     const selectedDate = new Date(newDate + 'T00:00:00');
                     const today = new Date();
                     today.setHours(0, 0, 0, 0);
@@ -3859,14 +4390,14 @@
                 const body = document.getElementById('cuts-modal-body');
                 const eases = client.customEases || { chest: 0, waist: 0, hips: 0 };
                 body.innerHTML = `
-                    <div class="modal-header" style="margin-bottom:var(--space-4); border-bottom:1px solid var(--border); padding-bottom:var(--space-3);">
+                    <div class="modal-header" style="margin-bottom:var(--space-3); border-bottom:1px solid var(--border); padding-bottom:var(--space-2);">
                         <h3>✂️ ${escapeHTML(client.name)}</h3>
                         <button class="modal-close" id="close-cuts-inner-btn">✕</button>
                     </div>
-                    <div style="display:flex; gap:var(--space-2); margin-bottom:var(--space-4); flex-wrap:wrap;">
-                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الصدر</label><input type="number" id="modal-chest-ease" value="${eases.chest}" step="0.1" placeholder="0"></div>
-                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الحزام</label><input type="number" id="modal-waist-ease" value="${eases.waist}" step="0.1" placeholder="0"></div>
-                        <div class="form-group" style="flex:1; min-width:80px;"><label>+ الحوض</label><input type="number" id="modal-hips-ease" value="${eases.hips}" step="0.1" placeholder="0"></div>
+                    <div style="display:flex; gap:var(--space-2); margin-bottom:var(--space-3); flex-wrap:wrap;">
+                        <div class="form-group" style="flex:1; min-width:70px;"><label>+ الصدر</label><input type="number" id="modal-chest-ease" value="${eases.chest}" step="0.1" placeholder="0"></div>
+                        <div class="form-group" style="flex:1; min-width:70px;"><label>+ الحزام</label><input type="number" id="modal-waist-ease" value="${eases.waist}" step="0.1" placeholder="0"></div>
+                        <div class="form-group" style="flex:1; min-width:70px;"><label>+ الحوض</label><input type="number" id="modal-hips-ease" value="${eases.hips}" step="0.1" placeholder="0"></div>
                     </div>
                     <div class="results-grid" id="modal-results"></div>
                 `;
@@ -4039,11 +4570,267 @@
                 document.getElementById('measurements-page').classList.remove('active');
             });
 
-            // ===== دالة خاصة لتثبيت مستمعات أزرار النقاط الثلاث مباشرة =====
+            // ===== Copy Measurements Page =====
+            async function openCopyMeasurementsPage(sourceId) {
+                const clients = await getClients();
+                const source = clients.find(c => c.id === sourceId);
+                if (!source) return showToast('⚠️ المصدر غير موجود');
+                const page = document.getElementById('copy-measurements-page');
+                document.getElementById('copy-source-id').value = sourceId;
+                document.getElementById('copy-client-name').value = source.name || '';
+                document.getElementById('copy-client-location').value = source.location || '';
+                document.getElementById('copy-client-phone').value = source.phone || '';
+                document.getElementById('copy-description').value = '';
+                document.getElementById('copy-totalPrice').value = '';
+                document.getElementById('copy-advancePayment').value = '';
+                document.getElementById('copy-remaining-text').textContent = '0 درهم';
+
+                // Reset images
+                document.getElementById('copy-image-preview').classList.remove('visible');
+                document.getElementById('copy-image-preview').src = '';
+                document.getElementById('copy-model-preview').classList.remove('visible');
+                document.getElementById('copy-model-preview').src = '';
+
+                // Reset audio
+                copyAudioNotes = [];
+                renderCopyAudios();
+
+                // Reset selectors
+                document.querySelectorAll('#copy-status-selector .selector-option').forEach(el => el.classList.remove(
+                'selected'));
+                document.querySelectorAll('#copy-type-selector .selector-option').forEach(el => el.classList.remove(
+                'selected'));
+
+                // Pre-fill measurements
+                const m = source.measurements || {};
+                document.getElementById('copy-shoulders').value = m.shoulders || '';
+                document.getElementById('copy-armhole').value = m.armhole || '';
+                document.getElementById('copy-chest').value = m.chest || '';
+                document.getElementById('copy-waist').value = m.waist || '';
+                document.getElementById('copy-hips').value = m.hips || '';
+                document.getElementById('copy-dressLength').value = m.dressLength || '';
+                document.getElementById('copy-sleeveLength').value = m.sleeveLength || '';
+                document.getElementById('copy-sleeveMouth').value = m.sleeveMouth || '';
+                document.getElementById('copy-jlayel').value = m.jlayel || '';
+
+                // Set default date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const dateStr = tomorrow.getFullYear() + '-' +
+                    String(tomorrow.getMonth() + 1).padStart(2, '0') + '-' +
+                    String(tomorrow.getDate()).padStart(2, '0');
+                document.getElementById('copy-deliveryDate').value = dateStr;
+                updateDateStatus(dateStr, 'copy-date-status', 'copy-suggestion-banner', 'copy-suggestion-apply-btn');
+
+                page.classList.add('active');
+            }
+
+            // Copy form submit
+            document.getElementById('copy-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (isCopyRecording && copyMediaRecorder) { waitingToSaveCopy = true;
+                    copyMediaRecorder.stop(); return; }
+                executeSaveCopyOrder();
+            });
+
+            async function executeSaveCopyOrder() {
+                const name = document.getElementById('copy-client-name').value.trim();
+                if (!name) return showToast('⚠️ أدخلي إسم الكليانة');
+                const total = parseFloat(document.getElementById('copy-totalPrice').value) || 0;
+                const advance = parseFloat(document.getElementById('copy-advancePayment').value) || 0;
+                if (total < 0) return showToast('⚠️ الثمن سالب');
+                if (advance < 0) return showToast('⚠️ التسبيق سالب');
+                if (advance > total) return showToast('⚠️ التسبيق أكبر من الثمن');
+                const deliveryDate = document.getElementById('copy-deliveryDate').value;
+                if (!deliveryDate) return showToast('⚠️ اختاري تاريخ التسليم');
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const selectedDate = new Date(deliveryDate + 'T00:00:00');
+                if (selectedDate < today) return showToast('⚠️ لا يمكن اختيار تاريخ من الماضي');
+
+                const clients = await getClients();
+                const dateCounts = {};
+                clients.forEach(c => {
+                    if (!c.deliveryDate || c.completed) return;
+                    const d = new Date(c.deliveryDate + 'T00:00:00');
+                    const key =
+                        `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+                    dateCounts[key] = (dateCounts[key] || 0) + 1;
+                });
+                const count = dateCounts[deliveryDate] || 0;
+                if (count >= 10) return showToast('⚠️ هذا اليوم ممتلئ بأقصى حد (10 طلبيات)');
+
+                // Get selected status
+                let selectedStatus = null;
+                document.querySelectorAll('#copy-status-selector .selector-option.selected').forEach(el => {
+                    selectedStatus = el.dataset.status;
+                });
+
+                let selectedTypes = [];
+                document.querySelectorAll('#copy-type-selector .selector-option.selected').forEach(el => {
+                    selectedTypes.push(el.dataset.type);
+                });
+
+                const sourceId = document.getElementById('copy-source-id').value;
+                const source = clients.find(c => c.id === sourceId);
+
+                const client = {
+                    id: 'cl_' + Date.now() + '_' + Math.random().toString(36).substr(2, 8),
+                    name: name,
+                    location: document.getElementById('copy-client-location').value.trim(),
+                    phone: document.getElementById('copy-client-phone').value.trim(),
+                    description: document.getElementById('copy-description').value.trim(),
+                    audioNotes: copyAudioNotes.length > 0 ? [...copyAudioNotes] : [],
+                    rotouchNotes: [],
+                    totalPrice: total,
+                    advancePayment: advance,
+                    measurements: {
+                        shoulders: parseFloat(document.getElementById('copy-shoulders').value) || 0,
+                        chest: parseFloat(document.getElementById('copy-chest').value) || 0,
+                        waist: parseFloat(document.getElementById('copy-waist').value) || 0,
+                        hips: parseFloat(document.getElementById('copy-hips').value) || 0,
+                        dressLength: parseFloat(document.getElementById('copy-dressLength').value) || 0,
+                        sleeveLength: parseFloat(document.getElementById('copy-sleeveLength').value) || 0,
+                        armhole: parseFloat(document.getElementById('copy-armhole').value) || 0,
+                        sleeveMouth: parseFloat(document.getElementById('copy-sleeveMouth').value) || 0,
+                        jlayel: parseFloat(document.getElementById('copy-jlayel').value) || 0
+                    },
+                    fitType: source ? source.fitType || 'عادي' : 'عادي',
+                    customEases: source ? { ...source.customEases } : { chest: 0, waist: 0, hips: 0 },
+                    deliveryDate: deliveryDate,
+                    completed: false,
+                    returned: false,
+                    createdAt: new Date().toISOString(),
+                    image: document.getElementById('copy-image-preview').src || null,
+                    modelImage: document.getElementById('copy-model-preview').src || null,
+                    status: selectedStatus,
+                    garmentTypes: [...selectedTypes],
+                    purchased: false,
+                    mode: source ? source.mode || 'tailoring' : 'tailoring'
+                };
+
+                await saveClient(client);
+                await scheduleNotificationForClient(client);
+                await sendPersistentDailyNotification();
+
+                document.getElementById('copy-form').reset();
+                document.querySelectorAll('#copy-status-selector .selector-option').forEach(el => el.classList.remove(
+                    'selected'));
+                document.querySelectorAll('#copy-type-selector .selector-option').forEach(el => el.classList.remove(
+                    'selected'));
+                copyAudioNotes = [];
+                renderCopyAudios();
+                document.getElementById('copy-image-preview').classList.remove('visible');
+                document.getElementById('copy-model-preview').classList.remove('visible');
+                document.getElementById('copy-remaining-text').textContent = '0 درهم';
+                document.getElementById('copy-suggestion-banner').classList.remove('visible');
+                document.getElementById('copy-date-status').style.display = 'none';
+
+                document.getElementById('copy-measurements-page').classList.remove('active');
+                renderAgenda();
+                showBigToast('✅ تمت إضافة الكسوة الجديدة!');
+            }
+
+            document.getElementById('close-copy-measurements-page').addEventListener('click', () => {
+                if (isCopyRecording && copyMediaRecorder) { copyMediaRecorder.stop();
+                    waitingToSaveCopy = false; }
+                document.getElementById('copy-measurements-page').classList.remove('active');
+            });
+
+            // Copy image uploads
+            document.getElementById('copy-capture-btn').addEventListener('click', () => {
+                document.getElementById('copy-image-input').capture = 'environment';
+                document.getElementById('copy-image-input').click();
+            });
+            document.getElementById('copy-gallery-btn').addEventListener('click', () => {
+                document.getElementById('copy-image-input').removeAttribute('capture');
+                document.getElementById('copy-image-input').click();
+            });
+            document.getElementById('copy-image-input').addEventListener('change', async e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const compressed = await compressImage(file);
+                const preview = document.getElementById('copy-image-preview');
+                preview.src = compressed;
+                preview.classList.add('visible');
+            });
+            document.getElementById('copy-model-capture-btn').addEventListener('click', () => {
+                document.getElementById('copy-model-input').capture = 'environment';
+                document.getElementById('copy-model-input').click();
+            });
+            document.getElementById('copy-model-gallery-btn').addEventListener('click', () => {
+                document.getElementById('copy-model-input').removeAttribute('capture');
+                document.getElementById('copy-model-input').click();
+            });
+            document.getElementById('copy-model-input').addEventListener('change', async e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const compressed = await compressImage(file);
+                const preview = document.getElementById('copy-model-preview');
+                preview.src = compressed;
+                preview.classList.add('visible');
+            });
+
+            // Copy remaining update
+            document.getElementById('copy-totalPrice').addEventListener('input', function() {
+                const total = parseFloat(this.value) || 0;
+                const advance = parseFloat(document.getElementById('copy-advancePayment').value) || 0;
+                document.getElementById('copy-remaining-text').textContent = Math.max(0, total - advance).toFixed(2) +
+                    ' درهم';
+            });
+            document.getElementById('copy-advancePayment').addEventListener('input', function() {
+                const total = parseFloat(document.getElementById('copy-totalPrice').value) || 0;
+                const advance = parseFloat(this.value) || 0;
+                document.getElementById('copy-remaining-text').textContent = Math.max(0, total - advance).toFixed(2) +
+                    ' درهم';
+            });
+
+            // Copy date status
+            document.getElementById('copy-deliveryDate').addEventListener('change', function() {
+                updateDateStatus(this.value, 'copy-date-status', 'copy-suggestion-banner',
+                    'copy-suggestion-apply-btn');
+                const selectedDate = new Date(this.value + 'T00:00:00');
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (selectedDate < today) {
+                    showToast('⚠️ هذا التاريخ من الماضي، الرجاء اختيار تاريخ مستقبلي');
+                }
+            });
+            document.getElementById('copy-suggestion-apply-btn').addEventListener('click', function() {
+                const suggested = this.dataset.suggested;
+                if (suggested) {
+                    document.getElementById('copy-deliveryDate').value = suggested;
+                    document.getElementById('copy-suggestion-banner').classList.remove('visible');
+                    updateDateStatus(suggested, 'copy-date-status', 'copy-suggestion-banner',
+                        'copy-suggestion-apply-btn');
+                    showToast(`📅 تم تغيير التاريخ إلى ${suggested}`);
+                }
+            });
+
+            // Copy status & type selectors
+            document.querySelectorAll('#copy-status-selector .selector-option[data-status]').forEach(el => {
+                el.addEventListener('click', function() {
+                    const status = this.dataset.status;
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                    } else {
+                        document.querySelectorAll('#copy-status-selector .selector-option').forEach(opt => opt
+                            .classList.remove('selected'));
+                        this.classList.add('selected');
+                    }
+                });
+            });
+            document.querySelectorAll('#copy-type-selector .selector-option[data-type]').forEach(el => {
+                el.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+
+            // ===== Event Delegation =====
             function attachMoreButtonsDirectly() {
                 const moreBtns = document.querySelectorAll('.more-btn');
                 moreBtns.forEach(btn => {
-                    btn.onclick = null; // remove old
+                    btn.onclick = null;
                     btn.addEventListener('click', function(e) {
                         e.stopPropagation();
                         const clientId = this.dataset.clientId;
@@ -4054,11 +4841,10 @@
                 });
             }
 
-            // ===== Event Delegation للبطاقات (مع استثناء more-btn) =====
             function attachDelegation() {
                 const containers = [
                     document.getElementById('agenda-active-list'),
-                    document.getElementById('agenda-completed-list'),
+                    document.getElementById('completed-page-list'),
                     document.getElementById('day-detail-list'),
                     document.getElementById('purchase-detail-list'),
                     document.getElementById('today-orders-list')
@@ -4071,7 +4857,6 @@
                 setTimeout(attachMoreButtonsDirectly, 0);
             }
 
-            // ===== معالج النقر للبطاقات =====
             async function handleCardClick(e) {
                 const target = e.target.closest('button, .client-image');
                 if (!target) return;
@@ -4090,7 +4875,8 @@
                     target.classList.contains('deliver-btn') ? 'deliver' :
                     target.classList.contains('calc-cuts-btn') ? 'cuts' :
                     target.classList.contains('show-measurements-btn') ? 'measurements' :
-                    target.classList.contains('purchase-single-btn') ? 'purchase' : null;
+                    target.classList.contains('purchase-single-btn') ? 'purchase' :
+                    target.classList.contains('copy-order-btn') ? 'copy' : null;
 
                 if (!action) return;
 
@@ -4164,6 +4950,10 @@
                             }
                             showToast('✅ تم الشراء');
                         }
+                        break;
+                    }
+                    case 'copy': {
+                        openCopyMeasurementsPage(clientId);
                         break;
                     }
                     default:
@@ -4343,6 +5133,33 @@
                 document.getElementById('day-detail-page').classList.remove('active');
             });
 
+            // ===== Completed Orders Page =====
+            document.getElementById('completed-orders-btn').addEventListener('click', async function() {
+                const page = document.getElementById('completed-page');
+                const list = document.getElementById('completed-page-list');
+                const clients = await getClients();
+                const completed = clients.filter(c => c.completed);
+                completed.sort((a, b) => new Date(b.completedAt || b.createdAt) - new Date(a.completedAt || a
+                .createdAt));
+                list.innerHTML = completed.length ? completed.map(c => buildClientCardHTML(c, false, true)).join('') :
+                    '<p style="text-align:center; padding:var(--space-8) 0; color:var(--text-tertiary);">ما كايناش مسلّمات</p>';
+                attachDelegation();
+                page.classList.add('active');
+            });
+
+            document.getElementById('close-completed-page').addEventListener('click', () => {
+                document.getElementById('completed-page').classList.remove('active');
+            });
+
+            document.getElementById('completed-page-search').addEventListener('input', function() {
+                const term = this.value.trim().toLowerCase();
+                const items = document.querySelectorAll('#completed-page-list .client-card');
+                items.forEach(item => {
+                    const name = item.querySelector('.client-name')?.textContent?.toLowerCase() || '';
+                    item.style.display = name.includes(term) ? '' : 'none';
+                });
+            });
+
             // ===== Purchase =====
             document.getElementById('show-purchase-modal-btn').addEventListener('click', async () => {
                 await updatePurchaseCounts();
@@ -4407,16 +5224,11 @@
                     c); });
                 if (searchTerm) mainList = mainList.filter(c => c.name.toLowerCase().includes(searchTerm));
                 mainList.sort((a, b) => new Date(a.deliveryDate) - new Date(b.deliveryDate));
-                const completedSearch = agendaCompletedSearch.value.trim().toLowerCase();
-                let completed = clients.filter(c => c.completed);
-                if (completedSearch) completed = completed.filter(c => c.name.toLowerCase().includes(completedSearch));
-                completed.sort((a, b) => new Date(b.completedAt || b.createdAt) - new Date(a.completedAt || a
-                .createdAt));
+                // Filter out completed for main list if not search in all
+                if (!searchInAll) mainList = mainList.filter(c => !c.completed);
+
                 agendaActiveList.innerHTML = mainList.length ? mainList.map(c => buildClientCardHTML(c)).join('') :
                     '<p style="text-align:center; padding:var(--space-8) 0; color:var(--text-tertiary); font-weight:600;">ما كايناش طلبيات</p>';
-                agendaCompletedList.innerHTML = completed.length ? completed.map(c => buildClientCardHTML(c)).join('') :
-                    '<p style="text-align:center; padding:var(--space-8) 0; color:var(--text-tertiary); font-weight:600;">ما كايناش مسلّمات</p>';
-                completedCountSpan.textContent = `(${clients.filter(c => c.completed).length})`;
                 attachDelegation();
                 sendPersistentDailyNotification();
                 updatePurchaseCounts();
@@ -4446,7 +5258,6 @@
                 });
             });
             agendaSearch.addEventListener('input', renderAgenda);
-            agendaCompletedSearch.addEventListener('input', renderAgenda);
             document.getElementById('search-in-all').addEventListener('change', renderAgenda);
 
             // ===== Calculator =====
@@ -4486,7 +5297,7 @@
                 document.getElementById('results-card').classList.remove('hidden');
             });
 
-            // ===== Image Uploads =====
+            // ===== Image Uploads (main form) =====
             document.getElementById('form-capture-btn').addEventListener('click', () => { formImageInput.capture =
                     'environment';
                 formImageInput.click(); });
@@ -4570,7 +5381,6 @@
                 const deliveryDate = document.getElementById('cl-deliveryDate').value;
                 if (!deliveryDate) return showToast('⚠️ اختاري تاريخ التسليم');
 
-                // التحقق من التاريخ الماضي (قبل الحفظ)
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 const selectedDate = new Date(deliveryDate + 'T00:00:00');
@@ -4578,7 +5388,6 @@
                     return showToast('⚠️ لا يمكن اختيار تاريخ من الماضي');
                 }
 
-                // التحقق من العدد الأقصى 10
                 const clients = await getClients();
                 const dateCounts = {};
                 clients.forEach(c => {
@@ -4614,7 +5423,7 @@
                         sleeveMouth: parseFloat(document.getElementById('cl-sleeveMouth').value) || 0,
                         jlayel: parseFloat(document.getElementById('cl-jlayel').value) || 0
                     },
-                    fitType: isRotouchMode ? 'عادي' : document.getElementById('cl-fitType').value || 'عادي',
+                    fitType: 'عادي',
                     customEases: { chest: 0, waist: 0, hips: 0 },
                     deliveryDate: deliveryDate,
                     completed: false,
@@ -4633,7 +5442,6 @@
                 await sendPersistentDailyNotification();
 
                 document.getElementById('client-form').reset();
-                document.getElementById('cl-fitType').value = '';
                 tempImg = null;
                 tempModel = null;
                 document.querySelectorAll('.selector-option').forEach(opt => opt.classList.remove('selected'));
@@ -4664,10 +5472,8 @@
                 showBigToast('✅ تمت الإضافة!');
             }
 
-            // ===== Collapsible =====
-            document.getElementById('completed-toggle').addEventListener('click', function() { this.classList.toggle(
-                    'open');
-                document.getElementById('completed-content').classList.toggle('open'); });
+            // ===== Collapsible (removed, replaced with button) =====
+            // No longer needed
 
             // ===== Init =====
             async function init() {
@@ -4679,7 +5485,6 @@
                 document.getElementById('measurements-area').classList.remove('hidden');
                 document.getElementById('rotouch-area').style.display = 'none';
                 mainAudioGroup.classList.remove('hidden');
-                // إعداد auto-advance للقياسات
                 setupAutoAdvance();
                 switchTab('clients');
                 await renderAgenda();
