@@ -8,13 +8,11 @@
     <style>
         /* ===== Design System ===== */
         :root {
-            /* لون أساسي جديد: عنابي/توتي غامق يبعث القوة والثقة، مع الذهبي كلون مرافق للفخامة والدفء */
             --primary: #A6244C;
             --primary-light: #D1497A;
             --primary-dark: #6E162F;
             --primary-50: #FDF0F4;
             --primary-100: #F7D3DE;
-
             --bg: #FBF0EC;
             --surface: #FFFAF7;
             --surface-elevated: #F7E4DD;
@@ -23,30 +21,25 @@
             --text-tertiary: #9C7A83;
             --border: rgba(110, 22, 47, 0.08);
             --border-strong: rgba(110, 22, 47, 0.2);
-
             --success: #0E9C6E;
             --success-50: #ECFDF5;
             --warning: #D48C2C;
             --warning-50: #FFFBEB;
             --danger: #DC4A4A;
             --danger-50: #FEF2F2;
-
             --gold: #C08A1E;
             --gold-light: #FBF0DA;
             --highlight-blue: #147A7A;
-
             --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.08);
             --shadow-primary: 0 4px 16px rgba(166, 36, 76, 0.2);
-
             --radius-sm: 10px;
             --radius-md: 14px;
             --radius-lg: 18px;
             --radius-xl: 22px;
             --radius-pill: 999px;
-
             --space-1: 4px;
             --space-2: 8px;
             --space-3: 12px;
@@ -54,7 +47,6 @@
             --space-5: 20px;
             --space-6: 28px;
             --space-8: 40px;
-
             --font-xs: 0.8rem;
             --font-sm: 0.95rem;
             --font-base: 1.08rem;
@@ -62,10 +54,8 @@
             --font-xl: 1.35rem;
             --font-2xl: 1.6rem;
             --font-3xl: 1.85rem;
-
             --transition-fast: 0.15s ease;
             --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
             --touch-min: 50px;
         }
 
@@ -202,8 +192,8 @@
         }
 
         .icon-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: var(--radius-md);
             border: none;
             background: var(--surface);
@@ -218,6 +208,8 @@
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
+            padding: 4px;
+            margin: -4px; /* توسيع منطقة النقر دون تغيير الحجم المرئي */
         }
         .icon-btn:hover {
             background: var(--primary-50);
@@ -1973,6 +1965,49 @@
             border-bottom: none;
         }
 
+        /* سلة المهملات - إضافات */
+        .trash-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-2);
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            margin-bottom: var(--space-2);
+            font-size: var(--font-sm);
+        }
+        .trash-item .trash-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .trash-item .trash-actions {
+            display: flex;
+            gap: var(--space-2);
+        }
+        .trash-item .trash-actions button {
+            min-height: 30px;
+            font-size: var(--font-xs);
+            padding: var(--space-1) var(--space-3);
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .trash-item .restore-btn {
+            background: var(--success-50);
+            color: #0A6B4A;
+        }
+        .trash-item .delete-permanent-btn {
+            background: var(--danger-50);
+            color: var(--danger);
+        }
+        .trash-item .trash-date {
+            color: var(--text-tertiary);
+            font-size: var(--font-xs);
+        }
+
         @media (max-width: 400px) {
             .today-card {
                 padding: var(--space-2) var(--space-3);
@@ -2449,7 +2484,7 @@
                             </div>
                         </div>
                         
-                        <!-- ===== التعديل الجديد: حقول الاتساع المنفصلة ===== -->
+                        <!-- التعديل الجديد: حقول الاتساع المنفصلة -->
                         <div class="card-header" style="margin-top: var(--space-2); margin-bottom: var(--space-2);">
                             <div class="card-header-icon" style="background: var(--gold-light);">✂️</div>
                             <div class="card-header-text">
@@ -2471,9 +2506,6 @@
                             <label>اتساع الحوض <span class="unit">(cm)</span></label>
                             <input type="number" id="calc-hips-ease" step="0.1" value="3" min="0">
                         </div>
-                        <!-- ===== نهاية التعديل ===== -->
-                        
-                        <!-- تم إزالة زر الحساب لأن النتائج تتحديث فورياً -->
                     </form>
                 </div>
                 <div class="card hidden" id="results-card">
@@ -2590,7 +2622,7 @@
             </div>
         </div>
 
-        <!-- ===== التعديل الجديد: نافذة اختيار الرمز السري عند أول استخدام ===== -->
+        <!-- ===== نافذة اختيار الرمز السري عند أول استخدام ===== -->
         <div class="modal-overlay active" id="first-setup-modal" style="z-index: 9999; background: var(--bg); backdrop-filter: none;">
             <div class="modal-content" style="max-width: 340px;">
                 <div class="modal-header">
@@ -2604,7 +2636,7 @@
             </div>
         </div>
 
-        <!-- ===== التعديل الجديد: نافذة الرمز السري للإحصائيات ===== -->
+        <!-- ===== نافذة الرمز السري للإحصائيات ===== -->
         <div class="modal-overlay" id="stats-code-modal">
             <div class="modal-content" style="max-width: 340px;">
                 <div class="modal-header">
@@ -2618,7 +2650,7 @@
             </div>
         </div>
 
-        <!-- ===== باقي النوافذ المنبثقة (موجودة سابقاً) ===== -->
+        <!-- ===== باقي النوافذ المنبثقة ===== -->
         <div class="page-overlay" id="calendar-page">
             <div class="page-header">
                 <span class="page-title" id="calendar-page-title">📅 التقويم</span>
@@ -2902,13 +2934,12 @@
                     <button class="btn btn-secondary" id="export-btn">📤 تصدير النسخة الاحتياطية</button>
                     <button class="btn btn-secondary" id="import-btn">📥 استيراد نسخة احتياطية</button>
                     <input type="file" id="import-file-input" class="hidden" accept=".json">
+                    <button class="btn btn-secondary" id="trash-btn">🗑️ سلة المهملات</button>
                     <div style="border-top: 1px solid var(--border); margin: var(--space-2) 0;"></div>
                     <p style="font-size: var(--font-sm); color: var(--text-tertiary);">المظهر:</p>
                     <button class="btn btn-secondary" id="toggle-theme-btn">🌙 / ☀️ تبديل الوضع الداكن</button>
                     <div style="border-top: 1px solid var(--border); margin: var(--space-2) 0;"></div>
-                    <!-- ===== التعديل الجديد: سر الفصالة ===== -->
                     <button class="btn btn-secondary" id="show-secret-btn">🔓 سر الفصالة</button>
-                    <!-- ===== التعديل الجديد: الإحصائيات ===== -->
                     <button class="btn btn-secondary" id="show-stats-btn">📊 عرض الإحصائيات</button>
                 </div>
             </div>
@@ -3067,14 +3098,30 @@
                 <div id="today-orders-list" style="display:flex; flex-direction:column; gap:var(--space-2); max-height:50vh; overflow-y:auto;"></div>
             </div>
         </div>
+
+        <!-- ===== نافذة سلة المهملات ===== -->
+        <div class="modal-overlay" id="trash-modal">
+            <div class="modal-content" style="max-width: 480px; max-height: 80vh;">
+                <div class="modal-header">
+                    <h3>🗑️ سلة المهملات</h3>
+                    <button class="modal-close" id="close-trash-modal">✕</button>
+                </div>
+                <div style="display:flex; gap:var(--space-2); margin-bottom:var(--space-3); flex-wrap:wrap;">
+                    <button class="btn btn-success btn-sm" id="restore-all-trash" style="flex:1;">♻️ استعادة الكل</button>
+                    <button class="btn btn-danger btn-sm" id="empty-trash" style="flex:1;">🗑️ تفريغ الكل</button>
+                </div>
+                <div id="trash-list" style="display:flex; flex-direction:column; gap:var(--space-2); max-height:50vh; overflow-y:auto;"></div>
+            </div>
+        </div>
     </div>
 
     <script>
         (function() {
-            // ===== التعديل الجديد: إعدادات التطبيق (الرمز السري، التذكير الأسبوعي) =====
+            // ===== إعدادات التطبيق (الرمز السري، التذكير الأسبوعي) =====
             let appSettings = {
-                statsCode: null, // الرمز السري للإحصائيات (4 أرقام)
-                lastReminderDate: null // تاريخ آخر ظهور للتذكير الأسبوعي
+                statsCode: null,
+                lastReminderDate: null,
+                backupDate: null
             };
 
             // ===== دوال إدارة الإعدادات =====
@@ -3086,12 +3133,15 @@
                         appSettings = { ...appSettings, ...parsed };
                     }
                 } catch (e) { console.warn('Failed to load app settings', e); }
-                // ===== التعديل الجديد: لم يعد يُنشأ رمز افتراضي (1234) =====
-                // إذا لم يكن هناك رمز سري محفوظ، سيُطلب من المستخدمة اختيار رمزها الخاص
-                // عند أول استخدام عبر نافذة first-setup-modal (انظر ensureFirstTimeSetup)
             }
 
-            // ===== التعديل الجديد: نافذة اختيار الرمز السري عند أول استخدام =====
+            function saveAppSettings() {
+                try {
+                    localStorage.setItem('fessala_app_settings', JSON.stringify(appSettings));
+                } catch (e) { console.warn('Failed to save app settings', e); }
+            }
+
+            // ===== نافذة اختيار الرمز السري عند أول استخدام =====
             function ensureFirstTimeSetup() {
                 return new Promise((resolve) => {
                     if (appSettings.statsCode) {
@@ -3138,24 +3188,14 @@
                 });
             }
 
-            function saveAppSettings() {
-                try {
-                    localStorage.setItem('fessala_app_settings', JSON.stringify(appSettings));
-                } catch (e) { console.warn('Failed to save app settings', e); }
-            }
-
-            // ===== التعديل الجديد: Atomic Auto Backup =====
+            // ===== Atomic Auto Backup =====
             async function performAtomicBackup() {
                 try {
-                    // 1. جلب البيانات
                     const clients = await getClients();
                     const dataToBackup = { clients: clients, settings: appSettings };
                     const jsonData = JSON.stringify(dataToBackup, null, 2);
-
-                    // التحقق من وجود Capacitor و Filesystem
                     const { Filesystem } = window.Capacitor?.Plugins || {};
                     if (!Filesystem) {
-                        // في بيئة الويب العادية، نقوم بتنزيل الملف (بدون ذرية ولكن آمن)
                         const blob = new Blob([jsonData], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -3167,67 +3207,52 @@
                         URL.revokeObjectURL(url);
                         return;
                     }
-
-                    // 2. كتابة ملف مؤقت
                     await Filesystem.writeFile({
                         path: 'backup_temp.json',
                         data: jsonData,
                         directory: 'DOCUMENTS',
                         encoding: 'utf8'
                     });
-
-                    // 3. التحقق من صحة الملف المؤقت (قراءة + JSON.parse)
                     const readResult = await Filesystem.readFile({
                         path: 'backup_temp.json',
                         directory: 'DOCUMENTS',
                         encoding: 'utf8'
                     });
-                    JSON.parse(readResult.data); // إذا فشل هنا، يرمي استثناء
-
-                    // 4. حذف الملف القديم (إن وجد)
+                    JSON.parse(readResult.data);
                     try {
                         await Filesystem.deleteFile({ path: 'backup.json', directory: 'DOCUMENTS' });
-                    } catch (e) { /* قد لا يكون موجوداً، نتجاهل */ }
-
-                    // 5. إعادة تسمية المؤقت إلى الأساسي
+                    } catch (e) {}
                     await Filesystem.rename({
                         from: 'backup_temp.json',
                         to: 'backup.json',
                         directory: 'DOCUMENTS'
                     });
-
-                    // تحديث تاريخ آخر نسخ احتياطي ناجح
                     appSettings.backupDate = new Date().toISOString();
                     saveAppSettings();
-
                 } catch (error) {
                     console.error('Atomic backup failed:', error);
-                    // تنظيف الملف المؤقت في حال الفشل
                     try {
                         const { Filesystem } = window.Capacitor?.Plugins || {};
                         if (Filesystem) {
                             await Filesystem.deleteFile({ path: 'backup_temp.json', directory: 'DOCUMENTS' });
                         }
-                    } catch (cleanErr) { /* نتجاهل */ }
+                    } catch (cleanErr) {}
                 }
             }
 
-            // ===== استيراد البيانات مع الإعدادات =====
+            // ===== استيراد البيانات =====
             async function processImportData(data) {
                 try {
-                    // التحقق من الصيغة الجديدة (قد تحتوي على settings)
                     let clientsData = data;
                     let settingsData = null;
                     if (data.clients && Array.isArray(data.clients)) {
                         clientsData = data.clients;
                         settingsData = data.settings || null;
                     } else if (Array.isArray(data)) {
-                        // الصيغة القديمة (مصفوفة فقط)
                         clientsData = data;
                     } else {
                         throw new Error('صيغة الملف غير صحيحة');
                     }
-
                     const existingClients = await getClients();
                     const existingIds = new Set(existingClients.map(c => c.id));
                     let added = 0;
@@ -3252,8 +3277,6 @@
                             added++;
                         }
                     }
-
-                    // استيراد الإعدادات إذا وجدت
                     if (settingsData) {
                         if (settingsData.statsCode) appSettings.statsCode = settingsData.statsCode;
                         if (settingsData.lastReminderDate) appSettings.lastReminderDate = settingsData
@@ -3261,7 +3284,6 @@
                         if (settingsData.backupDate) appSettings.backupDate = settingsData.backupDate;
                         saveAppSettings();
                     }
-
                     await scheduleAllNotifications();
                     await sendPersistentDailyNotification();
                     renderAgenda();
@@ -3274,7 +3296,7 @@
                 }
             }
 
-            // ===== التعديل الجديد: نافذة الرمز السري للإحصائيات =====
+            // ===== نافذة الرمز السري للإحصائيات =====
             function showStatsCodeModal() {
                 const modal = document.getElementById('stats-code-modal');
                 const input = document.getElementById('stats-code-input');
@@ -3309,7 +3331,7 @@
                 document.getElementById('stats-code-modal').classList.remove('active');
             });
 
-            // ===== التعديل الجديد: زر سر الفصالة =====
+            // ===== زر سر الفصالة =====
             document.getElementById('show-secret-btn').addEventListener('click', function() {
                 document.getElementById('settings-modal').classList.remove('active');
                 document.getElementById('secret-modal').classList.add('active');
@@ -3318,7 +3340,7 @@
                 document.getElementById('secret-modal').classList.remove('active');
             });
 
-            // ===== التعديل الجديد: ربط زر الإحصائيات بالرمز السري (يتطلب 3 ضغطات فأكثر) =====
+            // ===== ربط زر الإحصائيات بالرمز السري =====
             let statsBtnClickCount = 0;
             let statsBtnClickTimer = null;
             document.getElementById('show-stats-btn').addEventListener('click', function() {
@@ -3328,7 +3350,7 @@
                     statsBtnClickCount = 0;
                 }, 1500);
                 if (statsBtnClickCount < 3) {
-                    return; // لا يحدث أي شيء قبل 3 ضغطات فما فوق
+                    return;
                 }
                 statsBtnClickCount = 0;
                 clearTimeout(statsBtnClickTimer);
@@ -3372,59 +3394,72 @@
             themeToggle.addEventListener('click', toggleTheme);
             toggleThemeBtn.addEventListener('click', toggleTheme);
 
-            // ===== Back Button (Capacitor) with new modals =====
+            // ===== Back Button (Capacitor) with improved close =====
             function setupBackButton() {
                 const { App } = window.Capacitor?.Plugins || {};
                 if (!App) return;
                 App.addListener('backButton', () => {
-                    // 1. إغلاق نافذة الرمز السري
+                    // 1. نافذة الرمز السري
                     const codeModal = document.getElementById('stats-code-modal');
                     if (codeModal.classList.contains('active')) { codeModal.classList.remove('active'); return; }
-                    // 2. إغلاق نافذة السر
+                    // 2. نافذة السر
                     const secretModal = document.getElementById('secret-modal');
                     if (secretModal.classList.contains('active')) { secretModal.classList.remove('active'); return; }
                     // 3. Image overlay
                     const overlay = document.getElementById('image-overlay');
                     if (overlay.classList.contains('active')) { overlay.classList.remove('active'); return; }
-                    // 4. أي صفحة مفتوحة (page-overlay)
+                    // 4. سلة المهملات
+                    const trashModal = document.getElementById('trash-modal');
+                    if (trashModal.classList.contains('active')) { trashModal.classList.remove('active'); return; }
+                    // 5. أي صفحة مفتوحة (page-overlay)
                     const pages = document.querySelectorAll('.page-overlay.active');
                     if (pages.length > 0) { pages[pages.length - 1].classList.remove('active'); return; }
-                    // 5. أي مودال مفتوح (modal-overlay)
+                    // 6. أي مودال مفتوح (modal-overlay)
                     const modals = document.querySelectorAll('.modal-overlay.active');
                     if (modals.length > 0) { modals.forEach(m => m.classList.remove('active')); return; }
-                    // 6. Remove highlight
+                    // 7. Remove highlight
                     document.querySelectorAll('.client-card.highlight').forEach(el => el.classList.remove('highlight'));
-                    // 7. Context menu
+                    // 8. Context menu
                     const contextMenu = document.querySelector('.context-menu.active');
                     if (contextMenu) { contextMenu.remove(); return; }
-                    // 8. Stop recordings
+                    // 9. Stop recordings
                     if (isFormRecording && formMediaRecorder) { formMediaRecorder.stop();
                         waitingToSaveClient = false; return; }
                     if (isRotouchRecording && rotouchMediaRecorder) { rotouchMediaRecorder.stop();
                         waitingToSaveRotouch = false; return; }
                     if (isCopyRecording && copyMediaRecorder) { copyMediaRecorder.stop();
                         waitingToSaveCopy = false; return; }
-                    // 9. Switch to home tab (clients list) if not there
+                    // 10. Switch to home tab if not there
                     const activeTab = document.querySelector('.nav-item.active');
                     if (activeTab && activeTab.dataset.tab !== 'agenda') { switchTab('agenda'); return; }
-                    // 10. Exit app
+                    // 11. Exit app
                     App.exitApp();
                 });
             }
 
-            // ===== IndexedDB =====
+            // ===== IndexedDB with Trash Store =====
             const DB_NAME = 'FessalaAppDB',
-                STORE_NAME = 'clients';
+                STORE_NAME = 'clients',
+                TRASH_STORE = 'trash';
+            let dbInstance = null;
 
             function openDB() {
                 return new Promise((resolve, reject) => {
-                    const req = indexedDB.open(DB_NAME, 1);
+                    if (dbInstance) { resolve(dbInstance); return; }
+                    const req = indexedDB.open(DB_NAME, 2);
                     req.onupgradeneeded = e => {
-                        if (!e.target.result.objectStoreNames.contains(STORE_NAME)) {
-                            e.target.result.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains(STORE_NAME)) {
+                            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                        }
+                        if (!db.objectStoreNames.contains(TRASH_STORE)) {
+                            db.createObjectStore(TRASH_STORE, { keyPath: 'id' });
                         }
                     };
-                    req.onsuccess = () => resolve(req.result);
+                    req.onsuccess = e => {
+                        dbInstance = e.target.result;
+                        resolve(dbInstance);
+                    };
                     req.onerror = () => reject(req.error);
                 });
             }
@@ -3459,27 +3494,152 @@
                 });
             }
 
-            function compressImage(file, maxWidth = 800, quality = 0.6) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = e => {
-                        const img = new Image();
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            let w = img.width,
-                                h = img.height;
-                            if (w > maxWidth) { h = (h * maxWidth) / w;
-                                w = maxWidth; }
-                            canvas.width = w;
-                            canvas.height = h;
-                            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                            resolve(canvas.toDataURL('image/jpeg', quality));
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
+            // ===== Trash functions =====
+            async function addToTrash(client) {
+                const trashItem = { ...client, deletedAt: new Date().toISOString() };
+                const db = await openDB();
+                return new Promise((res, rej) => {
+                    const tx = db.transaction(TRASH_STORE, 'readwrite');
+                    tx.objectStore(TRASH_STORE).put(trashItem);
+                    tx.oncomplete = () => res();
+                    tx.onerror = () => rej(tx.error);
                 });
+            }
+
+            async function getTrashItems() {
+                const db = await openDB();
+                return new Promise((res, rej) => {
+                    const tx = db.transaction(TRASH_STORE, 'readonly');
+                    const r = tx.objectStore(TRASH_STORE).getAll();
+                    r.onsuccess = () => res(r.result);
+                    r.onerror = () => rej(r.error);
+                });
+            }
+
+            async function removeFromTrash(id) {
+                const db = await openDB();
+                return new Promise((res, rej) => {
+                    const tx = db.transaction(TRASH_STORE, 'readwrite');
+                    tx.objectStore(TRASH_STORE).delete(id);
+                    tx.oncomplete = () => res();
+                    tx.onerror = () => rej(tx.error);
+                });
+            }
+
+            async function restoreFromTrash(id) {
+                const trashItems = await getTrashItems();
+                const item = trashItems.find(t => t.id === id);
+                if (!item) throw new Error('Not found in trash');
+                const { deletedAt, ...client } = item;
+                await saveClient(client);
+                await removeFromTrash(id);
+            }
+
+            async function clearTrash() {
+                const items = await getTrashItems();
+                for (const item of items) {
+                    await removeFromTrash(item.id);
+                }
+            }
+
+            async function autoCleanTrash() {
+                const items = await getTrashItems();
+                const now = new Date();
+                const week = 7 * 24 * 60 * 60 * 1000;
+                let deleted = 0;
+                for (const item of items) {
+                    const deletedAt = new Date(item.deletedAt);
+                    if (now - deletedAt > week) {
+                        await removeFromTrash(item.id);
+                        deleted++;
+                    }
+                }
+                return deleted;
+            }
+
+            // ===== Trash UI =====
+            async function openTrashModal() {
+                const modal = document.getElementById('trash-modal');
+                const list = document.getElementById('trash-list');
+                const items = await getTrashItems();
+                if (items.length === 0) {
+                    list.innerHTML = '<p style="text-align:center;padding:var(--space-8) 0;color:var(--text-tertiary);">سلة المهملات فارغة</p>';
+                } else {
+                    list.innerHTML = items.map(item => `
+                        <div class="trash-item" data-id="${item.id}">
+                            <div class="trash-info">
+                                <strong>👤 ${escapeHTML(item.name)}</strong>
+                                <span class="trash-date">🗑️ حذفت في: ${new Date(item.deletedAt).toLocaleString()}</span>
+                                <span class="trash-date">⏳ تنتهي في: ${new Date(new Date(item.deletedAt).getTime() + 7*24*60*60*1000).toLocaleString()}</span>
+                            </div>
+                            <div class="trash-actions">
+                                <button class="restore-btn" data-id="${item.id}">♻️ استعادة</button>
+                                <button class="delete-permanent-btn" data-id="${item.id}">🗑️ حذف نهائي</button>
+                            </div>
+                        </div>
+                    `).join('');
+                    list.querySelectorAll('.restore-btn').forEach(btn => {
+                        btn.onclick = async function() {
+                            const id = this.dataset.id;
+                            await restoreFromTrash(id);
+                            showToast('♻️ تم الاستعادة');
+                            openTrashModal();
+                            renderAgenda();
+                            updateStatsBar();
+                        };
+                    });
+                    list.querySelectorAll('.delete-permanent-btn').forEach(btn => {
+                        btn.onclick = async function() {
+                            const id = this.dataset.id;
+                            if (confirm('حذف نهائي؟')) {
+                                await removeFromTrash(id);
+                                showToast('🗑️ تم الحذف النهائي');
+                                openTrashModal();
+                            }
+                        };
+                    });
+                }
+                modal.classList.add('active');
+            }
+
+            document.getElementById('trash-btn').addEventListener('click', async function() {
+                document.getElementById('settings-modal').classList.remove('active');
+                const cleaned = await autoCleanTrash();
+                if (cleaned > 0) showToast(`🗑️ تم تنظيف ${cleaned} عنصر من سلة المهملات`);
+                openTrashModal();
+            });
+
+            document.getElementById('close-trash-modal').addEventListener('click', function() {
+                document.getElementById('trash-modal').classList.remove('active');
+            });
+
+            document.getElementById('restore-all-trash').addEventListener('click', async function() {
+                const items = await getTrashItems();
+                for (const item of items) {
+                    const { deletedAt, ...client } = item;
+                    await saveClient(client);
+                    await removeFromTrash(item.id);
+                }
+                showToast('♻️ تم استعادة الكل');
+                openTrashModal();
+                renderAgenda();
+                updateStatsBar();
+            });
+
+            document.getElementById('empty-trash').addEventListener('click', async function() {
+                if (confirm('تفريغ سلة المهملات بالكامل؟')) {
+                    await clearTrash();
+                    showToast('🗑️ تم تفريغ السلة');
+                    openTrashModal();
+                }
+            });
+
+            // ===== Auto trash cleanup on init =====
+            async function cleanTrashOnInit() {
+                try {
+                    const cleaned = await autoCleanTrash();
+                    if (cleaned > 0) console.log(`🧹 Cleaned ${cleaned} items from trash`);
+                } catch (e) {}
             }
 
             // ===== Form Audio =====
@@ -3674,7 +3834,7 @@
                 });
             }
 
-            // ===== Copy Audio (for copy measurements page) =====
+            // ===== Copy Audio =====
             let copyAudioNotes = [];
             let copyTotalSeconds = 0;
             let copyMaxSeconds = 180;
@@ -4609,7 +4769,7 @@
                         <button data-action="edit-date">🗓️ تعديل التاريخ</button>
                         <button data-action="edit-model">👗 صورة الموديل</button>
                         <button data-action="edit-image">📸 صورة الثوب</button>
-                        ${!client.phone ? `<button data-action="add-phone">📞 إضافة رقم</button>` : ''}
+                        <button data-action="edit-phone">📞 تعديل رقم الهاتف</button>
                         <button data-action="toggle-mode">${client.mode === 'rotouch' ? '🧵 تحويل للخياطة' : '🔄 تحويل للروتوش'}</button>
                     `;
                     if (client.purchased) menuItems += `<button data-action="unpurchase-single">↩️ إلغاء الشراء</button>`;
@@ -4633,7 +4793,7 @@
                     else if (action === 'edit-date') openDateModal(clientId);
                     else if (action === 'edit-image') openImageModal(clientId, 'dress');
                     else if (action === 'edit-model') openImageModal(clientId, 'model');
-                    else if (action === 'add-phone') openPhoneModal(clientId);
+                    else if (action === 'edit-phone') openPhoneModal(clientId);
                     else if (action === 'purchase-single') { client.purchased = true;
                         await saveClient(client);
                         renderAgenda();
@@ -4694,7 +4854,6 @@
             };
             closePhoneBtn.onclick = () => document.getElementById('phone-modal').classList.remove('active');
 
-            // ===== نافذة اختيار وسيلة التواصل (واتساب أو اتصال عادي) =====
             window.openContactChoice = function openContactChoice(clientId, waNum, rawPhone, clientName) {
                 document.getElementById('contact-choice-name').textContent = `📱 تواصل مع ${clientName}`;
                 document.getElementById('contact-choice-whatsapp').href = `https://wa.me/${waNum}`;
@@ -5065,13 +5224,10 @@
                 document.getElementById('copy-sleeveMouth').value = m.sleeveMouth || '';
                 document.getElementById('copy-jlayel').value = m.jlayel || '';
 
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                const dateStr = tomorrow.getFullYear() + '-' +
-                    String(tomorrow.getMonth() + 1).padStart(2, '0') + '-' +
-                    String(tomorrow.getDate()).padStart(2, '0');
-                document.getElementById('copy-deliveryDate').value = dateStr;
-                updateDateStatus(dateStr, 'copy-date-status', 'copy-suggestion-banner', 'copy-suggestion-apply-btn');
+                // لا نضع تاريخاً تلقائياً، نتركه فارغاً
+                document.getElementById('copy-deliveryDate').value = '';
+                document.getElementById('copy-date-status').style.display = 'none';
+                document.getElementById('copy-suggestion-banner').classList.remove('visible');
 
                 page.classList.add('active');
             }
@@ -5162,7 +5318,6 @@
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
 
-                // ===== التعديل الجديد: تشغيل النسخ الاحتياطي الذري بعد الحفظ =====
                 await performAtomicBackup();
 
                 document.getElementById('copy-form').reset();
@@ -5336,16 +5491,17 @@
                         const clients = await getClients();
                         const client = clients.find(c => c.id === clientId);
                         if (!client) return;
-                        if (confirm(`حذف "${client.name}"؟`)) {
+                        if (confirm(`نقل "${client.name}" إلى سلة المهملات؟`)) {
                             if (client.notificationId) {
                                 const { LocalNotifications } = window.Capacitor?.Plugins || {};
                                 if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [
                                             { id: client.notificationId }] }); } catch (e) {} }
                             }
+                            await addToTrash(client);
                             await deleteClientFromDB(clientId);
                             await sendPersistentDailyNotification();
                             renderAgenda();
-                            showToast('🗑️ تم الحذف');
+                            showToast('🗑️ تم النقل إلى سلة المهملات');
                         }
                         break;
                     }
@@ -5359,6 +5515,8 @@
                                 if (LocalNotifications) { try { await LocalNotifications.cancel({ notifications: [
                                             { id: client.notificationId }] }); } catch (e) {} }
                             }
+                            // تسوية الحساب: نعتبر الباقي كأنه دُفع
+                            client.advancePayment = client.totalPrice || 0;
                             client.image = null;
                             client.modelImage = null;
                             client.audioNotes = [];
@@ -5369,7 +5527,6 @@
                             delete client.notificationId;
                             await saveClient(client);
                             await sendPersistentDailyNotification();
-                            // ===== التعديل الجديد: تشغيل النسخ الاحتياطي الذري بعد التسليم =====
                             await performAtomicBackup();
                             renderAgenda();
                             showBigToast('🎉 تم التسليم!');
@@ -5710,11 +5867,49 @@
             agendaSearch.addEventListener('input', renderAgenda);
             document.getElementById('search-in-all').addEventListener('change', renderAgenda);
 
-            // ===== Calculator =====
-            // ===== التعديل الجديد: الحاسبة تعمل بنفس مبدأ قص الفصالة (3 حقول منفصلة + تحديث فوري) =====
+            // ===== Calculator with auto-save =====
             const calcInputs = ['calc-shoulders', 'calc-armhole', 'calc-chest', 'calc-waist', 'calc-hips', 'calc-dressLength', 'calc-sleeveLength', 'calc-sleeveMouth', 'calc-chest-ease', 'calc-waist-ease', 'calc-hips-ease'];
             const resultsCard = document.getElementById('results-card');
             const resultsGrid = document.getElementById('results-grid');
+
+            // Auto-save for calculator
+            function loadCalcAutoSave() {
+                try {
+                    const saved = localStorage.getItem('fessala_calc_autosave');
+                    if (saved) {
+                        const data = JSON.parse(saved);
+                        calcInputs.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el && data[id] !== undefined) {
+                                el.value = data[id];
+                            }
+                        });
+                        updateCalculator();
+                    }
+                } catch (e) {}
+            }
+
+            function saveCalcAutoSave() {
+                try {
+                    const data = {};
+                    calcInputs.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) data[id] = el.value;
+                    });
+                    localStorage.setItem('fessala_calc_autosave', JSON.stringify(data));
+                } catch (e) {}
+            }
+
+            calcInputs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', function() {
+                        saveCalcAutoSave();
+                        updateCalculator();
+                    });
+                    el.addEventListener('change', updateCalculator);
+                }
+            });
 
             function updateCalculator() {
                 const m = {
@@ -5730,13 +5925,13 @@
                 const chestEase = parseFloat(document.getElementById('calc-chest-ease').value) || 0;
                 const waistEase = parseFloat(document.getElementById('calc-waist-ease').value) || 0;
                 const hipsEase = parseFloat(document.getElementById('calc-hips-ease').value) || 0;
-                
-                // التحقق من وجود قيم أساسية
-                if (m.shoulders === 0 || m.chest === 0 || m.waist === 0 || m.hips === 0 || m.dressLength === 0 || m.sleeveLength === 0 || m.armhole === 0 || m.sleeveMouth === 0) {
+
+                if (m.shoulders === 0 || m.chest === 0 || m.waist === 0 || m.hips === 0 || m.dressLength === 0 || m
+                    .sleeveLength === 0 || m.armhole === 0 || m.sleeveMouth === 0) {
                     resultsCard.classList.add('hidden');
                     return;
                 }
-                
+
                 const cuts = calculateCuts(m, chestEase, waistEase, hipsEase);
                 const items = [
                     { label: 'قص الكتاف', value: formatNumber(cuts.shoulderCut) },
@@ -5754,45 +5949,223 @@
                 resultsCard.classList.remove('hidden');
             }
 
-            calcInputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.addEventListener('input', updateCalculator);
-                    el.addEventListener('change', updateCalculator);
-                }
-            });
-
-            // إزالة مستمع submit قديم لأننا نعتمد على التحديث الفوري
             document.getElementById('calculator-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 updateCalculator();
             });
 
-            // ===== Image Uploads (main form) =====
-            document.getElementById('form-capture-btn').addEventListener('click', () => { formImageInput.capture =
-                    'environment';
-                formImageInput.click(); });
-            document.getElementById('form-gallery-btn').addEventListener('click', () => { formImageInput
-                    .removeAttribute('capture');
-                formImageInput.click(); });
-            formImageInput.addEventListener('change', async e => { const file = e.target.files[0]; if (!file) return;
-                const compressed = await compressImage(file);
-                tempImg = compressed;
-                formImagePreview.src = compressed;
-                formImagePreview.classList.add('visible'); });
-            document.getElementById('model-capture-btn').addEventListener('click', () => { formModelInput.capture =
-                    'environment';
-                formModelInput.click(); });
-            document.getElementById('model-gallery-btn').addEventListener('click', () => { formModelInput
-                    .removeAttribute('capture');
-                formModelInput.click(); });
-            formModelInput.addEventListener('change', async e => { const file = e.target.files[0]; if (!file) return;
-                const compressed = await compressImage(file);
-                tempModel = compressed;
-                formModelPreview.src = compressed;
-                formModelPreview.classList.add('visible'); });
-            document.getElementById('client-totalPrice').addEventListener('input', updateRemaining);
-            document.getElementById('client-advancePayment').addEventListener('input', updateRemaining);
+            // Load calculator auto-save
+            loadCalcAutoSave();
+
+            // ===== Image Uploads (main form) with auto-save =====
+            // Auto-save for main form
+            function loadFormAutoSave() {
+                try {
+                    const saved = localStorage.getItem('fessala_form_autosave');
+                    if (saved) {
+                        const data = JSON.parse(saved);
+                        const fields = ['client-name', 'client-location', 'client-phone', 'cl-description',
+                            'client-totalPrice', 'client-advancePayment', 'cl-deliveryDate',
+                            'cl-shoulders', 'cl-armhole', 'cl-chest', 'cl-waist', 'cl-hips',
+                            'cl-dressLength', 'cl-sleeveLength', 'cl-sleeveMouth', 'cl-jlayel'
+                        ];
+                        fields.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el && data[id] !== undefined) {
+                                el.value = data[id];
+                            }
+                        });
+                        if (data.image) {
+                            tempImg = data.image;
+                            formImagePreview.src = data.image;
+                            formImagePreview.classList.add('visible');
+                        }
+                        if (data.modelImage) {
+                            tempModel = data.modelImage;
+                            formModelPreview.src = data.modelImage;
+                            formModelPreview.classList.add('visible');
+                        }
+                        if (data.selectedStatus) {
+                            selectedStatus = data.selectedStatus;
+                            document.querySelectorAll('#status-selector .selector-option[data-status]').forEach(el => {
+                                if (el.dataset.status === data.selectedStatus) el.classList.add('selected');
+                            });
+                        }
+                        if (data.selectedTypes) {
+                            selectedTypes = data.selectedTypes || [];
+                            document.querySelectorAll('#type-selector .selector-option[data-type]').forEach(el => {
+                                if (data.selectedTypes.includes(el.dataset.type)) el.classList.add('selected');
+                            });
+                        }
+                        if (data.formAudioNotes) {
+                            formAudioNotes = data.formAudioNotes;
+                            renderFormAudios();
+                        }
+                        if (data.rotouchAudioNotes) {
+                            rotouchAudioNotes = data.rotouchAudioNotes;
+                            renderRotouchAudios();
+                        }
+                        if (data.mode) {
+                            currentMode = data.mode;
+                            document.querySelectorAll('.mode-btn').forEach(b => {
+                                b.classList.toggle('active', b.dataset.mode === data.mode);
+                            });
+                            const measurementsArea = document.getElementById('measurements-area');
+                            const rotouchArea = document.getElementById('rotouch-area');
+                            if (data.mode === 'tailoring') {
+                                measurementsArea.classList.remove('hidden');
+                                rotouchArea.classList.remove('visible');
+                                rotouchArea.style.display = 'none';
+                                mainAudioGroup.classList.remove('hidden');
+                            } else {
+                                measurementsArea.classList.add('hidden');
+                                rotouchArea.style.display = 'flex';
+                                rotouchArea.classList.add('visible');
+                                mainAudioGroup.classList.add('hidden');
+                            }
+                        }
+                        updateRemaining();
+                        if (data.deliveryDate) {
+                            updateDateStatus(data.deliveryDate, 'date-status', 'suggestion-banner',
+                                'suggestion-apply-btn');
+                        }
+                    }
+                } catch (e) {}
+            }
+
+            function saveFormAutoSave() {
+                try {
+                    const fields = ['client-name', 'client-location', 'client-phone', 'cl-description',
+                        'client-totalPrice', 'client-advancePayment', 'cl-deliveryDate',
+                        'cl-shoulders', 'cl-armhole', 'cl-chest', 'cl-waist', 'cl-hips',
+                        'cl-dressLength', 'cl-sleeveLength', 'cl-sleeveMouth', 'cl-jlayel'
+                    ];
+                    const data = {};
+                    fields.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) data[id] = el.value;
+                    });
+                    if (tempImg) data.image = tempImg;
+                    if (tempModel) data.modelImage = tempModel;
+                    data.selectedStatus = selectedStatus;
+                    data.selectedTypes = selectedTypes;
+                    data.formAudioNotes = formAudioNotes;
+                    data.rotouchAudioNotes = rotouchAudioNotes;
+                    data.mode = currentMode;
+                    localStorage.setItem('fessala_form_autosave', JSON.stringify(data));
+                } catch (e) {}
+            }
+
+            // Auto-save on any change in main form
+            document.querySelectorAll('#client-form input, #client-form textarea, #client-form select').forEach(el => {
+                el.addEventListener('input', saveFormAutoSave);
+                el.addEventListener('change', saveFormAutoSave);
+            });
+
+            // Clear form auto-save after successful save
+            function clearFormAutoSave() {
+                localStorage.removeItem('fessala_form_autosave');
+                // Also clear copy form auto-save if any
+                localStorage.removeItem('fessala_copy_autosave');
+            }
+
+            // Load form auto-save on init
+            loadFormAutoSave();
+
+            // Also auto-save for copy form
+            function loadCopyAutoSave() {
+                try {
+                    const saved = localStorage.getItem('fessala_copy_autosave');
+                    if (saved) {
+                        const data = JSON.parse(saved);
+                        const fields = ['copy-client-name', 'copy-client-location', 'copy-client-phone',
+                            'copy-description', 'copy-totalPrice', 'copy-advancePayment', 'copy-deliveryDate',
+                            'copy-shoulders', 'copy-armhole', 'copy-chest', 'copy-waist', 'copy-hips',
+                            'copy-dressLength', 'copy-sleeveLength', 'copy-sleeveMouth', 'copy-jlayel'
+                        ];
+                        fields.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el && data[id] !== undefined) {
+                                el.value = data[id];
+                            }
+                        });
+                        if (data.image) {
+                            document.getElementById('copy-image-preview').src = data.image;
+                            document.getElementById('copy-image-preview').classList.add('visible');
+                        }
+                        if (data.modelImage) {
+                            document.getElementById('copy-model-preview').src = data.modelImage;
+                            document.getElementById('copy-model-preview').classList.add('visible');
+                        }
+                        if (data.copyAudioNotes) {
+                            copyAudioNotes = data.copyAudioNotes;
+                            renderCopyAudios();
+                        }
+                        updateRemainingCopy();
+                        if (data.deliveryDate) {
+                            updateDateStatus(data.deliveryDate, 'copy-date-status', 'copy-suggestion-banner',
+                                'copy-suggestion-apply-btn');
+                        }
+                    }
+                } catch (e) {}
+            }
+
+            function saveCopyAutoSave() {
+                try {
+                    const fields = ['copy-client-name', 'copy-client-location', 'copy-client-phone',
+                        'copy-description', 'copy-totalPrice', 'copy-advancePayment', 'copy-deliveryDate',
+                        'copy-shoulders', 'copy-armhole', 'copy-chest', 'copy-waist', 'copy-hips',
+                        'copy-dressLength', 'copy-sleeveLength', 'copy-sleeveMouth', 'copy-jlayel'
+                    ];
+                    const data = {};
+                    fields.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) data[id] = el.value;
+                    });
+                    const img = document.getElementById('copy-image-preview');
+                    if (img.src && img.classList.contains('visible')) data.image = img.src;
+                    const modelImg = document.getElementById('copy-model-preview');
+                    if (modelImg.src && modelImg.classList.contains('visible')) data.modelImage = modelImg.src;
+                    data.copyAudioNotes = copyAudioNotes;
+                    localStorage.setItem('fessala_copy_autosave', JSON.stringify(data));
+                } catch (e) {}
+            }
+
+            document.querySelectorAll('#copy-form input, #copy-form textarea, #copy-form select').forEach(el => {
+                el.addEventListener('input', saveCopyAutoSave);
+                el.addEventListener('change', saveCopyAutoSave);
+            });
+
+            function updateRemainingCopy() {
+                const total = parseFloat(document.getElementById('copy-totalPrice').value) || 0;
+                const advance = parseFloat(document.getElementById('copy-advancePayment').value) || 0;
+                document.getElementById('copy-remaining-text').textContent = Math.max(0, total - advance).toFixed(2) +
+                    ' درهم';
+            }
+
+            document.getElementById('copy-totalPrice').addEventListener('input', function() {
+                updateRemainingCopy();
+                saveCopyAutoSave();
+            });
+            document.getElementById('copy-advancePayment').addEventListener('input', function() {
+                updateRemainingCopy();
+                saveCopyAutoSave();
+            });
+
+            // Clear copy auto-save after successful save
+            function clearCopyAutoSave() {
+                localStorage.removeItem('fessala_copy_autosave');
+            }
+
+            // ===== Main form listeners =====
+            document.getElementById('client-totalPrice').addEventListener('input', function() {
+                updateRemaining();
+                saveFormAutoSave();
+            });
+            document.getElementById('client-advancePayment').addEventListener('input', function() {
+                updateRemaining();
+                saveFormAutoSave();
+            });
 
             // ===== Status & Type Selectors =====
             let selectedStatus = null;
@@ -5806,6 +6179,7 @@
                             'selected'));
                         this.classList.add('selected');
                         selectedStatus = status; }
+                    saveFormAutoSave();
                 });
             });
             document.querySelectorAll('.selector-option[data-type]').forEach(el => {
@@ -5815,6 +6189,7 @@
                     if (index > -1) { selectedTypes.splice(index, 1);
                         this.classList.remove('selected'); } else { selectedTypes.push(type);
                         this.classList.add('selected'); }
+                    saveFormAutoSave();
                 });
             });
 
@@ -5912,9 +6287,10 @@
                 await scheduleNotificationForClient(client);
                 await sendPersistentDailyNotification();
 
-                // ===== التعديل الجديد: تشغيل النسخ الاحتياطي الذري بعد الحفظ =====
                 await performAtomicBackup();
 
+                // Clear auto-save
+                clearFormAutoSave();
                 document.getElementById('client-form').reset();
                 tempImg = null;
                 tempModel = null;
@@ -5948,10 +6324,9 @@
 
             // ===== Init =====
             async function init() {
-                await loadAppSettings(); // تحميل الإعدادات (الرمز السري، التذكير)
-                await ensureFirstTimeSetup(); // ===== التعديل الجديد: اختيار الرمز السري أول مرة قبل الدخول =====
+                await loadAppSettings();
+                await ensureFirstTimeSetup();
 
-                // ===== التعديل الجديد: التذكير الأسبوعي (مرة كل 7 أيام) =====
                 const lastReminder = appSettings.lastReminderDate;
                 const now = new Date();
                 let showReminder = false;
@@ -5986,15 +6361,15 @@
                 requestNotificationPermission();
                 await scheduleAllNotifications();
                 await sendPersistentDailyNotification();
-                // التحقق من آخر نسخة احتياطية (للنسخ الاحتياطي التلقائي لا حاجة لتنبيه، لكن نترك التذكير القديم)
                 const lastBackup = localStorage.getItem('lastBackupDate');
                 const nowTime = Date.now();
                 const oneWeek = 7 * 24 * 60 * 60 * 1000;
                 if (!lastBackup) localStorage.setItem('lastBackupDate', nowTime.toString());
-                // تم إزالة التنبيه الإضافي لأنه أصبح ضمن التذكير الأسبوعي أعلاه
                 attachDelegation();
-                // ===== التعديل الجديد: تم إلغاء تنفيذ النسخة الاحتياطية عند كل دخول للتطبيق =====
-                // النسخ الاحتياطي الآن يعمل فقط عند إضافة كليانة جديدة (داخل executeSaveNewClient)
+                // Clean trash on init
+                await cleanTrashOnInit();
+                // Load copy auto-save
+                loadCopyAutoSave();
             }
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
             else init();
