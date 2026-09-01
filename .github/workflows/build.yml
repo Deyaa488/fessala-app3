@@ -23,7 +23,10 @@ jobs:
 
       - name: Add Android Platform
         run: npx cap add android
-
+      - name: Generate Icons and Splash
+        run: |
+          npm install @capacitor/assets --save-dev
+          npx capacitor-assets generate --android
       - name: Copy Web Assets
         run: npx cap sync android
 
